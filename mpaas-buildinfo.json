@@ -1,10 +1,10 @@
 [
   {
-    "appId": "PRIE65FA67051042",
+    "appId": "{APP_ID}",
     "workspace": "default",
-    "h5Id": "0100018888029999",
-    "h5Name": "APPTesting",
-    "h5Version": "1.0.1.19",
+    "h5Id": "{H5_ID}",
+    "h5Name": "{H5_NAME}",
+    "h5Version": "{H5_VERSION}",
     "autoInstall": 1,
     "resourceType": 4,
     "installType": 1,
