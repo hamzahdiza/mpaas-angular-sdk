@@ -1,0 +1,27 @@
+<view
+  style="margin-top: 50rpx"
+  onTouchStart="handleTouchStart"
+  onTouchMove="handleTouchMove"
+  onTouchEnd="handleTouchEnd"
+>
+  <button size="default" type="primary" onTap="encSessionKey">
+    Enc Session Key
+  </button>
+  <textarea placeholder="data" showCount="{{false}}" auto-height value="{{encrypSessKey}}" />
+  <button size="default" type="primary" onTap="encPayload">Encrypt Data</button>
+  <textarea placeholder="data" showCount="{{false}}" auto-height value="{{dataProt}}" />
+  <button size="default" type="primary" onTap="dataProtect">DataProtected</button>
+  <textarea placeholder="data" showCount="{{false}}" auto-height value="{{protectedData.dataProtected}}" />
+  <button size="default" type="primary" onTap="sign">Signature</button>
+  <textarea placeholder="data" showCount="{{false}}" auto-height value="{{signature}}" />
+
+  <button size="default" type="primary" onTap="navigateTo">CALL API</button>
+  
+  <button size="default" type="primary" onTap="previewPDF" style="margin-top: 20rpx;">
+    PREVIEW PDF Hardcode
+  </button>
+  <button size="default" type="primary" onTap="previewPDFAPI" style="margin-top: 20rpx;">
+    PREVIEW PDF From API
+  </button>
+
+</view>

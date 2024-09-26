@@ -1,0 +1,11 @@
+.custom-nav {
+  background-image: linear-gradient(to bottom, #BC3985, #D15B2C);
+}
+
+.custom-titleBar {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  margin-left: 16px;
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "loading": "/components/loading/loading",
+    "top-bar": "/components/top-bar/top-bar"
+  }
+}

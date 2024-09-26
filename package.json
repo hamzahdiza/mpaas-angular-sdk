@@ -1,0 +1,25 @@
+{
+  "name": "mpaas-test-jsapi",
+  "version": "1.0.0",
+  "description": "To make it easy for you to get started with GitLab, here's a list of recommended next steps.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint \"./pages/**/*.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@wecrpto/nacl": "^0.1.0",
+    "@wecrpto/weaccount": "^1.0.1",
+    "antd-mini": "^2.36.6"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.21.0",
+    "caniuse-lite": "^1.0.30001658"
+  }
+}

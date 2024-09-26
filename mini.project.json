@@ -1,0 +1,11 @@
+{
+  "format": 2,
+  "developOptions": {
+    "hotReload": false,
+    "parallel": false
+  },
+  "compileOptions": {
+    "component2": true,
+    "enableNodeModuleBabelTransform": true
+  }
+}

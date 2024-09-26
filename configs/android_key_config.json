@@ -1,0 +1,52 @@
+[
+  {
+    "key": "language",
+    "type": "plain",
+    "value": "preferredLanguage"
+  },
+  {
+    "key": "deviceId",
+    "type": "secure",
+    "value": "deviceInfo"
+  },
+  {
+    "key": "refreshToken",
+    "type": "secure",
+    "value": "refreshToken"
+  },
+  {
+    "key": "accessToken",
+    "type": "secure",
+    "value": "accessToken"
+  },
+  {
+    "key": "beEncryptPublicKey",
+    "type": "secure",
+    "value": "encPublicKey"
+  },
+  {
+    "key": "beE2EEPublicKey",
+    "type": "secure",
+    "value": "pwPublicKey"
+  },
+  {
+    "key": "sessionKey",
+    "type": "secure",
+    "value": "sessionKey"
+  },
+  {
+    "key": "signingPrivateKey",
+    "type": "secure",
+    "value": "signPrivateKey"
+  },
+  {
+    "key": "signingPublicKey",
+    "type": "secure",
+    "value": "signPublicKey"
+  },
+  {
+    "key": "userId",
+    "type": "secure",
+    "value": "userId"
+  }
+]

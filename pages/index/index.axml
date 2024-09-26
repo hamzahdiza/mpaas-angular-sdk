@@ -1,0 +1,31 @@
+<view class="container">
+  <view>
+    <button class="item" type="primary" onTap="getData">
+      Get Data
+    </button>
+  </view>
+  <view>
+    <button class="item" type="primary" onTap="getParameter">
+      Get Parameter
+    </button>
+  </view>
+  <view>
+    <button class="item" type="primary" onTap="navigateTo">
+      Signature
+    </button>
+  </view>
+  <view>
+    <button class="item" type="primary" onTap="navigateToJSAPI">
+      JS API METHOD
+    </button>
+  </view>
+  <view>
+    <button class="item" type="primary" onTap="navigateToWebView">
+      LIFESTYLE MICROSITE
+    </button>
+  </view>
+  <view>
+    <view>
+      version 1.0.1.18
+    </view>
+  </view>

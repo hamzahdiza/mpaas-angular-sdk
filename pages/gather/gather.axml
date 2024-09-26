@@ -1,0 +1,9 @@
+<view style="height: 100vh; display: flex; align-items: center; padding: 0 12px">
+  <container title="SUCCES" style="width: 100%">
+    <result
+      title="SUCCESS"
+      message={{"Intercept URL Success" + ' ' + dataPages}}
+      type="success"
+    ></result>
+  </container>
+</view>

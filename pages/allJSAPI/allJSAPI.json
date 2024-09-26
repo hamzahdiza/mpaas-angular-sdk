@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "ant-radio-group": "antd-mini/es/Radio/RadioGroup/index",
+    "ant-container": "antd-mini/es/Container/index"
+  },
+  "styleIsolation": "apply-shared"
+}

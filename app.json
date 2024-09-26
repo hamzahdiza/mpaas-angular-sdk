@@ -1,0 +1,11 @@
+{
+  "entryPagePath": "pages/index/index",
+  "pages": [
+    "pages/index/index",
+    "pages/signature/signature",
+    "pages/gather/gather",
+    "pages/maps/maps",
+    "pages/imageRendered/imageRendered",
+    "pages/allJSAPI/allJSAPI"
+  ]
+}

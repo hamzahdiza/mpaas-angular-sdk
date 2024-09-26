@@ -1,0 +1,98 @@
+<view>
+  <button class="item" type="primary" onTap="goToResetMPINPage">
+    Go To Reset MPIN Page
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="sharePdf">
+    Share PDF
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="openExternalBrowserListBranch">
+    Open External Browser List Branch
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="openViewNearestBranch">
+    Open View Nearest Branch
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="firebaseScreenView">
+    Firebase Screen View
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="sendFirebaseEvent">
+    Firebase Event
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="enableSwipe">
+    Enable swipe
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="goToSplashScreen">
+    Go To Splash Screen
+  </button>
+</view>
+
+<ant-container title="Go To Home Screen">
+  <ant-radio-group
+    value="{{valueHomeScreen}}"
+    options="{{optionsHomeScreen}}"
+    onChange="handleChangeHomeScreen"
+  ></ant-radio-group>
+  <button class="item" type="primary" onTap="goToHomeScreen">
+    Go To Home Screen
+  </button>
+</ant-container>
+
+<ant-container title="Down Time Error">
+  <ant-radio-group
+    value="{{valueDownTime}}"
+    options="{{optionsDownTime}}"
+    onChange="handleChangeHomeScreen"
+  ></ant-radio-group>
+  <button class="item" type="primary" onTap="downTimeError">
+    Down Time Error
+  </button>
+</ant-container>
+
+<view>
+  <button class="item" type="primary" onTap="goToSavingAccountDataVerification">
+    Go To Saving Account Data Verification
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="goToSavingAccountProductSelection">
+    Go To Saving Account Product Selection
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="goToAMLBlocked">
+    Go To AML Blocked
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="goToEDDOccupation">
+    Go To EDD Occupation
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="storePartnerContext">
+    Store Partner Context
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="goToReceiptScreen">
+    Go To Receipt Screen
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="storeTransactionDetailContext">
+    Store Transaction Detail Context
+  </button>
+</view>

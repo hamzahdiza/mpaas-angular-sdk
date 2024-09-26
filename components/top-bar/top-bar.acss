@@ -1,0 +1,180 @@
+.topBar-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin: -1rpx 0;
+}
+
+.topBar-upper-space {
+  display: flex;
+  width: calc(750rpx - 84rpx);
+  padding: 0rpx 42rpx;
+  justify-content: space-between;
+  align-items: center;
+  color: #00000000;
+}
+
+.topBar-title-bar {
+  display: flex;
+  width: calc(750rpx - 48rpx);
+  height: calc(112rpx - 24rpx);
+  padding: 12rpx 48rpx 12rpx 0;
+  align-items: center;
+  gap: 12rpx;
+  flex-shrink: 0;
+}
+
+.topBar-container-left-icon {
+  width: calc(7.4% + 48rpx);
+  display: flex;
+  justify-content: flex-end;
+  cursor:pointer;
+}
+
+.topBar-left-icon {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+}
+
+.topBar-title-container {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-gap: 32rpx;
+  align-items: center;
+  justify-content: center;
+  width: 85.2%;
+}
+
+.topBar-title {
+
+  display: flex;
+  flex: 1 0 0;
+  justify-content: center;
+}
+
+.topBar-title-txt {
+  height: 100%;
+  width: 360rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-feature-settings: 'clig'off, 'liga'off;
+}
+
+.topBar-title-txt-loading {
+  width: 526rpx;
+  height: 48rpx;
+}
+
+.topBar-container-right-icon-cover {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.topBar-container-right-icon {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: flex-end;
+  align-items: center;
+  gap: 32rpx;
+  width: auto;
+  position: absolute;
+  z-index: 1;
+}
+
+.topBar-userInfo-right-icon-badge {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+}
+
+.topBar-right-icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.topBar-icon-badge {
+  width: 16rpx;
+  height: 16rpx;
+  position: absolute;
+  right: 156rpx;
+  top: -5rpx;
+}
+
+/* Logo */
+.topBar-container-logo {
+  display: flex;
+  width: calc(750rpx - 64rpx);
+  height: calc(88rpx - 24rpx);
+  padding: 12rpx 32rpx;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.topBar-logo {
+  display: flex;
+  width: 176rpx;
+  height: 48rpx;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.topBar-userInfo-bar {
+  display: flex;
+  width: calc(750rpx - 64rpx);
+  height: calc(112rpx - 24rpx);
+  padding: 12rpx 32rpx;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.topBar-userInfo-avatar-greeting {
+  display: grid;
+  grid-template-columns: 48rpx auto;
+  width: 460rpx;
+  align-items: center;
+  gap: 8rpx;
+  flex-shrink: 0;
+}
+
+.topBar-userInfo-profile-image-container {
+  display: flex;
+  width: 48rpx;
+  height: 48rpx;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 112rpx;
+  background: #FFA76B;
+}
+
+.topBar-userInfo-profile-image {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  border-radius: 200rpx;
+  object-fit: cover;
+}
+
+.topBar-username {
+  font-feature-settings: 'clig'off, 'liga'off;
+  font-style: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topBar-title-width {
+  width: 500rpx;
+}
+
+.topBar-title-width-r-icon {
+  width: 360rpx;
+}

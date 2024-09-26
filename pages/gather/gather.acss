@@ -1,0 +1,15 @@
+.keypad {
+  display: flex;
+  flex-direction: column;
+  width: 300px; /* fixed width for simplicity */
+}
+.row {
+  display: flex;
+}
+.key {
+  flex: 1;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border: 1px solid #ccc;
+}

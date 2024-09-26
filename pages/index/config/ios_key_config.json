@@ -1,0 +1,12 @@
+{
+  "language": "plain|app.defaultLanguageKey",
+  "deviceId": "secure|deviceId",
+  "refreshToken": "secure|refreshToken",
+  "accessToken": "secure|accessToken",
+  "beEncryptPublicKey": "secure|beEncryptPublicKey",
+  "beE2EEPublicKey": "secure|beE2EEPublicKey",
+  "sessionKey": "secure|encSessionKey",
+  "signingPrivateKey": "secure|feSigningPrivateKey",
+  "signingPublicKey": "secure|feSigningPublicKey",
+  "userId": "secure|userId"
+}

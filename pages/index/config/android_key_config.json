@@ -1,0 +1,12 @@
+{
+  "language": "plain|preferredLanguage",
+  "deviceId": "secure|deviceInfo",
+  "refreshToken": "secure|refreshToken",
+  "accessToken": "secure|accessToken",
+  "beEncryptPublicKey": "secure|encPublicKey",
+  "beE2EEPublicKey": "secure|pwPublicKey",
+  "sessionKey": "secure|sessionKey",
+  "signingPrivateKey": "secure|signPrivateKey",
+  "signingPublicKey": "secure|signPublicKey",
+  "userId": "secure|userId"
+}

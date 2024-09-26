@@ -1,0 +1,114 @@
+<view class="topBar-container">
+  <block a:if="{{type === 'primary'}}">
+    <view class="topBar-upper-space  {{backgroundColor}}" style="height:{{statusBarHeight}}; background-color:{{backgroundColor}}">
+      .
+    </view>
+  </block>
+  <block a:if="{{type === 'navigation'}}">
+    <view class="topBar-title-bar {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <navigator a:if="{{ exit }}" open-type="exit" class="topBar-container-left-icon">
+        <image src="{{iconL}}" class="topBar-left-icon"/>
+      </navigator>
+      <view class="topBar-container-left-icon" a:else
+        onTap="{{ onIconLTap !== undefined ? 'onIconLTap' : 'onIconLTapDefault'}}">
+        <image
+          mode="scaleToFill" 
+          src={{iconL}} 
+          class="topBar-left-icon"
+          id="{{navigate ? 'id-onIconLTap' : ''}}"
+          />
+      </view>
+      <view class="topBar-title">
+        <view a:if="{{ title != '' }}" class="topBar-title-txt txt-h3 {{color}} {{iconRSecondary ? 'topBar-title-width-r-icon' : 'topBar-title-width'}}" style="color:{{color}}">
+          {{title}}
+        </view>
+        <view class="topBar-title-txt-loading skeleton" a:if="{{ title == ''  }}"></view>
+      </view>
+      <view class="topBar-container-right-icon-cover">
+      </view>
+      <view class="topBar-container-right-icon" style="right: 20rpx;">
+        <image
+          class="topBar-right-icon"
+          mode="scaleToFill"
+          src={{iconRSecondary}}
+          onTap="onIconRTapSecondary"
+          id="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
+        />
+        <image
+          class="topBar-right-icon"
+          mode="scaleToFill"
+          src={{iconR}}
+          onTap="onIconRTap"
+          id="{{onIconRTap ? 'id-onIconRTap' : ''}}"
+        />
+      </view>
+    </view>
+  </block>
+
+  <block a:if="{{type === 'logo'}}">
+    <view class="topBar-container-logo {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <image class="topBar-logo" mode="scaleToFill" src={{iconLogo}} />
+    </view>
+  </block>
+
+
+
+  <block a:if="{{type === 'userInfo'}}">
+    <view class="topBar-userInfo-bar {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+
+      <view class="topBar-userInfo-avatar-greeting">
+        <view class="topBar-userInfo-profile-image-container">
+          <image
+            class="topBar-userInfo-profile-image"
+            mode="aspectFill"
+            src={{photoProfile}}
+          />
+        </view>
+        <view class="topBar-username txt-h3 {{color}}" style="color: {{color}}">
+          Hi, {{username}}!
+        </view>
+      </view>
+
+
+
+      <view class="topBar-container-right-icon" style="right: 30rpx;">
+        <block a:if="{{ isNotify }}">
+          <view
+            class="topBar-userInfo-right-icon-badge"
+            onTap="onIconRTapTertiary"
+            id="{{onIconRTapTertiary ?'id-onIconRTapTertiary' : ''}}"
+          >
+            <image class="topBar-right-icon" mode="scaleToFill" src={{iconRTertiary}} />
+            <image mode="scaleToFill" src={{iconNotify}} class="topBar-icon-badge" /> 
+          </view>
+        </block>
+
+        <block a:else>
+          <image
+            class="topBar-right-icon"
+            mode="scaleToFill"
+            src={{iconRTertiary}}
+            onTap="onIconRTapTertiary"
+            id="{{onIconRTapTertiary ? 'id-onIconRTapTertiary' : ''}}"
+          />
+        </block>
+
+        <image
+          class="topBar-right-icon"
+          mode="scaleToFill"
+          src={{iconRSecondary}}
+          onTap="onIconRTapSecondary"
+          id="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
+        />
+        <image
+          class="topBar-right-icon"
+          mode="scaleToFill"
+          src={{iconR}}
+          onTap="onIconRTap"
+          id="{{onIconRTap ? 'id-onIconRTap' : ''}}"
+        />
+
+      </view>
+    </view>
+  </block>
+</view>
