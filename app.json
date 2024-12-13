@@ -6,6 +6,7 @@
     "pages/gather/gather",
     "pages/maps/maps",
     "pages/imageRendered/imageRendered",
-    "pages/allJSAPI/allJSAPI"
+    "pages/allJSAPI/allJSAPI",
+    "pages/upload-pdf/upload-pdf"
   ]
 }

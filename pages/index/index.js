@@ -156,4 +156,9 @@ Page({
       url: '/pages/maps/maps'
     })
   },
+  navigateToUploadPdf() {
+    my.navigateTo({
+      url: '/pages/upload-pdf/upload-pdf'
+    })
+  },
 });
