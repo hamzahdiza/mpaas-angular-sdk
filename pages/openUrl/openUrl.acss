@@ -1,0 +1,46 @@
+.container {
+  padding: 0 32rpx;
+}
+
+.item {
+  margin: 20rpx 0;
+  border-radius: 10rpx;
+}
+
+.input{
+  margin-top: 50rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input input{
+  height: 100rpx;
+  width: 75%;
+}
+
+.input button{
+  padding: 0 20rpx;
+  height: 100rpx;
+}
+
+.bg-turquoise-300 {
+  background-color: burlywood;
+}
+
+.bg-snow-white {
+  background-color: chocolate;
+}
+
+.txt-body3-sb{
+  size: 30rpx;
+}
+
+.txt-body3 {
+  size: 10rpx,
+}
+
+.txt-granite{
+  size: 50rpx;
+}
+

@@ -1,0 +1,5 @@
+<view class="container">
+  <button class="item" type="primary" onTap="handleTapJsApi">
+    Open URL
+  </button>
+</view>

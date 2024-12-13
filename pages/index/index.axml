@@ -28,6 +28,9 @@
     <button class="item" type="primary" onTap="navigateToUploadPdf">
       Upload PDF
     </button>
+    <button class="item" type="primary" onTap="navigateToOpenUrl">
+      Open URL
+    </button>
   </view>
   <view>
     <view>

@@ -161,4 +161,9 @@ Page({
       url: '/pages/upload-pdf/upload-pdf'
     })
   },
+  navigateToOpenUrl() {
+    my.navigateTo({
+      url: '/pages/openUrl/openUrl'
+    })
+  },
 });
