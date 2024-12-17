@@ -3,6 +3,7 @@ Page({
   onLoad() {
   },
   chooseFileFromDisk(){
+    
     // my.request({
     //   url: 'https://api.imgbb.com/1/upload?expiration=600&key=c0cc9015f2022669a17771dba0c0b704',
     //   method: 'POST',
@@ -17,34 +18,20 @@ Page({
     //   },
     //   fail: () => {
     //     console.log("upload fail");
-        
     //   }
     // });
 
-    my.uploadFile({
-      url: 'https://api.imgbb.com/1/upload?expiration=600&key=c0cc9015f2022669a17771dba0c0b704', // Replace with your API endpoint
-      filePath: "/image/mpaas.png", // The file path from chooseImage
-      fileName: 'image', // The key used in the form-data for the file
-      fileType : 'image',
-      success: (uploadResult) => {
-        console.log("Image upload success", uploadResult);
+    my.chooseFileFromDisk({
+      success: (res) => {
+        my.alert({
+          content: JSON.stringify(res, "masuk"),
+        });
       },
-      fail: (error) => {
-        console.log("Image upload failed", error);
+      fail: (res) => {
+        my.alert({
+          content: JSON.stringify(res, "error"),
+        });
       }
-    });
-
-    // my.chooseFileFromDisk({
-    //   success: (res) => {
-    //     my.alert({
-    //       content: JSON.stringify(res, "masuk"),
-    //     });
-    //   },
-    //   fail: (res) => {
-    //     my.alert({
-    //       content: JSON.stringify(res, "error"),
-    //     });
-    //   }
-  	// });
+  	});
   },
 });
