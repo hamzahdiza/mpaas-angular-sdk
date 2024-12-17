@@ -31,6 +31,9 @@
     <button class="item" type="primary" onTap="navigateToOpenUrl">
       Open URL
     </button>
+    <button class="item" type="primary" onTap="navigateToOpenUrl">
+      Go To Webview
+    </button>
   </view>
   <view>
     <view>

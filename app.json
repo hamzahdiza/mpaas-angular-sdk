@@ -8,6 +8,8 @@
     "pages/imageRendered/imageRendered",
     "pages/allJSAPI/allJSAPI",
     "pages/upload-pdf/upload-pdf",
-    "pages/openUrl/openUrl"
+    "pages/openUrl/openUrl",
+    "pages/microsite/webview/webview",
+    "pages/microsite/gather/gather"
   ]
 }

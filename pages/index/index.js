@@ -166,4 +166,9 @@ Page({
       url: '/pages/openUrl/openUrl'
     })
   },
+  navigateToOpenUrl() {
+    my.navigateTo({
+      url: '/pages/microsite/webview/webview'
+    })
+  },
 });
