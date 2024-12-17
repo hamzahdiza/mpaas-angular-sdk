@@ -31,6 +31,9 @@
     <button class="item" type="primary" onTap="navigateToOpenUrl">
       Open URL
     </button>
+    <view>
+      <input maxlength=2000 placeholder="Input" style="width: 660rpx; height: 50rpx;" onInput="handleInput"/>
+    </view>
     <button class="item" type="primary" onTap="navigateToOpenUrl">
       Go To Webview
     </button>

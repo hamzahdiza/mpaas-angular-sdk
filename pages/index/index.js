@@ -46,7 +46,7 @@ Page({
         "name": "AppClick",
         "value": "CreateNewAccount"
       }]
-    }
+    },
   },
   onLoad() {},
 
@@ -167,8 +167,15 @@ Page({
     })
   },
   navigateToOpenUrl() {
+    getApp().globalData.urlMicrosite = this.data.inputValue
     my.navigateTo({
-      url: '/pages/microsite/webview/webview'
+      url: `/pages/microsite/webview/webview`
     })
   },
+
+  handleInput(e) {
+    this.setData({
+      inputValue: e.detail.value
+    })
+  }
 });

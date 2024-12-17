@@ -24,7 +24,8 @@ App({
       clientVersion: '',
       userAgent: '',
       authorization: ''
-    }
+    },
+    urlMicrosite: ""
   },
   async onLaunch(options) {
     var {

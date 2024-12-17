@@ -1,9 +1,11 @@
 Page({
   data: {
-    urlMicrosite: "https://kai-sit.dspratama.co.id/?BID=bGxOZTZHOXdwSzYxR09PbmM1M0FPUT09&AID=UFYxUWdpWkNJd0VBT0h2MGF0Y04wdz09&BankUrl=cjBNb01xQS90QWVlMURSWVBGb1pONllNazVxYWd3c2t5UUJQZDExazBrQT0=&SID=ZmRVRWdiQXVsbHYrVExwTk5zQ1ozYlgzSk16UGxiVi91R2RITjFCa05yTT0=&EXP=TUp6ZkpMTVFMTnRvUWI4WnEzbk5QSjBxaE9kdjBCWkpLcWJ5d0U2dC91WT0=&UID=eDIxQkZybnRZZ0VGbm45U1puaVUwK0RqMWIrUzFuZEJoZ09rYkZuT2VkV0JxWFlzMDN4cFhnN3ljdW8rNnExVHZBRXg1cE0rVERNMDZpWVdXRnZINEhENTdLNXpZMmVZbkRtUitqRUZlRGs9"
+    urlMicrosite: ""
   },
   onLoad() {
-
+    this.setData({
+      urlMicrosite: getApp().globalData.urlMicrosite
+    })
     let partnerMenu = {
       "params": [{
           "queryParam": "customerName",
