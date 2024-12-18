@@ -1,0 +1,43 @@
+.container {
+  padding: 24px;
+}
+
+.container-pdf {
+  display: flex;
+  padding: 16px;
+  border: #000 1px solid;
+  border-radius: 8px;
+  align-items: center;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.container-pdf .left {
+  display: flex;
+  flex-direction: column;
+  margin-right: 4px;
+  width: 100%;
+}
+
+.container-pdf .left .title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.container-pdf .left .description {
+  font-size: 14px;
+  font-weight: 400px;
+} 
+
+.container-pdf .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.two-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

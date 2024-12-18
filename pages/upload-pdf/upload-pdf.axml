@@ -1,4 +1,22 @@
-<view>
-  New Page
-  <button size="default" type="primary" onTap="chooseFileFromDisk">Button</button>
+<view class="container">
+  <view class="container-pdf">
+    <view class="left">
+      <text class="title">{{fileName !== "" ? fileName : 'Upload File'}}</text>
+      <text class="description">
+        {{!uploadSuccess ? 'File dalam bentuk PNG, JPG atau PDF (max. 2 mb)' : 'Upload Berhasil • 100%'}}
+      </text>
+    </view>
+    <view class="right">
+      <image
+        a:if="{{ uploadSuccess == false }}"
+        src="/image/ic_common_file_upload.svg"
+        style="width:24px;height:24px"
+        onTap="uploadPDF"
+      />
+      <view a:if="{{ uploadSuccess == true }}" class="two-button">
+        <image src="/image/ic_common_trash.svg" style="width:24px;height:24px" />
+        <image src="/image/ic_common_check_filled.svg" style="width:32px;height:32px;margin-left:20px" />
+      </view>
+    </view>
+  </view>
 </view>
