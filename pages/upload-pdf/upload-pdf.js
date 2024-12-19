@@ -9,12 +9,16 @@ Page({
       success: (res) => {
         console.info('MPAAS_SUCCESS_UPLOAD', res)
         my.getFileInfo({
+          apFilePath: res.apFilePath,
           success: (ress) => {
             console.info('MPAAS_GET_INFO', ress)
             my.showModal({
               title: "Info File upload",
               content: ress
             })
+          },
+          fail: (error) => {
+            console.info('MPAAS_GET_INFO_ERROR', error)
           }
         })
         this.setData({
