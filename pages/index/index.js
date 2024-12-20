@@ -1,6 +1,14 @@
 import {
   generateSign
 } from '../../utils/generateSign.js'
+import dayjs from 'dayjs'
+import 'dayjs/locale/id'
+import {
+  customFormatDate,
+  dateFormat
+} from '/utils/dateformat.js';
+
+// dayjs.locale('id');
 
 var tools = require("../../utils/lib/e2ee.wsx")
 
@@ -47,8 +55,19 @@ Page({
         "value": "CreateNewAccount"
       }]
     },
+    startPeriod: '',
+    endPeriod: ''
   },
-  onLoad() {},
+  onLoad() {
+    const startDate = customFormatDate('2024-08-12 00:00:00.000+0700', 'id', '{DD} {MMM} {YYYY} {HH}:{mm} WIB')
+    console.info(startDate)
+    const endDate = customFormatDate('2024-12-19 23:59:59.999+0700', 'id', '{DD} {MMMM} {YYYY} {HH}:{mm} WIB')
+
+    this.setData({
+      startPeriod: startDate,
+      endPeriod: endDate
+    })
+  },
 
   getValue(e) {
     my.call("getValueByKey", {
