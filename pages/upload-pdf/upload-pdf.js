@@ -3,8 +3,7 @@ Page({
     fileName: String(""),
     uploadSuccess: Boolean(false),
     params: {
-      "fileExtensions": ["jpg", "pdf", "png", "jpeg"],
-      "maxFileSize": "2MB"
+      "fileMIMEType": ["application/pdf", "image/jpeg", "image/png"],
     }
   },
   onLoad() {},
@@ -38,7 +37,7 @@ Page({
 
   uploadPDF() {
     my.call("selectFile", {
-      data: this.data.params,
+      data: JSON.stringify(this.data.params),
       success: (res) => {
         console.info('MPAAS_JSAPI_SELECT_FILE', JSON.stringify(res))
         my.alert({
