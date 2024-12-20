@@ -1,3 +1,5 @@
+import { dinamycJSAPI } from "/utils/customJSAPI";
+
 Page({
   data: {
     fileName: String(""),
@@ -36,19 +38,18 @@ Page({
   // }
 
   uploadPDF() {
-    my.call("selectFile", {
+    dinamycJSAPI("selectFile", {
       data: JSON.stringify(this.data.params),
-      success: (res) => {
-        console.info('MPAAS_JSAPI_SELECT_FILE', JSON.stringify(res))
-        my.alert({
-          title: 'success',
-          content: res
-        });
-        this.setData({
-          uploadSuccess: true,
-          fileName: res.data.fileName,
-        })
-      }
+    }, (res) => {
+      console.info('MPAAS_JSAPI_SELECT_FILE', JSON.stringify(res))
+      my.alert({
+        title: 'success',
+        content: JSON.stringify(res)
+      });
+      this.setData({
+        uploadSuccess: true,
+        fileName: res.data.fileName,
+      })
     })
   }
 });
