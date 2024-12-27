@@ -45,12 +45,10 @@ Page({
       "data": {
         "creditCardChargeAmount": 500000,
         "isFromContact": true,
-        "additionalBillerData": [
-          {
-            "additionalLabel": "Promo Code",
-            "additionalValue": "DISCOUNT123"
-          }
-        ],
+        "additionalBillerData": [{
+          "additionalLabel": "Promo Code",
+          "additionalValue": "DISCOUNT123"
+        }],
         "packageData": {
           "packageCode": "PKG123",
           "title": "Premium Package",
@@ -84,8 +82,7 @@ Page({
         "isContactFull": true
       },
       "dataProtected": {
-        "billInfoList": [
-          {
+        "billInfoList": [{
             "label": "NAMA",
             "value": "IDHAM DHIYAULHAQ HABIBI"
           },
@@ -127,7 +124,8 @@ Page({
         "billKey2": "987654321098",
         "billKey3": "543210987654"
       }
-    }
+    },
+    pageValue: ""
   },
   onLoad() {},
 
@@ -323,7 +321,7 @@ Page({
     })
   },
 
-  goToReceiptScreen(){
+  goToReceiptScreen() {
     my.call("goToReceiptScreen", {
       transactionId: "T2KC4ACM0q2iRZNK8Vb3l",
       fromScreen: "pages/gather/gather",
@@ -336,13 +334,40 @@ Page({
     })
   },
 
-  storeTransactionDetailContext(){
+  storeTransactionDetailContext() {
     my.call("storeTransactionDetailContext", {
       data: JSON.stringify(this.data.dataStoreTransaction),
       paymentType: "bill_payment",
       success: (res) => {
         my.alert({
           title: 'success',
+          content: res
+        });
+      }
+    })
+  },
+
+  handleInput(e) {
+    this.setData({
+      pageValue: e.detail.value
+    })
+  },
+
+  handleNavigateFromInsight() {
+    console.info(this.data.pageValue, "handleNavigateFromInsight");
+    my.call("navigateFromInsight", {
+      page: this.data.pageValue,
+      success: (res) => {
+        console.info(res, "<<< success handleNavigateFromInsight");
+        my.alert({
+          title: 'success',
+          content: res
+        });
+      },
+      fail: (err) => {
+        console.info(err,"<<< fail handleNavigateFromInsight" );
+        my.alert({
+          title: 'fail',
           content: res
         });
       }

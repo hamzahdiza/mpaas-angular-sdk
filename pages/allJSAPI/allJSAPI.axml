@@ -37,6 +37,17 @@
   <button class="item" type="primary" onTap="goToSplashScreen">
     Go To Splash Screen
   </button>
+  <view class="item"> 
+    <input
+      maxlength=2000
+      placeholder="Input"
+      style="width: 660rpx; height: 50rpx;"
+      onInput="handleInput"
+    />
+  </view>
+  <button class="item" type="primary" onTap="handleNavigateFromInsight">
+    navigateFromInsight
+  </button>
 </view>
 
 <ant-container title="Go To Home Screen">
@@ -44,18 +55,16 @@
     value="{{valueHomeScreen}}"
     options="{{optionsHomeScreen}}"
     onChange="handleChangeHomeScreen"
-  ></ant-radio-group>
+  >
+  </ant-radio-group>
   <button class="item" type="primary" onTap="goToHomeScreen">
     Go To Home Screen
   </button>
 </ant-container>
 
 <ant-container title="Down Time Error">
-  <ant-radio-group
-    value="{{valueDownTime}}"
-    options="{{optionsDownTime}}"
-    onChange="handleChangeHomeScreen"
-  ></ant-radio-group>
+  <ant-radio-group value="{{valueDownTime}}" options="{{optionsDownTime}}" onChange="handleChangeHomeScreen">
+  </ant-radio-group>
   <button class="item" type="primary" onTap="downTimeError">
     Down Time Error
   </button>

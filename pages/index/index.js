@@ -177,5 +177,5 @@ Page({
     this.setData({
       inputValue: e.detail.value
     })
-  }
+  },
 });
