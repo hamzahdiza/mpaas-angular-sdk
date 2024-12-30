@@ -43,8 +43,10 @@
       Go To Webview
     </button>
   </view>
+  <view style="display: flex; flex-direction: column">
+    <text>startPeriod: {{startPeriod}}</text>
+    <text>endPeriod: {{endPeriod}}</text>
+  </view>
   <view>
-    <view>
-      version 1.0.1.18
-    </view>
+    version 1.0.1.30
   </view>
