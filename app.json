@@ -10,6 +10,7 @@
     "pages/upload-pdf/upload-pdf",
     "pages/openUrl/openUrl",
     "pages/microsite/webview/webview",
-    "pages/microsite/gather/gather"
+    "pages/microsite/gather/gather",
+    "pages/microsite/webview-undian-rejeki/webview-undian-rejeki"
   ]
 }

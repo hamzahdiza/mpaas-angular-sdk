@@ -358,19 +358,62 @@ Page({
     my.call("navigateFromInsight", {
       page: this.data.pageValue,
       success: (res) => {
-        console.info(res, "<<< success handleNavigateFromInsight");
+        console.info(res, this.data.pageValue, "<<< success handleNavigateFromInsight");
         my.alert({
           title: 'success',
           content: res
         });
       },
       fail: (err) => {
-        console.info(err,"<<< fail handleNavigateFromInsight" );
+        console.info(err, this.data.pageValue, "<<< fail handleNavigateFromInsight");
         my.alert({
           title: 'fail',
           content: res
         });
       }
     })
-  }
+  },
+
+  handleNavigateFromInsightPageIn() {
+    console.info(this.data.pageValue, "handleNavigateFromInsight");
+    my.call("navigateFromInsight", {
+      pageIn: this.data.pageValue,
+      success: (res) => {
+        console.info(res, this.data.pageValue, "<<< success handleNavigateFromInsight");
+        my.alert({
+          title: 'success',
+          content: res
+        });
+      },
+      fail: (err) => {
+        console.info(err, this.data.pageValue, "<<< fail handleNavigateFromInsight");
+        my.alert({
+          title: 'fail',
+          content: res
+        });
+      }
+    })
+  },
+
+  handleNavigateFromInsightPageInData() {
+    console.info(this.data.pageValue, "handleNavigateFromInsight");
+    let pageIn = this.data.pageValue
+    my.call("navigateFromInsight", {
+      data: JSON.stringify(pageIn),
+      success: (res) => {
+        console.info(res, this.data.pageValue, "<<< success handleNavigateFromInsight");
+        my.alert({
+          title: 'success',
+          content: res
+        });
+      },
+      fail: (err) => {
+        console.info(err, this.data.pageValue, "<<< fail handleNavigateFromInsight");
+        my.alert({
+          title: 'fail',
+          content: res
+        });
+      }
+    })
+  },
 });

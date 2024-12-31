@@ -40,13 +40,19 @@
   <view class="item"> 
     <input
       maxlength=2000
-      placeholder="Input"
+      placeholder="Input page navigateFromInsight"
       style="width: 660rpx; height: 50rpx;"
       onInput="handleInput"
     />
   </view>
   <button class="item" type="primary" onTap="handleNavigateFromInsight">
     navigateFromInsight
+  </button>
+  <button class="item" type="primary" onTap="handleNavigateFromInsightPageIn">
+    navigateFromInsight pageIn
+  </button>
+  <button class="item" type="primary" onTap="handleNavigateFromInsightPageInData">
+    navigateFromInsight pageIn Data
   </button>
 </view>
 

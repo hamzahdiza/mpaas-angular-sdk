@@ -191,6 +191,12 @@ Page({
       url: `/pages/microsite/webview/webview`
     })
   },
+  navigateToOpenUrlUndian() {
+    getApp().globalData.urlMicrosite = this.data.inputValue
+    my.navigateTo({
+      url: "/pages/microsite/webview-undian-rejeki/webview-undian-rejeki"
+    })
+  },
 
   handleInput(e) {
     this.setData({

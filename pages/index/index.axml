@@ -34,13 +34,16 @@
     <view>
       <input
         maxlength=2000
-        placeholder="Input"
+        placeholder="Input urlMicrosite"
         style="width: 660rpx; height: 50rpx;"
         onInput="handleInput"
       />
     </view>
     <button class="item" type="primary" onTap="navigateToOpenUrl">
       Go To Webview
+    </button>
+    <button class="item" type="primary" onTap="navigateToOpenUrlUndian">
+      Go To Webview Undian
     </button>
   </view>
   <view style="display: flex; flex-direction: column">
