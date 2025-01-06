@@ -203,4 +203,8 @@ Page({
       inputValue: e.detail.value
     })
   },
+
+  exitMiniprogram(){
+    my.exitMiniProgram();
+  }
 });
