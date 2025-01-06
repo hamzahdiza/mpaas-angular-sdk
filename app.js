@@ -1,78 +1,62 @@
 import ConfigAndroid from "./configs/android_key_config.json"
 import ConfigIOS from "./configs/ios_key_config.json"
+import languagePacks from "./configs/language-pack.json"
+
+function configureKeys(platformConfig) {
+  return Promise.all(platformConfig.map((configItem) => {
+    const method = configItem.type === 'plain' ? "getValueByKey" : "getSecureValueByKey";
+    return my.call(method, {
+      key: configItem.value,
+    }, (resp) => {
+      getApp().globalData.nativeData[configItem.key] = resp.data;
+    });
+  }));
+}
 
 App({
   globalData: {
-    idleTimer: null,
-    timeoutDuration: 10000, // 5 minutes
-    data: {
-      language: '',
-      deviceId: '',
-      refreshToken: '',
-      accessToken: '',
-      beEncryptPublicKey: '',
-      beE2EEPublicKey: '',
-      sessionKey: '',
-      signingPrivateKey: '',
-      signingPublicKey: '',
-      userId: ''
+    languagePack: Object({}),
+    nativeData: {
+      language: String(""),
+      deviceId: String(""),
+      refreshToken: String(""),
+      accessToken: String(""),
+      beEncryptPublicKey: String(""),
+      beE2EEPublicKey: String(""),
+      sessionKey: String(""),
+      signingPrivateKey: String(""),
+      signingPublicKey: String(""),
+      userId: String("")
     },
-    platformOS: '',
-    parameter: {
-      clientRelease: '',
-      clientPlatform: '',
-      clientVersion: '',
-      userAgent: '',
-      authorization: ''
-    },
-    urlMicrosite: ""
+    launchParams: {
+      clientRelease: String(""),
+      clientPlatform: String(""),
+      clientVersion: String(""),
+      userAgent: String(""),
+      authorization: String("")
+    }
   },
   async onLaunch(options) {
     var {
       platform
     } = my.getSystemInfoSync()
 
-    // my.on('nativeToTiny', (resp) => {
-    //   console.info('MAV_SUCCESS_CALL', JSON.stringify(resp))
-    //   my.navigateTo({
-    //     url: `/pages/gather/gather?data=${JSON.stringify(resp)}`,
-    //     success: (res) => {
-    //       console.info('MAV_NAVIGATE_SUCCESS', res)
-    //     },
-    //     fail: (err) => {
-    //       console.info('MAV_ERROR', err)
-    //     }
-    //   })
-    // })
-    
-    getApp().globalData.parameter.clientRelease = options.query['Client-Release']
-    getApp().globalData.parameter.clientPlatform = options.query['Client-Platform']
-    getApp().globalData.parameter.clientVersion = options.query['Client-Version']
-    getApp().globalData.parameter.userAgent = options.query['User-Agent']
-    getApp().globalData.parameter.authorization = options.query['Authorization']
-
     const config = platform == "iOS" ? ConfigIOS : ConfigAndroid
 
-    const fetchConfigValues = async (config) => {
-      return Promise.all(config.map((res) => {
-        return new Promise((resolve, reject) => {
-          const method = res.type == "plain" ? "getValueByKey" : "getSecureValueByKey";
-          my.call(method, {
-            key: res.value,
-            success: (resp) => {
-              getApp().globalData.data[res.key] = resp.data;
-              resolve();
-            },
-            fail: (err) => {
-              console.info('ERR_GET_DATA_INTERACTION', err)
-              reject(err)
-            }
-          })
-        })
-      }))
-    }
+    configureKeys(config).then(() => {
+      if (getApp().globalData.nativeData.userId !== "") {
+        getApp().globalData.languagePack = languagePacks.languagePack[getApp().globalData.nativeData.language]
+      }
+    })
 
-    await fetchConfigValues(config)
+
+    getApp().globalData.launchParams.clientRelease = options.query['Client-Release']
+    getApp().globalData.launchParams.clientPlatform = options.query['Client-Platform']
+    getApp().globalData.launchParams.clientVersion = options.query['Client-Version']
+    getApp().globalData.launchParams.userAgent = options.query['User-Agent']
+    getApp().globalData.launchParams.authorization = options.query['Authorization']
+
+
 
 
     // if (getApp().globalData.platformOS == "iOS") {

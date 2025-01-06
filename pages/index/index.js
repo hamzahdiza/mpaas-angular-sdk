@@ -47,7 +47,7 @@ Page({
     signature: '',
     inputValue: '',
     version: '',
-    allData: '',
+    allData: "",
     firebase: {
       "groupId": "pfmHome",
       "event": [{
@@ -65,7 +65,7 @@ Page({
 
     this.setData({
       startPeriod: startDate,
-      endPeriod: endDate
+      endPeriod: endDate,
     })
   },
 
@@ -126,7 +126,7 @@ Page({
 
   getData() {
     this.setData({
-      allData: JSON.stringify(getApp().globalData.data)
+      allData: JSON.stringify(getApp().globalData.nativeData)
     })
   },
 

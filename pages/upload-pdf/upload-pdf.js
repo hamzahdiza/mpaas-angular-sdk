@@ -58,7 +58,7 @@ Page({
       // });
       this.setData({
         uploadSuccess: true,
-        fileName: res.data.message.fileName,
+        fileName: res.data.fileName,
       })
     })
   }
