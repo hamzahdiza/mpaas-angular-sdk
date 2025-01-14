@@ -1,12 +1,16 @@
 import ConfigAndroid from "./configs/android_key_config.json"
 import ConfigIOS from "./configs/ios_key_config.json"
 import languagePacks from "./configs/language-pack.json"
+import {
+  encryptSessionKey,
+  createKey
+} from "/utils/lib/e2ee"
 
 function configureKeys(platformConfig) {
   return Promise.all(platformConfig.map((configItem) => {
     const method = configItem.type === 'plain' ? "getValueByKey" : "getSecureValueByKey";
     return my.call(method, {
-      key: configItem.value,
+      key: configItem.nativeKey,
     }, (resp) => {
       getApp().globalData.nativeData[configItem.key] = resp.data;
     });
@@ -37,6 +41,18 @@ App({
     }
   },
   async onLaunch(options) {
+
+    if (options.query) {
+     this.globalData.launchParams.clientRelease = options.query['Client-Release']
+     this.globalData.launchParams.clientPlatform = options.query['Client-Platform']
+     this.globalData.launchParams.clientVersion = options.query['Client-Version']
+     this.globalData.launchParams.userAgent = options.query['User-Agent']
+     this.globalData.launchParams.authorization = options.query['Authorization']
+    }
+
+    this.globalData.nativeData.sessionKey = createKey()
+
+
     var {
       platform
     } = my.getSystemInfoSync()
@@ -45,16 +61,18 @@ App({
 
     configureKeys(config).then(() => {
       if (getApp().globalData.nativeData.userId !== "") {
-        getApp().globalData.languagePack = languagePacks.languagePack[getApp().globalData.nativeData.language]
+        this.globalData.languagePack = languagePacks.languagePack[getApp().globalData.nativeData.language]
+      } 
+
+      if (getApp().globalData.nativeData.beEncryptPublicKey !== "") {
+        this.globalData.nativeData.encSessionKey = encryptSessionKey(
+          this.globalData.nativeData.beEncryptPublicKey,
+          this.globalData.nativeData.sessionKey
+        );
       }
     })
 
 
-    getApp().globalData.launchParams.clientRelease = options.query['Client-Release']
-    getApp().globalData.launchParams.clientPlatform = options.query['Client-Platform']
-    getApp().globalData.launchParams.clientVersion = options.query['Client-Version']
-    getApp().globalData.launchParams.userAgent = options.query['User-Agent']
-    getApp().globalData.launchParams.authorization = options.query['Authorization']
 
 
 

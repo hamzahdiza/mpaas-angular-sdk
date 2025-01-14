@@ -2,51 +2,46 @@
   {
     "key": "language",
     "type": "plain",
-    "value": "app.defaultLanguageKey"
+    "nativeKey": "app.defaultLanguageKey"
   },
   {
     "key": "deviceId",
     "type": "secure",
-    "value": "deviceId"
+    "nativeKey": "deviceId"
   },
   {
     "key": "refreshToken",
     "type": "secure",
-    "value": "refreshToken"
+    "nativeKey": "refreshToken"
   },
   {
     "key": "accessToken",
     "type": "secure",
-    "value": "accessToken"
+    "nativeKey": "accessToken"
   },
   {
     "key": "beEncryptPublicKey",
     "type": "secure",
-    "value": "beEncryptPublicKey"
+    "nativeKey": "beEncryptPublicKey"
   },
   {
     "key": "beE2EEPublicKey",
     "type": "secure",
-    "value": "beE2EEPublicKey"
-  },
-  {
-    "key": "sessionKey",
-    "type": "secure",
-    "value": "encSessionKey"
+    "nativeKey": "beE2EEPublicKey"
   },
   {
     "key": "signingPrivateKey",
     "type": "secure",
-    "value": "feSigningPrivateKey"
+    "nativeKey": "feSigningPrivateKey"
   },
   {
     "key": "signingPublicKey",
     "type": "secure",
-    "value": "feSigningPublicKey"
+    "nativeKey": "feSigningPublicKey"
   },
   {
     "key": "userId",
     "type": "secure",
-    "value": "userId"
+    "nativeKey": "userId"
   }
 ]
