@@ -1,10 +1,8 @@
 import ConfigAndroid from "./configs/android_key_config.json"
 import ConfigIOS from "./configs/ios_key_config.json"
 import languagePacks from "./configs/language-pack.json"
-import {
-  encryptSessionKey,
-  createKey
-} from "/utils/lib"
+
+const tools = require('/utils/lib/e2ee.wsx')
 
 function configureKeys(platformConfig) {
   return Promise.all(platformConfig.map((configItem) => {
@@ -50,7 +48,7 @@ App({
      this.globalData.launchParams.authorization = options.query['Authorization']
     }
 
-    this.globalData.nativeData.sessionKey = createKey()
+    this.globalData.nativeData.sessionKey = tools.createKey()
 
 
     var {
@@ -65,7 +63,7 @@ App({
       } 
 
       if (getApp().globalData.nativeData.beEncryptPublicKey !== "") {
-        this.globalData.nativeData.encSessionKey = encryptSessionKey(
+        this.globalData.nativeData.encSessionKey = tools.encryptKey(
           this.globalData.nativeData.beEncryptPublicKey,
           this.globalData.nativeData.sessionKey
         );
