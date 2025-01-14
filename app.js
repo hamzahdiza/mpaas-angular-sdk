@@ -4,7 +4,7 @@ import languagePacks from "./configs/language-pack.json"
 import {
   encryptSessionKey,
   createKey
-} from "/utils/lib/e2ee"
+} from "/utils/lib"
 
 function configureKeys(platformConfig) {
   return Promise.all(platformConfig.map((configItem) => {
