@@ -67,12 +67,12 @@ Page({
         this.setData({
           fileName: res.fileName
         })
-        const { fileName, filePath } = res;
+        const { fileName, apFilePath } = res;
         my.uploadFile({
           url: "https://mav-apigw-ext-test2.bni.co.id:48202/apc/v1/upsert-document",
           fileType: "file",
           fileName: fileName,
-          filePath: filePath,
+          filePath: apFilePath,
           headers: {
             "content-type": "multipart/form-data",
             "Channel-Id": "MVR",
