@@ -1,6 +1,5 @@
-import ConfigAndroid from "./configs/android_key_config.json"
-import ConfigIOS from "./configs/ios_key_config.json"
-import languagePacks from "./configs/language-pack.json"
+const iosKeysConfig = require("/configs/ios_key_config.json");
+const androidKeysConfig = require("/configs/android_key_config.json")
 
 import {
   encryptSessionKey,
@@ -30,7 +29,7 @@ App({
       authorization: String("")
     }
   },
-  onLaunch(options) {
+  async onLaunch(options) {
 
     if (options.query) {
       this.globalData.launchParams.clientRelease = options.query['Client-Release']
@@ -40,11 +39,15 @@ App({
       this.globalData.launchParams.authorization = options.query['Authorization']
     }
 
-    this.globalData.nativeData.sessionKey = tools.createKey()
-    this.globalData.languagePack = languagePacks.languagePack[this.globalData.nativeData.language]
+    this.globalData.nativeData.sessionKey = createKey()
+    this.globalData.languagePack = languagePacks.languagePack[this.globalData.nativeData.language] || {};
 
-    let keysConfig =
-      this.globalData.nativeData.clientPlatform === "ios" ? ConfigIOS : ConfigAndroid;
+    var {
+      platform
+    } = my.getSystemInfoSync()
+
+
+    let keysConfig = platform === "iOS" ? iosKeysConfig : androidKeysConfig;
 
     keysConfig.forEach((item) => {
       if (item.type === "plain") {
