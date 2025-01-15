@@ -72,6 +72,6 @@
     <text>endPeriod: {{endPeriod}}</text>
   </view>
   <view>
-    version 1.0.1.30
+    version 1.0.1.48
   </view>
 </scroll-view> 
