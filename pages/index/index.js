@@ -17,8 +17,6 @@ const config = {
   "iOS": require("./config/ios_key_config.json")
 };
 
-const app = getApp();
-
 Page({
   data: {
     buttSelected: '1M',
@@ -59,6 +57,10 @@ Page({
     endPeriod: ''
   },
   onLoad() {
+    setTimeout(() => {
+      console.info('JSAPI_ALLDATA', JSON.stringify(getApp().globalData.nativeData))
+    }, getApp().globalData.nativeData.userId ? 0 : 1500);
+
     const startDate = customFormatDate('2024-08-12 00:00:00.000+0700', 'id', '{DD} {MMM} {YYYY} {HH}:{mm} WIB')
     console.info(startDate)
     const endDate = customFormatDate('2024-12-19 23:59:59.999+0700', 'id', '{DD} {MMMM} {YYYY} {HH}:{mm} WIB')
@@ -151,10 +153,8 @@ Page({
   },
 
   getParameter() {
-    // const options = my.getLaunchOptionsSync();
-    my.alert({
-      title: 'Parameters',
-      content: getApp().globalData.parameter
+    this.setData({
+      allData: JSON.stringify(getApp().globalData.launchParams)
     })
   },
 
@@ -204,7 +204,7 @@ Page({
     })
   },
 
-  exitMiniprogram(){
+  exitMiniprogram() {
     my.exitMiniProgram();
   }
 });

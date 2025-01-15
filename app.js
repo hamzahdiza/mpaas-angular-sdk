@@ -2,18 +2,10 @@ import ConfigAndroid from "./configs/android_key_config.json"
 import ConfigIOS from "./configs/ios_key_config.json"
 import languagePacks from "./configs/language-pack.json"
 
-const tools = require('/utils/lib/e2ee.wsx')
-
-function configureKeys(platformConfig) {
-  return Promise.all(platformConfig.map((configItem) => {
-    const method = configItem.type === 'plain' ? "getValueByKey" : "getSecureValueByKey";
-    return my.call(method, {
-      key: configItem.nativeKey,
-    }, (resp) => {
-      getApp().globalData.nativeData[configItem.key] = resp.data;
-    });
-  }));
-}
+import {
+  encryptSessionKey,
+  createKey
+} from "/utils/e2ee";
 
 App({
   globalData: {
@@ -38,101 +30,52 @@ App({
       authorization: String("")
     }
   },
-  async onLaunch(options) {
+  onLaunch(options) {
 
     if (options.query) {
-     this.globalData.launchParams.clientRelease = options.query['Client-Release']
-     this.globalData.launchParams.clientPlatform = options.query['Client-Platform']
-     this.globalData.launchParams.clientVersion = options.query['Client-Version']
-     this.globalData.launchParams.userAgent = options.query['User-Agent']
-     this.globalData.launchParams.authorization = options.query['Authorization']
+      this.globalData.launchParams.clientRelease = options.query['Client-Release']
+      this.globalData.launchParams.clientPlatform = options.query['Client-Platform']
+      this.globalData.launchParams.clientVersion = options.query['Client-Version']
+      this.globalData.launchParams.userAgent = options.query['User-Agent']
+      this.globalData.launchParams.authorization = options.query['Authorization']
     }
 
     this.globalData.nativeData.sessionKey = tools.createKey()
+    this.globalData.languagePack = languagePacks.languagePack[this.globalData.nativeData.language]
 
+    let keysConfig =
+      this.globalData.nativeData.clientPlatform === "ios" ? ConfigIOS : ConfigAndroid;
 
-    var {
-      platform
-    } = my.getSystemInfoSync()
+    keysConfig.forEach((item) => {
+      const method = item.type === "plain" ? "getValueByKey" : "getSecureValueByKey";
 
-    const config = platform == "iOS" ? ConfigIOS : ConfigAndroid
+      dinamycJSAPI(
+        method, {
+          key: item.nativeKey
+        },
+        (res) => {
+          console.info(`RESULT_JSAPI_SUCCESS: ${item.key}`, res.data)
+          this.globalData.nativeData[item.key] = res.data;
 
-    configureKeys(config).then(() => {
-      if (getApp().globalData.nativeData.userId !== "") {
-        this.globalData.languagePack = languagePacks.languagePack[getApp().globalData.nativeData.language]
-      } 
+          if (item.key === "language") {
+            this.globalData.languagePack =
+              languagePacks.languagePack[this.globalData.nativeData.language];
+            this.globalData.dayjsLocale =
+              this.globalData.nativeData.language === "en-ID" ? "en" : "id";
+          }
 
-      if (getApp().globalData.nativeData.beEncryptPublicKey !== "") {
-        this.globalData.nativeData.encSessionKey = tools.encryptKey(
-          this.globalData.nativeData.beEncryptPublicKey,
-          this.globalData.nativeData.sessionKey
-        );
-      }
+          if (item.key === "beEncryptPublicKey") {
+            this.globalData.nativeData.encSessionKey = encryptSessionKey(
+              this.globalData.nativeData.beEncryptPublicKey,
+              this.globalData.nativeData.sessionKey
+            );
+          }
+        }
+      )
     })
 
+  }
 
 
 
-
-
-    // if (getApp().globalData.platformOS == "iOS") {
-    //   ConfigIOS.map(async (res) => {
-    //     if (res.type == 'plain') {
-    //       await my.call("getValueByKey", {
-    //         key: res.value,
-    //         success: (resp) => {
-    //           getApp().globalData.data[res.key] = resp.data
-    //         }
-    //       });
-    //     } else {
-    //       await my.call("getSecureValueByKey", {
-    //         key: res.value,
-    //         success: (resp) => {
-    //           getApp().globalData.data[res.key] = resp.data
-    //         },
-    //       });
-    //     }
-    //   })
-    // } else {
-    //   ConfigAndroid.map(async (res) => {
-    //     if (res.type == 'plain') {
-    //       await my.call("getValueByKey", {
-    //         key: res.value,
-    //         success: (resp) => {
-    //           getApp().globalData.data[res.key] = resp.data
-    //         }
-    //       });
-    //     } else {
-    //       await my.call("getSecureValueByKey", {
-    //         key: res.value,
-    //         success: (resp) => {
-    //           getApp().globalData.data[res.key] = resp.data
-    //         }
-    //       });
-    //     }
-    //   })
-    // }
-  },
-
-  // onHide() {
-  //   clearTimeout(this.globalData.idleTimer);
-  // },
-
-  // onShow() {
-  //   this.resetTimer();
-  // },
-
-  // resetTimer() {
-  //   clearTimeout(this.globalData.idleTimer);
-  //   this.globalData.idleTimer = setTimeout(() => {
-  //     this.handleTimeout();
-  //   }, this.globalData.timeoutDuration);
-  // },
-
-  // handleTimeout() {
-  //   console.log("Inactive for 5 minutes. Handling timeout.");
-  //   my.redirectTo({
-  //     url: '/pages/signature/signature' // Redirect to a logout or information page
-  //   });
-  // }
 });

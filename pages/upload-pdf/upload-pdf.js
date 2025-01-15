@@ -1,6 +1,7 @@
 const tools = require('../../utils/lib/e2ee.wsx')
 
 import { dinamycJSAPI } from "/utils/customJSAPI";
+import { generateUUID } from "/utils/e2ee";
 
 Page({
   data: {
@@ -10,7 +11,10 @@ Page({
       "fileMIMEType": ["application/pdf", "image/jpeg", "image/png"],
     }
   },
-  onLoad() {},
+  onLoad() {
+    console.info("ALL NATIVE DATA", JSON.stringify(getApp().globalData.nativeData))
+    console.info("ALL BUNDLE LAUNCH PARAM", JSON.stringify(getApp().globalData.launchParams))
+  },
   // uploadPDF() {
   //   my.chooseFileFromDisk({
   //     success: (res) => {
@@ -48,17 +52,6 @@ Page({
   //     }
   //   })
   // },
-
-  generateUUID() {
-    let key32 = tools.createKey().toLowerCase();
-    let uuid = ""
-    for (let i = 1; i <= 32; i++) {
-      uuid += key32.charAt(i - 1)
-      if (i == 8 || i == 12 || i == 16 || i == 20) uuid += "-";
-    }
-    return uuid;
-  },
-
   uploadPDF(){
     const nativeData = getApp().globalData.nativeData;
     my.chooseFileFromDisk({
@@ -71,7 +64,7 @@ Page({
         my.uploadFile({
           url: "https://mav-apigw-ext-test2.bni.co.id:48202/apc/v1/upsert-document",
           fileType: "file",
-          fileName: fileName,
+          fileName: "fileName",
           filePath: apFilePath,
           headers: {
             "content-type": "multipart/form-data",
@@ -82,15 +75,16 @@ Page({
             "Accept-Language": nativeData.language,
             "User-Agent": nativeData.userAgent,
             "Device-Id": nativeData.deviceId,
-            "Request-Id": this.generateUUID(),
+            "Request-Id": generateUUID(),
             authorization: nativeData.authorization,
             "Enc-Session-Key": nativeData.encSessionKey,
           },
           formData: {
-            fileName: res.fileName,
+            fileName: "filename.pdf",
             id: "iddata",
           },
           success: (uploadRes) => {
+            console.info("SUCCESS TO UPLOADED FILE", JSON.stringify(uploadRes))
             if (uploadRes.statusCode || uploadRes.status === 200) {
               console.info("APPLYCC_File uploaded successfully!:", JSON.stringify(uploadRes.data));
             } else {
