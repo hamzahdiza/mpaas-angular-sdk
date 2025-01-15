@@ -47,35 +47,37 @@ App({
       this.globalData.nativeData.clientPlatform === "ios" ? ConfigIOS : ConfigAndroid;
 
     keysConfig.forEach((item) => {
-      const method = item.type === "plain" ? "getValueByKey" : "getSecureValueByKey";
-
-      dinamycJSAPI(
-        method, {
-          key: item.nativeKey
-        },
-        (res) => {
-          console.info(`RESULT_JSAPI_SUCCESS: ${item.key}`, res.data)
-          this.globalData.nativeData[item.key] = res.data;
-
-          if (item.key === "language") {
-            this.globalData.languagePack =
-              languagePacks.languagePack[this.globalData.nativeData.language];
-            this.globalData.dayjsLocale =
-              this.globalData.nativeData.language === "en-ID" ? "en" : "id";
+      if (item.type === "plain") {
+        my.call(
+          "getValueByKey", {
+            key: item.nativeKey,
+          },
+          (res) => {
+            this.globalData.nativeData[item.key] = res.data;
+            if (item.key === "language") {
+              this.globalData.languagePack =
+                languagePacks.languagePack[this.globalData.nativeData.language];
+              this.globalData.dayjsLocale =
+                this.globalData.nativeData.language == "en-ID" ? "en" : "id";
+            }
           }
-
-          if (item.key === "beEncryptPublicKey") {
-            this.globalData.nativeData.encSessionKey = encryptSessionKey(
-              this.globalData.nativeData.beEncryptPublicKey,
-              this.globalData.nativeData.sessionKey
-            );
+        );
+      } else {
+        my.call(
+          "getSecureValueByKey", {
+            key: item.nativeKey,
+          },
+          (res) => {
+            this.globalData.nativeData[item.key] = res.data;
+            if (item.key === "beEncryptPublicKey") {
+              this.globalData.nativeData.encSessionKey = encryptSessionKey(
+                this.globalData.nativeData.beEncryptPublicKey,
+                this.globalData.nativeData.sessionKey
+              );
+            }
           }
-        }
-      )
+        );
+      }
     })
-
   }
-
-
-
 });
