@@ -1,3 +1,14 @@
+<view>
+  <top-bar
+    pixel={{true}}
+    type="navigation"
+    navigate={{true}}
+    backgroundColor="#fff"
+    title="MPAAS DUMMY"
+    iconL="../../image/ic_arrow_back.svg"
+    onIconLTap="handleBack"
+  />
+</view>
 <view class="container">
   <view style="margin-bottom:20px">
     <text style="font-weight:bold;">UPLOAD PDF WITH JSAPI</text>

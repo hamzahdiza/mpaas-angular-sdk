@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "top-bar": "../../components/top-bar/top-bar"
+  },
   "styleIsolation": "apply-shared"
 }
