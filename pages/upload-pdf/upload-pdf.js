@@ -107,7 +107,7 @@ Page({
         console.info('MPAAS_RESULT_ERROR', JSON.stringify(errUp))
       }
     })
-  }
+  },
 
   // uploadPDF(){
   //   const nativeData = getApp().globalData.nativeData;
