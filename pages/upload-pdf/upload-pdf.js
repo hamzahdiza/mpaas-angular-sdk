@@ -19,7 +19,7 @@ Page({
     console.info("ALL NATIVE DATA", JSON.stringify(getApp().globalData.nativeData))
     console.info("ALL BUNDLE LAUNCH PARAM", JSON.stringify(getApp().globalData.launchParams))
   },
-  async uploadPDF() {
+  uploadPDF() {
     const nativeData = getApp().globalData.nativeData;
 
     my.chooseFileFromDisk({
@@ -67,7 +67,7 @@ Page({
               fileDataBuffer
             ])
 
-            await this.postUploadFile(boundary, nativeData, finalBuffer)
+            this.postUploadFile(boundary, nativeData, finalBuffer)
           },
           fail: (errRes) => {
             console.info('MPAAS_READFILE_FAIL', JSON.stringify(errRes))
