@@ -67,32 +67,7 @@ Page({
               fileDataBuffer
             ])
 
-            await my.request({
-              url: "https://mav-apigw-ext-test2.bni.co.id:48202/apc/v1/upsert-document",
-              method: "POST",
-              headers: {
-                'Content-Type': `multipart/form-data; boundary=${boundary}`,
-                "Channel-Id": "MVR",
-                "Client-Platform": nativeData.clientPlatform,
-                "Client-Version": nativeData.clientVersion,
-                "Client-Release": nativeData.clientRelease,
-                "Accept-Language": nativeData.language,
-                "User-Agent": nativeData.userAgent,
-                "Device-Id": nativeData.deviceId,
-                "Request-Id": generateUUID(),
-                authorization: nativeData.authorization,
-                "Enc-Session-Key": nativeData.encSessionKey,
-              },
-              data: {
-                body: finalBuffer,
-              },
-              success: (resUp) => {
-                console.info('MPAAS_RESULT_SUCCESS', JSON.stringify(resUp))
-              },
-              fail: (errUp) => {
-                console.info('MPAAS_RESULT_ERROR', JSON.stringify(errUp))
-              }
-            })
+            await this.postUploadFile(boundary, nativeData, finalBuffer)
           },
           fail: (errRes) => {
             console.info('MPAAS_READFILE_FAIL', JSON.stringify(errRes))
@@ -104,6 +79,36 @@ Page({
       }
     })
   },
+
+  postUploadFile(boundary, nativeData, finalBuffer) {
+    my.request({
+      url: "https://mav-apigw-ext-test2.bni.co.id:48202/apc/v1/upsert-document",
+      method: "POST",
+      headers: {
+        'Content-Type': `multipart/form-data; boundary=${boundary}`,
+        "Channel-Id": "MVR",
+        "Client-Platform": nativeData.clientPlatform,
+        "Client-Version": nativeData.clientVersion,
+        "Client-Release": nativeData.clientRelease,
+        "Accept-Language": nativeData.language,
+        "User-Agent": nativeData.userAgent,
+        "Device-Id": nativeData.deviceId,
+        "Request-Id": generateUUID(),
+        authorization: nativeData.authorization,
+        "Enc-Session-Key": nativeData.encSessionKey,
+      },
+      data: {
+        body: finalBuffer,
+      },
+      success: (resUp) => {
+        console.info('MPAAS_RESULT_SUCCESS', JSON.stringify(resUp))
+      },
+      fail: (errUp) => {
+        console.info('MPAAS_RESULT_ERROR', JSON.stringify(errUp))
+      }
+    })
+  }
+
   // uploadPDF(){
   //   const nativeData = getApp().globalData.nativeData;
   //   my.chooseFileFromDisk({
