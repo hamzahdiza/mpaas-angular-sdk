@@ -1,11 +1,12 @@
-const tools = require('../../utils/lib/e2ee.wsx')
-
 import {
   dinamycJSAPI
 } from "/utils/customJSAPI";
 import {
   generateUUID
 } from "/utils/e2ee";
+import env from "../../env.json"
+
+const baseUri = env.MPAAS_BASE_URL;
 
 Page({
   data: {
@@ -33,30 +34,31 @@ Page({
   
         let fs = my.getFileSystemManager();
         fs.readFile({
-          filePath,
+          filePath: filePath,
+          encoding: "binary",
           success: (readRes) => {
             console.info('MPAAS_READFILE_SUCCESS', JSON.stringify(readRes));
-            const binaryContent = Buffer.from(readRes.data); // Ensure binary data is a Buffer
+            // const binaryContent = Buffer.from(readRes.data); // Ensure binary data is a Buffer
   
-            const boundary = '----BoundaryString' + new Date().getTime();
-            const delimiter = `\r\n--${boundary}\r\n`;
-            const closeDelimiter = `\r\n--${boundary}--`;
+            // const boundary = '----BoundaryString' + new Date().getTime();
+            // const delimiter = `\r\n--${boundary}\r\n`;
+            // const closeDelimiter = `\r\n--${boundary}--`;
   
-            const bodyParts = [
-              Buffer.from(delimiter + 'Content-Disposition: form-data; name="fileData"; filename="' + fileName + '"\r\nContent-Type: application/octet-stream\r\n\r\n', 'utf-8'),
-              binaryContent, // File binary content
-              Buffer.from(delimiter + 'Content-Disposition: form-data; name="fileName"\r\n\r\n' + fileName + '\r\n', 'utf-8'),
-              Buffer.from(delimiter + 'Content-Disposition: form-data; name="id"\r\n\r\n' + idValue + '\r\n', 'utf-8'),
-              Buffer.from(closeDelimiter, 'utf-8')
-            ];
-            const finalBuffer = Buffer.concat(bodyParts);
+            // const bodyParts = [
+            //   Buffer.from(delimiter + 'Content-Disposition: form-data; name="fileData"; filename="' + fileName + '"\r\nContent-Type: application/octet-stream\r\n\r\n', 'utf-8'),
+            //   binaryContent, // File binary content
+            //   Buffer.from(delimiter + 'Content-Disposition: form-data; name="fileName"\r\n\r\n' + fileName + '\r\n', 'utf-8'),
+            //   Buffer.from(delimiter + 'Content-Disposition: form-data; name="id"\r\n\r\n' + idValue + '\r\n', 'utf-8'),
+            //   Buffer.from(closeDelimiter, 'utf-8')
+            // ];
+            // const finalBuffer = Buffer.concat(bodyParts);
   
             my.request({
-              url: "/apc/v1/upsert-document",
+              url: baseUri + "/apc/v1/upsert-document",
               method: "POST",
-              data: finalBuffer,
+              data: readRes.data,
               headers: {
-                'Content-Type': `multipart/form-data; boundary=${boundary}`,
+                "Content-type": 'application/octet-stream',
                 "Channel-Id": "MVR",
                 "Client-Platform": nativeData.clientPlatform,
                 "Client-Version": nativeData.clientVersion,
@@ -70,6 +72,10 @@ Page({
               },
               success: (resUp) => {
                 console.info('MPAAS_RESULT_SUCCESS', JSON.stringify(resUp));
+                this.setData({
+                  fileName: fileName,
+                  uploadSuccess: true
+                })
               },
               fail: (errUp) => {
                 console.info('MPAAS_RESULT_ERROR', JSON.stringify(errUp));
