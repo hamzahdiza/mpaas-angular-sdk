@@ -38,21 +38,6 @@ Page({
           encoding: "binary",
           success: (readRes) => {
             console.info('MPAAS_READFILE_SUCCESS', JSON.stringify(readRes));
-            // const binaryContent = Buffer.from(readRes.data); // Ensure binary data is a Buffer
-  
-            // const boundary = '----BoundaryString' + new Date().getTime();
-            // const delimiter = `\r\n--${boundary}\r\n`;
-            // const closeDelimiter = `\r\n--${boundary}--`;
-  
-            // const bodyParts = [
-            //   Buffer.from(delimiter + 'Content-Disposition: form-data; name="fileData"; filename="' + fileName + '"\r\nContent-Type: application/octet-stream\r\n\r\n', 'utf-8'),
-            //   binaryContent, // File binary content
-            //   Buffer.from(delimiter + 'Content-Disposition: form-data; name="fileName"\r\n\r\n' + fileName + '\r\n', 'utf-8'),
-            //   Buffer.from(delimiter + 'Content-Disposition: form-data; name="id"\r\n\r\n' + idValue + '\r\n', 'utf-8'),
-            //   Buffer.from(closeDelimiter, 'utf-8')
-            // ];
-            // const finalBuffer = Buffer.concat(bodyParts);
-  
             my.request({
               url: baseUri + "/apc/v1/upsert-document",
               method: "POST",
