@@ -28,9 +28,8 @@ Page({
       success: (res) => {
         console.info("APPLYCC_Choose file success", JSON.stringify(res));
   
-        const fileName = getApp().globalData.launchParams.clientPlatform === "ios" ? "filename.pdf" : res.fileName;
+        const fileName = res.fileName;
         const filePath = res.apFilePath;
-        const idValue = "iddata";
   
         let fs = my.getFileSystemManager();
         fs.readFile({
