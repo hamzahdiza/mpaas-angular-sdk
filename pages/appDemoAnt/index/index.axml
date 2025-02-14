@@ -1,0 +1,26 @@
+<top-bar
+  pixel={{true}}
+  type="navigation"
+  navigate={{true}}
+  backgroundColor="#fff"
+  title="Demo App"
+  iconL="../../../image/ic_arrow_back.svg"
+/>
+<view class="root-container">
+  <label style="color: black;">
+    Refresh Count
+  </label>
+  <label style="font-size: 56rpx">{{ refreshTimes }}</label>
+
+  <button onTap="chooseFile">Choose File</button>
+
+  <button onTap="navigateToTarget">Navigate to B</button>
+
+  <button onTap="closeMiniProgram">closeMiniProgram</button>
+
+  <button onTap="exitTinyApp">exitTinyApp</button>
+
+  <button onTap="exitApp">exitApp</button>
+
+  <button onTap="navigateToWebview">navigateToWebview</button>
+</view>

@@ -11,6 +11,8 @@
     "pages/openUrl/openUrl",
     "pages/microsite/webview/webview",
     "pages/microsite/gather/gather",
-    "pages/microsite/webview-undian-rejeki/webview-undian-rejeki"
+    "pages/microsite/webview-undian-rejeki/webview-undian-rejeki",
+    "pages/appDemoAnt/index/index",
+    "pages/appDemoAnt/webview/webview"
   ]
 }

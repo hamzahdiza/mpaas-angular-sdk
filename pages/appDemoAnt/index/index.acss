@@ -1,0 +1,21 @@
+.root-container {
+  height: 100vh;
+  width: 750rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+}
+
+.root-container button {
+  background-color: mediumpurple;
+  color: #fff;
+  padding: 0 20rpx;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.root-container label {
+  color: red;
+}

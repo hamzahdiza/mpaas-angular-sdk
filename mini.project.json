@@ -7,5 +7,10 @@
   "compileOptions": {
     "component2": true,
     "enableNodeModuleBabelTransform": true
-  }
+  },
+  "enableAppxNg": true,
+  "component2": true,
+  "uniBuild": true,
+  "enableNodeModuleBabelTransform": true,
+  "nonLoadingIndicator": true
 }

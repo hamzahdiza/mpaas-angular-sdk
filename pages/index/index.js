@@ -206,5 +206,11 @@ Page({
 
   exitMiniprogram() {
     my.exitMiniProgram();
+  },
+
+  goToAppDemo() {
+my.navigateTo({
+  url:"/pages/appDemoAnt/index/index"
+})
   }
 });
