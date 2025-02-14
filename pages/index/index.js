@@ -205,12 +205,13 @@ Page({
   },
 
   exitMiniprogram() {
-    my.exitMiniProgram();
+    console.info("exitMiniprogram")
+    my.call("exitTinyApp", {}, () => {})
   },
 
   goToAppDemo() {
-my.navigateTo({
-  url:"/pages/appDemoAnt/index/index"
-})
+    my.navigateTo({
+      url: "/pages/appDemoAnt/index/index"
+    })
   }
 });
