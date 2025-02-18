@@ -11,6 +11,7 @@ import {
 // dayjs.locale('id');
 
 var tools = require("../../utils/lib/e2ee.wsx")
+const {flag, code, name, countries} = require('country-emoji');
 
 const config = {
   "Android": require("./config/android_key_config.json"),
@@ -54,9 +55,14 @@ Page({
       }]
     },
     startPeriod: '',
-    endPeriod: ''
+    endPeriod: '',
+    flag: ''
   },
   onLoad() {
+    this.setData({
+      flag: flag('ID')
+    })
+
     setTimeout(() => {
       console.info('JSAPI_ALLDATA', JSON.stringify(getApp().globalData.nativeData))
     }, getApp().globalData.nativeData.userId ? 0 : 1500);
@@ -213,5 +219,6 @@ Page({
     my.navigateTo({
       url: "/pages/appDemoAnt/index/index"
     })
-  }
+  },
+
 });

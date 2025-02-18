@@ -19,6 +19,9 @@
     onIconLTap="exitMiniprogram"
   />
   </view>
+  <view style="fontSize: 50px;">
+    {{flag}}
+  </view>
   <view>
     <button class="item" type="primary" onTap="goToAppDemo">
       Go to App Demo ANT
