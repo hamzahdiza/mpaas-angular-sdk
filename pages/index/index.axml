@@ -79,7 +79,14 @@
     <text>startPeriod: {{startPeriod}}</text>
     <text>endPeriod: {{endPeriod}}</text>
   </view>
+
+  <button class="item" type="primary" onTap="checkContact">
+    Go To Check Contact
+  </button>
   <view>
     version 1.0.1.48
+  </view>
+  <view style="height:60px">
+    
   </view>
 </scroll-view> 
