@@ -224,9 +224,7 @@ Page({
   checkContact(){
     my.choosePhoneContact({
       success: (res) => {
-        my.alert({
-          content: 'Name:' + res.name + '\nPhone number:' + res.mobile
-        });
+        console.info('Name:' + res.name + '\nPhone number:' + res.mobile)
       },
     });
   }
