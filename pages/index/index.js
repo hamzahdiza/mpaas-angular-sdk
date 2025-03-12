@@ -11,7 +11,12 @@ import {
 // dayjs.locale('id');
 
 var tools = require("../../utils/lib/e2ee.wsx")
-const {flag, code, name, countries} = require('country-emoji');
+const {
+  flag,
+  code,
+  name,
+  countries
+} = require('country-emoji');
 
 const config = {
   "Android": require("./config/android_key_config.json"),
@@ -45,6 +50,7 @@ Page({
     },
     signature: '',
     inputValue: '',
+    inputPhoneNumberValue: '',
     version: '',
     allData: "",
     firebase: {
@@ -210,6 +216,29 @@ Page({
     })
   },
 
+  handleInputPhone(e) {
+    this.setData({
+      inputPhoneNumberValue: e.detail.value
+    })
+  },
+
+  handlePhone() {
+    console.log(this.data.inputPhoneNumberValue, "<<< inputPhoneNumberValue");
+
+    my.makePhoneCall({
+      number: `${this.data.inputPhoneNumberValue}`,
+
+      success: (res) => {
+        console.info(res, "<<< RES PHONE")
+      },
+      fail: (err) => {
+        my.alert({
+          content: "Error " + JSON.stringify(err)
+        })
+      }
+    })
+  },
+
   exitMiniprogram() {
     console.info("exitMiniprogram")
     my.call("exitTinyApp", {}, () => {})
@@ -221,7 +250,7 @@ Page({
     })
   },
 
-  checkContact(){
+  checkContact() {
     my.choosePhoneContact({
       success: (res) => {
         console.info('Name:' + res.name + '\nPhone number:' + res.mobile)

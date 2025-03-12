@@ -74,6 +74,17 @@
     <button class="item" type="primary" onTap="navigateToOpenUrlUndian">
       Go To Webview Undian
     </button>
+    <view>
+      <input
+        maxlength=2000
+        placeholder="Input Phone Number"
+        style="width: 660rpx; height: 50rpx;"
+        onInput="handleInputPhone"
+      />
+    </view>
+    <button class="item" type="primary" onTap="handlePhone">
+      Call Phone
+    </button>
   </view>
   <view style="display: flex; flex-direction: column">
     <text>startPeriod: {{startPeriod}}</text>
