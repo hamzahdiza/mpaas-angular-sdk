@@ -251,11 +251,14 @@ Page({
   },
 
   checkContact() {
-    my.choosePhoneContact({
-      success: (res) => {
-        console.info('Name:' + res.name + '\nPhone number:' + res.mobile)
-      },
-    });
+    // my.choosePhoneContact({
+    //   success: (res) => {
+    //     console.info('Name:' + res.name + '\nPhone number:' + res.mobile)
+    //   },
+    // });
+    my.navigateTo({
+      url: "/pages/contact/contact"
+    })
   }
 
 });
