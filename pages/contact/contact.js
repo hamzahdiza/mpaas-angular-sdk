@@ -1,36 +1,26 @@
 // API-DEMO page/API/contact/contact.js
 Page({
-  data: {},
+  data: {
+    contact: ""
+  },
   choosePhoneContact() {
     my.choosePhoneContact({
       success: (res) => {
         // my.alert({
         //   content: 'choosePhoneContact response: ' + JSON.stringify(res)
         // });
-        console.info('choosePhoneContact response: ' + JSON.stringify(res))
+        // console.info('choosePhoneContact response: ' + JSON.stringify(res))
+        this.setData({
+          contact: JSON.stringify(res)
+        })
       },
       fail: (res) => {
         // my.alert({
         //   // content: 'choosePhoneContact response: ' + JSON.stringify(res)
         // });
-        console.info('choosePhoneContact response: ' + JSON.stringify(res))
-      },
-    });
-  },
-  chooseAlipayContact() {
-    my.chooseAlipayContact({
-      count: 2,
-      success: (res) => {
-        // my.alert({
-        //   content: 'chooseAlipayContact response: ' + JSON.stringify(res)
-        // });
-        console.info('chooseAlipayContact response: ' + JSON.stringify(res))
-      },
-      fail: (res) => {
-        // my.alert({
-        //   content: 'chooseAlipayContact response: ' + JSON.stringify(res)
-        // });
-        console.info('chooseAlipayContact response: ' + JSON.stringify(res))
+        this.setData({
+          contact: "ERROR Choose Phone Contact"
+        })
       },
     });
   },
@@ -45,13 +35,17 @@ Page({
         // my.alert({
         //   content: 'chooseContact : ' + JSON.stringify(res)
         // });
-        console.info('chooseContact : ' + JSON.stringify(res))
+        this.setData({
+          contact: JSON.stringify(res)
+        })
       },
       fail: (res) => {
         // my.alert({
         //   content: 'chooseContact : ' + JSON.stringify(res)
         // });
-        console.info('chooseContact : ' + JSON.stringify(res))
+        this.setData({
+          contact: "ERROR Choose Contact"
+        })
       },
     });
   },

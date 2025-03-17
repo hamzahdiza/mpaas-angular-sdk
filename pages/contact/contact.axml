@@ -13,19 +13,14 @@
   </view>
 
   <view class="page-section">
-    <view class="page-section-title">my.chooseAlipayContact</view>
-    <view class="page-section-demo">
-      <button type="primary" onTap="chooseAlipayContact">
-        Call up Alipay address book
-      </button>
-    </view>
-  </view>
-
-  <view class="page-section">
     <view class="page-section-title">my.chooseContact</view>
     <view class="page-section-demo">
       <button type="primary" onTap="chooseContact">Choose Contact</button>
     </view>
+  </view>
+
+  <view>
+    {{contact}}
   </view>
 
 </view>
