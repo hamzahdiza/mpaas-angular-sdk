@@ -28,6 +28,16 @@
       "page": "src/app/pages/microsite/webview-tsel/webview-tsel",
       "pageQuery": "",
       "query": "Client-Release=client-release&Client-Platform=client-platform&Client-Version=Client-version&User-Agent=user-agent&lifestyleFeatureOn=true&lifestyleBillPaymentFeatureOn=true&lifestyleVirtualAccountFeatureOn=true&urlMicrosite=https://www.telkomsel.com/shops/channel/o2o?utm_source=wec&amp;utm_medium=inapp&amp;utm_campaign=omni-wondrbni&amp;target=wondrbni&amp;theme=wondrbni&amp;embed=on&amp;lifestyleVirtualAccountFeatureOn=true&amp;Client-Version={VERSION}&refreshToken=old-refresh-token&accessToken=old-access-token&beEncryptPublicKey=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4+9VlbTXmSMx/hw+mxOwIAywJQ+x1LQrY8Nl7ktt6+mdEuZzapuKB203B9smkHfLBy50bq7y+AqRDysVwWF0cketBFDQ5cFr2lkqUKN6kSKxJ3BYyYrFPkrkyN9nD50fIihNQikhBfs3CFd3UrTVEHAPuDENNKo/awgH5PfiHM+mP8WBEZXmG09ZDHFkyp5vNkuS6hKFNZM+dZa7z1p7vjdoBA3VEV6R6T6fKGkhAb7+qcgFZKpy43SkKeAVGBOKPg2W05ObVH5NBIdfsiAIq39v0HlpDEvDDDRr/rLAT/o1HVSHmG5txXuqPYjfbizd2GSpg3Zw9rnV2qE/HAIT7wIDAQAB&beE2EEPublicKey=be-E2EE-Public-Key&signingPrivateKey=LSAg6l2bKsDr4SCX0dqbHBrPwSrXnyYX6xwbVs3kPAA=&signingPublicKey=YjdmOg9PCcODLfux74ecc8cVfj6gCMSc+XKyMigggHY=&encSessionKey=enc-Session-Key&userId=240401-211913-krvs&sessionKey=lamadb39fc728d9f6c3da4420e901c2a1fec&Authorization=authorization&language=id-ID&deviceId=device-id"
+    },
+    {
+      "title": "pages/customComponent/customComponent",
+      "page": "pages/customComponent/customComponent",
+      "pageQuery": ""
+    },
+    {
+      "title": "pages/contact/contact",
+      "page": "pages/contact/contact",
+      "pageQuery": ""
     }
   ]
 }

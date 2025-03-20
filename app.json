@@ -14,6 +14,7 @@
     "pages/microsite/webview-undian-rejeki/webview-undian-rejeki",
     "pages/appDemoAnt/index/index",
     "pages/appDemoAnt/webview/webview",
-    "pages/contact/contact"
+    "pages/contact/contact",
+    "pages/customComponent/customComponent"
   ]
 }

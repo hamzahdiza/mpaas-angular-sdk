@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "popup": "antd-mini/es/Popup/index",
+    "picker":"antd-mini/es/Picker/index"
+  }
+}

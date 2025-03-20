@@ -1,0 +1,24 @@
+<view class="container">
+  <popup
+    visible
+    position="bottom"
+    showClose="{{true}}"
+    animation
+    onClickBack="onClickBack"
+    onClose="handlePopupClose"
+  >
+    <view class="customize-content">
+      <!-- <text class="title">Beli Setiap Tanggal</text> -->
+      <picker
+        slot="extra"
+        visible
+        defaultValue="{{['Tues', 'pm']}}"
+        placeholder="Date picker"
+        title="Picker"
+        onChange="handleChange"
+        options="{{list}}"
+        emptyText="empty"
+      ></picker>
+    </view>
+  </popup>
+</view>
