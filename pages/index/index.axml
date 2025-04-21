@@ -60,6 +60,14 @@
     <button class="item" type="primary" onTap="navigateToOpenUrl">
       Open URL
     </button>
+    <view>
+      <input
+        maxlength=2000
+        placeholder="Input Duration Introduction"
+        style="width: 660rpx; height: 50rpx;"
+        onInput="handleInputRsp"
+      />
+    </view>
     <button class="item" type="primary" onTap="toRspIntroduction">
       Open RSP Introduction
     </button>

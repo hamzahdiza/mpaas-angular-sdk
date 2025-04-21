@@ -4,7 +4,7 @@
     navigate
     backgroundColor="bg-off-white"
     title=" "
-    iconL="/assets/icons/ic_common_arrow_back.svg"
+    iconL="/image/ic_common_arrow_back.svg"
     safeArea={{true}}
     pixel
     onIconLTap="navBack"
@@ -23,11 +23,15 @@
       classChevronLeft="chevronLeft"
       withChevron="{{true}}"
       autoPlay="{{currentIndex === dataStory.length -1 ?false : true}}"
+      fillDuration="{{timeoutRsp}}"
     >
       <block a:for="{{ dataStory }}">
         <view slot="content_{{index}}">
           <view class="container">
             <view class="description-container" style="padding:0 24px;">
+              <view>
+                {{count}}
+              </view>
               <view class="description-title">
                 {{item.title}}
               </view>

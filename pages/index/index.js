@@ -62,7 +62,8 @@ Page({
     },
     startPeriod: '',
     endPeriod: '',
-    flag: ''
+    flag: '',
+    inputValueRsp: ""
   },
   onLoad() {
     this.setData({
@@ -261,9 +262,17 @@ Page({
     })
   },
 
+  handleInputRsp(e) {
+    this.setData({
+      inputValueRsp: e.detail.value
+    })
+  },
+
   toRspIntroduction(){
+    console.log(this.data.inputValueRsp, "<<< Index input Rsp");
+    getApp().globalData.inputValueRsp = this.data.inputValueRsp
     my.navigateTo({
-      url:"/pages/rsp-introduction-screen/rsp-introduction-screen"
+      url:"/pages/rsp-introduction-screen/rsp-introduction-screen",
     })
   }
 });
