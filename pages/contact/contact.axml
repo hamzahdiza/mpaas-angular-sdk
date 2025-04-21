@@ -1,0 +1,26 @@
+<!-- API-DEMO page/API/contact/contact.axml-->
+<view class="page">
+
+  <view class="page-description">Contact API</view>
+
+  <view class="page-section">
+    <view class="page-section-title">my.choosePhoneContact</view>
+    <view class="page-section-demo">
+      <button type="primary" onTap="choosePhoneContact">
+        Recall local address book
+      </button>
+    </view>
+  </view>
+
+  <view class="page-section">
+    <view class="page-section-title">my.chooseContact</view>
+    <view class="page-section-demo">
+      <button type="primary" onTap="chooseContact">Choose Contact</button>
+    </view>
+  </view>
+
+  <view>
+    {{contact}}
+  </view>
+
+</view>

@@ -1,0 +1,65 @@
+<view class="container-story">
+  <top-bar
+    type="navigation"
+    navigate
+    backgroundColor="bg-off-white"
+    title=" "
+    iconL="/assets/icons/ic_common_arrow_back.svg"
+    safeArea={{true}}
+    pixel
+    onIconLTap="navBack"
+  />
+
+  <view>
+    <bni-story
+      items="{{dataStory.length}}"
+      current="{{currentIndex}}"
+      onSwiperChange="onSwiperChange"
+      onNext="scrollToNext"
+      onPrev="scrollToPrev"
+      mode="horizontal"
+      disabledSwipe="{{true}}"
+      classChevronRight="chevronRight"
+      classChevronLeft="chevronLeft"
+      withChevron="{{true}}"
+      autoPlay="{{currentIndex === dataStory.length -1 ?false : true}}"
+    >
+      <block a:for="{{ dataStory }}">
+        <view slot="content_{{index}}">
+          <view class="container">
+            <view class="description-container" style="padding:0 24px;">
+              <view class="description-title">
+                {{item.title}}
+              </view>
+              <view class="description-footer">
+                {{item.subTitle}}
+              </view>
+            </view>
+            <view style="position:fixed; bottom:100px; ">
+              <image
+                a:if="{{ currentIndex === index }}"
+                mode="widthFix"
+                style="width:100vw; height:450px;"
+                src="{{currentIndex === index ? item.image:''}}"
+              />
+            </view>
+          </view>
+        </view>
+      </block>
+    </bni-story>
+  </view>
+
+  <bni-button
+    type="sticky"
+    shadow="{{true}}"
+    className="txt-label1-sb-px"
+    titlePrimaryButton="{{currentIndex === ( dataStory.length - 1) ? lang.rspIntroductionScreenOkayButton :lang.rspIntroductionScreenNextButton}}"
+    onTapPrimaryButton="{{currentIndex === ( dataStory.length - 1) ? '' :'scrollToNext'}}"
+    disabledPrimaryButton="{{false}}"
+    idPrimaryButton="id-sticky-bni-button-primary"
+    pixel={{true}}
+  >
+  </bni-button>
+
+
+</view>

@@ -1,0 +1,43 @@
+{
+  "modes": [
+    {
+      "title": "pages/index/index",
+      "page": "src/app/pages/index/index",
+      "pageQuery": "",
+      "query": "bundle={'id':'n0n21x98y192ye12ne9y2','position':1,'transactionType':'telkomsel','payment_type':'bill_payment','category':'Paket Data','icon':'icon_link','title':'Telkomsel','description':'Ini telkomsel','amount':250000,'discount':0,'isDiscount':false,'isActive':true,'boBillerUbpCompanyCode':'ABC123','detailBoBiller':{'UBPCompanyCode':'ABC123','billerCode':'XYZ456','regionCode':'JKT','billerName':'ExampleBiller','billKeyCount':3,'billKeyLabel1':'Label1','billKeyLabel2':'Label2','billKeyLabel3':'Label3','billKey1MinLength':10,'billKey2MinLength':10,'billKey3MinLength':10,'billKey1MaxLength':10,'billKey2MaxLength':10,'billKey3MaxLength':10,'billKey1MinAmount':50000,'billKey2MinAmount':50000,'billKey3MinAmount':50000,'billKey1MaxAmount':50000,'billKey2MaxAmount':50000,'billKey3MaxAmount':50000,'amountAsBillKey':50000,'paymentType':'CreditCard','isCcSupported':true,'errorCodeMappingFlag':'ErrorMapping','adminFee':10.99,'hasSubRegionFlag':true,'CCServiceFee':15.99,'isActive':true,'categoryId':'ExampleCategoryID','billerAbbreviation':'Abbreviation','isSpecialhandling':true,'specialHandlingType':'PREFIX','prefix':[{'prefixCode':'0852'},{'prefixCode':'0812'}]},'vaAccountBillerPrefix':null,'virtualAccountDetail':null,'isUrlMicrositeStatic':true,'urlMicrosite':'https://www.telkomsel.com/shops/channel/o2o?utm_source=wec&utm_medium=inapp&utm_campaign=omni-wondrbni&target=wondrbni&theme=wondrbni&embed=on&lifestyleVirtualAccountFeatureOn=true&Client-Version={VERSION}','urlRedirect':'https://lifestyle.bni.co.id','partnerId':'1A221321','partnerName':'Telkomsel','partnerAlias':'Tsel','screenId':'exploreScreen','params':[{'id':'abc1234bcde','lifestylePartnerMenuId':'n0n21x98y192ye12ne9y2','queryParam':'orderId','valueMapping':'param1','status':1}]}"
+    },
+    {
+      "title": "microsite/webview-tsel/webview-tsel",
+      "page": "src/app/pages/microsite/webview-tsel/webview-tsel",
+      "pageQuery": ""
+    },
+    {
+      "title": "featureOn",
+      "page": "src/app/pages/index/index",
+      "pageQuery": "",
+      "query": "Client-Release=client-release&Client-Platform=client-platform&Client-Version=Client-version&User-Agent=user-agent&lifestyleFeatureOn=true&lifestyleBillPaymentFeatureOn=true&lifestyleVirtualAccountFeatureOn=true&urlMicrosite=dummyUrl&refreshToken=old-refresh-token&accessToken=old-access-token&beEncryptPublicKey=be-encrypt-public-key&beE2EEPublicKey=be-E2EE-Public-Key&signingPrivateKey=signing-Private-Key&signingPublicKey=signing-Public-Key&encSessionKey=enc-Session-Key&userId=11111222233333&sessionKey=lamadb39fc728d9f6c3da4420e901c2a1fec&Authorization=authorization&language=id-ID&deviceId=device-id"
+    },
+    {
+      "title": "featureOff",
+      "page": "src/app/pages/microsite/webview-tsel/webview-tsel",
+      "pageQuery": "",
+      "query": "Client-Release=client-release&Client-Platform=client-platform&Client-Version=Client-version&User-Agent=user-agent&lifestyleFeatureOn=false&lifestyleBillPaymentFeatureOn=false&lifestyleVirtualAccountFeatureOn=false&urlMicrosite=dummyUrl&refreshToken=old-refresh-token&accessToken=old-access-token&beEncryptPublicKey=be-encrypt-public-key&beE2EEPublicKey=be-E2EE-Public-Key&signingPrivateKey=signing-Private-Key&signingPublicKey=signing-Public-Key&encSessionKey=enc-Session-Key&userId=11111222233333&sessionKey=lamadb39fc728d9f6c3da4420e901c2a1fec&Authorization=authorization&language=id-ID&deviceId=device-id"
+    },
+    {
+      "title": "SOF",
+      "page": "src/app/pages/microsite/webview-tsel/webview-tsel",
+      "pageQuery": "",
+      "query": "Client-Release=client-release&Client-Platform=client-platform&Client-Version=Client-version&User-Agent=user-agent&lifestyleFeatureOn=true&lifestyleBillPaymentFeatureOn=true&lifestyleVirtualAccountFeatureOn=true&urlMicrosite=https://www.telkomsel.com/shops/channel/o2o?utm_source=wec&amp;utm_medium=inapp&amp;utm_campaign=omni-wondrbni&amp;target=wondrbni&amp;theme=wondrbni&amp;embed=on&amp;lifestyleVirtualAccountFeatureOn=true&amp;Client-Version={VERSION}&refreshToken=old-refresh-token&accessToken=old-access-token&beEncryptPublicKey=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4+9VlbTXmSMx/hw+mxOwIAywJQ+x1LQrY8Nl7ktt6+mdEuZzapuKB203B9smkHfLBy50bq7y+AqRDysVwWF0cketBFDQ5cFr2lkqUKN6kSKxJ3BYyYrFPkrkyN9nD50fIihNQikhBfs3CFd3UrTVEHAPuDENNKo/awgH5PfiHM+mP8WBEZXmG09ZDHFkyp5vNkuS6hKFNZM+dZa7z1p7vjdoBA3VEV6R6T6fKGkhAb7+qcgFZKpy43SkKeAVGBOKPg2W05ObVH5NBIdfsiAIq39v0HlpDEvDDDRr/rLAT/o1HVSHmG5txXuqPYjfbizd2GSpg3Zw9rnV2qE/HAIT7wIDAQAB&beE2EEPublicKey=be-E2EE-Public-Key&signingPrivateKey=LSAg6l2bKsDr4SCX0dqbHBrPwSrXnyYX6xwbVs3kPAA=&signingPublicKey=YjdmOg9PCcODLfux74ecc8cVfj6gCMSc+XKyMigggHY=&encSessionKey=enc-Session-Key&userId=240401-211913-krvs&sessionKey=lamadb39fc728d9f6c3da4420e901c2a1fec&Authorization=authorization&language=id-ID&deviceId=device-id"
+    },
+    {
+      "title": "pages/customComponent/customComponent",
+      "page": "pages/customComponent/customComponent",
+      "pageQuery": ""
+    },
+    {
+      "title": "pages/contact/contact",
+      "page": "pages/contact/contact",
+      "pageQuery": ""
+    }
+  ]
+}
