@@ -15,7 +15,7 @@ Page({
       {
         title: 'Kapan ya waktu paling pas buat beli produk investasi?2',
         subTitle: 'Jangan sampai kegalauan begini bikin kamu ragu konsisten berinvestasi.  Rutinin dulu aja!2',
-        image: "/image/asvg_investment_intro_second.svg"
+        image: "/image/asvg_investment_20_RSP_intro_second.svg"
       },
       {
         title: 'Kapan ya waktu paling pas buat beli produk investasi?3',
@@ -50,17 +50,7 @@ Page({
   },
 
   navBack() {
-    if (this.data.show) {
-      my.navigateTo({
-        url: "/pages/home/home"
-      })
-    } else {
-      this.setData({
-        type: false,
-        show: true
-      })
-    }
-
+    my.navigateBack()
   },
 
   handleClick(e) {

@@ -29,7 +29,7 @@
         <view slot="content_{{index}}">
           <view class="container">
             <view class="description-container" style="padding:0 24px;">
-              <view>
+              <view style="color:red">
                 {{count}}
               </view>
               <view class="description-title">
