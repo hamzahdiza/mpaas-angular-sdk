@@ -125,6 +125,15 @@ Page({
         "billKey3": "543210987654"
       }
     },
+    eventObject: {
+      "loanDetail": {
+        loanAccountNumber: "1234567890",
+        accountType: "savings",
+        subCat: "education",
+        contractNumber: "101022403002"
+      },
+      "scenario": ""
+    },
     pageValue: ""
   },
   onLoad() {},
@@ -219,6 +228,18 @@ Page({
 
   goToSplashScreen() {
     my.call("goToSplashScreen", {
+      success: (res) => {
+        my.alert({
+          title: 'success',
+          content: res
+        });
+      }
+    })
+  },
+
+  goToConsolidateLoanDetail() {
+    my.call("goToConsolidateLoanDetail", {
+      data: JSON.stringify(this.data.eventObject),
       success: (res) => {
         my.alert({
           title: 'success',

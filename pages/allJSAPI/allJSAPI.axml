@@ -34,6 +34,11 @@
   </button>
 </view>
 <view>
+  <button class="item" type="primary" onTap="goToConsolidateLoanDetail">
+    Go To Consolidate Loan Detail
+  </button>
+</view>
+<view>
   <button class="item" type="primary" onTap="goToSplashScreen">
     Go To Splash Screen
   </button>
