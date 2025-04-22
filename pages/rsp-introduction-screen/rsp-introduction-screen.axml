@@ -22,7 +22,7 @@
       classChevronRight="chevronRight"
       classChevronLeft="chevronLeft"
       withChevron="{{true}}"
-      autoPlay="{{currentIndex === dataStory.length -1 ?false : true}}"
+      autoPlay="{{false}}"
       fillDuration="{{timeoutRsp}}"
     >
       <block a:for="{{ dataStory }}">
@@ -39,12 +39,11 @@
                 {{item.subTitle}}
               </view>
             </view>
-            <view style="position:fixed; bottom:100px; ">
+            <view style="position:fixed; bottom:100px; z-index:999 ">
               <image
-                a:if="{{ currentIndex === index }}"
-                mode="widthFix"
                 style="width:100vw; height:450px;"
-                src="{{currentIndex === index ? item.image:''}}"
+                src="{{ item.image}}"
+                mode="widthFix"
               />
             </view>
           </view>
