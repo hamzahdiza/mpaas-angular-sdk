@@ -1,2 +1,1 @@
-<web-view src="{{urlMicrosite}}">
-</web-view>
+<web-view id="web-view-1" src="{{urlMicrosite}}" onMessage="setToken"></web-view>
