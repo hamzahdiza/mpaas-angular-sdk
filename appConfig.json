@@ -1,0 +1,31 @@
+{
+  "window": {
+    "enableWK": "YES",
+    "enableDSL": true,
+    "defaultTitle": "小程序",
+    "backgroundColor": 16119289,
+    "pullRefresh": false,
+    "allowsBounceVertical": "YES",
+    "titleBarColor": 16777215
+  },
+  "prerenderPage": "index.html",
+  "entryPagePath": "pages/index/index",
+  "pages": [
+    "pages/index/index",
+    "pages/signature/signature",
+    "pages/gather/gather",
+    "pages/maps/maps",
+    "pages/imageRendered/imageRendered",
+    "pages/allJSAPI/allJSAPI",
+    "pages/upload-pdf/upload-pdf",
+    "pages/openUrl/openUrl",
+    "pages/microsite/webview/webview",
+    "pages/microsite/gather/gather",
+    "pages/microsite/webview-undian-rejeki/webview-undian-rejeki",
+    "pages/appDemoAnt/index/index",
+    "pages/appDemoAnt/webview/webview",
+    "pages/contact/contact",
+    "pages/customComponent/customComponent",
+    "pages/rsp-introduction-screen/rsp-introduction-screen"
+  ]
+}

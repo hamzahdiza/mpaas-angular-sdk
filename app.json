@@ -1,4 +1,12 @@
 {
+  "window": {
+    "enableWK": "YES",
+    "enableDSL": true,
+    "defaultTitle": "小程序",
+    "pullRefresh": false,
+    "allowsBounceVertical": "YES"
+  },
+  "prerenderPage": "index.html",
   "entryPagePath": "pages/index/index",
   "pages": [
     "pages/index/index",
