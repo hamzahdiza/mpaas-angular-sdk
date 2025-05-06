@@ -1,2 +1,18 @@
-<web-view src="{{urlMicrosite}}">
+<web-view a:if="{{ !visible }}" src="{{urlMicrosite}}">
 </web-view>
+
+<popup
+  visible="{{visible}}"
+  position="bottom"
+  title="title"
+  height="{{500}}"
+  width="{{250}}"
+  showClose="{{true}}"
+  showBack="{{true}}"
+  onClickBack="onClickBack"
+  onClose="handlePopupClose"
+>
+  <view style="padding: 24px">
+    {{res}}
+  </view>
+</popup>

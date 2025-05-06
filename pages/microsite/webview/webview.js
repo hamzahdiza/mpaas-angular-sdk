@@ -4,6 +4,7 @@ Page({
   },
   onLoad() {
     this.setData({
+      visible: false,
       urlMicrosite: getApp().globalData.urlMicrosite
     })
     let partnerMenu = {
@@ -195,6 +196,22 @@ Page({
       }
     });
 
+
+    my.on("tinyToNative", (res) => {
+      try {
+        console.info("SUCCESS_tinyToNative" + JSON.stringify(res))
+        this.setData({
+          visible: true,
+          res: "SUCCESS_" + JSON.stringify(res)
+        })
+      } catch (err) {
+        console.info("ERR_tinyToNative" + JSON.stringify(err))
+        this.setData({
+          visible: true,
+          res: "ERROR_" + JSON.stringify(res)
+        })
+      }
+    });
     // batas
   }
 
