@@ -23,5 +23,8 @@
   <button size="default" type="primary" onTap="previewPDFAPI" style="margin-top: 20rpx;">
     PREVIEW PDF From API
   </button>
+  <button size="default" type="primary" onTap="previewPDFBinary" style="margin-top: 20rpx;">
+    PREVIEW PDF From Binary 
+  </button>
 
 </view>
