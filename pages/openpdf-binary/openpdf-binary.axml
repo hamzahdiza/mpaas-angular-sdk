@@ -1,0 +1,41 @@
+<view
+  style="margin-top: 50rpx; margin-bottom: 100px; padding: 24px"
+  onTouchStart="handleTouchStart"
+  onTouchMove="handleTouchMove"
+  onTouchEnd="handleTouchEnd"
+>
+  <text>
+    1. Save PDF from Binary Data using fs.writefile (/pdf-binary-data.pdf)
+  </text>
+  <button size="default" type="primary" onTap="testWriteFile" style="margin-top: 20rpx; margin-bottom: 50rpx">
+    Test fs.writeFile
+  </button>
+
+  <text>
+    2. Check saved PDF file using fs.access
+  </text>
+  <button size="default" type="primary" onTap="checkDirectory" style="margin-top: 20rpx; margin-bottom: 50rpx">
+    Check directory
+  </button>
+
+  <text>
+    3. Open saved PDF file using my.openDocument
+  </text>
+  <button size="default" type="primary" onTap="openSavedPdf" style="margin-top: 20rpx; margin-bottom: 50rpx">
+    Open saved PDF my.openDocument
+  </button>
+
+  <text>
+    (/mock-test-async.pdf)
+  </text>
+  <button size="default" type="primary" onTap="previewPDFBinaryAsync" style="margin-top: 20rpx; margin-bottom: 50rpx">
+    PREVIEW PDF From Binary Async
+  </button>
+
+  <text>
+    (/mock-test-sync.pdf)
+  </text>
+  <button size="default" type="primary" onTap="previewPDFBinarySync" style="margin-top: 20rpx; margin-bottom: 50rpx">
+    PREVIEW PDF From Binary Sync
+  </button>
+</view>

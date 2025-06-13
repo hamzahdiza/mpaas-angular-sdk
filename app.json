@@ -24,6 +24,7 @@
     "pages/appDemoAnt/webview/webview",
     "pages/contact/contact",
     "pages/customComponent/customComponent",
-    "pages/rsp-introduction-screen/rsp-introduction-screen"
+    "pages/rsp-introduction-screen/rsp-introduction-screen",
+    "pages/openpdf-binary/openpdf-binary"
   ]
 }

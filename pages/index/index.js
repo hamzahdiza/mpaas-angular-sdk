@@ -274,5 +274,11 @@ Page({
     my.navigateTo({
       url:"/pages/rsp-introduction-screen/rsp-introduction-screen",
     })
+  },
+
+  goToPdfBinary() {
+    my.navigateTo({
+      url: '/pages/openpdf-binary/openpdf-binary'
+    })
   }
 });

@@ -1,5 +1,5 @@
 <view
-  style="margin-top: 50rpx"
+  style="margin-top: 50rpx; margin-bottom: 100px"
   onTouchStart="handleTouchStart"
   onTouchMove="handleTouchMove"
   onTouchEnd="handleTouchEnd"
@@ -22,9 +22,6 @@
   </button>
   <button size="default" type="primary" onTap="previewPDFAPI" style="margin-top: 20rpx;">
     PREVIEW PDF From API
-  </button>
-  <button size="default" type="primary" onTap="previewPDFBinary" style="margin-top: 20rpx;">
-    PREVIEW PDF From Binary 
   </button>
 
 </view>

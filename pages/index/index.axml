@@ -34,6 +34,11 @@
     <textarea placeholder="Input multiple lines" value={{allData}} auto-height />
   </view>
   <view>
+    <button class="item" type="primary" onTap="goToPdfBinary">
+      Open PDF from Binary Data
+    </button>
+  </view>
+  <view>
     <button class="item" type="primary" onTap="getParameter">
       Get Parameter
     </button>
