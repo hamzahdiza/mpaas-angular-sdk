@@ -437,4 +437,18 @@ Page({
       }
     })
   },
+
+  handleGoToFAQArticlePage() {
+    console.info("<<<< handleGoToFAQArticlePage");
+    my.call("goToFAQArticlePage", {
+      qnaId: "WCXpVZQ5pYyJbxEfPoN0",
+      success: (res) => {
+        console.info(res, "<<< Success goToFAQArticlePage");
+        my.alert({
+          title: 'success',
+          content: JSON.stringify(res)
+        });
+      }
+    })
+  }
 });

@@ -116,3 +116,8 @@
     Store Transaction Detail Context
   </button>
 </view>
+<view>
+  <button class="item" type="primary" onTap="handleGoToFAQArticlePage">
+    Button goToFAQArticlePage
+  </button>
+</view>
