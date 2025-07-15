@@ -25,6 +25,7 @@
     "pages/contact/contact",
     "pages/customComponent/customComponent",
     "pages/rsp-introduction-screen/rsp-introduction-screen",
-    "pages/openpdf-binary/openpdf-binary"
+    "pages/openpdf-binary/openpdf-binary",
+    "pages/rsp-gather-screen/rsp-gather-screen"
   ]
 }

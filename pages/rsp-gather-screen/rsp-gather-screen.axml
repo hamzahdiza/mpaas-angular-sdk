@@ -1,0 +1,92 @@
+<view>
+  <top-bar
+    type="navigation"
+    navigate
+    backgroundColor="bg-off-white"
+    title="BNI PICKER VIEW"
+    iconL="/image/ic_common_arrow_back.svg"
+    safeArea={{true}}
+    pixel
+    onIconLTap="navBack"
+  />
+  <top-bar pixel={{true}} type="primary" backgroundColor="bg-off-white" />
+  <view class="container">
+
+    <view class="button-container">
+      <text class="txt-body1-px">Select Number Type</text>
+      <button class="scroll-picker-button" onTap="onChangeNumberType" data-number="1">
+        1
+      </button>
+      <button class="scroll-picker-button" onTap="onChangeNumberType" data-number="2">
+        2
+      </button>
+      <button class="scroll-picker-button" onTap="onChangeNumberType" data-number="3">
+        3
+      </button>
+    </view>
+    <view a:if="{{ selectedType == 1 }}" class="scroll-picker-container">
+      <text class="txt-body1-sb-px">BNI Scroll Picker Number Without Num Value</text>
+      <view class="divider"></view>
+      <bni-scroll-picker
+        type="number"
+        minNumber="1"
+        maxNumber="28"
+        minSelectableNumber="1"
+        onChangeScroll="onChangeScrollNumber"
+      >
+      </bni-scroll-picker>
+    </view>
+
+    <view a:if="{{ selectedType == 2 }}" class="scroll-picker-container">
+      <text class="txt-body1-sb-px">BNI Scroll Picker Number With Num Value</text>
+      <view class="divider"></view>
+      <picker-view>
+        <picker-view-column id="{{idMonth}}">
+          <view a:for="{{ months }}">
+            {{item}}
+          </view>
+        </picker-view-column>
+    
+        <picker-view-column id="{{idYear}}">
+          <view a:for="{{ years }}">
+            {{item}}
+          </view>
+        </picker-view-column>
+      </picker-view>
+
+    </view>
+
+    <view a:if="{{ selectedType == 3 }}" class="scroll-picker-container">
+      <text class="txt-body1-sb-px">
+        BNI Scroll Picker Number With Num Value, Min Selectable Number and Immediate Change
+      </text>
+      <view class="divider"></view>
+      <bni-scroll-picker
+        type="number"
+        numValue="{{numValueTypeThree}}"
+        minNumber="17"
+        maxNumber="100"
+        minSelectableNumber="3"
+        onChangeScroll="onChangeScrollNumber"
+        immediateChange
+      >
+      </bni-scroll-picker>
+    </view>
+
+
+    <view class="scroll-picker-container">
+      <text class="txt-body1-sb-px">BNI Scroll Picker Date</text>
+      <view class="divider"></view>
+      <bni-scroll-picker
+        type="date"
+        onChangeScroll="onChangeScroll"
+        minimumMonth="5"
+        langType="en-ID"
+        defaultDate={{defaultDate}}
+      >
+      </bni-scroll-picker>
+
+    </view>
+  </view>
+
+</view>

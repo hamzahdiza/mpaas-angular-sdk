@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar",
+    "bni-steps-vertical": "@bni-maverick-mpaas/lib/es/bni-step-vertical/bni-step-vertical",
+    "bni-story": "@bni-maverick-mpaas/lib/es/bni-story/bni-story",
+    "bni-button":"@bni-maverick-mpaas/lib/es/bni-button/bni-button",
+    "bni-scroll-picker": "@bni-maverick-mpaas/lib/es/bni-scroll-picker/bni-scroll-picker"
+  },
+  "transparentTitle": "always",
+  "pullRefresh": false,
+  "allowsBounceVertical": "NO",
+  "titlePenetrate": "YES"
+}

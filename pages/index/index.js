@@ -280,5 +280,10 @@ Page({
     my.navigateTo({
       url: '/pages/openpdf-binary/openpdf-binary'
     })
+  },
+  goToDatePicker() {
+    my.navigateTo({
+      url: "/pages/rsp-gather-screen/rsp-gather-screen"
+    })
   }
 });

@@ -113,6 +113,7 @@
   <view>
     version 1.0.1.48
   </view>
+  <button class="item" size="default" type="primary" onTap="goToDatePicker">Go To Date Picker</button>
   <view style="height:60px">
     
   </view>
