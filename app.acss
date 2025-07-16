@@ -1,5 +1,443 @@
+@import "@bni-maverick-mpaas/lib/es/utils/styles-px/theme.acss";
+@import "@bni-maverick-mpaas/lib/es/utils/styles-px/shimmer.acss";
+@import "@bni-maverick-mpaas/lib/es/utils/styles-px/typography.acss";
+@import "@bni-maverick-mpaas/lib/es/utils/styles-px/spacing.acss";
+@import "@bni-maverick-mpaas/lib/es/utils/styles-px/layout.acss";
+
+/* Font Regular */
+@font-face {
+  font-family: 'TT Interphases Pro';
+  src: url(/assets/fonts/TTInterphasesProRegular.ttf);
+  font-weight: 400;
+}
+
+/* Font Medium */
+@font-face {
+  font-family: 'TT Interphases Pro';
+  src: url(/assets/fonts/TTInterphasesProMedium.ttf);
+  font-weight: 500;
+}
+
+/* Font Semibold */
+@font-face {
+  font-family: 'TT Interphases Pro';
+  src: url(/assets/fonts/TTInterphasesProDemiBold.ttf);
+  font-weight: 600;
+}
+
+/* Font Bold */
+@font-face {
+  font-family: 'TT Interphases Pro';
+  src: url(/assets/fonts/TTInterphasesProBold.ttf);
+  font-weight: 700;
+}
+
+/* Font ExtraBold */
+@font-face {
+  font-family: 'TT Interphases Pro';
+  src: url(/assets/fonts/TTInterphasesProExtraBold.ttf);
+  font-weight: 800;
+}
+
 page {
   background: #fff;
   color: #0E0E0E;
+  font-family: TT Interphases Pro;
+  font-style: normal;
   margin-bottom: 20px;
+}
+
+.fund-main {
+  width: 100%;
+  height: 100%;
+}
+
+.tab-label-px{
+  color: var(--functional-bw-tones-black, #0E0E0E);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 19.6px
+}
+
+.tab-content-px{
+  color: var(--functional-bw-tones-black, #0E0E0E);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height:  19.6px
+}
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.icon-size-32 {
+  height: 16px !important;
+  width: 16px !important;
+}
+
+.icon-size-48 {
+  height: 24px !important;
+  width: 24px !important;
+}
+
+.icon-size-64 {
+  height: 32px !important;
+  width: 32px !important;
+}
+
+.icon-size-96 {
+  height: 48px !important;
+  width: 48px !important;
+  min-height: 48px !important;
+  min-width: 48px !important;
+}
+
+.icon-size-112 {
+  height: 56px !important;
+  width: 56px !important;
+}
+
+.local-primary-btn {
+  width: 100%;
+  max-height: 48px;
+  border-radius: 32px;
+  background: #71DBD3;
+  border: none;
+  color: #0E0E0E;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 48px;
+}
+
+.local-disabled-btn {
+  width: 100%;
+  max-height: 48px;
+  border-radius: 32px;
+  background: #F0F0F0;
+  border: none;
+  color: #A0A0A0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 48px;
+  text-align: center;
+}
+
+.local-default-btn {
+  width: 100%;
+  max-height: 48px;
+  color: #0E0E0E;
+  border-radius: 32px;
+  background-color: #FFFFFF;
+  border: 1px solid #7A7A7A !important;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.custom-titleBar-image {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+}
+
+.local-between-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 24px;
+  /* position: relative; */
+}
+
+.btn-position {
+  position: fixed;
+  padding: 0 24px;
+  width: calc(100% - 48px);
+  bottom: 32px;
+}
+
+.modal-scroll {
+  height: 100vh;
+  overflow: scroll;
+  width: 100vw;
+}
+
+.mask-class-name-background {
+  background-color: rgba(14, 14, 14, 0.80) !important;
+}
+
+.txt-h0-px {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 38.4px;
+}
+
+.txt-h1-px {
+  font-size: 26px;
+  line-height: 30px;
+  font-weight: 700;
+}
+
+.txt-h2-px {
+  font-size: 24px;
+  line-height: 28.8px;
+  font-weight: 700;
+}
+
+.txt-h3-px {
+  font-size: 18px;
+  line-height: 21.6px;
+  font-weight: 700;
+}
+
+.txt-h4-px {
+  font-size: 16px;
+  line-height: 19.2px;
+  font-weight: 700;
+}
+
+.txt-h5-px {
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 700;
+}
+
+.txt-h5-Montserrat-px {
+  font-family: 'Montserrat';
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 700;
+}
+
+.txt-h6-px {
+  font-size: 12px;
+  line-height: 14.4px;
+  font-weight: 700;
+}
+
+.txt-h6-sb-px {
+  font-size: 12px;
+  line-height: 16.8px;
+  font-weight: 700;
+}
+
+.txt-h0-px {
+  font-size: 32px;
+  line-height: 38.4px;
+  font-weight: 800;
+}
+
+.txt-amount2-px {
+  font-size: 28px;
+  line-height: 33.6px;
+  font-weight: 800;
+}
+
+.txt-amount3-px {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 800;
+}
+
+.txt-body1-px {
+  font-size: 16px;
+  line-height: 22.4px;
+  font-weight: 400;
+}
+
+.txt-body2-px {
+  font-size: 14px;
+  line-height: 19.6px;
+  font-weight: 400;
+}
+
+.txt-body3-px {
+  font-size: 12px;
+  line-height: 16.8px;
+  font-weight: 400;
+}
+
+.txt-body4-px {
+  font-size: 10px;
+  line-height: 13.8px;
+  font-weight: 400;
+}
+
+.txt-body5-px {
+  font-size: 8px;
+  line-height: 10.8px;
+  font-weight: 400;
+}
+
+.txt-label1-px {
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 400;
+}
+
+.txt-label2-px {
+  font-size: 12px;
+  line-height: 14.4px;
+  font-weight: 400;
+}
+
+.txt-label3-px {
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 400;
+}
+
+.txt-body1-sb-px {
+  font-size: 16px;
+  line-height: 22.4px;
+  font-weight: 600;
+}
+
+.txt-body2-sb-px {
+  font-size: 14px;
+  line-height: 19.6px;
+  font-weight: 600;
+}
+
+.txt-body3-sb-px {
+  font-size: 12px;
+  line-height: 16.8px;
+  font-weight: 600;
+}
+
+.txt-body4-sb-px {
+  font-size: 10px;
+  line-height: 13.8px;
+  font-weight: 600;
+}
+
+.txt-body5-sb-px {
+  font-size: 8px;
+  line-height: 10.8px;
+  font-weight: 600;
+}
+
+.txt-label1-sb-px {
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 600;
+}
+
+.txt-label2-sb-px {
+  font-size: 12px;
+  line-height: 14.4px;
+  font-weight: 600;
+}
+
+.txt-label3-sb-px {
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 600;
+}
+
+.txt-label4-sb-px {
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 600;
+  font-family: "TT Interphases Pro";
+}
+
+.underline-px {
+  text-decoration: underline;
+}
+
+.txt-center-px {
+  text-align: center;
+}
+
+.txt-left-px {
+  text-align: left;
+}
+
+.txt-right-px {
+  text-align: right;
+}
+
+.txt-justify-px {
+  text-align: justify;
+}
+
+/*letter-spacing*/
+.ls-1-px {
+  letter-spacing: 0.5px;
+}
+
+.ls-0-px {
+  letter-spacing: 0px;
+}
+
+.va-middle-px {
+  vertical-align: middle;
+}
+
+/*word break*/
+.ww-bw-px {
+  word-wrap: break-word;
+}
+
+.ww-ba-px {
+  word-break: break-all;
+}
+
+.ww-pw-px {
+  white-space: pre-wrap;
+}
+
+.ww-n-px {
+  white-space: normal;
+}
+
+.ww-nw-px {
+  white-space: nowrap;
+}
+
+.ww-pl-px {
+  white-space: pre-line;
+}
+
+.to-e-1-px {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.to-e-2-px {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.primary-btn{
+  max-width: 100% !important;
+}
+
+.underline3-bold{
+  color: var(--orange-300);
+  font-feature-settings: 'liga' off, 'clig' off;
+  /* Mobile/Underline/Underline 3 - Bold */
+  font-family: "TT Interphases Pro";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
 }

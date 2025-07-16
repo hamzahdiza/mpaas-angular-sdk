@@ -1,0 +1,49 @@
+<view class="txt-body1-sb-px" >
+  <picker-view
+    a:if="{{ type == 'date' }}"
+    class="{{ pickerContainerClass ? pickerContainerClass : 'pickerContainer' }}"
+    mask-class="maskStyle"
+    indicator-class="indicatorStyle"
+    onChange="onChangeDate"
+    immediate-change="{{immediateChange}}"
+    value="{{dateValue}}"
+  >
+    <picker-view-column class="{{ isAndroid ? '': 'faded-opacity' }}" id="{{idDate}}" a:if="{{ days[0] }}">
+      <view a:for="{{ days }}" a:key="{{item}}">
+        <text>{{item}}</text>
+      </view>
+    </picker-view-column>
+
+    <picker-view-column id="{{idMonth}}">
+      <block a:for="{{ months }}">
+        <view key="{{item}}">
+          <text>{{item}}</text>
+        </view>
+      </block>
+    </picker-view-column>
+
+    <picker-view-column id="{{idYear}}">
+      <block a:for="{{ years }}">
+        <view key="{{item}}">
+          <text>{{item}}</text>
+        </view>
+      </block>
+    </picker-view-column>
+  </picker-view>
+
+  <picker-view
+    a:if="{{ type == 'number' }}"
+    class="{{ pickerContainerClass ? pickerContainerClass : 'pickerContainer' }}"
+    mask-class="maskStyle"
+    indicator-class="indicatorStyle"
+    onChange="onChangeNumber"
+    immediate-change="{{immediateChange}}"
+    value="{{numValue}}"
+  >
+    <picker-view-column class="{{ isAndroid ? '': 'faded-opacity' }}" id="{{idNumber}}">
+      <view a:for="{{ arrayNumber }}" style="{{ item < minSelectableNumber ? 'color: #C6C6C6;' : '' }}">
+        {{item}}
+      </view>
+    </picker-view-column>
+  </picker-view>
+</view>

@@ -16,7 +16,7 @@ Page({
     numValueTypeThree: 0,
     selectedType: 1,
     currentYear: 2025,
-    defaultDate: ["August", 2025]
+    defaultDate: ["May", 2025]
   },
   onLoad() {
     const newMonths = this.getAvailableMonths(2)
@@ -51,5 +51,8 @@ Page({
     this.setData({
       selectedType: Number(number)
     })
+  },
+  navBack() {
+    my.navigateBack();
   }
 });
