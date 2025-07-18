@@ -5,6 +5,7 @@
     "bni-story": "@bni-maverick-mpaas/lib/es/bni-story/bni-story",
     "bni-button":"@bni-maverick-mpaas/lib/es/bni-button/bni-button",
     "bni-scroll-picker": "@bni-maverick-mpaas/lib/es/bni-scroll-picker/bni-scroll-picker",
+    "bni-scroll-picker-v2": "/components/bni-scroll-picker-v2/bni-scroll-picker-v2",
     "custom-bni-scroll-picker": "/components/bni-scroll-picker/bni-scroll-picker",
     "case-sensitive-bni-scroll-picker": "/components/bni-scroll-picker-case-sensitive/bni-scroll-picker-case-sensitive"
   },

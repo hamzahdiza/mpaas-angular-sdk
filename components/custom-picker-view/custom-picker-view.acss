@@ -1,0 +1,118 @@
+page {
+  background-color: white;
+}
+
+.outer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.page-picker-container {
+  height: 170px;
+  width: 263px;
+  border: 2px solid gray;
+  padding: 20px;
+}
+
+.outer-picker-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  
+  display: flex;
+  flex-direction: row;
+}
+
+.scroll-picker-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.scroll-picker-container-v2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.item-picker {
+  height: 34px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-scroll-container {
+  padding: 68px 0;
+  flex: 1;
+}
+
+.inner-scroll-container {
+  padding: 68px 0;
+  flex: 1;
+}
+
+.inner-scroll-container-v2 {
+  padding: 68px 0;
+  flex: 1;
+  position: relative;
+  width: 100%;
+}
+
+.inner-scroll-container-v2.animating {
+  transition: top 0.2s ease-out;
+}
+
+.column-container {
+  flex: 1;
+}
+
+.divider {
+  height: 2px;
+  width: 100%;
+  background-color: black;
+  position: absolute;
+  top: 50%;
+}
+
+
+
+
+
+
+.fade-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+
+}
+
+.fade-top-bottom {
+  width: 100%;
+  height: 20%;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.fade-mid-top-bottom {
+  width: 100%;
+  height: 20%;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.fade-mid {
+  width: 100%;
+  height: 20%;
+  background: rgba(255, 255, 255, 0);
+}

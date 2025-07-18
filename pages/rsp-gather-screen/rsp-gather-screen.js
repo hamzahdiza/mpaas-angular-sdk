@@ -16,7 +16,7 @@ Page({
     numValueTypeThree: 0,
     selectedType: 1,
     currentYear: 2025,
-    defaultDate: ["May", 2025]
+    defaultDate: ["November", 2025]
   },
   onLoad() {
     const newMonths = this.getAvailableMonths(2)
@@ -38,7 +38,8 @@ Page({
   },
   onChangeScroll(value) {
     this.setData({
-      dateSelected: value // output will be object with month and year key. And get the value always when component mounted
+      month: value.month,
+      year: value.year
     })
   },
   onChangeScrollNumber(value) {

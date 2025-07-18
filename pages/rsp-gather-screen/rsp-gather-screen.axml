@@ -23,21 +23,45 @@
       <button class="{{ selectedType == 3 ? 'scroll-picker-button-clicked' : 'scroll-picker-button' }}" onTap="onChangeNumberType" data-number="3">
         3
       </button>
-    </view>
-    <view a:if="{{ selectedType == 1 }}" class="scroll-picker-container">
-      <text class="txt-body1-sb-px">First BNI Scroll Picker (Not case sensitive)</text>
-      <view class="divider"></view>
-      <custom-bni-scroll-picker
-        type="date"
-        onChangeScroll="onChangeScroll"
-        minimumMonth="5"
-        langType="en-ID"
-        defaultDate={{defaultDate}}
-      >
-      </custom-bni-scroll-picker>
+      <button class="{{ selectedType == 4 ? 'scroll-picker-button-clicked' : 'scroll-picker-button' }}" onTap="onChangeNumberType" data-number="4">
+        4
+      </button>
     </view>
 
-    <view a:if="{{ selectedType == 2 }}" class="scroll-picker-container">
+    <view a:if="{{ selectedType == 1 }}" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <view class="page-picker-container">
+        <bni-scroll-picker-v2 type="2" onChangeScroll="onChangeScroll" minimumMonth="9" langType="en-ID" />
+      </view>
+      <view class="txt-h2" style="margin-top: 20px">
+        {{ month + '  ' + year }}
+      </view>
+    </view>
+
+    <view a:if="{{ selectedType == 2 }}" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <view class="page-picker-container">
+        <bni-scroll-picker-v2 defaultDate="{{defaultDate}}" type="2" onChangeScroll="onChangeScroll" minimumMonth="9" langType="en-ID" />
+      </view>
+      <view class="txt-h2" style="margin-top: 20px">
+        {{ month + '  ' + year }}
+      </view>
+    </view>
+
+    <view a:if="{{ selectedType == 3 }}" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <view class="page-picker-container">
+        <bni-scroll-picker-v2 type="1"
+        minNumber="1"
+        maxNumber="28"
+        minSelectableNumber="1"
+        onChangeScroll="onChangeScrollNumber"
+        defaultValue={{defaultValue}}
+        numValue="1" />
+      </view>
+      <view class="txt-h2" style="margin-top: 20px">
+        {{ numSelected }}
+      </view>
+    </view>
+
+    <view a:if="{{ selectedType == 4 }}" class="scroll-picker-container">
       <text class="txt-body1-sb-px">Second BNI Scroll Picker (toLowerCase)</text>
       <view class="divider"></view>
       <case-sensitive-bni-scroll-picker
@@ -49,27 +73,6 @@
       >
       </case-sensitive-bni-scroll-picker>
 
-    </view>
-
-    <view a:if="{{ selectedType == 3 }}" class="scroll-picker-container">
-      <text class="txt-body1-sb-px">
-        Default Picker View
-      </text>
-      <view class="divider"></view>
-
-      <picker-view>
-        <picker-view-column id="{{idMonth}}">
-          <view a:for="{{ months }}">
-            {{item}}
-          </view>
-        </picker-view-column>
-
-        <picker-view-column id="{{idYear}}">
-          <view a:for="{{ years }}">
-            {{item}}
-          </view>
-        </picker-view-column>
-      </picker-view>
     </view>
 
   </view>

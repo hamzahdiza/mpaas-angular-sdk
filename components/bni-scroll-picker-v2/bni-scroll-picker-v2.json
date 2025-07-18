@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "custom-picker-view": "/components/custom-picker-view/custom-picker-view"
+  }
+}

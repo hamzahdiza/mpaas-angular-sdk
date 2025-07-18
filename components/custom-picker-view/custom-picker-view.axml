@@ -1,0 +1,56 @@
+<view class="outer-picker-container txt-body1-sb-px">
+  <view class="scroll-picker-container-v2">
+    <view class="column-container">
+      <view
+        onTouchStart="onTouchStart"
+        onTouchMove="onTouchMove"
+        onTouchEnd="onTouchEnd"
+        class="inner-scroll-container-v2 {{firstSnappedAnimating ? 'animating' : ''}}"
+        style="top: {{firstTop}}px; height: {{firstInnerHeight + 68}}px"
+        id="first"
+      >
+        <view
+          a:for="{{ firstList }}"
+          class="item-picker"
+          onTap="onTapItem"
+          data-index="{{index}}"
+          data-column="first"
+          id="{{firstColumnId + (index + 1)}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <view a:if="{{ type == 2 }}" class="column-container">
+      <view
+        onTouchStart="onTouchStart"
+        onTouchMove="onTouchMove"
+        onTouchEnd="onTouchEnd"
+        class="inner-scroll-container-v2 {{secondSnappedAnimating ? 'animating' : ''}}"
+        style="top: {{secondTop}}px; height: {{secondInnerHeight + 68}}px"
+        id="second"
+      >
+        <view
+          a:for="{{ secondList }}"
+          class="item-picker"
+          onTap="onTapItem"
+          data-index="{{index}}"
+          data-column="second"
+          id="{{secondColumnId + (index + 1)}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="fade-container">
+    <view class="fade-top-bottom"></view>
+    <view class="fade-mid-top-bottom"></view>
+    <view class="fade-mid"></view>
+    <view class="fade-mid-top-bottom"></view>
+    <view class="fade-top-bottom"></view>
+  </view>
+</view>

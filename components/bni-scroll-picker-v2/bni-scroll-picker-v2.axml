@@ -1,0 +1,24 @@
+<custom-picker-view
+  a:if="{{ type == 1 }}"
+  firstList="{{arrayNumber}}"
+  onChangeScroll="onChangeNumber"
+  type="1"
+  firstColumnId="firstColumnId"
+  secondColumnId="secondColumnId"
+  defaultValue="{{defaultValue}}"
+  dateValue="{{numValue}}"
+>
+</custom-picker-view>
+
+<custom-picker-view
+  a:else
+  firstList="{{months}}"
+  secondList="{{years}}"
+  onChangeScroll="onChangeDate"
+  type="2"
+  firstColumnId="firstColumnId"
+  secondColumnId="secondColumnId"
+  defaultValue="{{defaultValue}}"
+  dateValue="{{dateValue}}"
+>
+</custom-picker-view>
