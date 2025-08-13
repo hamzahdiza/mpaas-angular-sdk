@@ -121,3 +121,18 @@
     Button goToFAQArticlePage
   </button>
 </view>
+<view>
+  <button class="item" type="primary" onTap="handleRspCheckServiceUtils">
+    Button rspCheckService Utils
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="handleRspCheckService1">
+    Button rspCheckService 1
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="handleRspCheckService2">
+    Button rspCheckService 2
+  </button>
+</view>

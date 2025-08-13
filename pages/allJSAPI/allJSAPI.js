@@ -1,3 +1,7 @@
+import {
+  rspCheckService
+} from "../../utils/rspCheckService"
+
 Page({
   data: {
     optionsHomeScreen: [{
@@ -450,5 +454,47 @@ Page({
         });
       }
     })
+  },
+
+  async handleRspCheckServiceUtils() {
+    const servicesToCheck = [
+      "app.config.wealth.rsp.feature.service.key",
+      "app.config.wealth.rsp.creation.feature.service.key",
+      "app.config.wealth.rsp.modify.feature.service.key",
+      "app.config.wealth.rsp.cancel.feature.service.key"
+    ];
+
+    const featureFlags = await rspCheckService(servicesToCheck);
+
+    console.info(featureFlags, "<<< featureFlags")
+
+    my.alert({
+      content: JSON.stringify(featureFlags)
+    })
+
+
+  },
+  handleRspCheckService1() {
+    my.call("getServiceStatus", {
+      serviceName: "app.config.wealth.rsp.feature.service.key"
+    }, (res) => {
+      console.info(res, "<<< res getServiceStatus")
+
+      my.alert({
+        content: JSON.stringify(res)
+      })
+    });
+  },
+
+  handleRspCheckService2() {
+    my.call("getServiceStatus", {
+      serviceName: "app.config.wealth.rsp.creation.feature.service.key"
+    }, (res) => {
+      console.info(res, "<<< res getServiceStatus")
+
+      my.alert({
+        content: JSON.stringify(res)
+      })
+    });
   }
 });
