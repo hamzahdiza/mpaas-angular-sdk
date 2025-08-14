@@ -42,7 +42,7 @@
   <button class="item" type="primary" onTap="goToSplashScreen">
     Go To Splash Screen
   </button>
-  <view class="item"> 
+  <view class="item">
     <input
       maxlength=2000
       placeholder="Input page navigateFromInsight"
@@ -134,5 +134,10 @@
 <view>
   <button class="item" type="primary" onTap="handleRspCheckService2">
     Button rspCheckService 2
+  </button>
+</view>
+<view>
+  <button class="item" type="primary" onTap="jsApiNotFound">
+    Button JSAPI Not Found
   </button>
 </view>

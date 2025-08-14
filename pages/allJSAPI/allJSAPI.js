@@ -487,12 +487,6 @@ Page({
     my.call("getAppConfig", {
       keys: rspServiceKeys
     }, (configResponse) => {
-      configResponse = {
-        "app.config.wealth.rsp.feature.service.key": null,
-        "app.config.wealth.rsp.creation.feature.service.key": "wealth-mf-rsp-creation-feature",
-        "app.config.wealth.rsp.modify.feature.service.key": "wealth-mf-rsp-modify-feature",
-        "app.config.wealth.rsp.cancel.feature.service.key": "wealth-mf-rsp-cancel-feature"
-      }
       console.info(configResponse, "<<< RSP configResponse button 1")
       for (const configKey in configResponse) {
         if (Object.prototype.hasOwnProperty.call(configResponse, configKey)) {
@@ -588,7 +582,14 @@ Page({
         const status = statusResponse === true || statusResponse === 'true';
         console.info(status, "status button 2 rspCancelFeatureOn");
       });
-
     })
+  },
+
+  jsApiNotFound(){
+    my.call("jsApiNotFound", {
+      serviceName: "wealth-mf-rsp-feature"
+    }, (res) => {
+      console.info(res, "<<< res jsApiNotFound");
+    });
   }
 });
