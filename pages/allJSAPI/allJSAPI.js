@@ -487,6 +487,12 @@ Page({
     my.call("getAppConfig", {
       keys: rspServiceKeys
     }, (configResponse) => {
+      configResponse = {
+        "app.config.wealth.rsp.feature.service.key": null,
+        "app.config.wealth.rsp.creation.feature.service.key": "wealth-mf-rsp-creation-feature",
+        "app.config.wealth.rsp.modify.feature.service.key": "wealth-mf-rsp-modify-feature",
+        "app.config.wealth.rsp.cancel.feature.service.key": "wealth-mf-rsp-cancel-feature"
+      }
       console.info(configResponse, "<<< RSP configResponse button 1")
       for (const configKey in configResponse) {
         if (Object.prototype.hasOwnProperty.call(configResponse, configKey)) {
@@ -513,10 +519,82 @@ Page({
   },
 
   handleRspCheckService2() {
-    console.info(getApp().globalData.nativeData.setServiceStatus, "<<< setServiceStatus"), 
-    console.info(getApp().globalData.nativeData.setServiceStatus.rspFeatureOn, "<<< rspFeatureOn")
-    console.info(getApp().globalData.nativeData.setServiceStatus.rspCreationFeatureOn, "<<< rspCreationFeatureOn")
-    console.info(getApp().globalData.nativeData.setServiceStatus.rspModifyFeatureOn, "<<< rspModifyFeatureOn")
-    console.info(getApp().globalData.nativeData.setServiceStatus.rspCancelFeatureOn, "<<< rspCancelFeatureOn")
+    let {
+      rspFeatureOn,
+      rspCreationFeatureOn,
+      rspModifyFeatureOn,
+      rspCancelFeatureOn
+    } = ""
+
+    const serviceConfigMap = {
+      "app.config.wealth.rsp.feature.service.key": "rspFeatureOn",
+      "app.config.wealth.rsp.creation.feature.service.key": "rspCreationFeatureOn",
+      "app.config.wealth.rsp.modify.feature.service.key": "rspModifyFeatureOn",
+      "app.config.wealth.rsp.cancel.feature.service.key": "rspCancelFeatureOn"
+    };
+    const rspServiceKeys = Object.keys(serviceConfigMap);
+
+    console.info(rspServiceKeys, "rspServiceKeys status button 2");
+    my.call("getAppConfig", {
+      keys: rspServiceKeys
+    }, (configResponse) => {
+      configResponse = {
+        "app.config.wealth.rsp.feature.service.key": null,
+        "app.config.wealth.rsp.creation.feature.service.key": "wealth-mf-rsp-creation-feature",
+        "app.config.wealth.rsp.modify.feature.service.key": "wealth-mf-rsp-modify-feature",
+        "app.config.wealth.rsp.cancel.feature.service.key": "wealth-mf-rsp-cancel-feature"
+      }
+
+      rspFeatureOn = configResponse["app.config.wealth.rsp.feature.service.key"]
+      rspCreationFeatureOn = configResponse["app.config.wealth.rsp.creation.feature.service.key"]
+      rspModifyFeatureOn = configResponse["app.config.wealth.rsp.modify.feature.service.key"]
+      rspCancelFeatureOn = configResponse["app.config.wealth.rsp.cancel.feature.service.key"]
+
+      console.info(rspFeatureOn, "<<< configResponse rspFeatureOn");
+      console.info(rspCreationFeatureOn, "<<< configResponse rspCreationFeatureOn");
+      console.info(rspModifyFeatureOn, "<<< configResponse rspModifyFeatureOn");
+      console.info(rspCancelFeatureOn, "<<< configResponse rspCancelFeatureOn");
+
+      my.call("getServiceStatus", {
+        serviceName: "wealth-mf-rsp-feature"
+      }, (statusResponse) => {
+        console.info(statusResponse, "<<< RSP statusResponse button 2 wealth-mf-rsp-feature")
+        const status = statusResponse === true || statusResponse === 'true';
+        console.info(status, "status button 2 wealth-mf-rsp-feature");
+      });
+
+      my.call("getServiceStatus", {
+        serviceName: rspFeatureOn
+      }, (statusResponse) => {
+        console.info(statusResponse, "<<< RSP statusResponse button 2 rspFeatureOn")
+        const status = statusResponse === true || statusResponse === 'true';
+        console.info(status, "status button 2 rspFeatureOn");
+      });
+
+      my.call("getServiceStatus", {
+        serviceName: rspCreationFeatureOn
+      }, (statusResponse) => {
+        console.info(statusResponse, "<<< RSP statusResponse button 2 rspCreationFeatureOn")
+        const status = statusResponse === true || statusResponse === 'true';
+        console.info(status, "status button 2 rspCreationFeatureOn");
+      });
+
+      my.call("getServiceStatus", {
+        serviceName: rspModifyFeatureOn
+      }, (statusResponse) => {
+        console.info(statusResponse, "<<< RSP statusResponse button 2 rspModifyFeatureOn")
+        const status = statusResponse === true || statusResponse === 'true';
+        console.info(status, "status button 2 rspModifyFeatureOn");
+      });
+
+      my.call("getServiceStatus", {
+        serviceName: rspCancelFeatureOn
+      }, (statusResponse) => {
+        console.info(statusResponse, "<<< RSP statusResponse button 2 rspCancelFeatureOn")
+        const status = statusResponse === true || statusResponse === 'true';
+        console.info(status, "status button 2 rspCancelFeatureOn");
+      });
+
+    })
   }
 });
