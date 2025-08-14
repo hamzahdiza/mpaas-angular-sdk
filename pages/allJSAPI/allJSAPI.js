@@ -475,26 +475,48 @@ Page({
 
   },
   handleRspCheckService1() {
-    my.call("getServiceStatus", {
-      serviceName: "app.config.wealth.rsp.feature.service.key"
-    }, (res) => {
-      console.info(res, "<<< res getServiceStatus")
+    const serviceConfigMap = {
+      "app.config.wealth.rsp.feature.service.key": "rspFeatureOn",
+      "app.config.wealth.rsp.creation.feature.service.key": "rspCreationFeatureOn",
+      "app.config.wealth.rsp.modify.feature.service.key": "rspModifyFeatureOn",
+      "app.config.wealth.rsp.cancel.feature.service.key": "rspCancelFeatureOn"
+    };
+    const rspServiceKeys = Object.keys(serviceConfigMap);
 
-      my.alert({
-        content: JSON.stringify(res)
-      })
+    console.info(rspServiceKeys, "<<< RSP rspServiceKeys button 1")
+    my.call("getAppConfig", {
+      keys: rspServiceKeys
+    }, (configResponse) => {
+      console.info(configResponse, "<<< RSP configResponse button 1")
+      for (const configKey in configResponse) {
+        if (Object.prototype.hasOwnProperty.call(configResponse, configKey)) {
+          const serviceName = configResponse[configKey];
+          const propertyName = serviceConfigMap[configKey];
+          console.info(serviceName, "<<< RSP serviceName button 1")
+          console.info(propertyName, "<<< RSP propertyName button 1")
+
+          if (serviceName && propertyName) {
+            my.call("getServiceStatus", {
+              serviceName: serviceName
+            }, (statusResponse) => {
+              console.info(statusResponse, "<<< RSP statusResponse button 1")
+              const status = statusResponse === true || statusResponse === 'true';
+
+              console.info(propertyName, "propertyName status button 1");
+              console.info(status, "status status button 1");
+
+            });
+          }
+        }
+      }
     });
   },
 
   handleRspCheckService2() {
-    my.call("getServiceStatus", {
-      serviceName: "app.config.wealth.rsp.creation.feature.service.key"
-    }, (res) => {
-      console.info(res, "<<< res getServiceStatus")
-
-      my.alert({
-        content: JSON.stringify(res)
-      })
-    });
+    console.info(getApp().globalData.nativeData.setServiceStatus, "<<< setServiceStatus"), 
+    console.info(getApp().globalData.nativeData.setServiceStatus.rspFeatureOn, "<<< rspFeatureOn")
+    console.info(getApp().globalData.nativeData.setServiceStatus.rspCreationFeatureOn, "<<< rspCreationFeatureOn")
+    console.info(getApp().globalData.nativeData.setServiceStatus.rspModifyFeatureOn, "<<< rspModifyFeatureOn")
+    console.info(getApp().globalData.nativeData.setServiceStatus.rspCancelFeatureOn, "<<< rspCancelFeatureOn")
   }
 });
