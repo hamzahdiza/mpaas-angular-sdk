@@ -212,7 +212,12 @@ Page({
   //     }
   //   })
   // },
-
+  onShow() {
+    console.info("MPAAS_JSAPI_SELECT_FILE_ONSHOW")
+  },
+  onHide(){
+    console.info("MPAAS_JSAPI_SELECT_FILE_ONHIDE")
+  },
   uploadPDFJSAPI() {
     dinamycJSAPI("selectFile", {
       data: JSON.stringify(this.data.params),
@@ -223,6 +228,7 @@ Page({
         fileName: res.data.fileName,
       })
     })
+
   },
 
   handleBack(){
