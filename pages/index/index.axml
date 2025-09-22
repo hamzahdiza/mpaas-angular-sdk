@@ -114,6 +114,7 @@
     version 1.0.1.81
   </view>
   <button class="item" size="default" type="primary" onTap="goToDatePicker">Go To Date Picker</button>
+  <button class="item" size="default" type="primary" onTap="goToGiriMicrosite">Go to Microsite Giri</button>
   <view style="height:60px">
     
   </view>

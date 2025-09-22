@@ -285,5 +285,11 @@ Page({
     my.navigateTo({
       url: "/pages/rsp-gather-screen/rsp-gather-screen"
     })
-  }
+  },
+  goToGiriMicrosite() {
+    my.navigateTo({
+      url: "/pages/giri-microsite/giri-microsite"
+    })
+  },
+
 });

@@ -1,0 +1,6 @@
+<view style="background-color : red">
+  <web-view 
+  src="https://test-microsite.vercel.app" 
+  onMessage="onMessageBaby"
+  />
+</view>
