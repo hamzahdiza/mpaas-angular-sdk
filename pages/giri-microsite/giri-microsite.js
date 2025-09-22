@@ -1,10 +1,13 @@
 Page({
   data: {},
   onLoad() {},
-  onMessageBaby() {
+  onMessage(e) {
+    const appId = e.detail.appId
+    const path = e.detail.path
+    
     my.navigateToMiniProgram({
-      appId: "0100018888029999",
-      path: '/pages/index/index'
+      appId: appId,
+      path: path
     });
   },
 });
