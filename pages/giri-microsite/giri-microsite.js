@@ -11,7 +11,7 @@ Page({
     }
 
     my.navigateToMiniProgram({
-      appId: "0100010000030010",
+      appId: e.detail.appId,
       path: `/src/app/package_transaction/package_whoosh/gather-screen-whoosh/gather-screen-whoosh?customUrlQueryData=${e.detail.payload}`,
       extraData: {
         nativeData: JSON.stringify(dataNative),
