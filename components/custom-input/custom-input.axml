@@ -1,0 +1,70 @@
+<view
+  class="input-container d-f-row jc-between ai-center {{focus ? 'border-turquoise-400-input ' : 'border-light-gray-input'}}"
+  data-inputSection="{{inputSection}}"
+  onTap="onFocus"
+  id="{{idx}}"
+>
+  <view class="d-f-column" style="width : 100%">
+    <text a:if="{{ textVisible}}" class={{focus ||  inputValue ? 'txt-black txt-label2-px' : 'txt-charcoal txt-body2-px'}}>{{textValue}}
+    </text>
+    <input
+      value={{inputValue}}
+      controlled={{true}}
+      onInput="onChange"
+      onBlur="onBlurInput"
+      class="custom-input txt-body2-px"
+      data-inputSection="{{inputSection}}"
+      placeholder="{{placeholder}}"
+      placeholder-class="{{placeholderClass}}"
+      placeholder-style="{{placeholderStyle}}"
+      maxlength={{maxChar}}
+      focus={{focus}}
+    />
+  </view>
+  <view a:if="{{ suffixIcon }}" class="suffixIconStyle" >
+    <image
+      mode="aspectFit"
+      style="width : 24px; height : 24px"
+      src="{{suffixIcon}}"
+      onTap="onSuffix"
+    />
+  </view>
+</view>
+
+<view
+    a:if="{{ error || success || caption || counter }}"
+    id="input2"
+    catchTap="onPopupFocused"
+    class="{{type == 'amount' || type == 'amountWithClear' || type === 'amountType' ? 'message-amount-px' : 'message-px'}}"
+  >
+
+    <view style="display : flex; align-items : center; min-height : 16px">
+
+      <view a:if="{{ error || success }}" class="
+        messageIconStyle-px 
+        {{error && 'error bg-error'}} 
+        {{success && 'success bg-success'}}">
+      </view>
+
+      <text a:if="{{ caption }}" class="
+        txt-label2-px 
+        {{type == 'disabled' || type == 'read-only' ? 'txt-charcoal' : 'txt-black'}} 
+        {{error && 'txt-error'}} 
+        {{success && 'txt-success'}}
+      ">
+        {{caption}}
+      </text>
+    </view>
+
+    <view>
+      <text a:if="{{ counter }}" class="
+        txt-label2-px 
+        {{type == 'disabled' || type == 'read-only' ? 'txt-charcoal' : 'txt-black'}} 
+        {{error && 'txt-error'}} 
+        {{success && 'txt-success'}}
+      ">
+        {{inputValue.length}}/{{maxChar}}
+      </text>
+    </view>
+
+  </view>

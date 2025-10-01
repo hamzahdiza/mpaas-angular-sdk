@@ -1,0 +1,95 @@
+<template name="landing">
+  <view class="modal-scroll">
+    <view class="sticky-top">
+      <top-bar type="primary" backgroundColor="{{ failureLoad ? 'bg-white' : 'bg-off-white' }}" />
+      <top-bar
+        pixel
+        type="chipButton"
+        navigate
+        exit
+        backgroundColor="{{ failureLoad ? 'bg-white' : 'bg-off-white' }}"
+        title="{{isLoading && !failureLoad?'': 'BIONS'}}"
+        iconL="/assets/icons/ic_common_arrow_back.svg"
+        typeChipButton="primary"
+        onChipButtonTap="toProfileInvestor"
+        titleChipButton="Profile"
+        iconChipButton="/assets/icons/ic_common_users.svg"
+        classChipButton="txt-label1-sb border-pale-gray"
+      />
+    </view>
+
+    <block>
+      <scroll-view
+        scroll-y="{{true}}"
+        style="height:calc(100vh - 56px - {{statusBarHeight}}px - 72px)"
+        onScroll="onScroll"
+      >
+        <view class="d-f-column">
+          <view class="bs bg-off-white pd-h-48">
+            <view class="pd-v-16" onTap="onClick" style="background-color: red">
+            BUTTON
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </block>
+
+
+    <!-- See nearby branches -->
+    <see-near-branches></see-near-branches>
+
+    <!-- failureLoad -->
+    <error-reload
+      a:if="{{ failureLoad }}"
+      title="{{lang.bondsPortfolioLandingScreenTitleErrorState}}"
+      desc="{{lang.bondsPortfolioLandingScreenSubTitleErrorState}}"
+      onReload="refreshData"
+    >
+    </error-reload>
+
+  </view>
+
+  <!-- Transaction=OFF -->
+  <view class="not-full">
+    <popup visible="{{transactionCheckModal}}" maskClassName="mask-class-name-background">
+      <view class="d-f-row">
+        <view class="w-64 mg-r-16 h-64">
+          <image
+            mode="scaleToFill"
+            src="/assets/icons/ic_common_error_filled.svg"
+            class="h-64 w-64"
+          />
+        </view>
+        <view class="txt-h3 txt-black d-f-row ai-center" id="portfolioDetailScreenTransactionNotAvailableHeader">
+          {{lang.portfolioDetailScreenTransactionNotAvailableHeader}}
+        </view>
+      </view>
+      <view class="mg-b-48 mg-t-16">
+        <view class="txt-body2 txt-black" id="portfolioDetailScreenTransactionNotAvailableBody">
+          {{lang.portfolioDetailScreenTransactionNotAvailableBody}}
+        </view>
+      </view>
+      <view>
+        <bni-button
+          pixel
+          class="primary-btn br-64 bg-turquoise-300 txt-black txt-center"
+          onTap="toCancelTransactionCheckModal"
+          id="portfolioDetailScreenTransactionNotAvailableFooter"
+        >
+          {{lang.portfolioDetailScreenTransactionNotAvailableFooter}}
+        </bni-button>
+      </view>
+    </popup>
+  </view>
+
+  <!-- The interface returns a 503 popup -->
+  <feature-modal></feature-modal>
+  <!-- error internet -->
+  <error-internet></error-internet>
+  <!-- general-error -->
+  <general-error></general-error>
+  <!-- init data is loading -->
+  <loading loading="{{ isLodingTriggered }}"></loading>
+  <!-- native need update -->
+  <native-need-update></native-need-update>
+</template>

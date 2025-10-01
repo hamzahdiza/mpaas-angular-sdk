@@ -1,0 +1,15 @@
+<view class={{`bottom-filter ${isOpen ? (isExpanded ? "expanded" : "half-open") : ""}`}} >
+  <view
+    a:if="{{ handleBar }}"
+    class="handle"
+    onTouchStart="touchStart"
+    onTouchMove="touchMove"
+    onTouchEnd="touchEnd"
+  >
+    <view class="handle-bar">
+    </view>
+  </view>
+  <slot>
+  </slot>
+  <view class="safe-area" />
+</view>

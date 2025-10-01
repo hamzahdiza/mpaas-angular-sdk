@@ -1,0 +1,18 @@
+<view class="intf">
+  <popup zIndex={{99999}} visible="{{errorInternet}}" a:if="{{ errorInternet }}" maskClassName="mask-class-name-background">
+    <view class="d-f-column ai-center">
+        <view class="image-error">
+        </view>
+    </view>
+    <view class="d-f-column mg-t-48">   
+      <view class="txt-h3 txt-black">
+        {{lang.commonInternetConnectionErrorScreenTitle}}
+      </view>
+    </view>
+    <view class="d-f-column mg-t-16">
+      <view class="txt-body2 txt-black">
+        {{lang.commonInternetConnectionErrorScreenDescription}}
+      </view>
+    </view>
+  </popup>
+</view>

@@ -1,0 +1,111 @@
+<view>
+  <top-bar
+    type="navigation"
+    navigate
+    backgroundColor="bg-off-white"
+    title=" "
+    iconL="/image/ic_common_arrow_back.svg"
+    safeArea={{true}}
+    pixel
+  />
+</view>
+
+
+<view class="main-container">
+  <view class="content-container">
+    CSS not working (flex gap)
+    <view class="" style="width: calc(100% - 20px);display: flex; gap: 20px; align-items: center; padding: 10px;">
+      <view style="width: 100px; height: 100px; background-color: red">
+      </view>
+
+      <view style="width: 100px; height: 100px; background-color: blue">
+      </view>
+
+      <view style="width: 100px; height: 100px; background-color: green">
+      </view>
+    </view>
+  </view>
+
+  <view class="content-container">
+    <view>
+      Canvas works in simulator, but not on device
+    </view>
+    <canvas
+      id="canvas"
+      type="2d"
+      width="300"
+      height="120"
+      onReady="onCanvasReady"
+      style="border: 1px solid black;"
+    >
+    </canvas>
+  </view>
+
+  <view class="content-container">
+    <view style="margin-bottom: 10px">
+      Popup can’t float above keyboard while iOS can
+    </view>
+    <bni-button
+      type="primary"
+      className="txt-label1-sb bg-turquoise-300"
+      onTap="onOpenPopup"
+      pixel
+    >
+      Buka Popup
+    </bni-button>
+  </view>
+
+
+  <view class="content-container">
+    <view style="margin-bottom: 10px">
+      Input type number cannot be used
+    </view>
+    <input class="styled-input" placeholder="Masukkan Angka" type="number" />
+  </view>
+</view>
+
+<!-- POPUP -->
+<view class="intf">
+  <popup visible="{{popupVisible}}" position="bottom" maskClassName="mask-class-name-background">
+    <view class="popup">
+      <view>
+        <text class="txt-h3 mg-b-8" id="digital-loan-appliance-gather-screen-input-tenure-title-label">
+          Popup input
+        </text>
+        <view class="input-box-wrapper">
+          <custom-input
+            inputValue={{gatherData.salesCode}}
+            placeholder="{{focusCustom.salesCode ? '' : lang.digitalLoanApplianceGatherScreenSalesCodeInputBox}}"
+            textValue="{{lang.digitalLoanApplianceGatherScreenSalesCodeInputBox}}"
+            textVisible="{{gatherData.salesCode || focusCustom.salesCode ? true : false}}"
+            onChange="onInputSalesCode"
+            focus={{focusCustom.salesCode}}
+            onFocus="onFocusCustom"
+            onBlur="onBlurCustom"
+            placeholderClass="txt-granite"
+            input-section="salesCode"
+            counter={{true}}
+            maxChar={{salesCodeInput.salesCodeMaxChar}}
+            error={{salesCodeInput.error}}
+            caption="{{salesCodeInput.error ? salesCodeInput.errorCaption : lang.digitalLoanApplianceGatherScreenOverlayDescriptionLabel}}"
+            onSuffix={{'onClearSalesCode'}}
+            suffixIcon={{gatherData.salesCode && focusCustom.salesCode ? '/src/assets/icons/ic_common_cancel_outlined.svg': ''}}
+          />
+        </view>
+        <view>
+          <view style="margin-bottom:8px">
+            <bni-button
+              id="digital-loan-appliance-gather-screen-save-sales-code-button"
+              type="primary"
+              className="txt-label1-sb bg-turquoise-300"
+              onTap="onClosePopup"
+              pixel
+            >
+              Tutup
+            </bni-button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </popup>
+</view>

@@ -1,0 +1,69 @@
+<!-- Popup Error SID Halfway -->
+<view class="nofull">
+  <popup zIndex={{99999}} visible={{isOpen}} maskClassName="mask-class-name-background">
+    <!-- Close Button -->
+    <view a:if="{{ onClose }}" class="close-btn-position">
+      <view class="close-btn" onTap="onClose" id={{ idClose }} />
+    </view>
+
+    <scroll-view scroll-y="{{true}}" class="content-container">
+      <!-- Image Section -->
+      <view id="image">
+        <image
+          a:if="{{ image }}"
+          mode="heightFix"
+          style="height:107px;"
+          src={{image}}
+        />
+        <slot a:if={{!image}} name="image" />
+      </view>
+
+      <!-- Content Section -->
+      <view id="content">
+        <view class="title-container m-b-8">
+          <view a:if="{{ icon }}" class="icon icon-{{icon}}" />
+          <view a:if="{{ title }}" class="txt-h3 txt-black title">
+            <text style="align-items: center">{{title}}</text>
+          </view>
+        </view>
+        <view a:if="{{ paragraph }}" class="paragraph-container txt-body2 txt-black">
+          <text>{{paragraph}}</text>
+        </view>
+      </view>
+
+      <!-- CTA -->
+      <view id="cta">
+        <bni-button
+          a:if="{{ onTapCTA1 || labelCTA1 }}"
+          pixel
+          type="primary"
+          class="bg-turquoise-300 txt-label1-sb"
+          onTap="onTapCTA1"
+        >
+          {{labelCTA1}}
+        </bni-button>
+        <slot a:if="{{ !onTapCTA1 && !labelCTA1 }}" name="cta1"></slot>
+        <bni-button
+          a:if="{{ onTapCTA2 || labelCTA2 }}"
+          pixel
+          type="outline"
+          class="txt-label1-sb"
+          onTap="onTapCTA2"
+        >
+          {{labelCTA2}}
+        </bni-button>
+        <slot a:if="{{ !onTapCTA2 && !labelCTA2 }}" name="cta2"></slot>
+        <bni-button
+          a:if="{{ onTapCTA3 || labelCTA3 }}"
+          pixel
+          type="quite"
+          class="txt-label1-sb txt-orange-300"
+          onTap="onTapCTA3"
+        >
+          {{labelCTA3}}
+        </bni-button>
+        <slot a:if="{{ !onTapCTA3 && !labelCTA3 }}" name="cta3"></slot>
+      </view>
+    </scroll-view>
+  </popup>
+</view>

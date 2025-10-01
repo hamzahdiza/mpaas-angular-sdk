@@ -115,6 +115,8 @@
   </view>
   <button class="item" size="default" type="primary" onTap="goToDatePicker">Go To Date Picker</button>
   <button class="item" size="default" type="primary" onTap="goToGiriMicrosite">Go to Microsite Giri</button>
+  <button class="item" size="default" type="primary" onTap="goToParent">Go to Parent</button>
+  <button class="item" size="default" type="primary" onTap="goToAndroidTest">Android Test Case</button>
   <view style="height:60px">
     
   </view>

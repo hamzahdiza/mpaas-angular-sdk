@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "button-bni" :"@bni-maverick-mpaas/lib/es/bni-button/bni-button"
+  }
+}

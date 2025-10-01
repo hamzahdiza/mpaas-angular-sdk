@@ -291,5 +291,15 @@ Page({
       url: "/pages/giri-microsite/giri-microsite"
     })
   },
+  goToParent() {
+    my.navigateTo({
+      url: "/pages/rendering-pages/parent/parent"
+    })
+  },
+  goToAndroidTest() {
+    my.navigateTo({
+      url: "/pages/androidTest/androidTest"
+    })
+  },
 
 });

@@ -1,0 +1,13 @@
+.question-title {
+  margin: 16px 0 32px;
+}
+
+.question-item {
+  min-height: 56px;
+  max-height: 72px;
+}
+
+.active-item {
+  border-color: #02c794;
+  background: #e1fef7;
+}

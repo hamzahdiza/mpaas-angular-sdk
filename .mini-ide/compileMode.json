@@ -1,8 +1,9 @@
 {
   "modes": [
     {
-      "title": "pages/index/index",
-      "page": "src/app/pages/index/index",
+      "title": "rendering-pages/landing/landing",
+      "page": "pages/rendering-pages/landing/landing",
+      "debugAppxSceneCode": "null",
       "pageQuery": "",
       "query": "bundle={'id':'n0n21x98y192ye12ne9y2','position':1,'transactionType':'telkomsel','payment_type':'bill_payment','category':'Paket Data','icon':'icon_link','title':'Telkomsel','description':'Ini telkomsel','amount':250000,'discount':0,'isDiscount':false,'isActive':true,'boBillerUbpCompanyCode':'ABC123','detailBoBiller':{'UBPCompanyCode':'ABC123','billerCode':'XYZ456','regionCode':'JKT','billerName':'ExampleBiller','billKeyCount':3,'billKeyLabel1':'Label1','billKeyLabel2':'Label2','billKeyLabel3':'Label3','billKey1MinLength':10,'billKey2MinLength':10,'billKey3MinLength':10,'billKey1MaxLength':10,'billKey2MaxLength':10,'billKey3MaxLength':10,'billKey1MinAmount':50000,'billKey2MinAmount':50000,'billKey3MinAmount':50000,'billKey1MaxAmount':50000,'billKey2MaxAmount':50000,'billKey3MaxAmount':50000,'amountAsBillKey':50000,'paymentType':'CreditCard','isCcSupported':true,'errorCodeMappingFlag':'ErrorMapping','adminFee':10.99,'hasSubRegionFlag':true,'CCServiceFee':15.99,'isActive':true,'categoryId':'ExampleCategoryID','billerAbbreviation':'Abbreviation','isSpecialhandling':true,'specialHandlingType':'PREFIX','prefix':[{'prefixCode':'0852'},{'prefixCode':'0812'}]},'vaAccountBillerPrefix':null,'virtualAccountDetail':null,'isUrlMicrositeStatic':true,'urlMicrosite':'https://www.telkomsel.com/shops/channel/o2o?utm_source=wec&utm_medium=inapp&utm_campaign=omni-wondrbni&target=wondrbni&theme=wondrbni&embed=on&lifestyleVirtualAccountFeatureOn=true&Client-Version={VERSION}','urlRedirect':'https://lifestyle.bni.co.id','partnerId':'1A221321','partnerName':'Telkomsel','partnerAlias':'Tsel','screenId':'exploreScreen','params':[{'id':'abc1234bcde','lifestylePartnerMenuId':'n0n21x98y192ye12ne9y2','queryParam':'orderId','valueMapping':'param1','status':1}]}"
     },
@@ -37,6 +38,12 @@
     {
       "title": "pages/contact/contact",
       "page": "pages/contact/contact",
+      "pageQuery": ""
+    },
+    {
+      "title": "pages/androidTest/androidTest",
+      "page": "pages/androidTest/androidTest",
+      "debugAppxSceneCode": "null",
       "pageQuery": ""
     }
   ]

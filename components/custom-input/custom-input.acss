@@ -1,0 +1,27 @@
+.input-container {
+  /* width: calc(100% - 24px); */
+  height: calc(56px - 24px);
+  border: 1px solid var(--light-gray);
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--white);
+}
+.custom-input {
+  padding: 0;
+  width: 100% !important;
+}
+
+.border-light-gray-input {
+  border: 1px solid var(--light-gray) !important;
+}
+
+.border-turquoise-400-input {
+  border: 1px solid var(--turquoise-400) !important;
+}
+
+
+.suffixIconStyle {
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+}

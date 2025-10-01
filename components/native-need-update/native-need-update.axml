@@ -1,0 +1,37 @@
+<view class="nofull">
+  <popup zIndex={{99999}} visible={{nativeUpdateModal}} maskClassName="mask-class-name-background">
+    <view style="justify-content:center; display:flex; margin-bottom: 24px">
+      <image mode="heightFix" style="height:107px" src="/assets/images/native-need-update.svg" />
+    </view>
+    <view class="d-f-row">
+      <view class="txt-h3 txt-black d-f-row ai-center" id="">
+        Yuk, pakai aplikasi wondr versi terbaru!
+      </view>
+    </view>
+    <view class="mg-b-48 mg-t-16">
+      <view class="txt-body2 txt-black" id="">
+        Update ke versi terbaru untuk bisa nikmatin semua fitur-fitur seru yang ada di wondr.
+      </view>
+    </view>
+    <view>
+      <button
+        class="bni-button bg-turquoise-300 txt-label1-sb"
+        onTap="onClickUpdate"
+        data-status={{popupSID.status}}
+      >
+        Update Sekarang
+      </button>
+    </view>
+    <view style="margin-top: 8px">
+      <bni-button
+        pixel
+        onTap="onCloseOverlay"
+        type="outline"
+        className="txt-label1-sb border-granite"
+        data-status={{popupSID.status}}
+      >
+        Nanti Dulu
+      </bni-button>
+    </view>
+  </popup>
+</view>

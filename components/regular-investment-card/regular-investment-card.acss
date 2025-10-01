@@ -1,0 +1,92 @@
+.container{
+  display: flex;
+  flex-direction: row;
+}
+
+.title-left-section{
+  color: var(--black);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4px;
+
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 12px */
+}
+
+.break-text {
+  width: 34px;
+}
+
+.renewal-date-info{
+  align-self: stretch;
+
+  color: var(--turquoise-500);
+  text-align: center;
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 21.6px */
+}
+
+.right-info{
+  display: flex;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.container-funds-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  flex: 1 0 0;
+}
+
+.total-funds-info{
+  align-self: stretch;
+  color: var(--black);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 16.8px */
+}
+
+.due-date-info{
+  color: var(--charcoal);
+
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 16.8px */
+}
+
+.regular-card {
+  display: flex;
+  padding: 16px 12px;
+  border: 1px solid var(--pale-gray);
+}
+
+.left-card-section {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px 0 0 8px;
+  border-right: none;
+  background: var(--success-off);
+}
+
+.right-card-section {
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-radius: 0 8px 8px 0;
+  border-left: none;
+  background: var(--white);
+}

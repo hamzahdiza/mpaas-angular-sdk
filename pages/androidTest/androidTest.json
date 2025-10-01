@@ -1,0 +1,20 @@
+{
+  "usingComponents": {
+    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar",
+    "bni-steps-vertical": "@bni-maverick-mpaas/lib/es/bni-step-vertical/bni-step-vertical",
+    "bni-story": "@bni-maverick-mpaas/lib/es/bni-story/bni-story",
+    "bni-button":"@bni-maverick-mpaas/lib/es/bni-button/bni-button",
+    "bni-input-keyboard": "@bni-maverick-mpaas/lib/es/bni-input-keyboard/bni-input-keyboard",
+    "ant-number-keyboard": "antd-mini/es/NumberKeyboard/index",
+    "mp-html": "@bni-maverick-mpaas/lib/es/mp-html/index",
+    "bni-popup": "@bni-maverick-mpaas/lib/es/bni-popup/bni-popup",
+    "popup": "antd-mini/es/Popup/index",
+    "snackbar": "@bni-maverick-mpaas/lib/es/snackbar/snackbar",
+    "loading":"@bni-maverick-mpaas/lib/es/loading/loading",
+    "custom-input": "../../components/custom-input/custom-input"
+  },
+  "transparentTitle": "always",
+  "pullRefresh": false,
+  "allowsBounceVertical": "NO",
+  "titlePenetrate": "YES"
+}

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "progress-bar": "../../node_modules/@bni-maverick-mpaas/lib/es/bni-progress/bni-progress",
+    "bni-button": "/node_modules/@bni-maverick-mpaas/lib/es/bni-button/bni-button",
+    "popup": "antd-mini/es/Popup/index"
+  },
+  "component": true
+}
