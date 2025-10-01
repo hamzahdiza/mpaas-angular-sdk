@@ -138,7 +138,8 @@ Page({
       },
       "scenario": ""
     },
-    pageValue: ""
+    pageValue: "",
+    getLocationInfo: ""
   },
   onLoad() {},
 
@@ -591,5 +592,15 @@ Page({
     }, (res) => {
       console.info(res, "<<< res jsApiNotFound");
     });
+  },
+  getLocation(){
+    my.call("getLocation",{
+
+    },(res)=>{
+      console.info(res)
+      this.setData({
+        getLocationInfo: JSON.stringify(res)
+      })
+    })
   }
 });
