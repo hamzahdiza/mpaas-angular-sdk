@@ -138,7 +138,8 @@ Page({
       },
       "scenario": ""
     },
-    pageValue: ""
+    pageValue: "",
+    getLocationInfo: ""
   },
   onLoad() {},
 
