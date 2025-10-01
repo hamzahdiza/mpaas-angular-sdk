@@ -141,3 +141,12 @@
     Button JSAPI Not Found
   </button>
 </view>
+
+<view style="padding-bottom: 40px">
+  <button class="item" type="primary" onTap="getLocation">
+    getLocation
+  </button>
+  <view style="background:black;color:white;width:calc(100% - 48px);padding: 24px" a:if="{{ getLocationInfo }}">
+    {{getLocationInfo}}
+  </view>
+</view>

@@ -585,11 +585,22 @@ Page({
     })
   },
 
-  jsApiNotFound(){
+  jsApiNotFound() {
     my.call("jsApiNotFound", {
       serviceName: "wealth-mf-rsp-feature"
     }, (res) => {
       console.info(res, "<<< res jsApiNotFound");
     });
+  },
+
+  getLocation() {
+    my.call("getLocation", {
+
+    }, (res) => {
+      console.info(res)
+      this.setData({
+        getLocationInfo: JSON.stringify(res)
+      })
+    })
   }
 });

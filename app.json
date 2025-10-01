@@ -28,9 +28,6 @@
     "pages/openpdf-binary/openpdf-binary",
     "pages/rsp-gather-screen/rsp-gather-screen",
     "pages/giri-microsite/giri-microsite",
-    "pages/rendering-pages/landing/landing",
-    "pages/rendering-pages/parent/parent",
-    "pages/rendering-pages/intro/intro",
     "pages/androidTest/androidTest"
   ]
 }
