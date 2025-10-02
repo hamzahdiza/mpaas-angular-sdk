@@ -2,21 +2,27 @@ Page({
   data: {},
   onLoad() {},
   onMessage(e) {
-    const dataNative = {
-      clientRelease: getApp().globalData.nativeData.clientRelease,
-      clientPlatform: getApp().globalData.nativeData.clientPlatform,
-      clientVersion: getApp().globalData.nativeData.clientVersion,
-      userAgent: getApp().globalData.nativeData.userAgent,
-      authorization: getApp().globalData.nativeData.authorization
+    const dataNative = { ...getApp().globalData.nativeData }
+
+    if (e.detail.appId == "0100010000030010") {
+      my.navigateToMiniProgram({
+        appId: e.detail.appId,
+        path: `/src/app/package_transaction/package_whoosh/gather-screen-whoosh/gather-screen-whoosh?customUrlQueryData=${e.detail.payload}`,
+        extraData: {
+          nativeData: JSON.stringify(dataNative),
+          nativeDataAndroid: dataNative,
+        },
+      });
+    } else {
+      my.navigateToMiniProgram({
+        appId: e.detail.appId,
+        path: e.detail.path,
+        extraData: {
+          nativeData: JSON.stringify(dataNative),
+          nativeDataAndroid: dataNative,
+        },
+      });
     }
 
-    my.navigateToMiniProgram({
-      appId: e.detail.appId,
-      path: `/src/app/package_transaction/package_whoosh/gather-screen-whoosh/gather-screen-whoosh?customUrlQueryData=${e.detail.payload}`,
-      extraData: {
-        nativeData: JSON.stringify(dataNative),
-        nativeDataAndroid: dataNative,
-      },
-    });
   },
 });
