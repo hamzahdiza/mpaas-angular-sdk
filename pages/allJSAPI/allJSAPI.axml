@@ -150,3 +150,10 @@
     {{getLocationInfo}}
   </view>
 </view>
+
+
+<view style="padding-bottom: 40px">
+  <button class="item" type="primary" onTap="addToCalender">
+    Add to calender
+  </button>
+</view>

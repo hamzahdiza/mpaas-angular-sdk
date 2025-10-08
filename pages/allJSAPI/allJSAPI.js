@@ -603,5 +603,15 @@ Page({
         getLocationInfo: JSON.stringify(res)
       })
     })
+  },
+  addToCalender() {
+    my.call("setCalendarReminder", {
+      "summary": "Transaksi Tarik Tunai di BNI KC Renon",
+      "startDateTime": "2025-10-20T10:10:00",
+      "endDateTime": "2025-10-20T10:10:00",
+      "timeZone": "WIB"
+    }, (res) => {
+      console.info(res,"<<<< MAV CALENDER")
+    })
   }
 });

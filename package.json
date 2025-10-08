@@ -16,7 +16,8 @@
     "antd-mini": "^2.36.8",
     "country-emoji": "^1.5.6",
     "dayjs": "^1.11.13",
-    "@bni-maverick-mpaas/lib": "^0.0.88"
+    "@bni-maverick-mpaas/lib": "^0.0.89",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "eslint": "^8.50.0"

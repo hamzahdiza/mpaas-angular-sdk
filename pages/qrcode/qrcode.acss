@@ -1,0 +1,30 @@
+image {
+  width: 200px;
+  height: 200px;
+}
+page{
+  background: var(--Brand-BNI-Turqoise-Turquoise-100, #C2F0EC);
+}
+.test{
+  width: calc(164px - 24px);
+  height: calc(24px - 16px);
+  display: inline-flex;
+padding: 8px 12px;
+justify-content: center;
+align-items: center;
+  position: absolute;
+  top: 0;
+  /* left: 20px; */
+  border-radius: var(--Rounded-Corner-Medium---16px, 16px);
+background: var(--Brand-BNI-Lime-Lime-200---Primary, #DEEF5A);
+color: var(--functional-bw-tones-black, #0E0E0E);
+text-align: center;
+font-feature-settings: 'liga' off, 'clig' off;
+
+/* Mobile/Label/Label 2 - DemiBold */
+font-family: "TT Interphases Pro";
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%; /* 14.4px */
+}
