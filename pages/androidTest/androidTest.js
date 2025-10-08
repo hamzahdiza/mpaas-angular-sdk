@@ -1,11 +1,41 @@
 Page({
   data: {
-    popupVisible: false
+    popupVisible: false,
+    newInputData: '', 
+    
   },
   onLoad() {
     this.setData({
       devicePlatform: getApp().globalData.nativeData.clientPlatform
     })
+  },
+  
+  onNewInput(e) {
+    this.setData({
+      newInputData: e.detail.value
+    });
+  },
+
+  onEnterPressed() {
+    const inputValue = this.data.newInputData;
+    if (inputValue) {
+      my.navigateTo({
+        url: `/pages/webview-link/webview-link?data=${inputValue}`,
+        success: (res) => {
+          console.log('Navigasi berhasil', res);
+        },
+        fail: (err) => {
+          console.error('Navigasi gagal, pastikan halaman tujuan ada:', err);
+          my.alert({ content: 'Gagal pindah halaman. Cek path tujuan.' });
+        }
+      });
+      
+      this.setData({
+        newInputData: ''
+      });
+    } else {
+      my.alert({ content: 'Mohon masukkan data sebelum melanjutkan.' });
+    }
   },
   onCanvasReady() {
     my.createSelectorQuery().select('#canvas').node().exec((res) => {
@@ -45,9 +75,9 @@ Page({
 
   onInputSalesCode(e) {
     const value = String(e.detail.value).trim()
-    const regex = new RegExp(this.data.salesCodeInput.regexAlphanumeric);
-    const maxLength = Number(this.data.salesCodeInput.salesCodeMaxChar);
-    const lang = this.data.lang;
+    const regex = new RegExp(this.data.salesCodeInput.regexAlphanumeric || /^[a-zA-Z0-9]+$/);
+    const maxLength = Number(this.data.salesCodeInput.salesCodeMaxChar || 10);
+    const lang = this.data.lang || {};
 
     this.setData({
       "gatherData.salesCode": value
@@ -63,7 +93,7 @@ Page({
       } else {
         this.setData({
           "salesCodeInput.error": true,
-          "salesCodeInput.errorCaption": lang.digitalLoanApplianceGatherScreenErrorDescriptionLabel
+          "salesCodeInput.errorCaption": lang.digitalLoanApplianceGatherScreenErrorDescriptionLabel || "Error"
         });
       }
     } else {
@@ -73,7 +103,6 @@ Page({
         "salesCodeInput.buttonEnabled": false
       });
     }
-    this.checkDataHasChanged()
   },
   closeInputSalesCode() {
     this.setData({
@@ -81,19 +110,12 @@ Page({
     })
   },
   showSalesCodePopup() {
-    firebaseScreenView("digital_loan_appliance_gather", "digitalLoanOverlayKodeReferralScreen")
     this.setData({
       "salesCodeInput.popupVisible": true,
       "loanAmountInput.closeMaskStatus": true
     })
   },
   handleInputSalesCode() {
-    const groupId = "digital_loan_appliance_gather"
-    let event = {
-      name: "AppClick",
-      value: "cta_button_simpan_kode_referral"
-    }
-    firebaseEvent(groupId, event)
     this.setData({
       "salesCodeInput.saveSalesCodeStatus": "SUCCESS",
       "salesCodeInput.popupVisible": false,
@@ -112,15 +134,14 @@ Page({
       "salesCodeInput.errorCaption": "",
       "salesCodeInput.buttonEnabled": false
     })
-    this.checkDataHasChanged()
   },
 
-  onOpenPopup(){
+  onOpenPopup() {
     this.setData({
       popupVisible: true
     })
   },
-  onClosePopup(){
+  onClosePopup() {
     this.setData({
       popupVisible: false
     })

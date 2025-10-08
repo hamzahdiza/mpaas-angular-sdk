@@ -62,9 +62,32 @@
     </view>
     <input class="styled-input" placeholder="Masukkan Angka" type="number" />
   </view>
-</view>
 
-<!-- POPUP -->
+  <view class="content-container">
+    <view style="margin-bottom: 10px">
+      Input webview
+    </view>
+    <view style="align-items: center;">
+      <input
+        class="styled-input"
+        placeholder="Masukkan link"
+        value="{{newInputData}}"
+        onInput="onNewInput"
+        style="flex-grow: 1; margin-bottom: 10px;"
+      />
+      <bni-button
+        type="primary"
+        className="txt-label1-sb bg-turquoise-300"
+        onTap="onEnterPressed"
+        pixel
+        disabled="{{!newInputData}}"
+      >
+        Enter
+      </bni-button>
+    </view>
+  </view>
+  </view>
+
 <view class="intf">
   <popup visible="{{popupVisible}}" position="bottom" maskClassName="mask-class-name-background">
     <view class="popup">
