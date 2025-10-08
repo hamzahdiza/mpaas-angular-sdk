@@ -1,0 +1,68 @@
+
+<top-bar
+  pixel={{true}}
+  type="navigation"
+  navigate={{true}}
+  backgroundColor="#fff"
+  title="QR code"
+  iconL="../../../image/ic_arrow_back.svg"
+/>
+<view style="display:flex;margin-bottom:60px;">
+  <view onTap="onChooseSaveApi" data-api="saveImage" style="width:auto;height:50px;background:{{saveImageSelected === 'saveImage' ? 'green':'blue'}};margin-right:30px;display:flex;justify-content:center;align-items:center;color:white">
+    <text>my.saveImage</text>
+  </view>
+  <view onTap="onChooseSaveApi" data-api="saveImageToPhotosAlbum" style="width:auto;height:50px;background:{{saveImageSelected === 'saveImageToPhotosAlbum' ? 'green':'blue'}};margin-right:30px;display:flex;justify-content:center;align-items:center;color:white">
+    <text>my.saveImageToPhotosAlbum</text>
+  </view>
+</view>
+<view style="display:flex;">
+  <view onTap="onChooseFilePath" data-path="tempFilePath" style="width:100px;height:50px;background:{{selectedFilePath === 'tempFilePath' ? 'green':'blue'}};margin-right:30px;display:flex;justify-content:center;align-items:center;color:white">
+    <text>tempFilepath</text>
+  </view>
+  <view onTap="onChooseFilePath" data-path="apFilePath" style="width:100px;height:50px;background:{{selectedFilePath === 'apFilePath' ? 'green':'blue'}};margin-right:30px;display:flex;justify-content:center;align-items:center;color:white">
+    <text>apFilePath</text>
+  </view>
+  <view onTap="onChooseFilePath" data-path="filePath" style="width:100px;height:50px;background:{{selectedFilePath === 'filePath' ? 'green':'blue'}};display:flex;justify-content:center;align-items:center;color:white">
+    <text>filePath</text>
+  </view>
+</view>
+<input
+  style="height:40px; margin: 24px; padding:8px; border: 1px solid #777777; flex: 1 0 0; display:flex;"
+  placeholder="input string"
+  onInput="bindKeyInput"
+/>
+
+<button size="default" type="primary" onTap="savePNG">
+  Generate QR Code and save
+</button>
+
+
+<!--<view>
+  UTILS CODE<image src="{{qrCodePNG}}" mode="aspectFit" style="width: 348px; height: 348px; margin-top: 10px; " /><canvas id="qrCanvas" canvas-id="qrCanvas" width="300" height="300" style="position:absolute;left:-9999px;top:-9999px;width:300px;height:300px;opacity:0;" /></view> -->
+
+<!--<view><image src="{{qrImage}}" style="width:290px;height:290px;" /><canvas canvas-id="qrCanvas" width="290" height="290" style="position:absolute;left:-9999px;top:-9999px;" /></view> -->
+
+<view style="width:100%;display:flex;justify-content:center;position:relative;">
+  <!-- Show the canvas directly so you can scan it -->
+  <!-- Use type="2d" for the modern canvas API -->
+
+  <canvas
+
+    id="qrCanvas"
+    style="width:160px;height:160px;border-radius: 8px;margin-top:10px;"
+    width="290"
+    height="290"
+  />
+  <view class="test">
+    Kode Referensi: RNN1234
+  </view>
+</view>
+
+<view style="display:flex; width: 100%; border-radius: 8px;
+border: 1px solid var(--functional-bw-tones-pale-gray, #DADADA);
+background: var(--functional-bw-tones-white, #FFF);" />
+<view style="width:100%;height:200px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+  <text>base64 image</text>
+  <image style="width:100px;height:100px;" src="{{dataURL}}" />
+
+</view>

@@ -301,5 +301,9 @@ Page({
       url: "/pages/androidTest/androidTest"
     })
   },
-
+  goToQrcode(){
+    my.navigateTo({
+      url:"/pages/qrcode/qrcode"
+    })
+  }
 });

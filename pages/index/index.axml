@@ -117,6 +117,7 @@
   <button class="item" size="default" type="primary" onTap="goToGiriMicrosite">Go to Microsite Giri</button>
   <button class="item" size="default" type="primary" onTap="goToParent">Go to Parent</button>
   <button class="item" size="default" type="primary" onTap="goToAndroidTest">Android Test Case</button>
+  <button class="item" size="default" type="primary" onTap="goToQrcode">QR CODE</button>
   <view style="height:60px">
     
   </view>
