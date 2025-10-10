@@ -48,6 +48,28 @@ App({
     },
   },
   async onLaunch(options) {
+    if (options.query) {
+      this.globalData.nativeData.clientRelease = options.query["Client-Release"];
+      this.globalData.nativeData.clientPlatform = options.query["Client-Platform"];
+      this.globalData.nativeData.clientVersion = options.query["Client-Version"];
+      this.globalData.nativeData.userAgent = options.query["User-Agent"];
+      this.globalData.nativeData.authorization = options.query["Authorization"];
+      if (options.query.lifestyleFeatureOn) {
+        this.globalData.nativeData.lifestyleFeatureOn =
+          options.query.lifestyleFeatureOn.toLowerCase() == "true";
+      }
+      if (options.query.lifestyleBillPaymentFeatureOn) {
+        this.globalData.nativeData.lifestyleBillPaymentFeatureOn =
+          options.query.lifestyleBillPaymentFeatureOn.toLowerCase() == "true";
+      }
+      if (options.query.lifestyleVirtualAccountFeatureOn) {
+        this.globalData.nativeData.lifestyleVirtualAccountFeatureOn =
+          options.query.lifestyleVirtualAccountFeatureOn.toLowerCase() == "true";
+      }
+      this.globalData.nativeData.mdidn = options.query.mdidn
+      this.globalData.nativeData.transactionType = options.query.transactionType
+      this.globalData.nativeData.title = options.query.title
+    }
 
     var {
       platform
@@ -60,7 +82,6 @@ App({
         getApp().globalData.languagePack = languagePacks.languagePack[getApp().globalData.nativeData.language]
       }
     })
-
 
     getApp().globalData.launchParams.clientRelease = options.query['Client-Release']
     getApp().globalData.launchParams.clientPlatform = options.query['Client-Platform']
