@@ -153,6 +153,11 @@ Page({
       }
     })
   },
+  onNavigateToNativePages() {
+    my.navigateTo({
+      url: '/pages/navigateToNativePages/navigateToNativePages'
+    });
+  },
 
   sharePdf() {
     my.call("sharePdf", {

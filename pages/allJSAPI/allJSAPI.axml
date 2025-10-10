@@ -141,6 +141,11 @@
     Button JSAPI Not Found
   </button>
 </view>
+<view>
+  <button class="item" type="primary" onTap="onNavigateToNativePages">
+    Button NavigateToNativePages
+  </button>
+</view>
 
 <view style="padding-bottom: 40px">
   <button class="item" type="primary" onTap="getLocation">
