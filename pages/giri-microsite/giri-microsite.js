@@ -3,7 +3,9 @@ Page({
   onLoad() {},
   onMessage(e) {
     const dataNative = { ...getApp().globalData.nativeData }
-    console.info(dataNative + " dataNative yang dikirim dari dummy")
+    console.info(JSON.stringify(dataNative) + " dataNative yang dikirim dari dummy")
+    let check = JSON.stringify(dataNative)
+    console.info(check + " dataNative yang dikirim dari dummy pake check")
     if (e.detail.appId == "0100010000030010") {
       my.navigateToMiniProgram({
         appId: e.detail.appId,
