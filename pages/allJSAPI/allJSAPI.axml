@@ -162,3 +162,9 @@
     Add to calender
   </button>
 </view>
+
+<view>
+  <button class="item" type="primary" onTap="goToFAQListPage">
+    Button goToFAQListPage
+  </button>
+</view>
