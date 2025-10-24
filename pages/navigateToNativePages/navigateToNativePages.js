@@ -4,31 +4,17 @@ Page({
   onTap1() {
     my.call("navigateToNativePages", {
       data: JSON.stringify({
-        path : "consolidate-loan-details",
-        params : {
-        loanDetail: {
-          loanAccountNumber: '9999999999',
-          accountType: 'KTA',
-          subCat: 'KTA',
-        },
-        scenario: "internal-loan"
-      }
+        path : "casa-list-account",
+        params :{
+          "eligiblePrioritySegment": "EMERALD"
+        }
       })
     })
   },
   onTap2() {
     my.call("navigateToNativePages", {
       data: JSON.stringify({
-        path : "consolidate-loan-details",
-        params : {
-        loanDetail: {
-          loanAccountNumber: '9999999999',
-          accountType: 'KTA',
-          subCat: 'KTA',
-          contractNumber: ""
-        },
-        scenario: "internal-loan"
-      }
+        path : "limit-setting-landing"
       })
     })
   },
@@ -51,31 +37,21 @@ Page({
   onTap4() {
     my.call("navigateToNativePages", {
       data: JSON.stringify({
-        path : "disbursement-consolidate-loan-details",
+        path : "debit-card-detail",
         params : {
-        loanDetail: {
-          loanAccountNumber: '9999999999',
-          accountType: 'KTA',
-          subCat: 'KTA',
-        },
-        scenario: "internal-loan"
-      }
+          "accountNumber": "1000649945",
+          "cardNumber": "5264222591922240"
+        }
       })
     })
   },
   onTap5() {
     my.call("navigateToNativePages", {
       data: JSON.stringify({
-        path : "disbursement-consolidate-loan-details",
+        path : "credit-card-detail",
         params : {
-        loanDetail: {
-          loanAccountNumber: '9999999999',
-          accountType: 'KTA',
-          subCat: 'KTA',
-          contractNumber: ""
-        },
-        scenario: "internal-loan"
-      }
+          "cardNumber": "Ogz9pBeDB4Y9N4UT+5Bhr3XTbwr38IzmcSxK2/zh6I0="
+        }
       })
     })
   },
