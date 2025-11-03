@@ -5,4 +5,5 @@
   <button size="default" type="primary" onTap="onTap4">debit-card-detail</button>
   <button size="default" type="primary" onTap="onTap5">credit-card-detail</button>
   <button size="default" type="primary" onTap="onTap6">disbursement-consolidate-loan-details</button>
+  <button size="default" type="primary" onTap="onTap7">debit-card-checking-behavior</button>
 </view>

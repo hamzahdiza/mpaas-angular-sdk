@@ -71,4 +71,17 @@ Page({
       })
     })
   },
+  onTap7() {
+    my.call("navigateToNativePages", {
+      data: JSON.stringify({
+        path : "debit-card-checking-behavior",
+        params : {
+          "accountNumber": "1000649945",
+          "cardNumber": "5264222591922240",
+          "cardTypeSelected": "PHYSICAL_CARD",
+          "scenario": "emerald-landing-request-debit"  
+        }
+      })
+    })
+  },
 });
