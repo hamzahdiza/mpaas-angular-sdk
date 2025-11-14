@@ -29,6 +29,8 @@
     "pages/rsp-gather-screen/rsp-gather-screen",
     "pages/giri-microsite/giri-microsite",
     "pages/androidTest/androidTest",
-    "pages/qrcode/qrcode"
+    "pages/webview-link/webview-link",
+    "pages/qrcode/qrcode",
+    "pages/navigateToNativePages/navigateToNativePages"
   ]
 }

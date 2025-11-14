@@ -153,6 +153,11 @@ Page({
       }
     })
   },
+  onNavigateToNativePages() {
+    my.navigateTo({
+      url: '/pages/navigateToNativePages/navigateToNativePages'
+    });
+  },
 
   sharePdf() {
     my.call("sharePdf", {
@@ -611,7 +616,17 @@ Page({
       "endDateTime": "2025-10-20T10:10:00",
       "timeZone": "WIB"
     }, (res) => {
-      console.info(res,"<<<< MAV CALENDER")
+      console.info(res, "<<<< MAV CALENDER")
     })
-  }
+  },
+
+
+  goToFAQListPage() {
+    my.call("goToFAQListPage", {
+      "categoryName": "testCategoryName",
+      "category": "testCategoryId"
+    }, (res) => {
+      console.info(res, "<<<< RES goToFAQListPage")
+    })
+  },
 });
