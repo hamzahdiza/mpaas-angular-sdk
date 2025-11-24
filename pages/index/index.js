@@ -305,5 +305,10 @@ Page({
     my.navigateTo({
       url:"/pages/qrcode/qrcode"
     })
+  },
+  goToGetLocation(){
+    my.navigateTo({
+      url:"/pages/test-location/test-location"
+    })
   }
 });

@@ -1,6 +1,6 @@
 {
   "window": {
-    "enableWK": "YES",
+    "enableWK": "NO",
     "enableDSL": true,
     "defaultTitle": "小程序",
     "pullRefresh": false,
@@ -31,6 +31,7 @@
     "pages/androidTest/androidTest",
     "pages/webview-link/webview-link",
     "pages/qrcode/qrcode",
-    "pages/navigateToNativePages/navigateToNativePages"
+    "pages/navigateToNativePages/navigateToNativePages",
+    "pages/test-location/test-location"
   ]
 }

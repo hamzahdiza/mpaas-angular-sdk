@@ -119,6 +119,7 @@
   <button class="item" size="default" type="primary" onTap="goToParent">Go to Parent</button>
   <button class="item" size="default" type="primary" onTap="goToAndroidTest">Android Test Case</button>
   <button class="item" size="default" type="primary" onTap="goToQrcode">QR CODE</button>
+  <button class="item" size="default" type="primary" onTap="goToGetLocation">get location new</button>
   <view style="height:60px">
     
   </view>

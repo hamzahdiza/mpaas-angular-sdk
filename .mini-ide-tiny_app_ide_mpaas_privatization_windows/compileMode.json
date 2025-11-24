@@ -4,6 +4,11 @@
       "title": "pages/allJSAPI/allJSAPI",
       "page": "pages/allJSAPI/allJSAPI",
       "pageQuery": ""
+    },
+    {
+      "title": "MPAAS DUMMY",
+      "page": "pages/index/index",
+      "pageQuery": ""
     }
   ]
 }
