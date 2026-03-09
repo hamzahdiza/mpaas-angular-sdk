@@ -74,7 +74,7 @@
 </ant-container>
 
 <ant-container title="Down Time Error">
-  <ant-radio-group value="{{valueDownTime}}" options="{{optionsDownTime}}" onChange="handleChangeHomeScreen">
+  <ant-radio-group value="{{valueDownTime}}" options="{{optionsDownTime}}" onChange="handleDownTime">
   </ant-radio-group>
   <button class="item" type="primary" onTap="downTimeError">
     Down Time Error

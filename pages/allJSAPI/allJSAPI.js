@@ -288,6 +288,8 @@ Page({
       isScheduled: this.data.valueDownTime,
       endTime: '2024-09-23 17:00:00.000+0700',
       success: (res) => {
+        console.info(JSON.stringify(res), "<<< response downtime")
+        console.info(res, "<<< response downtime")
         my.alert({
           title: 'success',
           content: res
