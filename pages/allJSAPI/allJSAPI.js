@@ -298,6 +298,54 @@ Page({
     })
   },
 
+  async downTimeErrorDouble1() {
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    console.info("hit 1");
+    my.call("downTimeError", {
+      isScheduled: this.data.valueDownTime,
+      endTime: '2024-09-23 17:00:00.000+0700',
+      success: (res) => {
+        console.info(res, "<<< response downtime hit 0.5s ke-1");
+      }
+    });
+
+    console.info("Menunggu 0.5 detik...");
+    await sleep(500);
+
+    console.info("hit 2");
+    my.call("downTimeError", {
+      isScheduled: this.data.valueDownTime,
+      endTime: '2024-09-23 17:00:00.000+0700',
+      success: (res) => {
+        console.info(res, "<<< response downtime hit 0.5s ke-2");
+      }
+    });
+  },
+
+  async downTimeErrorDouble2() {
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    console.info("hit 1");
+    my.call("downTimeError", {
+      isScheduled: this.data.valueDownTime,
+      endTime: '2024-09-23 17:00:00.000+0700',
+      success: (res) => {
+        console.info(res, "<<< response downtime 1s hit ke-1");
+      }
+    });
+
+    console.info("Menunggu 1 detik...");
+    await sleep(1000);
+
+    console.info("hit 2");
+    my.call("downTimeError", {
+      isScheduled: this.data.valueDownTime,
+      endTime: '2024-09-23 17:00:00.000+0700',
+      success: (res) => {
+        console.info(res, "<<< response downtime hit 1s ke-2");
+      }
+    });
+  },
+
   goToSavingAccountDataVerification() {
     my.call("goToSavingAccountDataVerification", {
       success: (res) => {
