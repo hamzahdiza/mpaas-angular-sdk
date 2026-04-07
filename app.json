@@ -32,6 +32,7 @@
     "pages/webview-link/webview-link",
     "pages/qrcode/qrcode",
     "pages/navigateToNativePages/navigateToNativePages",
-    "pages/test-location/test-location"
+    "pages/test-location/test-location",
+    "pages/requestJs/requestJs"
   ]
 }

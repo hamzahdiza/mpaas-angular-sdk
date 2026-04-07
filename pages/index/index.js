@@ -310,5 +310,10 @@ Page({
     my.navigateTo({
       url:"/pages/test-location/test-location"
     })
+  },
+  goToRequestFunc(){
+    my.navigateTo({
+      url:"/pages/requestJs/requestJs"
+    })
   }
 });

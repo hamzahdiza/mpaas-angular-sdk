@@ -120,6 +120,7 @@
   <button class="item" size="default" type="primary" onTap="goToAndroidTest">Android Test Case</button>
   <button class="item" size="default" type="primary" onTap="goToQrcode">QR CODE</button>
   <button class="item" size="default" type="primary" onTap="goToGetLocation">get location new</button>
+  <button class="item" size="default" type="primary" onTap="goToRequestFunc">Test function library</button>
   <view style="height:60px">
     
   </view>
