@@ -2,7 +2,7 @@
   "languageVersion": 29,
   "languagePack": {
     "en-ID": {
-      "riskProfileScreenExpiryDateTitle": "Valid until",
+      "riskProfileScreenExpiryDateTitle": "Valid until DARI JSON",
       "exploreScreenInvestmentFeatureNotAvailableTitle": "We’re improving this feature",
       "exploreScreenInvestmentFeatureNotAvailableDescription": "This feature will be available soon, and we can’t wait for you to try it out. Stay tuned!",
       "exploreScreenInvestmentFeatureNotAvailableButton": "Close",

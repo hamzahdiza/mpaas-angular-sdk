@@ -79,6 +79,12 @@
   <button class="item" type="primary" onTap="downTimeError">
     Down Time Error
   </button>
+  <button class="item" type="primary" onTap="downTimeErrorDouble1">
+    Down Time Error Double 0.5s
+  </button>
+  <button class="item" type="primary" onTap="downTimeErrorDouble2">
+    Down Time Error Double 1s
+  </button>
 </ant-container>
 
 <view>
