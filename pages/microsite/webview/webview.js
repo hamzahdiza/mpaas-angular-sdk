@@ -5,7 +5,7 @@ Page({
   onLoad() {
     this.setData({
       visible: false,
-      urlMicrosite: getApp().globalData.urlMicrosite
+      urlMicrosite: "https://mpaas.vercel.app/uploadmpaas.html"
     })
     let partnerMenu = {
       "params": [{
