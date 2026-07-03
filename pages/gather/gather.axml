@@ -1,9 +1,14 @@
-<view style="height: 100vh; display: flex; align-items: center; padding: 0 12px">
-  <container title="SUCCES" style="width: 100%">
-    <result
+<view a:if="{{ !isFetching }}" style="height: 100vh; display: flex; align-items: center; padding: 0 12px">
+  <!--<container title="SUCCES" style="width: 100%"><result
       title="SUCCESS"
       message={{"Intercept URL Success" + ' ' + dataPages}}
       type="success"
-    ></result>
-  </container>
+    ></result></container> -->
+
+  <!-- Tambahkan width dan word-break di sini -->
+  <view style="width: 100%; word-break: break-all;">
+    {{dataNative}}
+  </view>
 </view>
+
+<loading loading="{{ isFetching }}"></loading>

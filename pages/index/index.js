@@ -63,7 +63,9 @@ Page({
     startPeriod: '',
     endPeriod: '',
     flag: '',
-    inputValueRsp: ""
+    inputValueRsp: "",
+    inputValuePath: "",
+    inputValueUrlNative: ""
   },
   onLoad() {
     this.setData({
@@ -217,6 +219,47 @@ Page({
     })
   },
 
+  handleInputPathToNative(e) {
+    this.setData({
+      inputValuePath: e.detail.value
+    })
+  },
+
+  handleInputUrlToNative(e) {
+    this.setData({
+      inputValueUrlNative: e.detail.value
+    })
+  },
+
+  navigateToWebViewNative() {
+    console.info(this.data.inputValueUrlNative, "<<< inputValueUrlNative");
+    console.info(this.data.inputValuePath, "<<< inputValuePath");
+    let valueStorePartner = {
+      partnerId: "2024",
+      partnerName: "Whoosh",
+      partnerAlias: "WSH",
+      paymentType: "VA",
+      transactionId: "T2KC4ACM0q2iRZNK8Vb3l",
+      screenId: "lifestyleWhoosh",
+      urlRedirect: this.data.inputValuePath,
+      urlMicrosite: this.data.inputValueUrlNative,
+    }
+
+    my.call("storePartnerContext", {
+      data: JSON.stringify(valueStorePartner),
+      success: (res) => {
+        console.info(res, "<<< storePartnerContext");
+      }
+    })
+
+    my.call("goToNativeWebview", {
+      url: this.data.inputValueUrlNative,
+      success: (res) => {
+        console.info(res, "<<< goToNativeWebview")
+      }
+    })
+  },
+
   handleInputPhone(e) {
     this.setData({
       inputPhoneNumberValue: e.detail.value
@@ -268,11 +311,11 @@ Page({
     })
   },
 
-  toRspIntroduction(){
+  toRspIntroduction() {
     console.log(this.data.inputValueRsp, "<<< Index input Rsp");
     getApp().globalData.inputValueRsp = this.data.inputValueRsp
     my.navigateTo({
-      url:"/pages/rsp-introduction-screen/rsp-introduction-screen",
+      url: "/pages/rsp-introduction-screen/rsp-introduction-screen",
     })
   },
 
@@ -301,19 +344,19 @@ Page({
       url: "/pages/androidTest/androidTest"
     })
   },
-  goToQrcode(){
+  goToQrcode() {
     my.navigateTo({
-      url:"/pages/qrcode/qrcode"
+      url: "/pages/qrcode/qrcode"
     })
   },
-  goToGetLocation(){
+  goToGetLocation() {
     my.navigateTo({
-      url:"/pages/test-location/test-location"
+      url: "/pages/test-location/test-location"
     })
   },
-  goToRequestFunc(){
+  goToRequestFunc() {
     my.navigateTo({
-      url:"/pages/requestJs/requestJs"
+      url: "/pages/requestJs/requestJs"
     })
   }
 });

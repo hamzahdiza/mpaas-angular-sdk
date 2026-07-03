@@ -5,7 +5,7 @@ Page({
   onLoad() {
     this.setData({
       visible: false,
-      urlMicrosite: "https://mpaas.vercel.app/uploadmpaas.html"
+      urlMicrosite: getApp().globalData.urlMicrosite
     })
     let partnerMenu = {
       "params": [{
@@ -164,6 +164,7 @@ Page({
       params: partnerMenu.params,
       icon: partnerMenu.icon,
       ubpCompanyCode: partnerMenu.boBillerUbpCompanyCode,
+      pathToGather: ""
     };
 
     my.call("storePartnerContext", {

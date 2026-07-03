@@ -38,6 +38,12 @@
       "title": "pages/contact/contact",
       "page": "pages/contact/contact",
       "pageQuery": ""
+    },
+    {
+      "title": "Gather",
+      "page": "pages/gather/gather",
+      "query": "",
+      "debugAppxSceneCode": "null"
     }
   ]
 }

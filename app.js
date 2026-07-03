@@ -48,7 +48,28 @@ App({
     },
   },
   async onLaunch(options) {
+
+    // const options = {
+    //   query: {
+    //     ClientPlatform: "ios",
+    //     ClientRelease: "random",
+    //     wealthFeatureOn: "true",
+    //     wealthTransactionFeatureOn: "true",
+    //     wealthMfFeatureOn: "true",
+    //     wealthMfTransactionFeatureOn: "true",
+    //     wealthBondsFeatureOn: "true",
+    //     wealthBondsTransactionFeatureOn: "true",
+    //     tab: "MUTUAL_FUNDS",
+    //     wealthRSPFeatureServiceOn: "true",
+    //     wealthRSPCreationFeatureServiceOn: "true",
+    //     wealthRSPModifyFeatureServiceOn: "true",
+    //     wealthRSPCancelFeatureServiceOn: "true",
+    //     subTypeCode: "MM",
+    //     currency: "USD"
+    //   }
+    // };
     if (options.query) {
+      this.globalData.nativeData.allOptions = options.query
       this.globalData.nativeData.clientRelease = options.query["Client-Release"];
       this.globalData.nativeData.clientPlatform = options.query["Client-Platform"];
       this.globalData.nativeData.clientVersion = options.query["Client-Version"];
