@@ -46,9 +46,15 @@ App({
       userAgent: String(""),
       authorization: String("")
     },
+
+    idleTimer: null,
+    countdownTimer: null,
+    idleTimeoutDuration: 5000,
+    currentCountdown: 5,
+    onCountdownUpdate: null,
   },
   async onLaunch(options) {
-
+    this.startGlobalIdleTimer();
     // const options = {
     //   query: {
     //     ClientPlatform: "ios",
@@ -189,5 +195,56 @@ App({
     //     );
     //   }
     // })
+  },
+
+  startGlobalIdleTimer() {
+    this.clearGlobalIdleTimer();
+
+    this.globalData.currentCountdown = this.globalData.idleTimeoutDuration / 1000;
+
+    if (this.globalData.onCountdownUpdate) {
+      this.globalData.onCountdownUpdate(this.globalData.currentCountdown);
+    }
+
+    this.globalData.countdownTimer = setInterval(() => {
+      this.globalData.currentCountdown--;
+      if (this.globalData.onCountdownUpdate) {
+        this.globalData.onCountdownUpdate(this.globalData.currentCountdown);
+      }
+
+      if (this.globalData.currentCountdown <= 0) {
+        this.clearGlobalIdleTimer();
+        this.onUserIdle();
+      }
+    }, 1000);
+  },
+
+  clearGlobalIdleTimer() {
+    if (this.globalData.countdownTimer) {
+      clearInterval(this.globalData.countdownTimer);
+      this.globalData.countdownTimer = null;
+    }
+    if (this.globalData.idleTimer) {
+      clearTimeout(this.globalData.idleTimer);
+      this.globalData.idleTimer = null;
+    }
+  },
+
+  onUserIdle() {
+    console.log("Global: User detected idle for 5 seconds!");
+    my.showToast({
+      type: 'none',
+      content: 'Sesi berakhir karena tidak ada aktivitas.',
+      duration: 2000
+    });
+
+    my.call("goToSplashScreen", {
+      success: (res) => {
+        my.alert({
+          title: 'success',
+          content: res
+        });
+      }
+    })
   }
 });

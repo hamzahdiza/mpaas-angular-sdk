@@ -65,9 +65,13 @@ Page({
     flag: '',
     inputValueRsp: "",
     inputValuePath: "",
-    inputValueUrlNative: ""
+    inputValueUrlNative: "",
+    // idleTimer: 5000,
+    // idleTimeoutDuration: 5 * 60 * 1000,
+    countdownDisplay: 5
   },
   onLoad() {
+    const app = getApp();
     this.setData({
       flag: flag('ID')
     })
@@ -84,6 +88,18 @@ Page({
       startPeriod: startDate,
       endPeriod: endDate,
     })
+
+    app.globalData.onCountdownUpdate = (count) => {
+      this.setData({
+        countdownDisplay: count
+      });
+    };
+    
+    // this.startIdleTimer();
+    app.startGlobalIdleTimer();
+
+    console.log(this.data.idleTimer, "<<< idleTimer");
+    console.log(this.data.idleTimeoutDuration, "<<< idleTimeoutDuration");
   },
 
   getValue(e) {
@@ -358,5 +374,51 @@ Page({
     my.navigateTo({
       url: "/pages/requestJs/requestJs"
     })
+  },
+
+  handleUserInteraction() {
+    console.log(this.data.idleTimer, "<<< idleTimer handleUserInteraction");
+    console.log(this.data.idleTimeoutDuration, "<<< idleTimeoutDuration handleUserInteraction");
+    this.startIdleTimer();
+  },
+
+  startIdleTimer() {
+    console.log(this.data.idleTimer, "<<< idleTimer startIdleTimer");
+    console.log(this.data.idleTimeoutDuration, "<<< idleTimeoutDuration startIdleTimer");
+    this.clearIdleTimer();
+    console.log(this.data.idleTimer, "<<< idleTimer a startIdleTimer");
+    console.log(this.data.idleTimeoutDuration, "<<< idleTimeoutDuration a startIdleTimer");
+
+    const timer = setTimeout(() => {
+      this.onUserIdle();
+    }, this.data.idleTimeoutDuration);
+
+    this.setData({
+      idleTimer: timer
+    });
+
+  },
+
+  clearIdleTimer() {
+    if (this.data.idleTimer) {
+      clearTimeout(this.data.idleTimer);
+      this.setData({
+        idleTimer: null
+      });
+    }
+  },
+
+  onUserIdle() {
+    console.log("User detected idle!");
+  },
+
+  handleCaptureOnTouchStart() {
+    console.log("<<< handleCaptureOnTouchStart");
+  },
+  handleCatchTouchStart() {
+    const app = getApp();
+    console.log("<<< handleCatchTouchStart");
+
+    app.startGlobalIdleTimer();
   }
 });

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "top-bar": "../../components/top-bar/top-bar"
+    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar"
   },
   "defaultTitle": "MPAAS DUMMY"
 }
