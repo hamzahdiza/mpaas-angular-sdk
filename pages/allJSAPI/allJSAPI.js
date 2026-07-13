@@ -139,9 +139,33 @@ Page({
       "scenario": ""
     },
     pageValue: "",
-    getLocationInfo: ""
+    getLocationInfo: "",
+    countdownDisplay: 0
   },
   onLoad() {},
+
+  onShow() {
+    let app = getApp()
+    app.globalData.onCountdownUpdate = (count) => {
+      this.setData({
+        countdownDisplay: count
+      });
+    };
+
+    this.setData({
+      countdownDisplay: app.globalData.currentCountdown
+    });
+  },
+
+  onHide() {
+    let app = getApp()
+    app.globalData.onCountdownUpdate = null;
+  },
+
+  onUnload() {
+    let app = getApp()
+    app.globalData.onCountdownUpdate = null;
+  },
 
   goToResetMPINPage() {
     my.call("goToResetMPINPage", {
@@ -678,5 +702,13 @@ Page({
     }, (res) => {
       console.info(res, "<<<< RES goToFAQListPage")
     })
+  },
+
+  handleCatchTouchStart() {
+    let app = getApp()
+    if (app.globalData.countdownTimer) {
+      console.log("allJSAPI: Touch detected. Resetting global timer.");
+      app.startGlobalIdleTimer();
+    }
   },
 });

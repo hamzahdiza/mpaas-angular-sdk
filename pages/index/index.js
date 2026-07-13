@@ -66,9 +66,8 @@ Page({
     inputValueRsp: "",
     inputValuePath: "",
     inputValueUrlNative: "",
-    // idleTimer: 5000,
-    // idleTimeoutDuration: 5 * 60 * 1000,
-    countdownDisplay: 5
+    countdownDisplay: 5,
+    inputDurationInSeconds: 5
   },
   onLoad() {
     const app = getApp();
@@ -94,12 +93,31 @@ Page({
         countdownDisplay: count
       });
     };
-    
+
     // this.startIdleTimer();
-    app.startGlobalIdleTimer();
+    // app.startGlobalIdleTimer();
 
     console.log(this.data.idleTimer, "<<< idleTimer");
     console.log(this.data.idleTimeoutDuration, "<<< idleTimeoutDuration");
+  },
+
+  onShow(){
+    let app = getApp()
+    app.globalData.onCountdownUpdate = (count) => {
+      this.setData({ countdownDisplay: count });
+    };
+
+    this.setData({ countdownDisplay: app.globalData.currentCountdown });
+  },
+
+  onHide() {
+    let app = getApp()
+    app.globalData.onCountdownUpdate = null;
+  },
+
+  onUnload() {
+    let app = getApp()
+    app.globalData.onCountdownUpdate = null;
   },
 
   getValue(e) {
@@ -415,10 +433,25 @@ Page({
   handleCaptureOnTouchStart() {
     console.log("<<< handleCaptureOnTouchStart");
   },
-  handleCatchTouchStart() {
-    const app = getApp();
-    console.log("<<< handleCatchTouchStart");
+  
+  handleInputDuration(e) {
+    this.setData({
+      inputDurationInSeconds: parseInt(e.detail.value) || 5
+    });
+  },
 
-    app.startGlobalIdleTimer();
+  startCustomIdle() {
+    let app = getApp()
+    const durationMs = this.data.inputDurationInSeconds * 1000;
+    console.log("Memulai global idle timer dengan durasi:", this.data.inputDurationInSeconds, "detik");
+    app.startGlobalIdleTimer(durationMs);
+  },
+
+  handleCatchTouchStart() {
+    let app = getApp()
+    if (app.globalData.countdownTimer) {
+      console.log("Index: Touch detected. Resetting global timer.");
+      app.startGlobalIdleTimer();
+    }
   }
 });

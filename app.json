@@ -4,9 +4,7 @@
     "enableDSL": true,
     "defaultTitle": "小程序",
     "pullRefresh": false,
-    "allowsBounceVertical": "YES",
-    "transparentTitle": "always",
-    "titlePenetrate": "YES"
+    "allowsBounceVertical": "YES"
   },
   "prerenderPage": "index.html",
   "entryPagePath": "pages/index/index",

@@ -54,7 +54,7 @@ App({
     onCountdownUpdate: null,
   },
   async onLaunch(options) {
-    this.startGlobalIdleTimer();
+    // this.startGlobalIdleTimer();
     // const options = {
     //   query: {
     //     ClientPlatform: "ios",
@@ -197,17 +197,23 @@ App({
     // })
   },
 
-  startGlobalIdleTimer() {
+  startGlobalIdleTimer(customDuration) {
     this.clearGlobalIdleTimer();
+
+    if (customDuration) {
+      this.globalData.idleTimeoutDuration = customDuration;
+    }
 
     this.globalData.currentCountdown = this.globalData.idleTimeoutDuration / 1000;
 
+    // Trigger update UI awal
     if (this.globalData.onCountdownUpdate) {
       this.globalData.onCountdownUpdate(this.globalData.currentCountdown);
     }
 
     this.globalData.countdownTimer = setInterval(() => {
       this.globalData.currentCountdown--;
+
       if (this.globalData.onCountdownUpdate) {
         this.globalData.onCountdownUpdate(this.globalData.currentCountdown);
       }
