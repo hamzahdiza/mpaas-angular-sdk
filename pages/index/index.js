@@ -67,7 +67,8 @@ Page({
     inputValuePath: "",
     inputValueUrlNative: "",
     countdownDisplay: 5,
-    inputDurationInSeconds: 5
+    inputDurationInSeconds: 5,
+    inputValueOpenUrl: ""
   },
   onLoad() {
     const app = getApp();
@@ -101,13 +102,17 @@ Page({
     console.log(this.data.idleTimeoutDuration, "<<< idleTimeoutDuration");
   },
 
-  onShow(){
+  onShow() {
     let app = getApp()
     app.globalData.onCountdownUpdate = (count) => {
-      this.setData({ countdownDisplay: count });
+      this.setData({
+        countdownDisplay: count
+      });
     };
 
-    this.setData({ countdownDisplay: app.globalData.currentCountdown });
+    this.setData({
+      countdownDisplay: app.globalData.currentCountdown
+    });
   },
 
   onHide() {
@@ -229,12 +234,21 @@ Page({
       url: '/pages/upload-pdf/upload-pdf'
     })
   },
-  navigateToOpenUrl() {
-    my.navigateTo({
-      url: '/pages/openUrl/openUrl'
+
+  handleInputOpenUrl(e) {
+    this.setData({
+      inputValueOpenUrl: e.detail.value
     })
   },
+
   navigateToOpenUrl() {
+    console.info(this.data.inputValueOpenUrl, "<<< Open URL");
+    const url = this.data.inputValueOpenUrl
+    my.call("openURL", {
+      url
+    }, () => {})
+  },
+  navigateToWebviewCustom() {
     getApp().globalData.urlMicrosite = this.data.inputValue
     my.navigateTo({
       url: `/pages/microsite/webview/webview`
@@ -433,7 +447,7 @@ Page({
   handleCaptureOnTouchStart() {
     console.log("<<< handleCaptureOnTouchStart");
   },
-  
+
   handleInputDuration(e) {
     this.setData({
       inputDurationInSeconds: parseInt(e.detail.value) || 5

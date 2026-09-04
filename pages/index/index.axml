@@ -77,6 +77,12 @@
     <button class="item" type="primary" onTap="navigateToUploadPdf">
       Upload PDF
     </button>
+    <input
+      maxlength=2000
+      placeholder="Input URL openURL"
+      style="width: 660rpx; height: 50rpx;"
+      onInput="handleInputOpenUrl"
+    />
     <button class="item" type="primary" onTap="navigateToOpenUrl">
       Open URL
     </button>
@@ -98,7 +104,7 @@
       onInput="handleInput"
     />
   </view>
-  <button class="item" type="primary" onTap="navigateToOpenUrl">
+  <button class="item" type="primary" onTap="navigateToWebviewCustom">
     Go To Webview
   </button>
   <button class="item" type="primary" onTap="navigateToOpenUrlUndian">
