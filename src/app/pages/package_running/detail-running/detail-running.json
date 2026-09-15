@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "running-detail-one": "/src/app/components/running-detail-templates/running-detail-one/running-detail-one",
+    "running-detail-two": "/src/app/components/running-detail-templates/running-detail-two/running-detail-two",
+    "running-detail-three": "/src/app/components/running-detail-templates/running-detail-three/running-detail-three",
+    "running-detail-four": "/src/app/components/running-detail-templates/running-detail-four/running-detail-four",
+    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar",
+    "loading": "@bni-maverick-mpaas/lib/es/loading/loading"
+  },
+  "styleIsolation": "apply-shared",
+  "transparentTitle": "always",
+  "titlePenetrate": "YES",
+  "defaultTitle": "",
+  "allowsBounceVertical": "NO",
+  "pullRefresh": false
+}

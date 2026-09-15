@@ -1,0 +1,113 @@
+<view class="container-detail">
+  <view class="txt-h4-px mg-b-8-px">
+    {{runningData.name}}
+  </view>
+  <view class="txt-body2-px txt-granite-gray mg-b-24-px">
+    {{runningData.description}}
+  </view>
+  
+  <block a:for="{{ runningData.categories }}" a:for-item="category">
+    <block a:for="{{ category.tickets }}" a:for-item="item">
+      <view class="card-container">
+        <view class="first-title-card">
+          <view class="left-section">
+            <view class="txt-body1-sb">
+              {{item.name || category.name}}
+            </view>
+            <!-- Badge Status -->
+            <view a:if="{{ (item.stock > 0 || item.stock === undefined) && item.isAvailable !== 0 }}" class="txt-label2-sb txt-green">
+              Available
+            </view>
+            <view a:else class="txt-label2-sb txt-red">
+              Sold Out
+            </view>
+          </view>
+          <view>
+            <image mode="scaleToFill" src="{{runningData.bannerUrl}}" class="img-card"/>
+          </view>
+        </view>
+
+        <view class="desc-card txt-label3-px txt-granite-gray">
+          <text>{{item.description || category.description}}</text>
+        </view>
+
+        <view class="card-footer">
+          <view class="d-f-row ai-center">
+            <text class="txt-h4-px">
+              {{item.formatPrice}}
+            </text>
+            <text a:if="{{ item.normalPrice > 0 }}" class="strikethrough">
+              {{item.formatNormalPrice}}
+            </text>
+          </view>
+
+          <!-- 1. Kondisi Stok Habis -->
+          <view a:if="{{ (item.stock !== undefined && item.stock <= 0) || item.isAvailable === 0 }}" class="min-height d-f-row ai-center count-sold-out">
+            <text class="txt-label2-sb-px txt-granite-gray">
+              Habis Terjual
+            </text>
+          </view>
+
+          <!-- 2. Kondisi Belum Dipilih: Tombol '+ Add' -->
+          <view a:elif="{{ !item.order || item.order < 1 }}" 
+            data-ticketid="{{item.id}}"
+            data-categoryid="{{category.id}}"
+            data-amount="{{item.price}}"
+            onTap="handlePlus" 
+            class="min-height d-f-row ai-center count-add"
+          >
+            <text class="txt-label2-sb-px pointer-none">
+              + Add
+            </text>
+          </view>
+
+          <!-- 3. Kondisi Sedang Dipilih: Pengatur Jumlah (+ / -) -->
+          <view a:else class="d-f-row ai-center">
+            <view class="d-f-row ai-center">
+              <image
+                data-ticketid="{{item.id}}"
+                data-categoryid="{{category.id}}"
+                data-amount="{{item.price}}"
+                onTap="handleRemove"
+                class="ic-remove"
+                src="{{item.order === 0 ? '/src/assets/icons/ic_common_remove_circle_outline_gray.svg' : '/src/assets/icons/ic_common_remove_circle_outline.svg'}}"
+              />
+            </view>
+            <text class="count-width txt-label1-sb-px mg-r-8-px mg-l-8-px">
+              {{item.order}}
+            </text>
+            <image
+              data-ticketid="{{item.id}}"
+              data-categoryid="{{category.id}}"
+              data-amount="{{item.price}}"
+              data-stock="{{item.stock}}"
+              data-order="{{item.order}}"
+              onTap="{{ (item.stock !== undefined && item.order >= item.stock) ? 'handleMaxStock' : 'handlePlus' }}"
+              src="{{ (item.stock !== undefined && item.order >= item.stock) ? '/src/assets/icons/ic_common_add_circle_outline_gray.svg' : '/src/assets/icons/ic_common_add_circle_outline.svg' }}"
+              class="ic-remove"
+            />
+          </view>
+
+        </view>
+      </view>
+    </block>
+  </block>
+</view>
+
+<view class="cta-container">
+  <view class="d-f-row jc-between mg-b-32">
+    <text class="txt-body1-px">Total</text>
+    <text class="txt-amount3-px">{{fromatedTotalAmount || 'Rp0'}}</text>
+  </view>
+  <view>
+    <bni-button
+      type="primary"
+      pixel
+      onTap="handleBooking"
+      disabled="{{totalAmount <= 0}}"
+      className="{{ totalAmount > 0 ? 'bg-turquoise-300 txt-label1-sb-px' : 'bg-snow-white txt-gray txt-label1-sb-px'}}"
+    >
+      Lanjut
+    </bni-button>
+  </view>
+</view>

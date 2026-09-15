@@ -1,256 +1,131 @@
-const iosKeysConfig = require("/configs/ios_key_config.json");
-const androidKeysConfig = require("/configs/android_key_config.json")
-
-import {
-  encryptSessionKey,
-  createKey
-} from "/utils/e2ee";
-
-function configureKeys(platformConfig) {
-  return Promise.all(platformConfig.map((configItem) => {
-    const method = configItem.type === 'plain' ? "getValueByKey" : "getSecureValueByKey";
-    return my.call(method, {
-      key: configItem.nativeKey,
-    }, (resp) => {
-      getApp().globalData.nativeData[configItem.key] = resp.data;
-    });
-  }));
-}
-
+const languagePacks = require("/src/public/language-pack.json");
 
 App({
   globalData: {
-    languagePack: Object({}),
+    personalData: {
+      phone: ""
+    },
+    languagePack: {},
+    dayjsLocale: "id",
+    statusBarHeight: 0,
+    purchase: {
+      selectedAccount: null,
+    },
     nativeData: {
-      language: String(""),
-      deviceId: String(""),
-      refreshToken: String(""),
-      accessToken: String(""),
-      beEncryptPublicKey: String(""),
-      beE2EEPublicKey: String(""),
-      sessionKey: String(""),
-      signingPrivateKey: String(""),
-      signingPublicKey: String(""),
-      userId: String(""),
-      setServiceStatus: {
-        rspFeatureOn: "default",
-        rspCreationFeatureOn: "default",
-        rspModifyFeatureOn: "default",
-        rspCancelFeatureOn: "default"
-      }
+      language: "",
+      deviceId: "",
+      refreshToken: "",
+      accessToken: "",
+      beEncryptPublicKey: "",
+      beE2EEPublicKey: "",
+      signingPrivateKey: "",
+      signingPublicKey: "",
+      userId: "",
+      authorization: "",
+      clientRelease: "",
+      clientPlatform: "",
+      clientVersion: "",
+      userAgent: "",
     },
-    launchParams: {
-      clientRelease: String(""),
-      clientPlatform: String(""),
-      clientVersion: String(""),
-      userAgent: String(""),
-      authorization: String("")
+    partnerMenu: {
+      "id": "jM3p1F8fXAQV9zRr4ek6uIDcb2X7QdCKxbo4",
+      "paymentType": "BILL_PAYMENT",
+      "amount": 275000,
+      "screenId": "exploreScreen",
+      "transactionType": "jjf",
+      "category": "event",
+      "params": [],
+      "partnerAlias": "RINTIS",
+      "partnerId": "0100010000060004",
+      "virtualAccountDetail": null,
+      "displayImage": "image_link",
+      "virtualAccountBillersCid": null,
+      "isUrlMicrositeStatic": true,
+      "urlMicrosite": "app_id",
+      "detailBoBiller": {
+        "adminFee": 0,
+        "categoryId": "zDe8pgfzM_bVJYE4Ehb2H",
+        "paymentType": "3",
+        "billKey1MaxLength": 13,
+        "billKey2MaxAmount": 0,
+        "billKey1MaxAmount": 1000000,
+        "specialHandlingType": null,
+        "billKey3MaxAmount": 0,
+        "amountAsBillKey": 10000,
+        "errorCodeMappingFlag": "Error Code Mapping",
+        "prefixCode": null,
+        "billKey1MinLength": 1,
+        "billerName": "JavaJazz",
+        "billKeyCount": 1,
+        "regionCode": "0000",
+        "isSpecialhandling": false,
+        "billKeyLabel2": null,
+        "hasSubRegionFlag": false,
+        "billerCode": "01",
+        "ccServiceFee": null,
+        "billKey3MaxLength": 0,
+        "billKey2MinAmount": 0,
+        "billKey3MinLength": 0,
+        "ubpCompanyCode": "0050000009",
+        "billKeyLabel3": null,
+        "billKey2MinLength": 0,
+        "isActive": true,
+        "billerAbbreviation": "KAI",
+        "billKeyLabel1": "Kode pembayaran",
+        "billKey2MaxLength": 0,
+        "isCcSupported": false,
+        "billKey3MinAmount": 0,
+        "billKey1MinAmount": 1
+      },
+      "urlRedirect": "https://lifestyle.bni.co.id",
+      "description": "lifestylePartnerJavaJazzDescription",
+      "partnerName": "RINTIS",
+      "categoryDisplay": "Event",
+      "isActive": true,
+      "transactionTypeDisplay": "JavaJazz",
+      "position": 3,
+      "discount": 0,
+      "icon": "http://asset-service-comp-dev2.apps.jtl-dev.maverick.ocp.hq.bni.co.id/asset/v1/image/ipV2Q7CD2ezcYp78BiHML.png",
+      "isDiscount": false,
+      "boBillerUbpCompanyCode": "0050000009",
+      "title": "lifestylePartnerJavaJazzTitle"
     },
-
-    idleTimer: null,
-    countdownTimer: null,
-    idleTimeoutDuration: 5000,
-    currentCountdown: 5,
-    onCountdownUpdate: null,
+    cart: [],
+    merchantInfo: null
   },
-  async onLaunch(options) {
-    // this.startGlobalIdleTimer();
-    // const options = {
-    //   query: {
-    //     ClientPlatform: "ios",
-    //     ClientRelease: "random",
-    //     wealthFeatureOn: "true",
-    //     wealthTransactionFeatureOn: "true",
-    //     wealthMfFeatureOn: "true",
-    //     wealthMfTransactionFeatureOn: "true",
-    //     wealthBondsFeatureOn: "true",
-    //     wealthBondsTransactionFeatureOn: "true",
-    //     tab: "MUTUAL_FUNDS",
-    //     wealthRSPFeatureServiceOn: "true",
-    //     wealthRSPCreationFeatureServiceOn: "true",
-    //     wealthRSPModifyFeatureServiceOn: "true",
-    //     wealthRSPCancelFeatureServiceOn: "true",
-    //     subTypeCode: "MM",
-    //     currency: "USD"
-    //   }
-    // };
-    if (options.query) {
-      this.globalData.nativeData.allOptions = options.query
-      this.globalData.nativeData.clientRelease = options.query["Client-Release"];
-      this.globalData.nativeData.clientPlatform = options.query["Client-Platform"];
-      this.globalData.nativeData.clientVersion = options.query["Client-Version"];
-      this.globalData.nativeData.userAgent = options.query["User-Agent"];
-      this.globalData.nativeData.authorization = options.query["Authorization"];
-      if (options.query.lifestyleFeatureOn) {
-        this.globalData.nativeData.lifestyleFeatureOn =
-          options.query.lifestyleFeatureOn.toLowerCase() == "true";
-      }
-      if (options.query.lifestyleBillPaymentFeatureOn) {
-        this.globalData.nativeData.lifestyleBillPaymentFeatureOn =
-          options.query.lifestyleBillPaymentFeatureOn.toLowerCase() == "true";
-      }
-      if (options.query.lifestyleVirtualAccountFeatureOn) {
-        this.globalData.nativeData.lifestyleVirtualAccountFeatureOn =
-          options.query.lifestyleVirtualAccountFeatureOn.toLowerCase() == "true";
-      }
-      this.globalData.nativeData.mdidn = options.query.mdidn
-      this.globalData.nativeData.transactionType = options.query.transactionType
-      this.globalData.nativeData.title = options.query.title
+  addToCart(item, merchant) {
+    if (this.globalData.merchantInfo && this.globalData.merchantInfo.id !== merchant.id) {
+      // Clear cart if different merchant
+      this.globalData.cart = [];
     }
-
-    var {
-      platform
-    } = my.getSystemInfoSync()
-
-    let keysConfig = platform === "iOS" ? iosKeysConfig : androidKeysConfig;
-
-    configureKeys(keysConfig).then(() => {
-      if (getApp().globalData.nativeData.userId !== "") {
-        getApp().globalData.languagePack = languagePacks.languagePack[getApp().globalData.nativeData.language]
-      }
-    })
-
-    getApp().globalData.launchParams.clientRelease = options.query['Client-Release']
-    getApp().globalData.launchParams.clientPlatform = options.query['Client-Platform']
-    getApp().globalData.launchParams.clientVersion = options.query['Client-Version']
-    getApp().globalData.launchParams.userAgent = options.query['User-Agent']
-    getApp().globalData.launchParams.authorization = options.query['Authorization']
-
-
-    getApp().globalData.nativeData.sessionKey = createKey()
-    getApp().globalData.languagePack = languagePacks.languagePack[this.globalData.nativeData.language] || {};
-
-
-    const serviceConfigMap = {
-      "app.config.wealth.rsp.feature.service.key": "rspFeatureOn",
-      "app.config.wealth.rsp.creation.feature.service.key": "rspCreationFeatureOn",
-      "app.config.wealth.rsp.modify.feature.service.key": "rspModifyFeatureOn",
-      "app.config.wealth.rsp.cancel.feature.service.key": "rspCancelFeatureOn"
-    };
-    const rspServiceKeys = Object.keys(serviceConfigMap);
-    const that = this;
-
-    console.info(rspServiceKeys, "<<< RSP rspServiceKeys")
-    my.call("getAppConfig", {
-      keys: rspServiceKeys
-    }, (configResponse) => {
-      console.info(configResponse, "<<< RSP configResponse")
-      for (const configKey in configResponse) {
-        if (Object.prototype.hasOwnProperty.call(configResponse, configKey)) {
-          const serviceName = configResponse[configKey];
-          const propertyName = serviceConfigMap[configKey];
-          console.info(serviceName, "<<< RSP serviceName")
-          console.info(propertyName, "<<< RSP propertyName")
-
-          if (serviceName && propertyName) {
-            my.call("getServiceStatus", {
-              serviceName: serviceName
-            }, (statusResponse) => {
-              console.info(statusResponse, "<<< RSP statusResponse")
-              const status = statusResponse === true || statusResponse === 'true';
-
-              console.info(propertyName, "<<< propertyName:");
-              console.info(status, "<<< status:");
-              if (!that.globalData.nativeData.setServiceStatus) {
-                that.globalData.nativeData.setServiceStatus = {};
-              }
-
-              that.globalData.nativeData.setServiceStatus[propertyName] = status;
-            });
-          }
-        }
-      }
-    });
-
-    // keysConfig.forEach((item) => {
-    //   if (item.type === "plain") {
-    //     my.call(
-    //       "getValueByKey", {
-    //         key: item.nativeKey,
-    //       },
-    //       (res) => {
-    //         this.globalData.nativeData[item.key] = res.data;
-    //         if (item.key === "language") {
-    //           this.globalData.languagePack =
-    //             languagePacks.languagePack[this.globalData.nativeData.language];
-    //           this.globalData.dayjsLocale =
-    //             this.globalData.nativeData.language == "en-ID" ? "en" : "id";
-    //         }
-    //       }
-    //     );
-    //   } else {
-    //     my.call(
-    //       "getSecureValueByKey", {
-    //         key: item.nativeKey,
-    //       },
-    //       (res) => {
-    //         this.globalData.nativeData[item.key] = res.data;
-    //         if (item.key === "beEncryptPublicKey") {
-    //           this.globalData.nativeData.encSessionKey = encryptSessionKey(
-    //             this.globalData.nativeData.beEncryptPublicKey,
-    //             this.globalData.nativeData.sessionKey
-    //           );
-    //         }
-    //       }
-    //     );
-    //   }
-    // })
-  },
-
-  startGlobalIdleTimer(customDuration) {
-    this.clearGlobalIdleTimer();
-
-    if (customDuration) {
-      this.globalData.idleTimeoutDuration = customDuration;
-    }
-
-    this.globalData.currentCountdown = this.globalData.idleTimeoutDuration / 1000;
-
-    // Trigger update UI awal
-    if (this.globalData.onCountdownUpdate) {
-      this.globalData.onCountdownUpdate(this.globalData.currentCountdown);
-    }
-
-    this.globalData.countdownTimer = setInterval(() => {
-      this.globalData.currentCountdown--;
-
-      if (this.globalData.onCountdownUpdate) {
-        this.globalData.onCountdownUpdate(this.globalData.currentCountdown);
-      }
-
-      if (this.globalData.currentCountdown <= 0) {
-        this.clearGlobalIdleTimer();
-        this.onUserIdle();
-      }
-    }, 1000);
-  },
-
-  clearGlobalIdleTimer() {
-    if (this.globalData.countdownTimer) {
-      clearInterval(this.globalData.countdownTimer);
-      this.globalData.countdownTimer = null;
-    }
-    if (this.globalData.idleTimer) {
-      clearTimeout(this.globalData.idleTimer);
-      this.globalData.idleTimer = null;
+    this.globalData.merchantInfo = merchant;
+    
+    const existingItem = this.globalData.cart.find(i => i.id === item.id);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      this.globalData.cart.push({ ...item, quantity: 1 });
     }
   },
-
-  onUserIdle() {
-    console.log("Global: User detected idle for 5 seconds!");
-    my.showToast({
-      type: 'none',
-      content: 'Sesi berakhir karena tidak ada aktivitas.',
-      duration: 2000
-    });
-
-    my.call("goToSplashScreen", {
-      success: (res) => {
-        my.alert({
-          title: 'success',
-          content: res
-        });
+  removeFromCart(itemId) {
+    const index = this.globalData.cart.findIndex(i => i.id === itemId);
+    if (index > -1) {
+      if (this.globalData.cart[index].quantity > 1) {
+        this.globalData.cart[index].quantity -= 1;
+      } else {
+        this.globalData.cart.splice(index, 1);
       }
-    })
-  }
+    }
+    if (this.globalData.cart.length === 0) {
+      this.globalData.merchantInfo = null;
+    }
+  },
+  clearCart() {
+    this.globalData.cart = [];
+    this.globalData.merchantInfo = null;
+  },
+  onLaunch(options) {
+    this.globalData.nativeData.sessionKey = "db39fc728d9f6c3da4420e901c2a1fec"
+    this.globalData.languagePack = languagePacks.languagePack["id-ID"] || {};
+  },
 });

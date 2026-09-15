@@ -1,0 +1,395 @@
+/* SDUI Dynamic Renderer Styles */
+.sdui-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #0E0E0E;
+}
+
+.sdui-header-section {
+  width: 100%;
+  position: relative;
+}
+
+.sdui-content-section {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Banner Styling */
+.sdui-banner-container {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.sdui-banner-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.sdui-banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sdui-banner-empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+}
+
+.sdui-banner-empty-text {
+  font-size: 24rpx;
+  color: #94a3b8;
+}
+
+.sdui-banner-dots {
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 8rpx 16rpx;
+  border-radius: 9999rpx;
+  backdrop-filter: blur(4px);
+  z-index: 15;
+}
+
+.sdui-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease;
+}
+
+.sdui-dot-active {
+  width: 28rpx;
+  border-radius: 9999rpx;
+  background: #ffffff;
+}
+
+.sdui-badge {
+  position: absolute;
+  top: 32rpx;
+  left: 32rpx;
+  z-index: 15;
+  border-radius: 9999rpx;
+  padding: 8rpx 20rpx;
+  font-size: 20rpx;
+  font-weight: 800;
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+}
+
+/* Header Banner */
+.sdui-header-banner {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.sdui-header-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  line-height: 1.35;
+  color: inherit;
+}
+
+/* Title Card */
+.sdui-title-card {
+  box-sizing: border-box;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.sdui-title-text {
+  font-size: 36rpx;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #0E0E0E;
+}
+
+/* Hero Floating Card */
+.sdui-hero-card {
+  box-sizing: border-box;
+  box-shadow: 0 10rpx 25rpx rgba(0, 0, 0, 0.06);
+}
+
+.sdui-hero-title {
+  font-size: 40rpx;
+  font-weight: 900;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: #0F172A;
+  margin-bottom: 24rpx;
+}
+
+.sdui-hero-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 2rpx dashed #E2E8F0;
+  padding-top: 24rpx;
+}
+
+.sdui-hero-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.sdui-hero-col-right {
+  align-items: flex-end;
+}
+
+.sdui-hero-label {
+  font-size: 22rpx;
+  font-weight: 800;
+  letter-spacing: 1.5rpx;
+  text-transform: uppercase;
+  color: #94A3B8;
+  margin-bottom: 6rpx;
+}
+
+.sdui-hero-price {
+  font-size: 36rpx;
+  font-weight: 900;
+  color: #EA580C;
+}
+
+.sdui-hero-date-val {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #334155;
+}
+
+/* Section Labels */
+.sdui-section-label {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #0E0E0E;
+  margin: 0 40rpx 16rpx 40rpx;
+}
+
+.sdui-field-wrapper {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Row Cards (Location / Date) */
+.sdui-card-row {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.sdui-icon-wrapper {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 16rpx;
+}
+
+.sdui-icon-img {
+  width: 36rpx;
+  height: 44rpx;
+}
+
+.sdui-info-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sdui-info-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #0E0E0E;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sdui-info-subtitle {
+  font-size: 24rpx;
+  color: #64748B;
+  margin-top: 4rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sdui-chevron-right {
+  width: 36rpx;
+  height: 36rpx;
+  flex-shrink: 0;
+  opacity: 0.45;
+}
+
+/* Description & T&C */
+.sdui-desc-card {
+  box-sizing: border-box;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.sdui-desc-text {
+  font-size: 26rpx;
+  line-height: 1.6;
+  color: #4E4E4E;
+}
+
+.sdui-line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sdui-expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sdui-expand-arrow {
+  width: 24rpx;
+  height: 24rpx;
+  transition: transform 0.2s ease;
+}
+
+.sdui-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.sdui-tnc-card {
+  box-sizing: border-box;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+  font-size: 26rpx;
+  line-height: 1.6;
+  color: #4E4E4E;
+}
+
+.sdui-tnc-placeholder {
+  color: #94a3b8;
+  white-space: pre-line;
+}
+
+/* Divider */
+.sdui-divider {
+  width: auto;
+  box-sizing: border-box;
+}
+
+/* Ticket Card */
+.sdui-ticket-wrapper {
+  margin-bottom: 24rpx;
+  box-sizing: border-box;
+}
+
+.sdui-ticket-card {
+  box-sizing: border-box;
+  cursor: pointer;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sdui-ticket-card:active {
+  transform: scale(0.99);
+}
+
+.sdui-ticket-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sdui-ticket-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.sdui-ticket-desc {
+  font-size: 24rpx;
+  color: #64748B;
+  margin-top: 4rpx;
+}
+
+.sdui-ticket-divider {
+  height: 2rpx;
+  background: #F1F5F9;
+  margin: 20rpx 0;
+}
+
+.sdui-ticket-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sdui-ticket-price-label {
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.sdui-ticket-price-val {
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+/* Sticky Bottom CTA */
+.sdui-cta-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: #ffffff;
+  padding: 24rpx 40rpx;
+  border-top: 2rpx solid #ECECEC;
+  box-shadow: 0 -6rpx 20rpx rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.sdui-cta-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.sdui-cta-btn:active {
+  opacity: 0.9;
+  transform: scale(0.985);
+}

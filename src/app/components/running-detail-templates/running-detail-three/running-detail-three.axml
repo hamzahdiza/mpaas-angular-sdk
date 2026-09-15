@@ -1,0 +1,117 @@
+<view class="container-detail">
+  <view class="event-header">
+    <view class="txt-h4-px mg-b-8-px">
+      {{runningData.name}}
+    </view>
+    <view class="txt-label2-px txt-granite-gray mg-b-24-px">
+      {{runningData.description}}
+    </view>
+  </view>
+
+  <view style="padding: 24px;">
+    <block a:for="{{ runningData.categories }}" a:for-item="category">
+      <block a:for="{{ category.tickets }}" a:for-item="item">
+        <view class="card-container">
+          <view class="first-title-card">
+            <view class="left-section">
+              <view class="txt-body1-sb">
+                {{item.name || category.name}}
+              </view>
+              <!-- Status Badge Slot -->
+              <view a:if="{{ (item.stock > 0 || item.stock === undefined) && item.isAvailable !== 0 }}" class="ticket-badge">
+                SLOT AVAILABLE
+              </view>
+              <view a:else class="ticket-badge-sold">
+                SLOT SOLD OUT
+              </view>
+            </view>
+            <view>
+              <image mode="scaleToFill" src="{{runningData.bannerUrl}}" class="img-card"/>
+            </view>
+          </view>
+          
+          <view class="desc-card txt-label3-px txt-granite-gray">
+            <text>{{item.description || category.description}}</text>
+          </view>
+          
+          <view class="card-footer">
+            <view class="d-f-row ai-center">
+              <text class="txt-h4-px">
+                {{item.formatPrice}}
+              </text>
+              <text a:if="{{ item.normalPrice > 0 }}" class="strikethrough">
+                {{item.formatNormalPrice}}
+              </text>
+            </view>
+
+            <!-- 1. Kondisi Stok Habis -->
+            <view a:if="{{ (item.stock !== undefined && item.stock <= 0) || item.isAvailable === 0 }}" class="btn-slot-sold">
+              <text class="txt-label2-sb-px">
+                Habis Terjual
+              </text>
+            </view>
+
+            <!-- 2. Kondisi Belum Dipilih: Tombol '+ Slot' -->
+            <view a:elif="{{ !item.order || item.order < 1 }}" 
+              data-ticketid="{{item.id}}"
+              data-categoryid="{{category.id}}"
+              data-amount="{{item.price}}"
+              onTap="handlePlus" 
+              class="btn-slot"
+            >
+              <text class="txt-label2-sb-px pointer-none">
+                + Slot
+              </text>
+            </view>
+
+            <!-- 3. Kondisi Sedang Dipilih: Pengatur Jumlah (+ / -) -->
+            <view a:else class="d-f-row ai-center">
+              <view class="d-f-row ai-center">
+                <image
+                  data-ticketid="{{item.id}}"
+                  data-categoryid="{{category.id}}"
+                  data-amount="{{item.price}}"
+                  onTap="handleRemove"
+                  class="ic-remove"
+                  src="{{item.order === 0 ? '/src/assets/icons/ic_common_remove_circle_outline_gray.svg' : '/src/assets/icons/ic_common_remove_circle_outline.svg'}}"
+                />
+              </view>
+              <text class="count-width txt-label1-sb-px mg-r-8-px mg-l-8-px">
+                {{item.order}}
+              </text>
+              <image
+                data-ticketid="{{item.id}}"
+                data-categoryid="{{category.id}}"
+                data-amount="{{item.price}}"
+                data-stock="{{item.stock}}"
+                data-order="{{item.order}}"
+                onTap="{{ (item.stock !== undefined && item.order >= item.stock) ? 'handleMaxStock' : 'handlePlus' }}"
+                src="{{ (item.stock !== undefined && item.order >= item.stock) ? '/src/assets/icons/ic_common_add_circle_outline_gray.svg' : '/src/assets/icons/ic_common_add_circle_outline.svg' }}"
+                class="ic-remove"
+              />
+            </view>
+
+          </view>
+        </view>
+      </block>
+    </block>
+  </view>
+</view>
+
+<view class="cta-container">
+  <view class="d-f-row jc-between mg-b-32">
+    <text class="txt-body1-px">Total</text>
+    <text class="txt-amount3-px">{{fromatedTotalAmount || 'Rp0'}}</text>
+  </view>
+  <view>
+    <bni-button
+      type="primary"
+      pixel
+      onTap="handleBooking"
+      disabled="{{totalAmount <= 0}}"
+      className="{{ totalAmount > 0 ? 'bg-orange-300 txt-label1-sb-px txt-white' : 'bg-snow-white txt-gray txt-label1-sb-px'}}"
+    >
+      LANJUTKAN REGISTRASI
+    </bni-button>
+  </view>
+</view>

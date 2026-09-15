@@ -1,38 +1,54 @@
 {
-  "window": {
-    "enableWK": "NO",
-    "enableDSL": true,
-    "defaultTitle": "小程序",
-    "pullRefresh": false,
-    "allowsBounceVertical": "YES"
-  },
-  "prerenderPage": "index.html",
-  "entryPagePath": "pages/index/index",
+  "subPackageBuildType": "shared",
   "pages": [
-    "pages/index/index",
-    "pages/signature/signature",
-    "pages/gather/gather",
-    "pages/maps/maps",
-    "pages/imageRendered/imageRendered",
-    "pages/allJSAPI/allJSAPI",
-    "pages/upload-pdf/upload-pdf",
-    "pages/openUrl/openUrl",
-    "pages/microsite/webview/webview",
-    "pages/microsite/gather/gather",
-    "pages/microsite/webview-undian-rejeki/webview-undian-rejeki",
-    "pages/appDemoAnt/index/index",
-    "pages/appDemoAnt/webview/webview",
-    "pages/contact/contact",
-    "pages/customComponent/customComponent",
-    "pages/rsp-introduction-screen/rsp-introduction-screen",
-    "pages/openpdf-binary/openpdf-binary",
-    "pages/rsp-gather-screen/rsp-gather-screen",
-    "pages/giri-microsite/giri-microsite",
-    "pages/androidTest/androidTest",
-    "pages/webview-link/webview-link",
-    "pages/qrcode/qrcode",
-    "pages/navigateToNativePages/navigateToNativePages",
-    "pages/test-location/test-location",
-    "pages/requestJs/requestJs"
-  ]
+    "src/app/pages/landing/landing",
+    "src/app/pages/category-list/category-list",
+    "src/app/pages/cart-checkout/cart-checkout",
+    "src/app/pages/index/index",
+    "src/app/pages/tnc-details/tnc-details",
+    "src/app/pages/result-screen/result-screen",
+    "src/app/pages/page-not-found/page-not-found",
+    "src/app/pages/visitor-input-screen/visitor-input-screen",
+    "src/app/pages/visitor-list-screen/visitor-list-screen",
+    "src/app/pages/book-ticket/book-ticket",
+    "src/app/pages/package_hotel/detail-hotel/detail-hotel",
+    "src/app/pages/package_hotel/landing-hotel/landing-hotel",
+    "src/app/pages/package_hotel/index/index",
+    "src/app/pages/package_culinary/landing-culinary/landing-culinary",
+    "src/app/pages/package_culinary/index/index",
+    "src/app/pages/package_culinary/detail-culinary/detail-culinary",
+    "src/app/pages/package_rental/index/index",
+    "src/app/pages/package_rental/detail-rental/detail-rental",
+    "src/app/pages/package_event/detail-event/detail-event",
+    "src/app/pages/package_event/landing-event/landing-event",
+    "src/app/pages/package_event/index/index",
+    "src/app/pages/package_umkm/index/index",
+    "src/app/pages/package_umkm/detail-umkm/detail-umkm",
+    "src/app/pages/transaction-history/transaction-history",
+    "src/app/pages/package_running/detail-running/detail-running",
+    "src/app/pages/package_running/landing-running/landing-running",
+    "src/app/pages/package_running/index/index",
+    "src/app/pages/webview/webview",
+    "src/app/pages/microsite/webview-lifestyle/webview-lifestyle"
+  ],
+  "subPackages": [
+    {
+      "root": "src/app/package_transaction",
+      "pages": [
+        "pages/input-pin/input-pin",
+        "pages/gather-transfer/gather-transfer",
+        "pages/gather-screen-va/gather-screen-va",
+        "pages/confirmation-screen-transfer/confirmation-screen-transfer",
+        "pages/confirmation-screen-va/confirmation-screen-va",
+        "pages/change-sof-va/change-sof-va"
+      ]
+    }
+  ],
+  "window": {},
+  "useDynamicPlugins": false,
+  "usingComponents": {
+    "feature-modal": "/src/app/components/intf-featureOFF/intf-featureOFF",
+    "general-error": "/src/app/components/general-error/general-error",
+    "error-internet": "/src/app/components/error-internet/error-internet"
+  }
 }

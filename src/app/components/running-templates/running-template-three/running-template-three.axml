@@ -1,0 +1,271 @@
+<view class="page-container">
+
+  <!-- HERO BANNER -->
+  <view class="hero-banner">
+    <image
+      class="hero-image"
+      src="{{data.bannerUrl}}"
+      mode="aspectFill"
+    />
+    
+    <view class="hero-overlay"></view>
+
+    <view class="event-badge">
+      Running Event
+    </view>
+  </view>
+
+  <!-- EVENT INFO -->
+  <view class="event-card">
+
+    <view class="event-title">
+      {{data.name || 'Running Event Name'}}
+    </view>
+
+    <view class="event-summary">
+
+      <view>
+        <view class="label">
+          Mulai Dari
+        </view>
+        <view class="price">
+          {{data.formattedPrice}}
+        </view>
+      </view>
+
+      <view class="align-right">
+        <view class="label">
+          Tanggal Pelaksanaan
+        </view>
+        <view class="date">
+          {{data.formattedDate}}
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+  <!-- INFORMASI PELAKSANAAN -->
+  <view class="section-card">
+
+    <view class="section-title">
+      INFORMASI PELAKSANAAN
+    </view>
+
+    <view class="info-row">
+
+      <view class="icon-box">
+        📅
+      </view>
+
+      <view class="info-content">
+        <view class="info-label">
+          Tanggal & Waktu
+        </view>
+
+        <view class="info-value">
+          {{data.formattedDate}}
+        </view>
+      </view>
+
+    </view>
+
+    <view
+      a:if="{{data.location}}"
+      class="info-row border-top"
+    >
+
+      <view class="icon-box">
+        📍
+      </view>
+
+      <view class="info-content">
+
+        <view class="info-label">
+          Race Central
+        </view>
+
+        <view class="info-value">
+          {{data.location}}
+        </view>
+
+        <view
+          a:if="{{data.locationAddress}}"
+          class="info-address"
+        >
+          {{data.locationAddress}}
+        </view>
+
+        <view
+          a:if="{{data.locationUrl}}"
+          class="link"
+          onTap="openLocation"
+        >
+          Lihat Peta Rute →
+        </view>
+
+      </view>
+
+    </view>
+
+  </view>
+
+  <!-- TENTANG EVENT -->
+  <view
+    a:if="{{data.description}}"
+    class="section-card"
+  >
+
+    <view class="section-title">
+      TENTANG RACE
+    </view>
+
+    <view class="description">
+      {{data.description}}
+    </view>
+
+  </view>
+
+  <!-- KATEGORI -->
+  <view class="category-section">
+
+    <view class="category-header">
+
+      <view class="section-title">
+        KATEGORI RACE SLOT
+      </view>
+
+      <view
+        a:if="{{data.seatingPlanUrl}}"
+        class="link"
+        onTap="openSeatPlan"
+      >
+        Lihat Rute / Jersey
+      </view>
+
+    </view>
+
+    <block
+      a:if="{{data.categories && data.categories.length > 0}}"
+    >
+
+      <block
+        a:for="{{data.categories}}"
+        a:for-item="category"
+        a:for-index="index"
+        key="index"
+      >
+
+        <view class="category-card">
+
+          <view class="category-content">
+
+            <view class="category-name">
+              {{category.name}}
+            </view>
+
+            <view class="category-desc">
+              {{category.description || 'Includes Racepack, Medal & Refreshment'}}
+            </view>
+
+          </view>
+
+          <view class="category-price-wrapper">
+
+            <view class="category-price">
+              {{category.formatPrice}}
+            </view>
+
+            <view class="available-badge">
+              Slot Tersedia
+            </view>
+
+          </view>
+
+        </view>
+
+      </block>
+
+    </block>
+
+    <view
+      a:else
+      class="empty-card"
+    >
+      Kategori tiket belum tersedia
+    </view>
+
+  </view>
+
+    <!-- T&C -->
+    <view
+    a:if="{{data.termsAndConditions}}"
+    class="section-card"
+  >
+
+    <view class="section-title">
+      Terms & Conditions
+    </view>
+
+    <view class="description">
+      <mp-html
+      id="event-tnc"
+      content="{{data.termsAndConditions}}"
+    />
+    </view>
+
+  </view>
+
+  <!-- SOCIAL -->
+  <view class="social-section">
+
+    <view class="social-list">
+
+      <view
+        class="social-item"
+        onTap="openInstagram"
+      >
+        📷 Instagram
+      </view>
+
+      <view
+        class="social-item"
+        onTap="openWebsite"
+      >
+        🌐 Official Web
+      </view>
+
+    </view>
+
+    <view class="powered-by">
+      Powered by Vendor Ticket System
+    </view>
+
+  </view>
+
+  <!-- BOTTOM ACTION -->
+  <view class="bottom-bar">
+
+    <view>
+
+      <view class="label">
+        Mulai Dari
+      </view>
+
+      <view class="bottom-price">
+        {{data.formattedPrice}}
+      </view>
+
+    </view>
+
+    <button
+      class="register-btn"
+      onTap="handleRoomTap"
+    >
+      Daftar Sekarang
+    </button>
+
+  </view>
+
+</view>

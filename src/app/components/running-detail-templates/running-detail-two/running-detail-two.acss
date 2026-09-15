@@ -1,0 +1,106 @@
+.event-header {
+  background: #0E3453;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.cta-container {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 48px);
+  padding: 16px 24px 32px 24px;
+  box-shadow: 0px -3px 10px 0px rgba(78, 78, 78, 0.15);
+}
+
+.container-detail{
+  background-color:#F9F9F9 ;
+  padding-bottom: 140px;
+
+}
+
+.active{
+  background-color: #0E3453 !important;
+  background: #0E3453 !important;
+}
+
+.card-container{
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+  background:  white;
+  margin-bottom: 16px;
+}
+
+.first-title-card{
+  display: flex;
+  flex-direction: row;
+  gap:8px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.left-section{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.txt-green{
+  color: #02C794;
+}
+
+.img-card{
+  background-color: grey;
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1/1;
+}
+
+.desc-card{
+  display: flex;
+  flex-direction: column;
+}
+
+.ic-remove {
+  width: 24px;
+  height: 24px;
+}
+
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  justify-items: space-between;
+  width: 100%;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  color: var(--functional-bw-tones-granite-gray, #7A7A7A);
+  font-feature-settings: 'liga'off, 'clig'off;
+  font-family: "TT Interphases Pro";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+  /* 12px */
+  margin-left: 4px;
+}
+
+.count-add{
+  display: flex;
+  height: 32px;
+  padding: 0 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  background-color: #0E3453;
+  color: white;
+}
+

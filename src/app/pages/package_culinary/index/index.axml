@@ -1,0 +1,62 @@
+<view class="sticky-top">
+  <top-bar
+    type="{{'navigation'}}"
+    navigate={{true}}
+    backgroundColor="#FFFFFF"
+    color="#00000"
+    title="{{culinaryData.name}}"
+    iconL="../../../../assets/icons/ic_common_arrow_back.svg"
+    safeArea
+    pixel
+  />
+
+</view>
+<view class="hotel-detail-page">
+  <block>
+    <culinary-template-one
+      a:if="{{ templateId == 1 }}"
+      data="{{ culinaryData }}"
+      cartCount="{{ cartCount }}"
+      totalCartPrice="{{ totalCartPrice }}"
+      onScreenChange="goToMenuDetail"
+      onAddToCart="handleAddToCart"
+      onCheckout="goToCheckout"
+    />
+    <culinary-template-two
+      a:elif="{{ templateId == 2 }}"
+      data="{{ culinaryData }}"
+      cartCount="{{ cartCount }}"
+      totalCartPrice="{{ totalCartPrice }}"
+      onScreenChange="goToMenuDetail"
+      onAddToCart="handleAddToCart"
+      onCheckout="goToCheckout"
+    />
+    <culinary-template-three
+      a:elif="{{ templateId == 3 }}"
+      data="{{ culinaryData }}"
+      cartCount="{{ cartCount }}"
+      totalCartPrice="{{ totalCartPrice }}"
+      onScreenChange="goToMenuDetail"
+      onAddToCart="handleAddToCart"
+      onCheckout="goToCheckout"
+    />
+    <culinary-template-four
+      a:elif="{{ templateId == 4 }}"
+      data="{{ culinaryData }}"
+      cartCount="{{ cartCount }}"
+      totalCartPrice="{{ totalCartPrice }}"
+      onScreenChange="goToMenuDetail"
+      onAddToCart="handleAddToCart"
+      onCheckout="goToCheckout"
+    />
+    <culinary-template-five
+      a:elif="{{ templateId == 5 }}"
+      data="{{ culinaryData }}"
+      cartCount="{{ cartCount }}"
+      totalCartPrice="{{ totalCartPrice }}"
+      onScreenChange="goToMenuDetail"
+      onAddToCart="handleAddToCart"
+      onCheckout="goToCheckout"
+    />
+  </block>
+</view>

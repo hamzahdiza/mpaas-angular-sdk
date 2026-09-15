@@ -1,0 +1,295 @@
+<view class="sdui-container" style="background: {{isSchemaLoading ? '#F8FAFC' : (schema.pageBackground || '#F5F5F5')}};">
+
+  <!-- Loading Skeleton State for Custom Template (Zero flicker) -->
+  <view a:if="{{isSchemaLoading}}" style="padding: 16px; min-height: 100vh;">
+    <view style="width: 100%; height: 210px; border-radius: 16px; background: #E2E8F0; margin-bottom: 16px; animation: pulse 1.5s infinite;"></view>
+    <view style="width: 70%; height: 24px; border-radius: 8px; background: #E2E8F0; margin-bottom: 12px;"></view>
+    <view style="width: 100%; height: 80px; border-radius: 16px; background: #E2E8F0; margin-bottom: 12px;"></view>
+    <view style="width: 100%; height: 80px; border-radius: 16px; background: #E2E8F0; margin-bottom: 16px;"></view>
+    <view style="width: 100%; height: 120px; border-radius: 16px; background: #E2E8F0; margin-bottom: 24px;"></view>
+    <view style="position: fixed; bottom: 0; left: 0; right: 0; padding: 16px 20px; background: #ffffff; box-shadow: 0 -4px 16px rgba(0,0,0,0.06);">
+      <view style="width: 100%; height: 48px; border-radius: 24px; background: #CBD5E1;"></view>
+    </view>
+  </view>
+
+  <block a:else>
+    <!-- ============================================================= -->
+    <!-- 1. HEADER SECTION FIELDS                                      -->
+    <!-- ============================================================= -->
+    <view class="sdui-header-section">
+      <block a:for="{{headerFields}}" a:for-item="field" key="{{field.key}}">
+
+        <!-- BANNER -->
+        <view a:if="{{field.type == 'banner'}}" class="sdui-banner-container" style="{{field.computedStyle}}">
+          <block a:if="{{banners.length > 0}}">
+            <swiper
+              a:if="{{banners.length > 1}}"
+              class="sdui-banner-swiper"
+              current="{{currentBannerIndex}}"
+              onChange="onBannerSwiperChange"
+              autoplay="{{true}}"
+              interval="{{4000}}"
+              circular="{{true}}"
+            >
+              <swiper-item a:for="{{banners}}" a:for-item="bannerItem" a:for-index="bIdx" key="{{bIdx}}">
+                <image
+                  class="sdui-banner-image"
+                  src="{{bannerItem}}"
+                  mode="aspectFill"
+                />
+              </swiper-item>
+            </swiper>
+
+            <image
+              a:else
+              class="sdui-banner-image"
+              src="{{banners[0]}}"
+              mode="aspectFill"
+            />
+
+            <!-- Swiper Dots -->
+            <view a:if="{{banners.length > 1}}" class="sdui-banner-dots">
+              <view
+                a:for="{{banners}}"
+                a:for-index="bIdx"
+                key="{{bIdx}}"
+                class="sdui-dot {{bIdx === currentBannerIndex ? 'sdui-dot-active' : ''}}"
+                data-index="{{bIdx}}"
+                onTap="onBannerIndicatorTap"
+              ></view>
+            </view>
+          </block>
+          <view a:else class="sdui-banner-empty">
+            <text class="sdui-banner-empty-text">No Banner</text>
+          </view>
+
+          <!-- Category Badge Pill -->
+          <view
+            a:if="{{field.badge}}"
+            class="sdui-badge"
+            style="background: {{field.badge.background || '#F97316'}}; color: {{field.badge.color || '#FFFFFF'}};"
+          >
+            {{eventData.category || field.badge.fallbackText || 'RUNNING EVENT'}}
+          </view>
+        </view>
+
+        <!-- HEADER BANNER -->
+        <view a:elif="{{field.type == 'header-banner'}}" class="sdui-header-banner" style="{{field.computedStyle}}">
+          <text class="sdui-header-title">
+            {{eventData.name || 'Running Event Name'}}
+          </text>
+        </view>
+
+        <!-- TITLE CARD -->
+        <view a:elif="{{field.type == 'title-card'}}" class="sdui-title-card" style="{{field.computedStyle}}">
+          <text class="sdui-title-text">
+            {{eventData.name || 'Running Event Name'}}
+          </text>
+        </view>
+
+      </block>
+    </view>
+
+    <!-- ============================================================= -->
+    <!-- 2. CONTENT SECTION FIELDS                                     -->
+    <!-- ============================================================= -->
+    <view class="sdui-content-section">
+      <block a:for="{{contentFields}}" a:for-item="field" key="{{field.key}}">
+
+        <!-- BANNER (If in contentSection) -->
+        <view a:if="{{field.type == 'banner'}}" class="sdui-banner-container" style="{{field.computedStyle}}">
+          <image
+            class="sdui-banner-image"
+            src="{{banners.length > 0 ? banners[0] : (eventData.bannerUrl || '')}}"
+            mode="aspectFill"
+          />
+          <view
+            a:if="{{field.badge}}"
+            class="sdui-badge"
+            style="background: {{field.badge.background || '#F97316'}}; color: {{field.badge.color || '#FFFFFF'}};"
+          >
+            {{eventData.category || field.badge.fallbackText || 'RUNNING EVENT'}}
+          </view>
+        </view>
+
+        <!-- HEADER BANNER (If in contentSection) -->
+        <view a:elif="{{field.type == 'header-banner'}}" class="sdui-header-banner" style="{{field.computedStyle}}">
+          <text class="sdui-header-title">
+            {{eventData.name || 'Running Event Name'}}
+          </text>
+        </view>
+
+        <!-- TITLE CARD -->
+        <view a:elif="{{field.type == 'title-card'}}" class="sdui-title-card" style="{{field.computedStyle}}">
+          <text class="sdui-title-text">
+            {{eventData.name || 'Running Event Name'}}
+          </text>
+        </view>
+
+        <!-- HERO FLOATING CARD -->
+        <view a:elif="{{field.type == 'hero-card'}}" class="sdui-hero-card" style="{{field.computedStyle}}">
+          <view class="sdui-hero-title">
+            {{eventData.name || 'Running Event Name'}}
+          </view>
+          <view class="sdui-hero-summary">
+            <view class="sdui-hero-col">
+              <text class="sdui-hero-label" style="color: {{(field.ticketConfig && field.ticketConfig.priceLabel && field.ticketConfig.priceLabel.color) || '#94A3B8'}};">
+                {{(field.ticketConfig && field.ticketConfig.priceLabel && field.ticketConfig.priceLabel.value) || 'MULAI DARI'}}
+              </text>
+              <text class="sdui-hero-price" style="color: {{(field.ticketConfig && field.ticketConfig.price && field.ticketConfig.price.color) || '#EA580C'}};">
+                {{formattedPrice}}
+              </text>
+            </view>
+            <view class="sdui-hero-col sdui-hero-col-right">
+              <text class="sdui-hero-label">TANGGAL PELAKSANAAN</text>
+              <text class="sdui-hero-date-val">{{formattedDate}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- LOCATION CARD -->
+        <view a:elif="{{field.type == 'location-card'}}" class="sdui-field-wrapper">
+          <view a:if="{{field.label}}" class="sdui-section-label">
+            {{field.label}}
+          </view>
+          <view class="sdui-card-row" style="{{field.computedStyle}}">
+            <view class="sdui-icon-wrapper">
+              <image
+                class="sdui-icon-img"
+                src="{{(field.iconColor && field.iconColor == '#9C0621') ? '/src/assets/icons/ic_common_location_red.svg' : '/src/assets/icons/ic_common_location.svg'}}"
+              />
+            </view>
+            <view class="sdui-info-content">
+              <view class="sdui-info-title">
+                {{eventData.location || 'Running Location'}}
+              </view>
+              <view class="sdui-info-subtitle">
+                {{eventData.locationAddress || eventData.location || 'Running Location Address'}}
+              </view>
+            </view>
+            <image class="sdui-chevron-right" src="/src/assets/icons/ic_common_chevron_right.svg" />
+          </view>
+        </view>
+
+        <!-- DATE CARD -->
+        <view a:elif="{{field.type == 'date-card'}}" class="sdui-field-wrapper">
+          <view a:if="{{field.label}}" class="sdui-section-label">
+            {{field.label}}
+          </view>
+          <view class="sdui-card-row" style="{{field.computedStyle}}">
+            <view class="sdui-icon-wrapper">
+              <image
+                class="sdui-icon-img"
+                src="{{(field.iconColor && field.iconColor == '#9C0621') ? '/src/assets/icons/ic_common_calendar_today_red.svg' : '/src/assets/icons/ic_common_calendar_today.svg'}}"
+              />
+            </view>
+            <view class="sdui-info-content">
+              <view class="sdui-info-title">
+                {{formattedDate || 'Tanggal belum diatur'}}
+              </view>
+              <view class="sdui-info-subtitle">
+                Simpan di kalender
+              </view>
+            </view>
+            <image class="sdui-chevron-right" src="/src/assets/icons/ic_common_chevron_right.svg" />
+          </view>
+        </view>
+
+        <!-- DESCRIPTION -->
+        <view a:elif="{{field.type == 'description'}}" class="sdui-field-wrapper">
+          <view a:if="{{field.label}}" class="sdui-section-label">
+            {{field.label}}
+          </view>
+          <view class="sdui-desc-card" style="{{field.computedStyle}}">
+            <view class="sdui-desc-text {{isDescExpanded ? '' : 'sdui-line-clamp-4'}}">
+              {{eventData.description || 'Deskripsi acara akan ditampilkan di sini. Masukkan informasi detail mengenai rute, fasilitas, dan ketentuan umum event.'}}
+            </view>
+            <view
+              a:if="{{field.expand}}"
+              class="sdui-expand-btn"
+              onTap="toggleDescription"
+            >
+              <text style="color: {{(field.expandConfig && field.expandConfig.color) || '#FF8736'}};">
+                {{isDescExpanded ? ((field.expandConfig && field.expandConfig.collapseLabel) || 'Tutup') : ((field.expandConfig && field.expandConfig.expandLabel) || 'Lihat Detail')}}
+              </text>
+              <image
+                class="sdui-expand-arrow {{isDescExpanded ? 'sdui-rotate-180' : ''}}"
+                src="/src/assets/icons/ic_common_chevron_down_orange.svg"
+              />
+            </view>
+          </view>
+        </view>
+
+        <!-- DIVIDER -->
+        <view a:elif="{{field.type == 'divider'}}" class="sdui-divider" style="{{field.computedStyle}}"></view>
+
+        <!-- TERMS & CONDITIONS -->
+        <view a:elif="{{field.type == 'termsConditions'}}" class="sdui-field-wrapper">
+          <view a:if="{{field.label}}" class="sdui-section-label">
+            {{field.label}}
+          </view>
+          <view class="sdui-tnc-card" style="{{field.computedStyle}}">
+            <mp-html
+              a:if="{{eventData.termsAndConditions}}"
+              id="sdui-tnc-html"
+              content="{{eventData.termsAndConditions}}"
+            />
+            <view a:else class="sdui-tnc-placeholder">
+              Contoh syarat & ketentuan: 1. Tiket tidak dapat dipindahtangankan. 2. Wajib membawa identitas diri asli.
+            </view>
+          </view>
+        </view>
+
+        <!-- TICKET PREVIEW CARD -->
+        <view a:elif="{{field.type == 'ticket-card'}}" class="sdui-field-wrapper" style="{{field['padding-left'] ? 'padding-left: ' + field['padding-left'] + '; padding-right: ' + field['padding-right'] : ''}}">
+          <view a:if="{{field.label}}" class="sdui-section-label">
+            {{field.label}}
+          </view>
+          <view
+            class="sdui-ticket-card"
+            style="background: {{(field.ticketConfig && field.ticketConfig.cardConfig && field.ticketConfig.cardConfig.background) || '#ffffff'}}; border: {{(field.ticketConfig && field.ticketConfig.cardConfig && field.ticketConfig.cardConfig.border) || '1px solid #ECECEC'}}; border-radius: {{(field.ticketConfig && field.ticketConfig.cardConfig && field.ticketConfig.cardConfig['border-radius']) || '16px'}}; padding: {{(field.ticketConfig && field.ticketConfig.cardConfig && field.ticketConfig.cardConfig.padding) || '16px 20px'}};"
+            onTap="handleCardTap"
+          >
+            <view class="sdui-ticket-top">
+              <view>
+                <view class="sdui-ticket-title" style="color: {{(field.ticketConfig && field.ticketConfig.title && field.ticketConfig.title.color) || '#0E0E0E'}};">
+                  {{firstTicket.ticket_name || firstTicket.name || '5K National'}}
+                </view>
+                <view class="sdui-ticket-desc">
+                  {{firstTicket.ticket_description || firstTicket.description || 'Tiket Reguler'}}
+                </view>
+              </view>
+              <image class="sdui-chevron-right" src="/src/assets/icons/ic_common_chevron_right.svg" />
+            </view>
+
+            <view class="sdui-ticket-divider"></view>
+
+            <view class="sdui-ticket-bottom">
+              <text class="sdui-ticket-price-label" style="color: {{(field.ticketConfig && field.ticketConfig.priceLabel && field.ticketConfig.priceLabel.color) || '#FF8736'}};">
+                {{(field.ticketConfig && field.ticketConfig.priceLabel && field.ticketConfig.priceLabel.value) || 'Mulai dari'}}
+              </text>
+              <text class="sdui-ticket-price-val" style="color: {{(field.ticketConfig && field.ticketConfig.price && field.ticketConfig.price.color) || '#0E0E0E'}};">
+                {{formattedPrice}}
+              </text>
+            </view>
+          </view>
+        </view>
+
+      </block>
+    </view>
+
+    <!-- ============================================================= -->
+    <!-- 3. STICKY BOTTOM CTA BUTTON                                   -->
+    <!-- ============================================================= -->
+    <view a:if="{{ctaConfig}}" class="sdui-cta-container">
+      <button
+        class="sdui-cta-btn"
+        style="{{ctaConfig.computedStyle}}"
+        onTap="handleCtaTap"
+      >
+        {{ctaConfig.label || 'Beli Tiket'}}
+      </button>
+    </view>
+  </block>
+
+</view>

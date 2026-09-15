@@ -1,0 +1,121 @@
+.event-header {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-container {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 48px);
+  padding: 16px 24px 32px 24px;
+  box-shadow: 0px -3px 10px 0px rgba(78, 78, 78, 0.15);
+}
+
+.container-detail{
+  background-color:#F9F9F9 ;
+  padding-bottom: 140px;
+
+}
+
+.active{
+  background-color: #0E3453 !important;
+  background: #0E3453 !important;
+}
+
+.card-container{
+  display: flex;
+  /* padding: 16px; */
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  background:  white;
+  margin-bottom: 16px;
+  border-radius: 20px;
+}
+
+.first-title-card{
+  display: flex;
+  flex-direction: row;
+  gap:8px;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 32px);
+  padding: 16px;
+  background-color: #9C0621;
+  /* border-radius: 30px; */
+  color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.left-section{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* background-color: #9C0621; */
+}
+
+.txt-green{
+  color: #02C794;
+}
+
+.img-card{
+  background-color: grey;
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1/1;
+}
+
+.desc-card{
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.ic-remove {
+  width: 24px;
+  height: 24px;
+}
+
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  justify-items: space-between;
+  width: calc(100% - 32px);
+  padding: 16px;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  color: var(--functional-bw-tones-granite-gray, #7A7A7A);
+  font-feature-settings: 'liga'off, 'clig'off;
+  font-family: "TT Interphases Pro";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+  /* 12px */
+  margin-left: 4px;
+}
+
+.count-add{
+  display: flex;
+  height: 32px;
+  padding: 0 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  background-color: #9C0621;
+  color: white;
+  border-radius: 10px;
+}
+
+.bni-button-compact{
+  background-color: #9C0621 !important;
+}

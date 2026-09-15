@@ -1,71 +1,55 @@
-@import "@bni-maverick-mpaas/lib/es/utils/styles-px/theme.acss";
-@import "@bni-maverick-mpaas/lib/es/utils/styles-px/shimmer.acss";
-@import "@bni-maverick-mpaas/lib/es/utils/styles-px/typography.acss";
-@import "@bni-maverick-mpaas/lib/es/utils/styles-px/spacing.acss";
-@import "@bni-maverick-mpaas/lib/es/utils/styles-px/layout.acss";
+@import "@bni-maverick-mpaas/lib/es/utils/styles/theme.acss";
+@import "@bni-maverick-mpaas/lib/es/utils/styles/shimmer.acss";
+@import "@bni-maverick-mpaas/lib/es/utils/styles/typography.acss";
+@import "@bni-maverick-mpaas/lib/es/utils/styles/spacing.acss";
+@import "@bni-maverick-mpaas/lib/es/utils/styles/layout.acss";
 
 /* Font Regular */
 @font-face {
   font-family: 'TT Interphases Pro';
-  src: url(/assets/fonts/TTInterphasesProRegular.ttf);
+  src: url(/src/assets/fonts/TTInterphasesProRegular.ttf);
   font-weight: 400;
 }
-
 /* Font Medium */
 @font-face {
   font-family: 'TT Interphases Pro';
-  src: url(/assets/fonts/TTInterphasesProMedium.ttf);
+  src: url(/src/assets/fonts/TTInterphasesProMedium.ttf);
   font-weight: 500;
 }
 
 /* Font Semibold */
 @font-face {
   font-family: 'TT Interphases Pro';
-  src: url(/assets/fonts/TTInterphasesProDemiBold.ttf);
+  src: url(/src/assets/fonts/TTInterphasesProDemiBold.ttf);
   font-weight: 600;
 }
 
 /* Font Bold */
 @font-face {
   font-family: 'TT Interphases Pro';
-  src: url(/assets/fonts/TTInterphasesProBold.ttf);
+  src: url(/src/assets/fonts/TTInterphasesProBold.ttf);
   font-weight: 700;
 }
-
 /* Font ExtraBold */
 @font-face {
   font-family: 'TT Interphases Pro';
-  src: url(/assets/fonts/TTInterphasesProExtraBold.ttf);
+  src: url(/src/assets/fonts/TTInterphasesProExtraBold.ttf);
   font-weight: 800;
 }
-
 page {
   background: #fff;
   color: #0E0E0E;
   font-family: TT Interphases Pro;
   font-style: normal;
-  margin-bottom: 20px;
+}
+
+.bg-error{
+  background-color: #9C0621 !important;
 }
 
 .fund-main {
   width: 100%;
   height: 100%;
-}
-
-.tab-label-px{
-  color: var(--functional-bw-tones-black, #0E0E0E);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 19.6px
-}
-
-.tab-content-px{
-  color: var(--functional-bw-tones-black, #0E0E0E);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height:  19.6px
 }
 
 .sticky-top {
@@ -92,8 +76,6 @@ page {
 .icon-size-96 {
   height: 48px !important;
   width: 48px !important;
-  min-height: 48px !important;
-  min-width: 48px !important;
 }
 
 .icon-size-112 {
@@ -101,8 +83,9 @@ page {
   width: 56px !important;
 }
 
+
 .local-primary-btn {
-  width: 100%;
+  max-width: 100%;
   max-height: 48px;
   border-radius: 32px;
   background: #71DBD3;
@@ -115,7 +98,7 @@ page {
 }
 
 .local-disabled-btn {
-  width: 100%;
+  max-width: 100% !important;
   max-height: 48px;
   border-radius: 32px;
   background: #F0F0F0;
@@ -128,12 +111,12 @@ page {
 }
 
 .local-default-btn {
-  width: 100%;
+  max-width: 100% !important;
   max-height: 48px;
   color: #0E0E0E;
   border-radius: 32px;
   background-color: #FFFFFF;
-  border: 1px solid #7A7A7A !important;
+  border: 1px solid #7A7A7A;
   font-size: 14px;
   font-weight: 600;
 }
@@ -164,280 +147,49 @@ page {
 .modal-scroll {
   height: 100vh;
   overflow: scroll;
-  width: 100vw;
 }
 
-.mask-class-name-background {
+.mask-class-name-background{
   background-color: rgba(14, 14, 14, 0.80) !important;
 }
 
-.txt-h0-px {
-  font-size: 32px;
-  font-weight: 800;
-  line-height: 38.4px;
+/* Habis */
+.txt-red {
+  color: #EB008B;
 }
 
-.txt-h1-px {
-  font-size: 26px;
-  line-height: 30px;
-  font-weight: 700;
+.count-sold-out {
+  border-radius: 32px;
+  background-color: #E2E8F0;
+  border: 1px solid #CBD5E1;
+  display: flex;
+  height: 32px;
+  padding: 0 16px;
+  justify-content: center;
+  align-items: center;
 }
 
-.txt-h2-px {
-  font-size: 24px;
-  line-height: 28.8px;
-  font-weight: 700;
-}
-
-.txt-h3-px {
-  font-size: 18px;
-  line-height: 21.6px;
-  font-weight: 700;
-}
-
-.txt-h4-px {
-  font-size: 16px;
-  line-height: 19.2px;
-  font-weight: 700;
-}
-
-.txt-h5-px {
-  font-size: 14px;
-  line-height: 16.8px;
-  font-weight: 700;
-}
-
-.txt-h5-Montserrat-px {
-  font-family: 'Montserrat';
-  font-size: 14px;
-  line-height: 16.8px;
-  font-weight: 700;
-}
-
-.txt-h6-px {
-  font-size: 12px;
-  line-height: 14.4px;
-  font-weight: 700;
-}
-
-.txt-h6-sb-px {
-  font-size: 12px;
-  line-height: 16.8px;
-  font-weight: 700;
-}
-
-.txt-h0-px {
-  font-size: 32px;
-  line-height: 38.4px;
-  font-weight: 800;
-}
-
-.txt-amount2-px {
-  font-size: 28px;
-  line-height: 33.6px;
-  font-weight: 800;
-}
-
-.txt-amount3-px {
-  font-size: 20px;
-  line-height: 24px;
-  font-weight: 800;
-}
-
-.txt-body1-px {
-  font-size: 16px;
-  line-height: 22.4px;
-  font-weight: 400;
-}
-
-.txt-body2-px {
-  font-size: 14px;
-  line-height: 19.6px;
-  font-weight: 400;
-}
-
-.txt-body3-px {
-  font-size: 12px;
-  line-height: 16.8px;
-  font-weight: 400;
-}
-
-.txt-body4-px {
-  font-size: 10px;
-  line-height: 13.8px;
-  font-weight: 400;
-}
-
-.txt-body5-px {
-  font-size: 8px;
-  line-height: 10.8px;
-  font-weight: 400;
-}
-
-.txt-label1-px {
-  font-size: 14px;
-  line-height: 16.8px;
-  font-weight: 400;
-}
-
-.txt-label2-px {
-  font-size: 12px;
-  line-height: 14.4px;
-  font-weight: 400;
-}
-
-.txt-label3-px {
-  font-size: 10px;
-  line-height: 12px;
-  font-weight: 400;
-}
-
-.txt-body1-sb-px {
-  font-size: 16px;
-  line-height: 22.4px;
+.ticket-badge-sold {
+  padding: 4rpx 16rpx;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1rpx solid #fecaca;
+  border-radius: 8rpx;
+  font-size: 20rpx;
   font-weight: 600;
+  line-height: 28rpx;
+  width: fit-content;
 }
 
-.txt-body2-sb-px {
-  font-size: 14px;
-  line-height: 19.6px;
-  font-weight: 600;
-}
-
-.txt-body3-sb-px {
-  font-size: 12px;
-  line-height: 16.8px;
-  font-weight: 600;
-}
-
-.txt-body4-sb-px {
-  font-size: 10px;
-  line-height: 13.8px;
-  font-weight: 600;
-}
-
-.txt-body5-sb-px {
-  font-size: 8px;
-  line-height: 10.8px;
-  font-weight: 600;
-}
-
-.txt-label1-sb-px {
-  font-size: 14px;
-  line-height: 16.8px;
-  font-weight: 600;
-}
-
-.txt-label2-sb-px {
-  font-size: 12px;
-  line-height: 14.4px;
-  font-weight: 600;
-}
-
-.txt-label3-sb-px {
-  font-size: 10px;
-  line-height: 14px;
-  font-weight: 600;
-}
-
-.txt-label4-sb-px {
-  font-size: 14px;
-  line-height: 16.8px;
-  font-weight: 600;
-  font-family: "TT Interphases Pro";
-}
-
-.underline-px {
-  text-decoration: underline;
-}
-
-.txt-center-px {
-  text-align: center;
-}
-
-.txt-left-px {
-  text-align: left;
-}
-
-.txt-right-px {
-  text-align: right;
-}
-
-.txt-justify-px {
-  text-align: justify;
-}
-
-/*letter-spacing*/
-.ls-1-px {
-  letter-spacing: 0.5px;
-}
-
-.ls-0-px {
-  letter-spacing: 0px;
-}
-
-.va-middle-px {
-  vertical-align: middle;
-}
-
-/*word break*/
-.ww-bw-px {
-  word-wrap: break-word;
-}
-
-.ww-ba-px {
-  word-break: break-all;
-}
-
-.ww-pw-px {
-  white-space: pre-wrap;
-}
-
-.ww-n-px {
-  white-space: normal;
-}
-
-.ww-nw-px {
-  white-space: nowrap;
-}
-
-.ww-pl-px {
-  white-space: pre-line;
-}
-
-.to-e-1-px {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.to-e-2-px {
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  white-space: normal !important;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.primary-btn{
-  max-width: 100% !important;
-}
-
-.underline3-bold{
-  color: var(--orange-300);
-  font-feature-settings: 'liga' off, 'clig' off;
-  /* Mobile/Underline/Underline 3 - Bold */
-  font-family: "TT Interphases Pro";
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 140%;
-  text-decoration-line: underline;
-  text-decoration-style: solid;
-  text-decoration-skip-ink: none;
-  text-decoration-thickness: auto;
-  text-underline-offset: auto;
-  text-underline-position: from-font;
+.btn-slot-sold {
+  height: 64rpx;
+  padding: 0 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24rpx;
+  background: #E2E8F0;
+  color: #64748B;
+  font-size: 24rpx;
+  font-weight: bold;
 }

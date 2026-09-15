@@ -1,0 +1,153 @@
+<view class="container-detail">
+
+   <!-- Header -->
+  <view class="header-banner">
+    <view class="header-content">
+      <text class="header-title">
+        {{data.name || 'Running Event Name'}}
+      </text>
+    </view>
+  </view>
+
+  <!-- Banner -->
+  <view class="banner-wrapper">
+    <view class="banner-card">
+      <image
+      class="banner-image"
+      src="{{data.bannerUrl}}"
+      mode="aspectFill"
+    />
+    </view>
+  </view>
+
+  <!-- Event Information -->
+  <view class="content-wrapper">
+
+    <view
+      class="section-title"
+      id="eventInformation"
+    >
+      Event Information
+    </view>
+
+    <view class="info-card">
+
+      <view class="info-row">
+
+        <view class="info-icon">
+          <image
+            src="/src/assets/icons/ic_common_location_red.svg"
+            mode="aspectFit"
+          />
+        </view>
+
+        <view class="info-content">
+          <view class="info-title">
+            {{data.location || 'Running Location'}}
+          </view>
+
+          <view class="info-subtitle">
+            {{data.locationAddress || 'Running Location Address'}}
+          </view>
+        </view>
+
+      </view>
+
+      <view class="info-row">
+
+        <view class="info-icon">
+          <image
+            src="/src/assets/icons/ic_common_calendar_today_red.svg"
+            mode="aspectFit"
+          />
+        </view>
+
+        <view class="info-content">
+          <view class="info-title">
+            {{data.formattedDate}}
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+
+    <!-- Description -->
+    <view class="section-block">
+
+      <view
+        class="section-title"
+        id="description"
+      >
+        Description
+      </view>
+
+      <view class="description-card">
+
+        <view
+          class="description-text {{isDescExpanded ? '' : 'line-clamp-4'}}"
+        >
+          {{data.description}}
+        </view>
+
+        <view
+          a:if="{{showReadMore}}"
+          class="read-more"
+          onTap="toggleDescription"
+        >
+          <text>
+            {{isDescExpanded ? 'Tutup' : 'Lihat Detail'}}
+          </text>
+
+          <image
+            class="arrow-icon"
+            src="../../../assets/icons/ic_common_chevron_down_orange.svg"
+          />
+        </view>
+
+      </view>
+
+    </view>
+
+    <!-- Terms -->
+    <view class="section-block">
+
+      <view
+        class="section-title"
+        id="tnc"
+      >
+        Terms & Conditions
+      </view>
+
+      <view class="tnc-card">
+
+        <mp-html id="javajazz-festival-tnc-screen-webview" content="{{data.termsAndConditions}}" />
+
+      </view>
+
+    </view>
+
+  </view>
+
+  <!-- Floating Menu -->
+  <view class="floating-menu">
+   <view style="display:flex; flex-direction:column;padding:0 40rpx">
+    <view class="label">
+      Mulai Dari
+    </view>
+
+    <view class="bottom-price">
+      {{data.formattedPrice}}
+    </view>
+   </view>
+
+    <view
+      class="btn-ticket"
+      onTap="handleRoomTap"
+    >
+      Beli Tiket
+    </view>
+
+  </view>
+
+</view>

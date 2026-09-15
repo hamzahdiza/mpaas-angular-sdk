@@ -1,0 +1,128 @@
+<view class="container-running">
+
+  <!-- Hero Banner -->
+  <view class="hero-banner">
+    <image
+      class="hero-image"
+      mode="aspectFill"
+      src="{{data.bannerUrl}}"
+    />
+  </view>
+
+  <!-- Floating Section -->
+  <view class="floating-container">
+
+    <view class="event-card">
+
+      <!-- Title -->
+      <view class="title-card">
+        <view class="txt-h3-px title-text">
+          {{data.name}}
+        </view>
+      </view>
+
+      <!-- Location -->
+      <view class="info-row">
+        <image
+          class="info-icon"
+          src="/src/assets/icons/ic_common_location.svg"
+        />
+
+        <view class="info-content">
+          <view class="txt-body1-sb-px txt-blue">
+            {{data.location}}
+          </view>
+
+          <view class="txt-body3-px txt-gray">
+            {{data.locationAddress}}
+          </view>
+        </view>
+      </view>
+
+      <view class="divider"></view>
+
+      <!-- Date -->
+      <view class="info-row">
+        <image
+          class="info-icon"
+          src="/src/assets/icons/ic_common_calendar_today.svg"
+        />
+
+        <view class="info-content">
+          <view class="txt-body1-sb-px txt-blue">
+            {{data.formattedDate}}
+          </view>
+
+          <view class="txt-body3-px txt-gray">
+            Simpan di kalender
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+  <!-- Description -->
+
+  <view class="accordion-card">
+
+    <view class="accordion-header">
+      <view class="accordion-title">
+        Description
+      </view>
+
+      <image
+        class="arrow {{isDescOpen ? 'rotate' : ''}}"
+        src="/src/assets/icons/ic_common_chevron_white.svg"
+        onTap="toggleDescription"
+      />
+    </view>
+
+    <view a:if="{{isDescOpen}}" class="accordion-body">
+
+      <view class="{{isDescExpanded ? '' : 'line-clamp-4'}}">
+        {{data.description}}
+      </view>
+
+    </view>
+
+  </view>
+
+  <!-- Terms -->
+
+  <view class="accordion-card">
+
+    <view class="accordion-header">
+      <view class="accordion-title">
+        Terms & Conditions
+      </view>
+
+      <image
+        class="arrow {{isTncOpen ? 'rotate' : ''}}"
+        src="/src/assets/icons/ic_common_chevron_white.svg"
+        onTap="toggleTnc"
+      />
+    </view>
+
+    <view a:if="{{isTncOpen}}" class="accordion-body">
+      <mp-html
+        id="event-tnc"
+        content="{{data.termsAndConditions}}"
+      />
+    </view>
+
+  </view>
+
+</view>
+
+<!-- CTA -->
+
+<view class="cta-container">
+  <button
+    class="btn-buy"
+    onTap="handleRoomTap"
+  >
+    Beli Tiket
+  </button>
+</view>

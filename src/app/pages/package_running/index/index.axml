@@ -1,0 +1,20 @@
+<view class="sticky-top">
+  <top-bar
+    type="{{'navigation'}}"
+    navigate={{true}}
+    backgroundColor="bg-white"
+    color="black"
+    title="{{runningData.name}}"
+    iconL="../../../../assets/icons/ic_common_arrow_back.svg"
+    safeArea
+    pixel
+  />
+</view>
+
+<view class="index">
+  <!-- SDUI Dynamic Template Renderer (Renders any template dynamically from DB schema) -->
+  <sdui-dynamic-renderer
+    eventData="{{ runningData }}"
+    onScreenChange="goToRunningDetail"
+  />
+</view>

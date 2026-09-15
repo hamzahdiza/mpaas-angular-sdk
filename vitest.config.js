@@ -5,20 +5,16 @@ import {
 export default defineConfig({
   test: {
     globals: true,
-    css: true,
     setupFiles: [
-      './configTest/setup.js',
-      './configTest/globalAli.js',
+      './src/configTest/setup.js',
+      './src/configTest/globalAli.js',
     ],
+    testTimeout: 50000,
     coverage: {
       provider: 'istanbul',
-      assetsInclude: ['**/*.acss', '**/*.axml'],
-      include: ['pages/*', 'package_riskProfile/**/*', 'package_transaction/**/*', 'package_sid/**/*', 'package_bonds/**/*', 'utils/*', 'components/*', 'package_profile_investor/**/*', 'package_rsp/**/*', 'package_topup/**/*'],
-      exclude: ['components/mp-html/*', '**/*.spec.js', '**/*.acss', '**/*.axml', '**/*.json',
-        '**/*.css',
-        '**/*.less',
-      ],
-      reporter: ['text', 'lcov'],
+      include: ['src/app/pages/*', 'src/app/package_transaction/**/*', 'src/utils/*', 'src/app/components/*'],
+      exclude: ['src/app/components/mp-html/*', '**/*.spec.js'],
+      reporter: ['text', 'lcov', 'html'],
       all: true,
       lines: 80,
       functions: 80,
