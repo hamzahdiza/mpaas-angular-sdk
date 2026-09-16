@@ -2,11 +2,10 @@ import generalError from "./generalError";
 import {
   generateUUID
 } from "./number-util";
-import env from "../../env.json"
 const errorCodeConfig = require("../public/error_code_config.json");
 
 /* JShield-obfus:enable */
-const baseUri = env.MPAAS_BASE_URL;
+const baseUri = 'https://be-mpaas-template-management.vercel.app';
 /* JShield-obf  us:disable */
 
 /**
