@@ -5,7 +5,7 @@ import {
 const errorCodeConfig = require("../public/error_code_config.json");
 
 /* JShield-obfus:enable */
-const baseUri = 'https://be-mpaas-template-management.vercel.app';
+const baseUri = "https://be-mpaas-template-management.vercel.app";
 /* JShield-obf  us:disable */
 
 /**
@@ -20,69 +20,22 @@ export default function request({
   return new Promise((resolve, reject) => {
     setTimeout(
       () => {
-        if (url != "/bill-payment/v1/biller/execution") {
-          headers["Mav-Authorization"] = getApp().globalData.nativeData.accessToken;
-        }
+        console.info(url, "<<< MPAAS_URL");
         my.request({
           url: baseUri + url,
           method: method,
           data: data,
           timeout: 120000,
-          headers: generateHeaders(headers),
+          // headers: generateHeaders(headers),
           success: (res) => {
+            console.info(res, "<<< MPAAS_RES ")
             resolve(res);
           },
           fail: (err) => {
+            console.log(err, "<<< MPAAS_ERROR");
             err.statusCode = (err.status ? err.status : err.statusCode)
-            if (err.statusCode === 401) {
-              // Refresh Token when status code is 401
-              refreshToken()
-                .then(() => {
-                  // Retry after refresh token
-                  if (url != "/bill-payment/v1/biller/execution") {
-                    headers["Mav-Authorization"] = getApp().globalData.nativeData.accessToken;
-                  }
-                  my.request({
-                    url: baseUri + url,
-                    method: method,
-                    data: data,
-                    timeout: 120000,
-                    headers: generateHeaders(headers),
-                    success: (res) => {
-
-                      resolve(res);
-                    },
-                    fail: (err) => {
-                      err.statusCode = (err.status ? err.status : err.statusCode)
-                      if (err.statusCode === 503) {
-                        handle503Error(err)
-                        reject(err);
-                      } else {
-                        handleErrorCode(err)
-                        reject(err);
-                      }
-
-                    },
-                  });
-                })
-                .catch((err) => {
-                  generalError({
-                    err,
-                    isSwipe: true,
-                    isRefresh: true,
-                    event: 'goToSplashScreen',
-                    param: {},
-                  })
-                  err.isIntercept = true
-                  reject(err);
-                });
-            } else if (err.statusCode === 503) {
-              handle503Error(err)
-              reject(err);
-            } else {
-              handleErrorCode(err)
-              reject(err);
-            }
+            handleErrorCode(err)
+            reject(err);
           },
           complete: () => {
             that &&
@@ -92,7 +45,6 @@ export default function request({
           },
         });
       },
-      getApp().globalData.nativeData.userId ? 0 : 4000
     );
   });
 }

@@ -13,7 +13,7 @@
     "iconFile": "",
     "enableTabBar": 0,
     "enableOptionMenu": 0,
-    "mainUrl": "/index.html#src/app/pages/index/index",
+    "mainUrl": "/index.html#src/app/pages/landing/landing",
     "enableKeepAlive": 0,
     "extendInfo": "{\"appxRouteFramework\": \"YES\", \"appxRouteBizPrefix\":\"\"}"
   }
