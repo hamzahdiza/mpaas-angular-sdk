@@ -40,5 +40,13 @@
     onBack="onBackToIndex"
     onBook="handleBooking"
     />
+  <running-detail-custom
+    a:if="{{templateId != 1 && templateId != 2 && templateId != 3 && templateId != 4 }}" 
+    ticket="{{ ticketData }}"
+    runningData="{{ runningData }}"
+    templateId="{{ rawTemplateId }}"
+    onBack="onBackToIndex"
+    onBook="handleBooking"
+    />
   <loading pixel loading="{{ isLoading }}"></loading>
 </view>

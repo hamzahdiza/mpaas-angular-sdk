@@ -274,6 +274,7 @@
             <view class="event-price-badge">
               <text class="event-price-badge-label">Mulai dari</text>
               <text class="event-price-badge-amount">{{event.formattedPrice}}</text>
+              <text a:if="{{event.formattedNormalPrice}}" class="event-price-badge-strike" style="text-decoration: line-through; color: rgba(255,255,255,0.7); font-size: 10px; margin-left: 4px;">{{event.formattedNormalPrice}}</text>
             </view>
           </view>
           <view class="event-info">

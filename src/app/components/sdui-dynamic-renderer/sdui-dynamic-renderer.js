@@ -552,6 +552,7 @@ Component({
     currentBannerIndex: 0,
     banners: [],
     formattedPrice: 'Rp 0',
+    formattedNormalPrice: '',
     formattedDate: '',
     firstTicket: null,
     loading: false
@@ -588,11 +589,40 @@ Component({
         }
       }
 
-      // Compute formatted price
-      let formattedPrice = eventData.formattedPrice || '';
-      if (!formattedPrice && eventData.price !== undefined) {
-        formattedPrice = 'Rp ' + Number(eventData.price).toLocaleString('id-ID');
+      // Extract first ticket tier for CTA detail and price computation
+      const rawCategories = eventData.categories || eventData.ticket_tiers || eventData.ticketGroups || eventData.tickets || [];
+      const firstGroup = rawCategories.length > 0 ? rawCategories[0] : null;
+      const firstTicket = firstGroup ? ((firstGroup.tickets && firstGroup.tickets.length > 0) ? firstGroup.tickets[0] : firstGroup) : null;
+
+      // Compute price & normalPrice (harga coret)
+      let price = Number(eventData.price !== undefined ? eventData.price : (firstTicket ? (firstTicket.price || firstTicket.ticket_price || 0) : 0));
+      let normalPrice = Number(eventData.normalPrice || eventData.normal_price || eventData.maxPrice || eventData.max_price || eventData.originalPrice || eventData.original_price || eventData.ticket_normal_price || 0);
+
+      const discountedPrice = (eventData.discountedPrice !== undefined && eventData.discountedPrice !== null) ? Number(eventData.discountedPrice) :
+                              (eventData.discounted_price !== undefined && eventData.discounted_price !== null) ? Number(eventData.discounted_price) : null;
+
+      if (discountedPrice !== null && discountedPrice < price && discountedPrice > 0) {
+        normalPrice = price;
+        price = discountedPrice;
       }
+
+      if ((!normalPrice || normalPrice <= price) && firstTicket) {
+        const ticketNormalPrice = Number(firstTicket.normalPrice || firstTicket.normal_price || firstTicket.maxPrice || firstTicket.max_price || firstTicket.originalPrice || firstTicket.original_price || firstTicket.ticket_normal_price || 0);
+        const ticketDiscountedPrice = (firstTicket.discountedPrice !== undefined && firstTicket.discountedPrice !== null) ? Number(firstTicket.discountedPrice) :
+                                      (firstTicket.discounted_price !== undefined && firstTicket.discounted_price !== null) ? Number(firstTicket.discounted_price) : null;
+        const ticketPrice = Number(firstTicket.price !== undefined ? firstTicket.price : (firstTicket.ticket_price || price));
+
+        if (ticketDiscountedPrice !== null && ticketDiscountedPrice < ticketPrice && ticketDiscountedPrice > 0) {
+          price = ticketDiscountedPrice;
+          normalPrice = ticketPrice;
+        } else if (ticketNormalPrice > ticketPrice) {
+          normalPrice = ticketNormalPrice;
+        }
+      }
+
+      // Compute formatted price & strike-through normal price
+      let formattedPrice = 'Rp ' + Number(price).toLocaleString('id-ID');
+      let formattedNormalPrice = (normalPrice > price && normalPrice > 0) ? ('Rp ' + Number(normalPrice).toLocaleString('id-ID')) : '';
 
       // Compute banners list
       let banners = [];
@@ -604,13 +634,10 @@ Component({
         banners = [eventData.bannerUrl];
       }
 
-      // Extract first ticket tier for CTA detail
-      const categories = eventData.categories || eventData.ticket_tiers || [];
-      const firstTicket = categories.length > 0 ? categories[0] : null;
-
       this.setData({
         formattedDate,
         formattedPrice,
+        formattedNormalPrice,
         banners,
         firstTicket
       });

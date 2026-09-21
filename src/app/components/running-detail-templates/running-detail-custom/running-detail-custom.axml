@@ -1,0 +1,118 @@
+<view class="container-detail" style="background-color: {{pageBackground}};">
+  <!-- Event Header Card -->
+  <view class="custom-event-header" style="border-left: 8rpx solid {{ctaBackground}};">
+    <view class="txt-h4-px mg-b-8-px">
+      {{runningData.name}}
+    </view>
+    <view class="txt-body2-px txt-granite-gray">
+      {{runningData.description}}
+    </view>
+  </view>
+
+  <view class="ticket-list-wrapper">
+    <block a:for="{{ runningData.categories }}" a:for-item="category">
+      <block a:for="{{ category.tickets }}" a:for-item="item">
+        <view class="custom-card-container">
+          <view class="custom-card-header">
+            <view class="left-section">
+              <view class="txt-body1-sb">
+                {{item.name || category.name}}
+              </view>
+              <!-- Status Badge -->
+              <view a:if="{{ (item.stock > 0 || item.stock === undefined) && item.isAvailable !== 0 }}" class="custom-badge-available">
+                Available
+              </view>
+              <view a:else class="custom-badge-soldout">
+                Sold Out
+              </view>
+            </view>
+            <view a:if="{{runningData.bannerUrl}}">
+              <image mode="aspectFill" src="{{runningData.bannerUrl}}" class="img-card"/>
+            </view>
+          </view>
+          
+          <view class="desc-card txt-label3-px txt-granite-gray">
+            <text>{{item.description || category.description || 'Harga sudah termasuk pajak dan biaya admin'}}</text>
+          </view>
+          
+          <view class="card-footer">
+            <view class="d-f-row ai-center">
+              <text class="txt-h4-px">
+                {{item.formatPrice}}
+              </text>
+              <text a:if="{{ item.formatNormalPrice }}" class="strikethrough">
+                {{item.formatNormalPrice}}
+              </text>
+            </view>
+
+            <!-- 1. Kondisi Stok Habis: Tombol Nonaktif -->
+            <view a:if="{{ (item.stock !== undefined && item.stock <= 0) || item.isAvailable === 0 }}" class="min-height d-f-row ai-center count-sold-out">
+              <text class="txt-label2-sb-px txt-granite-gray">
+                Habis Terjual
+              </text>
+            </view>
+
+            <!-- 2. Kondisi Belum Dipilih: Tombol '+ Add' -->
+            <view a:elif="{{ !item.order || item.order < 1 }}" 
+              data-ticketid="{{item.id}}"
+              data-categoryid="{{category.id}}"
+              data-amount="{{item.price}}"
+              onTap="handlePlus" 
+              class="min-height d-f-row ai-center count-add custom-add-btn"
+              style="background: {{ctaBackground}}; color: {{ctaColor}}; border-radius: {{ctaRadius}};"
+            >
+              <text class="txt-label2-sb-px pointer-none">
+                + Add
+              </text>
+            </view>
+
+            <!-- 3. Kondisi Sedang Dipilih: Pengatur Jumlah (+ / -) -->
+            <view a:else class="d-f-row ai-center">
+              <view class="d-f-row ai-center">
+                <image
+                  data-ticketid="{{item.id}}"
+                  data-categoryid="{{category.id}}"
+                  data-amount="{{item.price}}"
+                  onTap="handleRemove"
+                  class="ic-remove"
+                  src="{{item.order === 0 ? '/src/assets/icons/ic_common_remove_circle_outline_gray.svg' : '/src/assets/icons/ic_common_remove_circle_outline.svg'}}"
+                />
+              </view>
+              <text class="count-width txt-label1-sb-px mg-r-8-px mg-l-8-px">
+                {{item.order}}
+              </text>
+              <image
+                data-ticketid="{{item.id}}"
+                data-categoryid="{{category.id}}"
+                data-amount="{{item.price}}"
+                data-stock="{{item.stock}}"
+                data-order="{{item.order}}"
+                onTap="{{ (item.stock !== undefined && item.order >= item.stock) ? 'handleMaxStock' : 'handlePlus' }}"
+                src="{{ (item.stock !== undefined && item.order >= item.stock) ? '/src/assets/icons/ic_common_add_circle_outline_gray.svg' : '/src/assets/icons/ic_common_add_circle_outline.svg' }}"
+                class="ic-remove"
+              />
+            </view>
+
+          </view>
+        </view>
+      </block>
+    </block>
+  </view>
+</view>
+
+<!-- Sticky Bottom CTA -->
+<view class="cta-container">
+  <view class="d-f-row jc-between mg-b-32" a:if="{{totalAmount > 0}}">
+    <text class="txt-body1-px">Total</text>
+    <text class="txt-amount3-px">{{fromatedTotalAmount || 'Rp0'}}</text>
+  </view>
+  <button
+    type="button"
+    disabled="{{totalAmount <= 0}}"
+    onTap="handleBooking"
+    class="custom-cta-btn {{totalAmount > 0 ? '' : 'custom-cta-btn-disabled'}}"
+    style="background: {{totalAmount > 0 ? ctaBackground : '#E5E5E5'}}; color: {{totalAmount > 0 ? ctaColor : '#ABABAB'}}; border-radius: {{ctaRadius}}; height: {{ctaHeight}};"
+  >
+    {{ctaLabel || 'Lanjut'}}
+  </button>
+</view>

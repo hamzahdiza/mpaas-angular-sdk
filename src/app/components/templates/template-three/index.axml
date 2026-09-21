@@ -1,4 +1,4 @@
-<view class="template3-container" style="background-color: #F8F9FA; min-height: 100vh; padding-bottom: 40px; color: #0E0E0E;">
+<view class="template3-container" style="background-color: #F8F9FA; min-height: 100vh; padding-bottom: 120px; color: #0E0E0E;">
     
     <!-- Header Area - Split Layout -->
     <view style="background-color: white; padding: 24px; padding-bottom: 0;">
@@ -86,7 +86,7 @@
         <view a:if="{{ detailEvent.termsAndConditions }}" style="margin-top: 24px; border-top: 1px solid #F0F0F0; padding-top: 24px;">
             <text style="display: block; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">Event Policy</text>
             <view style="padding-left: 12px; border-left: 2px solid #0E0E0E;">
-                <text style="font-size: 12px; color: #4E4E4E; line-height: 1.6; white-space: pre-line;">{{detailEvent.termsAndConditions}}</text>
+                <rich-text style="font-size: 12px; color: #4E4E4E; line-height: 1.6;" nodes="{{detailEvent.termsAndConditions}}" />
             </view>
         </view>
 

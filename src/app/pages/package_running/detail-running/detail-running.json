@@ -4,6 +4,7 @@
     "running-detail-two": "/src/app/components/running-detail-templates/running-detail-two/running-detail-two",
     "running-detail-three": "/src/app/components/running-detail-templates/running-detail-three/running-detail-three",
     "running-detail-four": "/src/app/components/running-detail-templates/running-detail-four/running-detail-four",
+    "running-detail-custom": "/src/app/components/running-detail-templates/running-detail-custom/running-detail-custom",
     "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar",
     "loading": "@bni-maverick-mpaas/lib/es/loading/loading"
   },

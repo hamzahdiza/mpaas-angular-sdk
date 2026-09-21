@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-bottom: 120rpx;
+  padding-bottom: 220rpx;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   color: #0E0E0E;
@@ -166,10 +166,24 @@
   margin-bottom: 6rpx;
 }
 
+.sdui-hero-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+}
+
 .sdui-hero-price {
   font-size: 36rpx;
   font-weight: 900;
   color: #EA580C;
+}
+
+.sdui-hero-price-strike {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #94A3B8;
+  text-decoration: line-through;
+  margin-left: 8rpx;
 }
 
 .sdui-hero-date-val {
@@ -357,9 +371,23 @@
   font-weight: 600;
 }
 
+.sdui-ticket-price-box {
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+}
+
 .sdui-ticket-price-val {
   font-size: 32rpx;
   font-weight: 800;
+}
+
+.sdui-ticket-price-strike {
+  font-size: 22rpx;
+  font-weight: 500;
+  color: #94A3B8;
+  text-decoration: line-through;
+  margin-left: 8rpx;
 }
 
 /* Sticky Bottom CTA */

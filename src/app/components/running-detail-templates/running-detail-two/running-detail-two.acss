@@ -104,3 +104,9 @@
   color: white;
 }
 
+.bg-navy-900 {
+  background-color: #0E3453 !important;
+  color: white !important;
+}
+
+

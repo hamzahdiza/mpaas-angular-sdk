@@ -100,7 +100,7 @@
         <view class="t4-section" a:if="{{detailEvent.termsAndConditions}}" style="margin-top: 32px;">
             <text class="t4-section-title">Good to Know</text>
             <view style="background: #F5F5F7; padding: 20px; border-radius: 12px;">
-                <text style="font-size: 14px; color: #4A4A4A; line-height: 1.6; white-space: pre-line;">{{detailEvent.termsAndConditions}}</text>
+                <rich-text style="font-size: 14px; color: #4A4A4A; line-height: 1.6;" nodes="{{detailEvent.termsAndConditions}}" />
             </view>
         </view>
     </view>

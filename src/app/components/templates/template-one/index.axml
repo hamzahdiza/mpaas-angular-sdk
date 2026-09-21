@@ -112,7 +112,7 @@
     <view a:if="{{ detailEvent.termsAndConditions }}" class="event-section" style="margin-bottom: 24px;">
         <text class="txt-h4" style="margin-bottom: 8px; display: block;">Important Info</text>
         <view style="background: #FFF7ED; padding: 16px; border-radius: 8px; border: 1px solid #FFEDD5;">
-            <text style="font-size: 12px; color: #4E4E4E; line-height: 1.5; white-space: pre-line;">{{detailEvent.termsAndConditions}}</text>
+            <rich-text style="font-size: 12px; color: #4E4E4E; line-height: 1.6;" nodes="{{detailEvent.termsAndConditions}}" />
         </view>
     </view>
 

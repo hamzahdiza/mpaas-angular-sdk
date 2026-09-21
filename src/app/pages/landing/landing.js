@@ -468,16 +468,32 @@ Page({
       const res = await getAllEvents();
       console.log(res, "res getAllEvents landing page")
       const events = (res.data && res.data.data) || [];
-      const formatted = events.map((ev) => ({
-        ...ev,
-        formattedPrice: 'Rp ' + ev.price.toLocaleString('id-ID'),
-        formattedDate: new Date(ev.startDate).toLocaleDateString('id-ID', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        }),
-        isImageLoading: true
-      }));
+      const formatted = events.map((ev) => {
+        const rawPrice = Number(ev.price || 0);
+        const rawNormalPrice = Number(ev.normalPrice || ev.normal_price || ev.maxPrice || ev.max_price || ev.originalPrice || ev.ticket_normal_price || 0);
+        const rawDiscountedPrice = (ev.discountedPrice !== undefined && ev.discountedPrice !== null) ? Number(ev.discountedPrice) : null;
+
+        let price = rawPrice;
+        let normalPrice = rawNormalPrice;
+        if (rawDiscountedPrice !== null && rawDiscountedPrice < rawPrice && rawDiscountedPrice > 0) {
+          price = rawDiscountedPrice;
+          normalPrice = rawPrice;
+        }
+
+        return {
+          ...ev,
+          price,
+          normalPrice,
+          formattedPrice: 'Rp ' + Number(price).toLocaleString('id-ID'),
+          formattedNormalPrice: (normalPrice > price && normalPrice > 0) ? ('Rp ' + Number(normalPrice).toLocaleString('id-ID')) : '',
+          formattedDate: new Date(ev.startDate).toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+          }),
+          isImageLoading: true
+        };
+      });
       this.setData({
         allEvents: formatted,
         isEventsLoading: false
@@ -494,16 +510,32 @@ Page({
     try {
       const res = await getAllRunning();
       const events = (res.data && res.data.data) || [];
-      const formatted = events.map((ev) => ({
-        ...ev,
-        formattedPrice: 'Rp ' + (ev.price || 0).toLocaleString('id-ID'),
-        formattedDate: new Date(ev.startDate).toLocaleDateString('id-ID', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        }),
-        isImageLoading: true
-      }));
+      const formatted = events.map((ev) => {
+        const rawPrice = Number(ev.price || 0);
+        const rawNormalPrice = Number(ev.normalPrice || ev.normal_price || ev.maxPrice || ev.max_price || ev.originalPrice || ev.ticket_normal_price || 0);
+        const rawDiscountedPrice = (ev.discountedPrice !== undefined && ev.discountedPrice !== null) ? Number(ev.discountedPrice) : null;
+
+        let price = rawPrice;
+        let normalPrice = rawNormalPrice;
+        if (rawDiscountedPrice !== null && rawDiscountedPrice < rawPrice && rawDiscountedPrice > 0) {
+          price = rawDiscountedPrice;
+          normalPrice = rawPrice;
+        }
+
+        return {
+          ...ev,
+          price,
+          normalPrice,
+          formattedPrice: 'Rp ' + Number(price).toLocaleString('id-ID'),
+          formattedNormalPrice: (normalPrice > price && normalPrice > 0) ? ('Rp ' + Number(normalPrice).toLocaleString('id-ID')) : '',
+          formattedDate: new Date(ev.startDate).toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+          }),
+          isImageLoading: true
+        };
+      });
       this.setData({
         allRunning: formatted
       });
@@ -518,16 +550,32 @@ Page({
     try {
       const res = await getFavoriteEvents();
       const events = (res.data && res.data.data) || [];
-      const formatted = events.map((ev) => ({
-        ...ev,
-        formattedPrice: 'Rp ' + (ev.price || 0).toLocaleString('id-ID'),
-        formattedDate: new Date(ev.startDate).toLocaleDateString('id-ID', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        }),
-        isImageLoading: true
-      }));
+      const formatted = events.map((ev) => {
+        const rawPrice = Number(ev.price || 0);
+        const rawNormalPrice = Number(ev.normalPrice || ev.normal_price || ev.maxPrice || ev.max_price || ev.originalPrice || ev.ticket_normal_price || 0);
+        const rawDiscountedPrice = (ev.discountedPrice !== undefined && ev.discountedPrice !== null) ? Number(ev.discountedPrice) : null;
+
+        let price = rawPrice;
+        let normalPrice = rawNormalPrice;
+        if (rawDiscountedPrice !== null && rawDiscountedPrice < rawPrice && rawDiscountedPrice > 0) {
+          price = rawDiscountedPrice;
+          normalPrice = rawPrice;
+        }
+
+        return {
+          ...ev,
+          price,
+          normalPrice,
+          formattedPrice: 'Rp ' + Number(price).toLocaleString('id-ID'),
+          formattedNormalPrice: (normalPrice > price && normalPrice > 0) ? ('Rp ' + Number(normalPrice).toLocaleString('id-ID')) : '',
+          formattedDate: new Date(ev.startDate).toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+          }),
+          isImageLoading: true
+        };
+      });
       this.setData({
         favoriteEvents: formatted
       });

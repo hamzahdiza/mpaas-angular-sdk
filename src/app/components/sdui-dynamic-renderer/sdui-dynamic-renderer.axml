@@ -136,9 +136,11 @@
               <text class="sdui-hero-label" style="color: {{(field.ticketConfig && field.ticketConfig.priceLabel && field.ticketConfig.priceLabel.color) || '#94A3B8'}};">
                 {{(field.ticketConfig && field.ticketConfig.priceLabel && field.ticketConfig.priceLabel.value) || 'MULAI DARI'}}
               </text>
-              <text class="sdui-hero-price" style="color: {{(field.ticketConfig && field.ticketConfig.price && field.ticketConfig.price.color) || '#EA580C'}};">
-                {{formattedPrice}}
-              </text>
+              <view class="sdui-hero-price-row">
+                <text class="sdui-hero-price" style="color: {{(field.ticketConfig && field.ticketConfig.price && field.ticketConfig.price.color) || '#EA580C'}};">
+                  {{formattedPrice}}
+                </text>
+              </view>
             </view>
             <view class="sdui-hero-col sdui-hero-col-right">
               <text class="sdui-hero-label">TANGGAL PELAKSANAAN</text>
@@ -229,10 +231,10 @@
             {{field.label}}
           </view>
           <view class="sdui-tnc-card" style="{{field.computedStyle}}">
-            <mp-html
+            <rich-text
               a:if="{{eventData.termsAndConditions}}"
               id="sdui-tnc-html"
-              content="{{eventData.termsAndConditions}}"
+              nodes="{{eventData.termsAndConditions}}"
             />
             <view a:else class="sdui-tnc-placeholder">
               Contoh syarat & ketentuan: 1. Tiket tidak dapat dipindahtangankan. 2. Wajib membawa identitas diri asli.
@@ -268,14 +270,19 @@
               <text class="sdui-ticket-price-label" style="color: {{(field.ticketConfig && field.ticketConfig.priceLabel && field.ticketConfig.priceLabel.color) || '#FF8736'}};">
                 {{(field.ticketConfig && field.ticketConfig.priceLabel && field.ticketConfig.priceLabel.value) || 'Mulai dari'}}
               </text>
-              <text class="sdui-ticket-price-val" style="color: {{(field.ticketConfig && field.ticketConfig.price && field.ticketConfig.price.color) || '#0E0E0E'}};">
-                {{formattedPrice}}
-              </text>
+              <view class="sdui-ticket-price-box">
+                <text class="sdui-ticket-price-val" style="color: {{(field.ticketConfig && field.ticketConfig.price && field.ticketConfig.price.color) || '#0E0E0E'}};">
+                  {{formattedPrice}}
+                </text>
+              </view>
             </view>
           </view>
         </view>
 
       </block>
+
+      <!-- Bottom Spacer to prevent CTA button from covering last cards -->
+      <view a:if="{{ctaConfig}}" style="height: 160rpx; width: 100%;"></view>
     </view>
 
     <!-- ============================================================= -->

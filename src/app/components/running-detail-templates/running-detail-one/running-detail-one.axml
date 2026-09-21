@@ -36,7 +36,7 @@
             <text class="txt-h4-px">
               {{item.formatPrice}}
             </text>
-            <text a:if="{{ item.normalPrice > 0 }}" class="strikethrough">
+            <text a:if="{{ item.formatNormalPrice }}" class="strikethrough">
               {{item.formatNormalPrice}}
             </text>
           </view>

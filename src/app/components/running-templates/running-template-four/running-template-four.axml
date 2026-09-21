@@ -137,7 +137,7 @@
     </view>
 
     <view class="bottom-price">
-      {{data.formattedPrice}}
+      <text>{{data.formattedPrice}}</text>
     </view>
    </view>
 

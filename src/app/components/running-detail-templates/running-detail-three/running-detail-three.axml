@@ -39,7 +39,7 @@
               <text class="txt-h4-px">
                 {{item.formatPrice}}
               </text>
-              <text a:if="{{ item.normalPrice > 0 }}" class="strikethrough">
+              <text a:if="{{ item.formatNormalPrice }}" class="strikethrough">
                 {{item.formatNormalPrice}}
               </text>
             </view>
@@ -109,7 +109,7 @@
       pixel
       onTap="handleBooking"
       disabled="{{totalAmount <= 0}}"
-      className="{{ totalAmount > 0 ? 'bg-orange-300 txt-label1-sb-px txt-white' : 'bg-snow-white txt-gray txt-label1-sb-px'}}"
+      className="{{ totalAmount > 0 ? 'bg-orange-gradient txt-label1-sb-px txt-white' : 'bg-snow-white txt-gray txt-label1-sb-px'}}"
     >
       LANJUTKAN REGISTRASI
     </bni-button>

@@ -119,3 +119,8 @@
 .bni-button-compact{
   background-color: #9C0621 !important;
 }
+
+.bg-maroon {
+  background-color: #9C0621 !important;
+  color: white !important;
+}

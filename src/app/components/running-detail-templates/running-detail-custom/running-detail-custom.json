@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar",
+    "bni-button": "/node_modules/@bni-maverick-mpaas/lib/es/bni-button/bni-button",
+    "loading-bni": "@bni-maverick-mpaas/lib/es/loading/loading"
+  },
+  "component": true,
+  "styleIsolation": "apply-shared"
+}

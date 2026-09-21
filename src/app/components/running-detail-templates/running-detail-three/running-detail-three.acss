@@ -160,3 +160,9 @@
   font-size: 24rpx;
   font-weight: bold;
 }
+
+.bg-orange-gradient {
+  background: linear-gradient(90deg, #f97316 0%, #f59e0b 100%) !important;
+  color: #ffffff !important;
+}
+

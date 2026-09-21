@@ -11,14 +11,15 @@ Page({
   onLoad(query) {
     const queryData = (query && query.customUrlQueryData && my.customUrlQueryData && my.customUrlQueryData[query.customUrlQueryData]) || {};
     const runningData = queryData.runningData || queryData.eventDetail || queryData.ticketData || queryData;
-    const rawId = (runningData && ((runningData.templates && runningData.templates.bookTicket && runningData.templates.bookTicket.id) || runningData.templateId || runningData.selected_template)) || queryData.templateId || 1;
+    const rawId = (runningData && ((runningData.templates && runningData.templates.bookTicket && runningData.templates.bookTicket.id) || runningData.templateId || runningData.selected_template || runningData.selectedTemplate)) || queryData.templateId || 1;
     const cleanNum = Number(String(rawId).replace('template-', ''));
-    const templateId = (!isNaN(cleanNum) && cleanNum >= 1 && cleanNum <= 4) ? cleanNum : 1;
+    const templateId = (!isNaN(cleanNum) && cleanNum >= 1 && cleanNum <= 4) ? cleanNum : (rawId || 'custom');
 
     this.setData({
       runningData,
       ticketData: queryData.ticketData || runningData,
-      templateId
+      templateId,
+      rawTemplateId: rawId
     });
   },
   onBackToIndex() {

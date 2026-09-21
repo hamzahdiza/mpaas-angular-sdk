@@ -299,7 +299,17 @@ Page({
   },
 
   homeHandler() {
-    my.call("goToHomeScreen", {}, () => {})
+    if (my.reLaunch) {
+      my.reLaunch({
+        url: "/src/app/pages/landing/landing"
+      });
+    } else if (my.redirectTo) {
+      my.redirectTo({
+        url: "/src/app/pages/landing/landing"
+      });
+    } else {
+      my.call("goToHomeScreen", {}, () => {});
+    }
   },
 
   async processPOSOrder() {

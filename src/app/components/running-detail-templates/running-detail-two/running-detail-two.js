@@ -39,8 +39,24 @@ Component({
             description: data.description || '',
             tickets: rawTickets.map((t) => {
               const ticketId = t.id || t.ticket_id || t.ticketId || `t_${Math.random()}`;
-              const price = t.discountedPrice !== undefined && t.discountedPrice !== null && t.discountedPrice < t.price ? t.discountedPrice : (t.price || t.ticket_price || 0);
-              const normalPrice = t.price && t.discountedPrice && t.discountedPrice < t.price ? t.price : (t.normalPrice || t.ticket_normal_price || 0);
+              const rawPrice = Number(t.price !== undefined ? t.price : (t.ticket_price || 0));
+              const rawNormalPrice = Number(t.normalPrice || t.normal_price || t.maxPrice || t.max_price || t.originalPrice || t.original_price || t.ticket_normal_price || t.ticketNormalPrice || 0);
+              const rawDiscountedPrice = (t.discountedPrice !== undefined && t.discountedPrice !== null) ? Number(t.discountedPrice) : 
+                                         (t.discounted_price !== undefined && t.discounted_price !== null) ? Number(t.discounted_price) :
+                                         (t.discountPrice !== undefined && t.discountPrice !== null) ? Number(t.discountPrice) :
+                                         (t.discount_price !== undefined && t.discount_price !== null) ? Number(t.discount_price) : null;
+
+              let price = rawPrice;
+              let normalPrice = rawNormalPrice;
+
+              if (rawDiscountedPrice !== null && rawDiscountedPrice < rawPrice && rawDiscountedPrice > 0) {
+                price = rawDiscountedPrice;
+                normalPrice = rawPrice;
+              } else if (rawNormalPrice > rawPrice && rawPrice > 0) {
+                price = rawPrice;
+                normalPrice = rawNormalPrice;
+              }
+
               const totalStock = t.stock !== undefined ? t.stock : (t.ticket_stock !== undefined ? t.ticket_stock : 999);
               const sold = t.ticketsSold !== undefined ? t.ticketsSold : (t.tickets_sold !== undefined ? t.tickets_sold : (t.sold !== undefined ? t.sold : 0));
               const stock = t.remainingStock !== undefined ? t.remainingStock : (t.remaining_stock !== undefined ? t.remaining_stock : Math.max(0, totalStock - sold));
@@ -70,8 +86,24 @@ Component({
           ...cat,
           tickets: ((cat.tickets && cat.tickets.length > 0) ? cat.tickets : [cat]).map((t) => {
             const ticketId = t.id || t.ticket_id || t.ticketId || `t_${Math.random()}`;
-            const price = t.discountedPrice !== undefined && t.discountedPrice !== null && t.discountedPrice < t.price ? t.discountedPrice : (t.price || t.ticket_price || 0);
-            const normalPrice = t.price && t.discountedPrice && t.discountedPrice < t.price ? t.price : (t.normalPrice || t.ticket_normal_price || 0);
+            const rawPrice = Number(t.price !== undefined ? t.price : (t.ticket_price || 0));
+            const rawNormalPrice = Number(t.normalPrice || t.normal_price || t.maxPrice || t.max_price || t.originalPrice || t.original_price || t.ticket_normal_price || t.ticketNormalPrice || cat.normalPrice || cat.maxPrice || 0);
+            const rawDiscountedPrice = (t.discountedPrice !== undefined && t.discountedPrice !== null) ? Number(t.discountedPrice) : 
+                                       (t.discounted_price !== undefined && t.discounted_price !== null) ? Number(t.discounted_price) :
+                                       (t.discountPrice !== undefined && t.discountPrice !== null) ? Number(t.discountPrice) :
+                                       (t.discount_price !== undefined && t.discount_price !== null) ? Number(t.discount_price) : null;
+
+            let price = rawPrice;
+            let normalPrice = rawNormalPrice;
+
+            if (rawDiscountedPrice !== null && rawDiscountedPrice < rawPrice && rawDiscountedPrice > 0) {
+              price = rawDiscountedPrice;
+              normalPrice = rawPrice;
+            } else if (rawNormalPrice > rawPrice && rawPrice > 0) {
+              price = rawPrice;
+              normalPrice = rawNormalPrice;
+            }
+
             const totalStock = t.stock !== undefined ? t.stock : (t.ticket_stock !== undefined ? t.ticket_stock : 999);
             const sold = t.ticketsSold !== undefined ? t.ticketsSold : (t.tickets_sold !== undefined ? t.tickets_sold : (t.sold !== undefined ? t.sold : 0));
             const stock = t.remainingStock !== undefined ? t.remainingStock : (t.remaining_stock !== undefined ? t.remaining_stock : Math.max(0, totalStock - sold));
@@ -87,7 +119,7 @@ Component({
               isAvailable: stock > 0 ? 1 : 0,
               order: 0,
               formatPrice: currencyFormat({ value: price }),
-              formatNormalPrice: normalPrice > 0 ? currencyFormat({ value: normalPrice }) : ""
+              formatNormalPrice: (normalPrice > price && normalPrice > 0) ? currencyFormat({ value: normalPrice }) : ""
             };
           })
         }))
