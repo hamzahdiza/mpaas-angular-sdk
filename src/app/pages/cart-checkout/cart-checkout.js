@@ -1,5 +1,4 @@
 import { customNavigateTo } from "/src/utils/route-util";
-import { currencyFormat } from "/src/utils/currency-util";
 import { createEcommerceOrder } from "/src/public/api";
 
 Page({
@@ -99,6 +98,7 @@ Page({
   },
 
   onShow() {
+    this.setData({ isLoading: false });
     if (this.data.isDirectBuy && this.data.cart && this.data.cart.length > 0) {
       this.calculateSummary();
       return;
@@ -118,6 +118,10 @@ Page({
       }
     }
     this.setData({ cart: latestCart }, () => this.calculateSummary());
+  },
+
+  onHide() {
+    this.setData({ isLoading: false });
   },
 
   onBack() {
@@ -225,6 +229,7 @@ Page({
   },
 
   async handlePayment() {
+    if (this.data.isLoading) return;
     if (this.data.cart.length === 0) {
       my.showToast({ content: 'Keranjang belanja kosong', type: 'none' });
       return;
@@ -338,18 +343,17 @@ Page({
 
       customNavigateTo({
         url: "/src/app/package_transaction/pages/gather-transfer/gather-transfer",
-        data: checkoutData
+        data: checkoutData,
+        fail: (navErr) => {
+          console.warn("customNavigateTo failed:", navErr);
+          this.setData({ isLoading: false });
+        }
       });
     } catch (err) {
       console.error("Payment error:", err);
       my.showToast({ content: 'Gagal melanjutkan pembayaran', type: 'fail' });
-    } finally {
       this.setData({ isLoading: false });
     }
-  },
-
-  onBack() {
-    my.navigateBack();
   }
 });
 

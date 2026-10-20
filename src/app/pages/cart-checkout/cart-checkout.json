@@ -3,7 +3,8 @@
   "usingComponents": {
     "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar",
     "error-internet": "/src/app/components/error-internet/error-internet",
-    "general-error": "/src/app/components/general-error/general-error"
+    "general-error": "/src/app/components/general-error/general-error",
+    "loading": "@bni-maverick-mpaas/lib/es/loading/loading"
   },
   "transparentTitle": "always",
   "titlePenetrate": "YES",

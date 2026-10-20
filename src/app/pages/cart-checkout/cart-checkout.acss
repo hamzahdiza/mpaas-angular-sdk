@@ -463,6 +463,32 @@
   text-align: center;
   box-shadow: 0 4px 10px rgba(241, 90, 34, 0.25);
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-pay-now.btn-disabled {
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.btn-spinner-icon {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin-btn 0.75s linear infinite;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+@keyframes spin-btn {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .btn-pay-txt {

@@ -10,6 +10,7 @@
       color="#FFFFFF"
       title="Wondr Lifestyle"
       iconL="/src/assets/icons/ic_common_arrow_back_white.svg"
+      exit
       iconR="/src/assets/icons/Icon_transaction_history_white.svg"
       onIconRTap="goToTransactionHistory"
       safeArea="{{true}}"

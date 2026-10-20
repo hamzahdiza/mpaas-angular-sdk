@@ -192,11 +192,13 @@
       <text class="total-caption">Total Pembayaran</text>
       <text class="total-price-large">{{totalAmountFormatted}}</text>
     </view>
-    <view class="btn-pay-now" onTap="handlePayment">
-      <text class="btn-pay-txt">Bayar Sekarang</text>
+    <view class="btn-pay-now {{ isLoading ? 'btn-disabled' : '' }}" onTap="handlePayment">
+      <view a:if="{{ isLoading }}" class="btn-spinner-icon" />
+      <text class="btn-pay-txt">{{ isLoading ? 'Memproses...' : 'Bayar Sekarang' }}</text>
     </view>
   </view>
 
+  <loading pixel loading="{{ isLoading }}"></loading>
   <error-internet></error-internet>
   <general-error></general-error>
 </view>
