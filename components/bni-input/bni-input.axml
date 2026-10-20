@@ -1,0 +1,704 @@
+<block a:if="{{ !pixel }}">
+  <view
+    a:if="{{ type !== 'birthDate' }}"
+    id="input1"
+    style="overflow : hidden"
+    catchTap="{{customKeyboard ? 'onNumberFocus' : 'onPopupFocused'}}"
+    class="
+    {{type == 'amountWithClear' ? 'inputAmount' : (type == 'amountType' ? 'inputAmountType' : 'input')}}
+    {{inputFocusStatus ? 'border-turquoise-400' : 'border-light-gray'}} 
+    {{error && type != 'amount' && 'border-error'}} 
+    {{success && 'border-success'}} 
+    {{type == 'read-only' ?  'bg-snow-white border-snow-white' : 'bg-white'}} 
+    {{type == 'disabled' ?  'bg-off-white border-off-white' : 'bg-white'}}
+    {{type == 'amount' && 'bottomBorder border-light-gray'}}
+    {{type == 'amountWithClear' && 'bottomBorderAmount'}}
+    {{type == 'search' && 'searchStyle'}}
+    "
+  >
+    <view a:if="{{ prefixIcon }}" class="prefixIconStyle" > 
+      <image
+        mode="aspectFit"
+        style="width : 48rpx; height : 48rpx"
+        src="{{prefixIcon}}"
+        onTap="onPrefix"
+      />
+    </view>
+
+    <text a:if="{{ prefixIconText }}" style="{{prefixIconTextStyle}}" class="prefixIconTextProp {{prefixIconTextClass}} txt-amount2 txt-black {{type === 'amountWithClear' && 'amountGap'}} {{type === 'amountType' && 'prefixIconGap border-right-gray'}} {{(error && type === 'amountType') ? 'border-right-red': ''}} {{(!error && inputFocusStatus && type === 'amountType') ? 'border-right-green': ''}}">
+      {{prefixIconText}}
+    </text>
+
+    <view
+      class="{{ ( type === 'amountType' || type === 'amountWithClear') ? 'amount-center':'inputGroup'}}"
+      onTap="onFocused" style="overflow : hidden "
+    >
+
+      <text
+        a:if="{{ type != 'amount' && type != 'search' && type !== 'amountWithClear' && type !== 'amountType' && inputLabel}}"
+        class=" {{labelClass}}
+        txt-body{{inputFocusStatus || inputValue || placeholder ? '3 input-label' : '2'}} 
+        {{(inputValue || inputFocusStatus || placeholder) && type != 'disabled' ? 'txt-black' : 'txt-gray'}}
+      "
+        style="{{labelStyle}}"
+      >
+        {{inputLabel}}
+      </text>
+      <view a:if="{{ customKeyboard }}" style="overflow: hidden">
+        <view
+          a:if="{{ inputFocusStatus || inputValue || placeholder || type == 'amount' || type == 'search' || type == 'amountWithClear' || type === 'amountType'}}"
+          style="display : flex; overflow-x: scroll; padding : 0rpx;{{type == 'amountType' && 'text-align: right;padding: 0rpx 24rpx'}}"
+          class="
+          {{type == 'read-only' &&  'bg-snow-white'}} 
+          {{type == 'disabled' &&  'bg-off-white'}}
+          "
+        >
+          <text id={{idInput}} class="{{(type == 'amount' || type == 'amountWithClear' || type == 'amountType') ? 'txt-amount2-px amountHeight-px txt-black' : 'txt-body2-px txt-black '}}">{{inputValue}}</text>
+          <view  class="  {{inputFocusStatus ? 'clear-input-icon-container-blink' :'clear-input-icon-container'}}" />
+        </view>
+      </view>
+      <view a:if="{{ !customKeyboard }}">
+        <input
+          a:if="{{ inputFocusStatus || inputValue || placeholder || type == 'amount' || type == 'search' || type == 'amountWithClear' || type === 'amountType'}}"
+          style="flex-grow: 1; width : 100%; padding : 0rpx;{{type == 'amountType' && 'text-align: right;padding: 0rpx 24rpx'}} "
+          maxlength={{maxChar}}
+          onInput="onChange"
+          focus="{{inputFocusStatus}}"
+          value="{{inputValue}}"
+          controlled={{true}}
+          id={{idInput}}
+          class="
+            {{type == 'read-only' &&  'bg-snow-white'}} 
+            {{type == 'disabled' &&  'bg-off-white'}}
+            {{(type == 'amount' || type == 'amountWithClear' || type == 'amountType') ? 'txt-amount2 amountHeight txt-black' : 'txt-body2 txt-black '}}
+          "
+          onBlur="onBlur"
+          placeholder="{{placeholder}}"
+          placeholder-style="{{ placeholderStyle }}"
+          placeholder-class="{{ placeholderClass }}"
+          disabled={{type == 'disabled' || type == 'read-only' ? true : false}}
+          type={{variant}}
+        />
+      </view>
+    </view>
+    <view
+      a:if="{{ type === 'amountWithClear' && inputValue !=='' && inputValue!== '0' }}"
+      catchTap="onClear"
+      class="clear-container"
+    >
+      <image src="{{clearIcon}}" class="amount-clear-icon" />
+    </view>
+    <view a:if="{{ suffixIcon }}" class="suffixIconStyle" >
+      <image
+        mode="aspectFit"
+        style="width : 24px; height : 24px"
+        src="{{suffixIcon}}"
+        onTap="onSuffix"
+      />
+    </view>
+    <text a:if="{{ suffixIconText }}" style="{{suffixIconTextStyle}}" class="suffixIconTextProp {{suffixIconTextClass}} txt-amount2 txt-black {{type === 'amountWithClear' && 'amountGap'}} {{type === 'amountType' && 'suffixIconGap border-right-gray'}} {{(error && type === 'amountType') ? 'border-right-red': ''}} {{(!error && inputFocusStatus && type === 'amountType') ? 'border-right-green': ''}}">
+      {{suffixIconText}}
+    </text>
+  </view>
+<!-- {{visible && birthDateFocusStatus === item || inputValue[item] && suffixIconText ? 'jc-between' : 'jc-start' }} -->
+  <view a:if="{{ type === 'birthDate' }}" class="birthdate-input-container">
+    <view
+      a:for="{{ birthDateFormat }}"
+      a:for-index="idx"
+      style="width:calc(100% / {{birthDateFormat.length}} - 48rpx) ; overflow : hidden"
+      class="
+        birthdate-section-input 
+        {{visible && birthDateFocusStatus === item || inputValue[item] && suffixIconText ? 'jc-between' : 'jc-start' }}
+        {{idx === 0 && birthDateFormat.length !== 2 && 'border-left-input border-light-gray relative-2' }} 
+        {{idx === 0 && birthDateFormat[0] === birthDateFocusStatus && birthDateFormat.length !== 2 && visible && 'border-left-input border-success zIndex relative-2' }} 
+        {{idx === 0 && birthDateFormat.length === 2 && 'border-left-input border-light-gray relative-1' }} 
+        {{idx === 0 && birthDateFormat[0] === birthDateFocusStatus && birthDateFormat.length === 2 && visible && 'border-left-input border-success zIndex relative-1' }} 
+        {{idx !== 0 && idx !== birthDateFormat.length - 1 && 'border-input border-light-gray relative-1'}} 
+        {{idx !== 0 && idx !== birthDateFormat.length - 1 && birthDateFormat[birthDateFormat.length - 1] !== birthDateFocusStatus && birthDateFormat[0] !== birthDateFocusStatus && visible &&  'border-input border-success relative-1 zIndex'}} 
+        {{idx === birthDateFormat.length - 1 && 'border-right-input'}}
+        {{idx === birthDateFormat.length - 1 && birthDateFormat[birthDateFormat.length - 1] === birthDateFocusStatus && visible && 'border-right-input border-success zIndex'}}
+        {{disabled ? 'bg-snow-white border-white' : 'border-light-gray'}} 
+        "
+      data-field="{{item}}"
+      onTap="onNumberFocus"
+    >
+      <view style="overflow : hidden">
+        <text a:if="{{ title }}" class="txt-label2 {{(birthDateFocusStatus === item && visible) || inputValue[item] ? 'txt-black' : 'txt-charcoal'}}">
+          {{title[item].value}}
+        </text>
+        <view
+          a:if="{{ visible && birthDateFocusStatus === item || inputValue[item] }}"
+          class="txt-body2 birthdate-input"
+        >
+          <view class="number-content {{inputValue[item] ? '' : 'number-placeholder'}}">
+            <!--display: inline-->
+            <text a:if="{{inputValue[item]}}" id={{title[item].id || suffixIconText[item].id}} style="overflow-x : scroll">{{inputValue[item]}}</text>
+            <!--display: inline-->
+            <view
+              a:if="{{ visible && birthDateFocusStatus === item }}"
+              class="number-light"
+              style="{{inputValue[item] ? 'position: static;' : 'position: absolute;'}}"
+            >
+            </view>
+
+          </view>
+
+        </view>
+      </view>
+      <view a:if="{{ clearIcon && !suffixIconText && birthDateFocusStatus === item && visible}}" class="birthdate-clear-icon-px" >
+        <image
+          onTap="onClear"
+          src="{{clearIcon}}"
+          class="birthdate-clear-icon"
+        />
+      </view>
+
+      <text 
+        a:if="{{ suffixIconText && visible && birthDateFocusStatus === item || inputValue[item] }}" 
+        style="{{suffixIconTextStyle}}" 
+        class="
+        {{(birthDateFocusStatus === item && visible) || inputValue[item] ? 'txt-black' : 'txt-charcoal'}}
+          suffixIconTextProp txt-body2-px txt-black {{suffixIconTextClass}} 
+          {{type === 'amountWithClear' && 'amountGap'}} 
+          {{type === 'amountType' && 'suffixIconGap border-right-gray'}} 
+          {{(error && type === 'amountType') ? 'border-right-red': ''}} 
+          {{(!error && inputFocusStatus && type === 'amountType') ? 'border-right-green': ''}}">
+        {{suffixIconText[item].value}}
+      </text>
+
+    </view>
+
+  </view>
+
+  <view
+    a:if="{{ error || success || caption || counter }}"
+    id="input2"
+    catchTap="onPopupFocused"
+    class="{{type == 'amount' || type == 'amountWithClear' || type === 'amountType' ? 'message-amount' : 'message'}}"
+  >
+
+    <view style="display : flex; align-items : center; min-height : 32rpx">
+
+      <view a:if="{{ error || success }}" class="
+        messageIconStyle 
+        {{error && 'error bg-error'}} 
+        {{success && 'success bg-success'}}">
+      </view>
+
+      <text a:if="{{ caption }}" class="
+        txt-label2 
+        {{type == 'disabled' || type == 'read-only' ? 'txt-charcoal' : 'txt-black'}} 
+        {{error && 'txt-error'}} 
+        {{success && 'txt-success'}}
+      ">
+        {{caption}}
+      </text>
+    </view>
+
+    <view>
+      <text a:if="{{ counter }}" class="
+        txt-label2 
+        {{type == 'disabled' || type == 'read-only' ? 'txt-charcoal' : 'txt-black'}} 
+        {{error && 'txt-error'}} 
+        {{success && 'txt-success'}}
+      ">
+        {{inputValue.length}}/{{maxChar}}
+      </text>
+    </view>
+
+  </view>
+  <!--<popup class="input-amount-popup" visible="{{ inputFocusStatus && (type == 'amountWithClear' || type == 'amountType')}}" position="bottom" showMask="{{false}}"> -->
+
+  <view
+    a:if="{{ showKeybord }}"
+    id="input-keyboard"
+    class="input-keyboard"
+    catchTap="onPopupFocused"
+  >
+    <view id="input-keyboard-selesai" class="input-keyboard-selesai">
+      <view
+        id="input-keyboard-selesai-text"
+        class="input-keyboard-selesai-text"
+        catchTap="handlePopupClose"
+      >
+        {{keyboardbuttonText}}
+      </view>
+    </view>
+    <view id="input-keyboard-group" class="input-keyboard-group">
+      <view class="input-keyboard-group-row">
+        <button
+          id="input-keyboard-button1"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='1'
+        >
+          1
+        </button>
+        <button
+          id="input-keyboard-button2"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='2'
+        >
+          2
+        </button>
+        <button
+          id="input-keyboard-button3"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='3'
+        >
+          3
+        </button>
+      </view>
+      <view class="input-keyboard-group-row">
+        <button
+          id="input-keyboard-button4"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='4'
+        >
+          4
+        </button>
+        <button
+          id="input-keyboard-button5"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='5'
+        >
+          5
+        </button>
+        <button
+          id="input-keyboard-button6"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='6'
+        >
+          6
+        </button>
+      </view>
+      <view class="input-keyboard-group-row">
+        <button
+          id="input-keyboard-button7"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='7'
+        >
+          7
+        </button>
+        <button
+          id="input-keyboard-button8"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='8'
+        >
+          8
+        </button>
+        <button
+          id="input-keyboard-button9"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='9'
+        >
+          9
+        </button>
+      </view>
+      <view class="input-keyboard-group-row">
+        <button
+          a:if="{{type == 'amountWithClear'}}"
+          id="button000"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='000'
+        >
+          000
+        </button>
+        <button
+          a:if="{{type == 'amountType'}}"
+          id="buttonDrop"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='.'
+        >
+          .
+        </button>
+        <button
+          id="button0"
+          class="input-keyboard-group-button"
+          onTap="onHandleClick"
+          data-attr='0'
+        >
+          0
+        </button>
+        <view id="delete-button-box" class="input-keyboard-delete-button-box">
+          <button
+            id="delete-button"
+            class="input-keyboard-group-delete-button"
+            onTap="onHandleClickDelete"
+          >
+            <image class="delete-icon" src={{keyboardDeleteIcon}} />
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--</popup> -->
+</block>
+
+
+<!-- PIXEL MODE -->
+<block a:if="{{ pixel }}">
+  <view
+    a:if="{{ type !== 'birthDate' }}"
+    id="input1"
+    style="overflow : hidden"
+    catchTap="{{customKeyboard ? 'onNumberFocus' : 'onPopupFocused'}}"
+    class="
+    {{type == 'amountWithClear' ? 'inputAmount-px' : (type == 'amountType' ? 'inputAmountType-px' : 'input-px')}}
+    {{inputFocusStatus ? 'border-turquoise-400' : 'border-light-gray'}} 
+    {{error && type != 'amount' && 'border-error'}} 
+    {{success && 'border-success'}} 
+    {{type == 'read-only' ?  'bg-snow-white border-snow-white' : 'bg-white'}} 
+    {{type == 'disabled' ?  'bg-off-white border-off-white' : 'bg-white'}}
+    {{type == 'amount' && 'bottomBorder-px border-light-gray'}}
+    {{type == 'amountWithClear' && 'bottomBorderAmount-px'}}
+    {{type == 'search' && 'searchStyle-px'}}
+    "
+  >
+    <view a:if="{{ prefixIcon }}" class="prefixIconStyle-px" > 
+      <image
+        mode="aspectFit"
+        style="width : 24px; height : 24px"
+        src="{{prefixIcon}}"
+        onTap="onPrefix"
+      />
+    </view>
+
+    <text a:if="{{ prefixIconText }}" style="{{prefixIconTextStyle}}" class="prefixIconTextProp-px {{prefixIconTextClass}} txt-amount2-px txt-black {{type === 'amountWithClear' && 'amountGap-px'}} {{type === 'amountType' && 'prefixIconGap-px border-right-gray'}} {{(error && type === 'amountType') ? 'border-right-red': ''}} {{(!error && inputFocusStatus && type === 'amountType') ? 'border-right-green': ''}}">
+      {{prefixIconText}}
+    </text>
+
+    <view
+      class="{{ ( type === 'amountType' || type === 'amountWithClear') ? 'amount-center-px':'inputGroup-px'}}"
+      onTap="onFocused" style="overflow : hidden "
+    >
+
+      <text
+        a:if="{{ type != 'amount' && type != 'search' && type !== 'amountWithClear' && type !== 'amountType' && inputLabel}}"
+        class=" {{labelClass}}
+        txt-body{{inputFocusStatus || inputValue || placeholder ? '3-px input-label' : '2-px'}} 
+        {{(inputValue || inputFocusStatus || placeholder) && type != 'disabled' ? 'txt-black' : 'txt-gray'}}
+      "
+        style="{{labelStyle}}"
+      >
+        {{inputLabel}}
+      </text>
+      <view a:if="{{ customKeyboard }}" style="overflow: hidden">
+        <view
+          a:if="{{ inputFocusStatus || inputValue || placeholder || type == 'amount' || type == 'search' || type == 'amountWithClear' || type === 'amountType'}}"
+          style="display : flex; overflow-x: scroll; padding : 0px;{{type == 'amountType' && 'text-align: right;padding: 0px 12px'}}"
+          class="
+          {{type == 'read-only' &&  'bg-snow-white'}} 
+          {{type == 'disabled' &&  'bg-off-white'}}
+          "
+        >
+          <text id={{idInput}} class="{{(type == 'amount' || type == 'amountWithClear' || type == 'amountType') ? 'txt-amount2-px amountHeight-px txt-black' : 'txt-body2-px txt-black '}}">{{inputValue}}</text>
+          <view  class="  {{inputFocusStatus ? 'clear-input-icon-container-blink-px' :'clear-input-icon-container-px'}}" />
+        </view>
+      </view>
+      <view a:if="{{ !customKeyboard }}">
+        <input
+          a:if="{{ inputFocusStatus || inputValue || placeholder || type == 'amount' || type == 'search' || type == 'amountWithClear' || type === 'amountType'}}"
+          style="flex-grow: 1; width : 100%; padding : 0px;{{type == 'amountType' && 'text-align: right;padding: 0px 12px'}} "
+          maxlength={{maxChar}}
+          onInput="onChange"
+          focus="{{inputFocusStatus}}"
+          value="{{inputValue}}"
+          controlled={{true}}
+          id={{idInput}}
+          class="
+            {{type == 'read-only' &&  'bg-snow-white'}} 
+            {{type == 'disabled' &&  'bg-off-white'}}
+            {{(type == 'amount' || type == 'amountWithClear' || type == 'amountType') ? 'txt-amount2-px amountHeight-px txt-black' : 'txt-body2-px txt-black '}}
+          "
+          onBlur="onBlur"
+          placeholder="{{placeholder}}"
+          placeholder-style="{{ placeholderStyle }}"
+          placeholder-class="{{ placeholderClass }}"
+          disabled={{type == 'disabled' || type == 'read-only' ? true : false}}
+          type={{variant}}
+        />
+      </view>
+    </view>
+    <view
+      a:if="{{ type === 'amountWithClear' && inputValue !=='' && inputValue!== '0' }}"
+      catchTap="onClear"
+      class="clear-container-px"
+    >
+      <image src="{{clearIcon}}" class="amount-clear-icon-px" />
+    </view>
+    <view a:if="{{ suffixIcon }}" class="suffixIconStyle-px" >
+      <image
+        mode="aspectFit"
+        style="width : 24px; height : 24px"
+        src="{{suffixIcon}}"
+        onTap="onSuffix"
+      />
+    </view>
+    <text a:if="{{ suffixIconText }}" style="{{suffixIconTextStyle}}" class="suffixIconTextProp-px {{suffixIconTextClass}} txt-amount2-px txt-black {{type === 'amountWithClear' && 'amountGap-px'}} {{type === 'amountType' && 'suffixIconGap-px border-right-gray'}} {{(error && type === 'amountType') ? 'border-right-red': ''}} {{(!error && inputFocusStatus && type === 'amountType') ? 'border-right-green': ''}}">
+      {{suffixIconText}}
+    </text>
+  </view>
+
+  <view a:if="{{ type === 'birthDate' }}" class="birthdate-input-container-px " >
+    <view
+      a:for="{{ birthDateFormat }}"
+      a:for-index="idx"
+      style="width:calc(100% / {{birthDateFormat.length}} - 24px) ; overflow : hidden"
+      class="
+        birthdate-section-input-px  
+        {{visible && birthDateFocusStatus === item || inputValue[item] && suffixIconText ? 'jc-between' : 'jc-start' }}
+        {{idx === 0 && birthDateFormat.length !== 2 && 'border-left-input-px border-light-gray relative-2-px' }} 
+        {{idx === 0 && birthDateFormat[0] === birthDateFocusStatus && birthDateFormat.length !== 2 && visible && 'border-left-input-px border-success zIndex relative-2-px' }} 
+        {{idx === 0 && birthDateFormat.length === 2 && 'border-left-input-px border-light-gray relative-1-px' }} 
+        {{idx === 0 && birthDateFormat[0] === birthDateFocusStatus && birthDateFormat.length === 2 && visible && 'border-left-input-px border-success zIndex relative-1-px' }} 
+        {{idx !== 0 && idx !== birthDateFormat.length - 1  && birthDateFormat.length > 2 && 'border-input-px border-light-gray relative-1-px'}}
+        {{idx !== 0 && idx !== birthDateFormat.length - 1  && 'border-input-px border-light-gray relative-1-px'}} 
+        {{idx !== 0 && idx !== birthDateFormat.length - 1 && birthDateFormat[birthDateFormat.length - 1] !== birthDateFocusStatus && birthDateFormat[0] !== birthDateFocusStatus && visible && birthDateFocusStatus &&  'border-input-px border-success relative-1-px zIndex'}} 
+        {{idx === birthDateFormat.length - 1 && 'border-right-input-px'}}
+        {{idx === birthDateFormat.length - 1 && birthDateFormat[birthDateFormat.length - 1] === birthDateFocusStatus && visible && 'border-right-input-px border-success zIndex'}}
+        {{disabled ? 'bg-snow-white border-white' : 'border-light-gray'}} 
+        "
+      data-field="{{item}}"
+      onTap="onNumberFocus"
+    >
+      <view style="overflow : hidden">
+        <text a:if="{{ title }}" class="txt-label2-px {{(birthDateFocusStatus === item && visible) || inputValue[item] ? 'txt-black' : 'txt-charcoal'}}">
+          {{title[item].value}}
+        </text>
+        <view
+          a:if="{{ visible && birthDateFocusStatus === item || inputValue[item] }}"
+          class="txt-body2-px birthdate-input-px" 
+        >
+          <view class="number-content-px {{inputValue[item] ? '' : 'number-placeholder-px'}}">
+            <!--display: inline-->
+            <text a:if="{{inputValue[item]}}" id={{title[item].id || suffixIconText[item].id}} style="overflow-x : scroll">{{inputValue[item]}}</text>
+            <!--display: inline-->
+            <view
+              a:if="{{ visible && birthDateFocusStatus === item }}"
+              class="number-light-px"
+              style="{{inputValue[item] ? 'position: static;' : 'position: absolute;'}}"
+            >
+            </view>
+
+          </view>
+
+        </view>
+      </view>
+      <view a:if="{{ clearIcon && !suffixIconText && birthDateFocusStatus === item && visible}}" class="birthdate-clear-icon-px" >
+        <image
+          onTap="onClear"
+          src="{{clearIcon}}"
+          class="birthdate-clear-icon-px"
+        />
+      </view>
+<!--   -->
+
+      <text 
+        a:if="{{ suffixIconText }}" 
+        style="{{suffixIconTextStyle}} " 
+        class="{{(birthDateFocusStatus === item && visible) || inputValue[item] ? 'txt-black' : 'txt-charcoal'}} txt-body2-px {{suffixIconTextClass}}">
+        {{suffixIconText[item].value}}
+      </text>
+
+    </view>
+
+  </view>
+
+  <view
+    a:if="{{ error || success || caption || counter }}"
+    id="input2"
+    catchTap="onPopupFocused"
+    class="{{type == 'amount' || type == 'amountWithClear' || type === 'amountType' ? 'message-amount-px' : 'message-px'}}"
+  >
+
+    <view style="display : flex; align-items : center; min-height : 16px">
+
+      <view a:if="{{ error || success }}" class="
+        messageIconStyle-px 
+        {{error && 'error bg-error'}} 
+        {{success && 'success bg-success'}}">
+      </view>
+
+      <text a:if="{{ caption }}" class="
+        txt-label2-px 
+        {{type == 'disabled' || type == 'read-only' ? 'txt-charcoal' : 'txt-black'}} 
+        {{error && 'txt-error'}} 
+        {{success && 'txt-success'}}
+      ">
+        {{caption}}
+      </text>
+    </view>
+
+    <view>
+      <text a:if="{{ counter }}" class="
+        txt-label2-px 
+        {{type == 'disabled' || type == 'read-only' ? 'txt-charcoal' : 'txt-black'}} 
+        {{error && 'txt-error'}} 
+        {{success && 'txt-success'}}
+      ">
+        {{inputValue.length}}/{{maxChar}}
+      </text>
+    </view>
+
+  </view>
+  <!--<popup class="input-amount-popup" visible="{{ inputFocusStatus && (type == 'amountWithClear' || type == 'amountType')}}" position="bottom" showMask="{{false}}"> -->
+
+  
+
+  <view
+    a:if="{{ showKeybord }}"
+    id="input-keyboard"
+    class="input-keyboard-px"
+    catchTap="onPopupFocused"
+  >
+    <view id="input-keyboard-selesai" class="input-keyboard-selesai-px">
+      <view
+        id="input-keyboard-selesai-text"
+        class="input-keyboard-selesai-text-px"
+        catchTap="handlePopupClose"
+      >
+        {{keyboardbuttonText}}
+      </view>
+    </view>
+    <view id="input-keyboard-group" class="input-keyboard-group-px">
+      <view class="input-keyboard-group-row-px">
+        <button
+          id="input-keyboard-button1"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='1'
+        >
+          1
+        </button>
+        <button
+          id="input-keyboard-button2"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='2'
+        >
+          2
+        </button>
+        <button
+          id="input-keyboard-button3"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='3'
+        >
+          3
+        </button>
+      </view>
+      <view class="input-keyboard-group-row-px">
+        <button
+          id="input-keyboard-button4"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='4'
+        >
+          4
+        </button>
+        <button
+          id="input-keyboard-button5"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='5'
+        >
+          5
+        </button>
+        <button
+          id="input-keyboard-button6"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='6'
+        >
+          6
+        </button>
+      </view>
+      <view class="input-keyboard-group-row-px">
+        <button
+          id="input-keyboard-button7"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='7'
+        >
+          7
+        </button>
+        <button
+          id="input-keyboard-button8"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='8'
+        >
+          8
+        </button>
+        <button
+          id="input-keyboard-button9"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='9'
+        >
+          9
+        </button>
+      </view>
+      <view class="input-keyboard-group-row-px">
+        <button
+          a:if="{{type == 'amountWithClear'}}"
+          id="button000"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='000'
+        >
+          000
+        </button>
+        <button
+          a:if="{{type == 'amountType'}}"
+          id="buttonDrop"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='.'
+        >
+          .
+        </button>
+        <button
+          id="button0"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='0'
+        >
+          0
+        </button>
+        <view id="delete-button-box" class="input-keyboard-delete-button-box-px">
+          <button
+            id="delete-button"
+            class="input-keyboard-group-delete-button-px"
+            onTap="onHandleClickDelete"
+          >
+            <image class="delete-icon" src={{keyboardDeleteIcon}} />
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--</popup> -->
+</block>
+
+
+<number-keyboard
+  visible="{{(visible && birthDateFocusStatus && type === 'birthDate') || (type !== 'birthDate' && visible) }}"
+  point="{{false}}"
+  closeable="{{false}}"
+  value="{{type === 'birthDate' ? inputValue[birthDateFocusStatus] : inputValue}}"
+  onChange="onChangeBirthDate"
+  onClose="onCloseNumberKeyboard"
+>
+</number-keyboard>

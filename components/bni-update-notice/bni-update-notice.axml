@@ -1,0 +1,45 @@
+<view class="update-notice">
+  <popup
+    zIndex={{9999}}
+    visible="{{overlayNoticeVisible}}"
+    maskClassName="mask-class-name-background"
+  >
+    <view class="illustration-img">
+      <image
+        mode="scaleToFill"
+        src="{{contentObj.imgUrl}}"
+        class="img-style"
+      />
+    </view>
+    <view >
+      <view class="title-content">
+        {{contentObj.titleText}}
+      </view>
+    </view>
+    <view >
+      <view class="content-text">
+        {{contentObj.contentText}}
+      </view>
+    </view>
+    <view class="update-notice-button-container">
+      <bni-button
+        pixel
+        type="primary"
+        className="txt-label1-sb-px bg-turquoise-300"
+        onTap="handleEvent"
+      >
+        {{ contentObj.btnPrimaryText }}
+      </bni-button>
+    </view>
+    <view class="update-notice-button-container-secondary">
+      <bni-button 
+        pixel
+        type="outline"
+        className="txt-label1-sb-px border-black"
+        onTap="closeUpdateNotice"
+      >
+        {{ contentObj.btnSecondaryText }}
+      </bni-button>
+    </view>
+  </popup>
+</view>

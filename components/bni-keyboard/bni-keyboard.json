@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "bni-button": "../bni-button/bni-button",
+    "ant-number-keyboard": "antd-mini/es/NumberKeyboard/index"
+  }
+}

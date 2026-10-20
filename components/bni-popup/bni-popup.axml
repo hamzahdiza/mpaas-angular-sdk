@@ -1,0 +1,198 @@
+<!-- Popup -->
+<view a:if="{{ type === 'modal' }}" class="nofull-popup">
+  <popup zIndex={{99999}} visible={{isOpen}} maskClassName="mask-class-name-background">
+    <!-- Close Button -->
+    <view a:if="{{ onClose }}" class="close-btn-position">
+      <view class="close-btn" onTap="onClose" id={{idClose}} />
+    </view>
+
+    <scroll-view scroll-y="{{true}}" class="content-container" id={{idContentContainer}}>
+      <!-- Image Section -->
+      <view class="illustration">
+        <image
+          a:if="{{ illustration }}"
+          id={{idIllustration}}
+          class="illustration-margin"
+          mode="heightFix"
+          style="height:{{illustrationSize === 'normal' ? '107px' : '150px'}};"
+          src={{illustration}}
+        />
+        <view class="illustration-margin">
+          <slot a:if={{!illustration}} name="illustration" />
+        </view>
+      </view>
+
+      <!-- Content Section -->
+      <view a:if="{{ !useSlotContent }}" class="content">
+        <view class="title-container m-b-8">
+          <view a:if="{{ icon }}" class="icon icon-{{icon}}" id={{idIcon}} />
+          <view a:if="{{ title }}" class="txt-h3-px txt-black title">
+            <text style="align-items: center" id={{idTitle}}>{{title}}</text>
+          </view>
+        </view>
+        <view a:if="{{ paragraph }}" class="paragraph-container txt-body2-px txt-black">
+          <text id={{idParagraph}}>{{paragraph}}</text>
+        </view>
+      </view>
+
+      <view a:if="{{ useSlotContent }}" class="content">
+        <slot name="content"></slot>
+      </view>
+
+      <!-- CTA -->
+      <view id="cta">
+        <bni-button
+          a:if="{{ onTapCTA1 || labelCTA1 }}"
+          pixel
+          id={{idCTA1}}
+          type="primary"
+          class="bg-turquoise-300 txt-label1-sb-px"
+          onTap="onTapCTA1"
+        >
+          {{labelCTA1}}
+        </bni-button>
+        <slot a:if="{{ !onTapCTA1 && !labelCTA1 }}" name="cta1"></slot>
+        <bni-button
+          a:if="{{ onTapCTA2 || labelCTA2 }}"
+          pixel
+          id={{idCTA2}}
+          type="outline"
+          class="txt-label1-sb-px"
+          onTap="onTapCTA2"
+        >
+          {{labelCTA2}}
+        </bni-button>
+        <slot a:if="{{ !onTapCTA2 && !labelCTA2 }}" name="cta2"></slot>
+        <bni-button
+          a:if="{{ onTapCTA3 || labelCTA3 }}"
+          pixel
+          id={{idCTA3}}
+          type="quite"
+          class="txt-label1-sb-px txt-orange-300"
+          onTap="onTapCTA3"
+        >
+          {{labelCTA3}}
+        </bni-button>
+        <slot a:if="{{ !onTapCTA3 && !labelCTA3 }}" name="cta3"></slot>
+      </view>
+    </scroll-view>
+  </popup>
+</view>
+
+<!-- Fullscreen Modal -->
+<view a:if="{{ type === 'fullscreen' }}" class="full-popup">
+  <popup zIndex={{99999}} visible={{isOpen}} maskClassName="mask-class-name-background">
+    <!-- Close Button -->
+    <view class="full-height">
+      <view class="sticky-top bg-white">
+        <top-bar
+          title={{title}}
+          safeArea
+          backgroundColor="bg-white"
+          pixel={{true}}
+          onIconRTap="onClose"
+          iconR={{closeIconPath}}
+        />
+      </view>
+
+      <scroll-view
+        id={{idContentContainer}}
+        scroll-y="{{true}}"
+        class="content-container"
+        onScroll="onScroll"
+        scroll-into-view={{scrollId}}
+      >
+        <slot name="fullscreen" />
+        <view id="bottom-end" />
+      </scroll-view>
+      <view class="bottom-container pf d-f-column">
+        <view
+          a:if="{{ withScrollButton && !reachedBottom }}"
+          id={{idScrollButton}}
+          class="scroll-bottom-button"
+          onTap="onScrollToBottom"
+        >
+          <view class="arrow-down" />
+        </view>
+        <slot name="bottom-container" />
+        <view id="cta">
+          <bni-button
+            a:if="{{ onTapCTA1 || labelCTA1 }}"
+            pixel
+            id={{idCTA1}}
+            type="primary"
+            class="bg-turquoise-300 txt-label1-sb-px"
+            onTap="onTapCTA1"
+          >
+            {{labelCTA1}}
+          </bni-button>
+          <slot a:if="{{ !onTapCTA1 && !labelCTA1 }}" name="cta1"></slot>
+          <bni-button
+            a:if="{{ onTapCTA2 || labelCTA2 }}"
+            pixel
+            id={{idCTA2}}
+            type="outline"
+            class="txt-label1-sb-px"
+            onTap="onTapCTA2"
+          >
+            {{labelCTA2}}
+          </bni-button>
+          <slot a:if="{{ !onTapCTA2 && !labelCTA2 }}" name="cta2"></slot>
+          <bni-button
+            a:if="{{ onTapCTA3 || labelCTA3 }}"
+            pixel
+            id={{idCTA3}}
+            type="quite"
+            class="txt-label1-sb-px txt-orange-300"
+            onTap="onTapCTA3"
+          >
+            {{labelCTA3}}
+          </bni-button>
+          <slot a:if="{{ !onTapCTA3 && !labelCTA3 }}" name="cta3"></slot>
+        </view>
+      </view>
+    </view>
+  </popup>
+</view>
+
+<!-- Bottom Sheet -->
+<view a:if="{{ type === 'bottom-sheet' }}" class="bottom-sheet">
+  <popup zIndex={{99999}} visible={{isOpen}} maskClassName="mask-class-name-background">
+    <view class="bs-container" style="height: {{sheetHeight}}">
+      <!-- Title and Close Button -->
+      <view class="bs-title-container" id={{idSheetContainer}}>
+        <!-- Close Button -->
+        <view a:if="{{ onClose }}" class="close-btn-position">
+          <view class="close-btn" onTap="onClose" id={{ idClose }} />
+        </view>
+        <view a:if="{{ title }}" class="txt-h3-px txt-black title">
+          <text style="align-items: center" id={{idTitle}}>{{title}}</text>
+        </view>
+      </view>
+
+      <!-- Content Slot -->
+      <scroll-view
+        scroll-y="{{true}}"
+        class={{"bs-content-container " + (topScroll? `bordertop `: ``)}}
+        onScroll="onScroll"
+        scroll-into-view={{scrollId}}
+        id={{idContentContainer}}
+      >
+        <slot name="content" />
+        <view id="bottom-end" />
+      </scroll-view>
+
+      <view class="bs-bottom-container" style="padding-bottom: {{safeAreaDistance.bottom}}px">
+        <view
+          a:if="{{ withScrollButton && !reachedBottom }}"
+          id={{idScrollButton}}
+          class="scroll-bottom-button"
+          onTap="onScrollToBottom"
+        >
+          <view class="arrow-down" />
+        </view>
+        <slot name="bottom-container" />
+      </view>
+    </view>
+  </popup>
+</view>

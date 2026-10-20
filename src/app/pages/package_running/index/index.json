@@ -5,7 +5,7 @@
     "running-template-two": "/src/app/components/running-templates/running-template-two/running-template-two",
     "running-template-three": "/src/app/components/running-templates/running-template-three/running-template-three",
     "running-template-four": "/src/app/components/running-templates/running-template-four/running-template-four",
-    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar"
+    "top-bar": "/components/top-bar/top-bar"
   },
   "styleIsolation": "apply-shared",
   "transparentTitle": "always",

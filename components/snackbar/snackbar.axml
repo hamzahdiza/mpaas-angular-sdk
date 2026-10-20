@@ -1,0 +1,15 @@
+<view a:if="{{ !pixel }}" class="snackbar-container">
+  <view a:if="{{isSnackbarVisible}}" class="snackbar">
+    <view a:if="{{ !iconCustom }}" id="{{idIcon}}" class="{{ iconSnackbar === 'success' ? 'snackbar-icon' : 'snackbar-icon-err' }}" />
+    <image  id="{{idIcon}}" a:if="{{ iconCustom }}" mode="scaleToFill" src="{{iconCustom}}" class="snackbar-custom" />
+    <text id="{{idText}}" class="txt-body1-sb snackbar-txt">{{txt}}</text>
+  </view>
+</view>
+
+<view a:if="{{ pixel }}" class="snackbar-container-px">
+  <view a:if="{{isSnackbarVisible}}" class="snackbar-px">
+    <view  a:if="{{ !iconCustom }}" id="{{idIcon}}" class="{{ iconSnackbar === 'success' ? 'snackbar-icon-px' : 'snackbar-icon-err-px' }}" />
+    <image  id="{{idIcon}}" a:if="{{ iconCustom }}" mode="scaleToFill" src="{{iconCustom}}" class="snackbar-custom" />
+    <text id="{{idText}}" class="txt-body1-sb-px snackbar-txt-px">{{txt}}</text>
+  </view>
+</view>

@@ -1,11 +1,11 @@
 {
   "usingComponents": {
-    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar",
-    "bni-button": "@bni-maverick-mpaas/lib/es/bni-button/bni-button",
+    "top-bar": "/components/top-bar/top-bar",
+    "bni-button": "/components/bni-button/bni-button",
     "feature-modal": "/src/app/components/intf-featureOFF/intf-featureOFF",
-    "loading": "@bni-maverick-mpaas/lib/es/loading/loading",
+    "loading": "/components/loading/loading",
     "popup": "antd-mini/es/Popup/index",
-    "bni-input":"@bni-maverick-mpaas/lib/es/bni-input/bni-input"
+    "bni-input":"/components/bni-input/bni-input"
   },
   "transparentTitle": "always",
   "titlePenetrate": "YES",

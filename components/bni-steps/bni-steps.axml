@@ -1,0 +1,155 @@
+<view a:if="{{ !pixel }}" class="status-transaksi-continer ">
+  <!-- horizontal -->
+  <view a:if="{{ type === 'horizontal' }}" class="container-horizontal-status">
+    <view class="top-horizontal-status">
+      <block a:for="{{ data }}" a:for-index="idx">
+        <view class="box-content-status">
+          <view class="icon-status-area bg-snow-white bg-{{item.status}}">
+            <image mode="scaleToFill" src={{item.icon}} style="width:35rpx;height:35rpx"/>
+          </view>
+          <view style="text-align:center">
+            <text class="txt-body3-sb">
+              {{item.name}}
+            </text>
+          </view>
+        </view>
+      </block>
+      <!-- line -->
+      <view style="position:absolute;display:flex;width:100%;margin-top:35rpx">
+        <block a:for-index="idx" a:for="{{ data }}">
+          <view a:if="{{ idx < data.length-1 }}" class="line-horizontal {{item.status=='success'?'border-success':'border-pale-gray '}}"/>
+        </block>
+      </view>
+    </view>
+    <view style="border-bottom:3rpx solid #DADADA; margin:20rpx 0rpx"/>
+    <view class="bottom-horizontal-status">
+      <slot name="description"/>
+    </view>
+  </view>
+  <!-- vertical -->
+  <view style="height:100rpx"/>
+  <view a:if="{{ type !== 'horizontal' }}" class="list-vertical-status">
+    <block a:for="{{ data }}" a:for-index="idx">
+      <view class="area-list-vertical-status">
+        <view style="margin-right:35rpx;z-index:1000">
+          <view class="icon-status-area-vertical bg-pale-gray">
+            <view 
+            a:if="{{ item.status ==='success' || item.status === 'error' }}" 
+            class="icon-status-area-vertical bg-snow-white bg-{{item.status}}">
+              <image mode="scaleToFill" src={{item.icon}} style="width:35rpx;height:35rpx"/>
+            </view>
+            <view a:else class="content-icon-status-area-vertical bg-white">
+              <text class="txt-body3-sb txt-gray">{{idx+1}}</text>
+            </view>
+          </view>
+        </view>
+        <view  a:if="{{ item.status ==='success' || item.status === 'error' }}"  class="detail-status-area-vertical">
+          <view class="txt-label2" style="display:flex">
+            <text>{{item.date}} ~ {{item.time}} </text>
+          </view>
+          <view class="txt-body2-sb {{item.status==='error'?'txt-error':''}}" style="margin:8rpx 0rpx">
+            {{item.name}}
+          </view>
+          <view class="txt-body3">
+            {{item.detail}}
+          </view>
+          <view style="height:50rpx"/>
+        </view>
+        <view a:else class="detail-status-area-vertical">
+          <view class="txt-body2-sb txt-gray" style="margin:8rpx 0rpx">
+            {{item.name}}
+          </view>
+          <view style="height:85rpx"/>
+        </view>
+        <!-- line -->
+        <view style="width:52rpx;position:absolute;height:100%;display:flex;justify-content:center">   
+          <view class="bg-pale-gray {{item.status == 'success'?'bg-success':''}}"
+          style="
+          width:8rpx;
+          height:100%;
+          "
+          a:if="{{ idx < data.length-1 }}"
+          />
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view a:if="{{ pixel }}" class="status-transaksi-continer-px ">
+  <!-- horizontal -->
+  <view a:if="{{ type === 'horizontal' }}" class="container-horizontal-status-px">
+    <view class="top-horizontal-status-px">
+      <block a:for="{{ data }}" a:for-index="idx">
+        <view class="box-content-status-px">
+          <view class="icon-status-area-px bg-snow-white bg-{{item.status}}">
+            <image mode="scaleToFill" src={{item.icon}} style="width:17.5px;height:17.5px"/>
+          </view>
+          <view style="text-align:center">
+            <text class="txt-body3-sb-px">
+              {{item.name}}
+            </text>
+          </view>
+        </view>
+      </block>
+      <!-- line -->
+      <view style="position:absolute;display:flex;width:100%;margin-top:17.5px">
+        <block a:for-index="idx" a:for="{{ data }}">
+          <view a:if="{{ idx < data.length-1 }}" class="line-horizontal-px {{item.status=='success'?'border-success':'border-pale-gray '}}"/>
+        </block>
+      </view>
+    </view>
+    <view style="border-bottom:1.5px solid #DADADA; margin:10px 0px"/>
+    <view class="bottom-horizontal-status">
+      <slot name="description"/>
+    </view>
+  </view>
+  <!-- vertical -->
+  <view style="height:50px"/>
+  <view a:if="{{ type !== 'horizontal' }}" class="list-vertical-status-px">
+    <block a:for="{{ data }}" a:for-index="idx">
+      <view class="area-list-vertical-status-px">
+        <view style="margin-right:35rpx;z-index:1000">
+          <view class="icon-status-area-vertical-px bg-pale-gray">
+            <view 
+            a:if="{{ item.status ==='success' || item.status === 'error' }}" 
+            class="icon-status-area-vertical-px bg-snow-white bg-{{item.status}}">
+              <image mode="scaleToFill" src={{item.icon}} style="width:17.5px;height:17.5px"/>
+            </view>
+            <view a:else class="content-icon-status-area-vertical-px bg-white">
+              <text class="txt-body3-sb-px txt-gray">{{idx+1}}</text>
+            </view>
+          </view>
+        </view>
+        <view  a:if="{{ item.status ==='success' || item.status === 'error' }}"  class="detail-status-area-vertical-px">
+          <view class="txt-label2-px" style="display:flex">
+            <text>{{item.date}} ~ {{item.time}} </text>
+          </view>
+          <view class="txt-body2-sb-px {{item.status==='error'?'txt-error':''}}" style="margin:4px 0px">
+            {{item.name}}
+          </view>
+          <view class="txt-body3-px">
+            {{item.detail}}
+          </view>
+          <view style="height:25px"/>
+        </view>
+        <view a:else class="detail-status-area-vertical-px">
+          <view class="txt-body2-sb-px txt-gray" style="margin:4px 0rpx">
+            {{item.name}}
+          </view>
+          <view style="height:42.5px"/>
+        </view>
+        <!-- line -->
+        <view style="width:26px;position:absolute;height:100%;display:flex;justify-content:center">   
+          <view class="bg-pale-gray {{item.status == 'success'?'bg-success':''}}"
+          style="
+          width:4px;
+          height:100%;
+          "
+          a:if="{{ idx < data.length-1 }}"
+          />
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

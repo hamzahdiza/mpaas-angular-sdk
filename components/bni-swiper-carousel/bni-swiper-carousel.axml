@@ -1,0 +1,67 @@
+<view a:if="{{ !pixel }}">
+  <swiper
+    autoplay="{{autoplay}}"
+    vertical="{{vertical}}"
+    interval="{{interval}}"
+    circular="{{circular}}"
+    duration="{{duration}}"
+    onChange="onChange"
+    next-margin="{{nextMargin}}"
+    previous-margin="{{prevMargin}}"
+    current="{{activeIndex}}"
+  >
+    <slot id="swipe-item"></slot>
+  </swiper>
+
+  <view a:if="{{ indicatorType === 'dots' }}" class="indicator-item">
+    <block a:for="{{ items.length }}" a:for-index="index" a:for-item="item">
+      <view
+        class="{{activeIndex === index ? 'active-dots' : 'unactive-dots'}}"
+        onTap="onDotTap"
+        data-index="{{index}}"
+      >
+      </view>
+    </block>
+  </view>
+
+  <view a:if="{{ indicatorType === 'scrollbar' }}" class="scrollbar-container">
+    <block a:for="{{ items.length }}" a:for-index="index" a:for-item="item">
+      <view class="{{activeIndex === index ? 'scrollbar-active' : 'scrollbar-inactive'}}">
+      </view>
+    </block>
+  </view>
+</view>
+
+<view a:if="{{ pixel }}">
+  <swiper
+    autoplay="{{autoplay}}"
+    vertical="{{vertical}}"
+    interval="{{interval}}"
+    circular="{{circular}}"
+    duration="{{duration}}"
+    onChange="onChange"
+    next-margin="{{nextMargin}}"
+    previous-margin="{{prevMargin}}"
+    current="{{activeIndex}}"
+  >
+    <slot id="swipe-item"></slot>
+  </swiper>
+
+  <view a:if="{{ indicatorType === 'dots' }}" class="indicator-item-px">
+    <block a:for="{{ items.length }}" a:for-index="index" a:for-item="item">
+      <view
+        class="{{activeIndex === index ? 'active-dots-px' : 'unactive-dots-px'}}"
+        onTap="onDotTap"
+        data-index="{{index}}"
+      >
+      </view>
+    </block>
+  </view>
+
+  <view a:if="{{ indicatorType === 'scrollbar' }}" class="scrollbar-container-px">
+    <block a:for="{{ items.length }}" a:for-index="index" a:for-item="item">
+      <view class="{{activeIndex === index ? 'scrollbar-active-px' : 'scrollbar-inactive-px'}}">
+      </view>
+    </block>
+  </view>
+</view>

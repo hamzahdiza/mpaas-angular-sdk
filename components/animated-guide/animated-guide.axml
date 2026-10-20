@@ -1,0 +1,46 @@
+<view a:if="{{ visible }}" class="animated-guide-overlay" catchTouchMove="preventTouchMove" catchTap="preventTouchMove" disable-scroll="{{true}}">
+  <view class="lp-ag-overlay">
+    <view a:if="{{ ready }}" class="lp-ag-cutout" 
+      style="
+        --cutout-width: {{ highlightPosition.width }}px; 
+        --cutout-height: {{ highlightPosition.height }}px; 
+        --target-top: {{ highlightPosition.top }}px; 
+        --target-left: {{ highlightPosition.left }}px;
+      ">
+    </view>
+  </view>
+
+  <view a:if="{{ ready }}" class="lp-ag-tooltip-container {{ placement === 'top' ? 'placement-top' : 'placement-bottom' }}" 
+    style="{{ placement === 'top' ? 'bottom: calc(100vh - ' + highlightPosition.top + 'px + 16px);' : 'top: ' + (highlightPosition.top + highlightPosition.height + 16) + 'px;' }}">
+    <view class="lp-ag-tooltip-content">
+      <view class="txt-h5-px lp-ag-title">
+        {{ title }}
+      </view>
+      <view class="lp-ag-detail txt-body3-px">
+        {{ description }}
+      </view>
+      <view class="lp-ag-bottom-content">
+        <view class="lp-ag-button-group">
+          <button-bni
+            type="primary"
+            className="txt-body3-px border-granite margin-r-px lp-ag-btn-skip"
+            compact="{{true}}"
+            pixel="{{true}}"
+            onTap="onBack"
+          >
+            {{secondaryButtonName}}
+          </button-bni>
+          <button-bni
+            type="primary"
+            className="txt-body3-px bg-turquoise-300 txt-black lp-ag-btn-next"
+            compact="{{true}}"
+            pixel="{{true}}"
+            onTap="onSubmit"
+          >
+            {{primaryButtonName}}
+          </button-bni>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

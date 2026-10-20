@@ -1,0 +1,464 @@
+<block a:if="{{ !pixel }}">
+  <view a:if="{{ !type }}">
+    <modal
+      visible="{{showToast}}"
+      onClose="successHandler"
+      maskClassName="modal-mask-style"
+      bodyClassName="modal-body"
+    >
+      <view slot="footer" class="modal-all-content">
+        <view class="modal-modal-title-body-content">
+          <view class="modal-content-container">
+            <view slot="title" class="modal-title">
+              <slot name="modal-title" />
+            </view>
+          </view>
+          <view slot="content" style="margin-bottom:20rpx;">
+            <text class="modal-content">
+              <slot name="modal-content" />
+            </text>
+          </view>
+        </view>
+        <slot name="modal-footer" />
+      </view>
+    </modal>
+  </view>
+
+  <view a:if="{{ language === 'ID' }}">
+    <view a:if="{{ type === 'success' }}">
+      <modal
+        visible="{{showToast}}"
+        onClose="successHandler"
+        maskClassName="modal-mask-style"
+        bodyClassName="modal-body"
+      >
+        <view slot="footer" class="modal-all-content">
+          <view class="modal-modal-title-body-content">
+            <view class="modal-content-container">
+              <view class="modal-image-success-icon" />
+              <view slot="title" className="txt-h3">
+                {{title}}
+              </view>
+            </view>
+            <view slot="content" class="content-break">
+              <text class="modal-content">
+                {{content.text1}}
+              </text>
+              <text class="modal-content-bold">
+                {{content.text2}}
+              </text>
+              <text class="modal-content">
+                {{content.text3}}
+              </text>
+              <text class="modal-content-bold">
+                {{content.text4}}
+              </text>
+              <text class="modal-content">
+                {{content.text5}}
+              </text>
+            </view>
+          </view>
+          <bni-button type="primary" className="bg-turquoise-300" onTap="successHandler">
+            {{btnText}}
+          </bni-button>
+        </view>
+      </modal>
+    </view>
+    <view a:elif="{{ type === 'error' }}">
+      <modal
+        visible="{{showToast}}"
+        onClose="closeModalHandler"
+        maskClassName="modal-mask-style"
+        bodyClassName="modal-body"
+      >
+        <view slot="footer" class="modal-all-content">
+          <view class="modal-modal-title-body-content">
+            <view class="modal-content-container">
+              <view class="modal-image-error-icon" />
+              <view slot="title" class="modal-title">
+                {{title}}
+              </view>
+            </view>
+            <view slot="content" class="content-break">
+              <text class="modal-content">
+                {{content}}
+              </text>
+            </view>
+          </view>
+          <bni-button type="primary" className="bg-turquoise-300" onTap="closeModalHandler">
+            {{btnText}}
+          </bni-button>
+        </view>
+      </modal>
+    </view>
+  </view>
+
+  <view a:elif="{{ language === 'EN' }}">
+    <view a:if="{{ type === 'success' }}">
+      <modal
+        visible="{{showToast}}"
+        onClose="successHandler"
+        maskClassName="modal-mask-style"
+        bodyClassName="modal-body"
+      >
+        <view slot="footer" class="modal-all-content">
+          <view class="modal-modal-title-body-content">
+            <view class="modal-content-container">
+              <view class="modal-image-success-icon" />
+              <view slot="title" className="txt-h3">
+                Successfully Set the Period's Beginning
+              </view>
+            </view>
+            <view slot="content" class="content-break">
+              <text class="modal-content">
+                Please note, the start of the regulated period will affect your
+              </text>
+              <text class="modal-content-bold">
+                Insights and Transaction Reports.
+              </text>
+            </view>
+          </view>
+          <bni-button type="primary" className="bg-turquoise-300" onTap="successHandler">
+            Ok, I get it
+          </bni-button>
+        </view>
+      </modal>
+    </view>
+    <view a:elif="{{ type === 'error' }}">
+      <modal
+        visible="{{showToast}}"
+        onClose="closeModalHandler"
+        maskClassName="modal-mask-style"
+        bodyClassName="modal-body"
+      >
+        <view slot="footer" class="modal-all-content">
+          <view class="modal-modal-title-body-content">
+            <view class="modal-content-container">
+              <view class="modal-image-error-icon" />
+              <view slot="title" class="modal-title">
+                Failed to Set the Period's Start
+              </view>
+            </view>
+            <view slot="content" class="content-break">
+              <text class="modal-content">
+                Please try again; setting was unsuccessful due to a system problem.
+              </text>
+            </view>
+          </view>
+          <bni-button type="primary" className="bg-turquoise-300" onTap="closeModalHandler">
+            Try Again
+          </bni-button>
+        </view>
+      </modal>
+    </view>
+  </view>
+
+  <view a:elif="{{ !language }}">
+    <modal
+      visible="{{showToast}}"
+      onClose="closeModalHandler"
+      maskClassName="modal-mask-style"
+      bodyClassName="modal-body"
+    >
+      <view slot="footer" class="modal-all-content">
+        <view class="modal-modal-title-body-content">
+          <view class="modal-content-container">
+            <view slot="title" class="modal-title">
+              <slot name="modal-title" />
+            </view>
+          </view>
+          <view slot="content" style="margin-bottom:20rpx;">
+            <text class="modal-content">
+              <slot name="modal-content" />
+            </text>
+          </view>
+        </view>
+        <slot name="modal-footer" />
+      </view>
+    </modal>
+  </view>
+
+
+  <view
+    a:if="{{ type === 'custorm' && showToast && !fullscreen}}"
+    class="mask"
+    style="z-index:{{extStyle.zIndex}};"
+    disable-scroll="{{true}}"
+  >
+  </view>
+  <scroll-view
+    a:if="{{ type === 'custorm' && showToast }}"
+    scroll-y="{{true}}"
+    style="top:{{extStyle.fullHeight}};z-index:{{extStyle.zIndex+1}}"
+    class="{{fullscreen ? 'dialog__wrap_fullscreen':'dialog__wrap'}}"
+  >
+    <view class="dialog__container" disable-scroll="{{true}}">
+      <view class="dialog__title">
+        <view a:if="{{title === 'Your Title'}}">
+          <slot name="title" />
+        </view>
+        <view a:else>
+          {{title}}
+        </view>
+      </view>
+      <view class="dialog__content">
+        <view a:if="{{content === 'Your content text should be here'}}">
+          <slot name="content" />
+        </view>
+        <view a:else>
+          {{content}}
+        </view>
+      </view>
+      <view>
+        <view a:if="{{ btnText === 'Button Text' && !btnText2 }}">
+          <slot name="button__group" />
+        </view>
+        <view a:else class="dialog__button__group">
+          <bni-button
+            type="primary"
+            className="txt-label1-sb bg-turquoise-300"
+            onTap="onPrimary"
+          >
+            {{btnText}}
+          </bni-button>
+          <bni-button type="outline" onTap="onDefault" className="txt-label4-sb border-gray">
+            {{btnText2}}
+          </bni-button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</block>
+
+<block a:if="{{ pixel }}">
+  <view a:if="{{ !type }}">
+    <modal
+      visible="{{showToast}}"
+      onClose="successHandler"
+      maskClassName="modal-mask-style-px"
+      bodyClassName="modal-body-px"
+    >
+      <view slot="footer" class="modal-all-content-px">
+        <view class="modal-modal-title-body-content-px">
+          <view class="modal-content-container-px">
+            <view slot="title" class="modal-title-px">
+              <slot name="modal-title" />
+            </view>
+          </view>
+          <view slot="content" style="margin-bottom:10px;">
+            <text class="modal-content-px">
+              <slot name="modal-content" />
+            </text>
+          </view>
+        </view>
+        <slot name="modal-footer" />
+      </view>
+    </modal>
+  </view>
+
+  <view a:if="{{ language === 'ID' }}">
+    <view a:if="{{ type === 'success' }}">
+      <modal
+        visible="{{showToast}}"
+        onClose="successHandler"
+        maskClassName="modal-mask-style-px"
+        bodyClassName="modal-body-px"
+      >
+        <view slot="footer" class="modal-all-content-px">
+          <view class="modal-modal-title-body-content-px">
+            <view class="modal-content-container-px">
+              <view class="modal-image-success-icon-px" />
+              <view slot="title" className="txt-h3-px">
+                {{title}}
+              </view>
+            </view>
+            <view slot="content" class="content-break-px">
+              <text class="modal-content-px">
+                {{content.text1}}
+              </text>
+              <text class="modal-content-bold-px">
+                {{content.text2}}
+              </text>
+              <text class="modal-content-px">
+                {{content.text3}}
+              </text>
+              <text class="modal-content-bold-px">
+                {{content.text4}}
+              </text>
+              <text class="modal-content-px">
+                {{content.text5}}
+              </text>
+            </view>
+          </view>
+          <bni-button type="primary" className="bg-turquoise-300" onTap="successHandler">
+            {{btnText}}
+          </bni-button>
+        </view>
+      </modal>
+    </view>
+    <view a:elif="{{ type === 'error' }}">
+      <modal
+        visible="{{showToast}}"
+        onClose="closeModalHandler"
+        maskClassName="modal-mask-style-px"
+        bodyClassName="modal-body-px"
+      >
+        <view slot="footer" class="modal-all-content-px">
+          <view class="modal-modal-title-body-content-px">
+            <view class="modal-content-container-px">
+              <view class="modal-image-error-icon-px" />
+              <view slot="title" class="modal-title-px">
+                {{title}}
+              </view>
+            </view>
+            <view slot="content" class="content-break-px">
+              <text class="modal-content-px">
+                {{content}}
+              </text>
+            </view>
+          </view>
+          <bni-button type="primary" className="bg-turquoise-300" onTap="closeModalHandler">
+            {{btnText}}
+          </bni-button>
+        </view>
+      </modal>
+    </view>
+  </view>
+
+  <view a:elif="{{ language === 'EN' }}">
+    <view a:if="{{ type === 'success' }}">
+      <modal
+        visible="{{showToast}}"
+        onClose="successHandler"
+        maskClassName="modal-mask-style-px"
+        bodyClassName="modal-body-px"
+      >
+        <view slot="footer" class="modal-all-content-px">
+          <view class="modal-modal-title-body-content-px">
+            <view class="modal-content-container-px">
+              <view class="modal-image-success-icon-px" />
+              <view slot="title" className="txt-h3-px">
+                Successfully Set the Period's Beginning
+              </view>
+            </view>
+            <view slot="content" class="content-break-px">
+              <text class="modal-content-px">
+                Please note, the start of the regulated period will affect your
+              </text>
+              <text class="modal-content-bold-px">
+                Insights and Transaction Reports.
+              </text>
+            </view>
+          </view>
+          <bni-button type="primary" className="bg-turquoise-300" onTap="successHandler">
+            Ok, I get it
+          </bni-button>
+        </view>
+      </modal>
+    </view>
+    <view a:elif="{{ type === 'error' }}">
+      <modal
+        visible="{{showToast}}"
+        onClose="closeModalHandler"
+        maskClassName="modal-mask-style-px"
+        bodyClassName="modal-body-px"
+      >
+        <view slot="footer" class="modal-all-content-px">
+          <view class="modal-modal-title-body-content-px">
+            <view class="modal-content-container-px">
+              <view class="modal-image-error-icon-px" />
+              <view slot="title" class="modal-title-px">
+                Failed to Set the Period's Start
+              </view>
+            </view>
+            <view slot="content" class="content-break-px">
+              <text class="modal-content-px">
+                Please try again; setting was unsuccessful due to a system problem.
+              </text>
+            </view>
+          </view>
+          <bni-button type="primary" className="bg-turquoise-300" onTap="closeModalHandler">
+            Try Again
+          </bni-button>
+        </view>
+      </modal>
+    </view>
+  </view>
+
+  <view a:elif="{{ !language }}">
+    <modal
+      visible="{{showToast}}"
+      onClose="closeModalHandler"
+      maskClassName="modal-mask-style-px"
+      bodyClassName="modal-body-px"
+    >
+      <view slot="footer" class="modal-all-content-px">
+        <view class="modal-modal-title-body-content-px">
+          <view class="modal-content-container-px">
+            <view slot="title" class="modal-title-px">
+              <slot name="modal-title" />
+            </view>
+          </view>
+          <view slot="content" style="margin-bottom:10px;">
+            <text class="modal-content-px">
+              <slot name="modal-content" />
+            </text>
+          </view>
+        </view>
+        <slot name="modal-footer" />
+      </view>
+    </modal>
+  </view>
+
+
+  <view
+    a:if="{{ type === 'custorm' && showToast && !fullscreen}}"
+    class="mask-px"
+    style="z-index:{{extStyle.zIndex}};"
+    disable-scroll="{{true}}"
+  >
+  </view>
+  <scroll-view
+    a:if="{{ type === 'custorm' && showToast }}"
+    scroll-y="{{true}}"
+    style="top:{{extStyle.fullHeight}};z-index:{{extStyle.zIndex+1}}"
+    class="{{fullscreen ? 'dialog__wrap_fullscreen-px':'dialog__wrap-px'}}"
+  >
+    <view class="dialog__container-px" disable-scroll="{{true}}">
+      <view class="dialog__title-px">
+        <view a:if="{{title === 'Your Title'}}">
+          <slot name="title" />
+        </view>
+        <view a:else>
+          {{title}}
+        </view>
+      </view>
+      <view class="dialog__content-px">
+        <view a:if="{{content === 'Your content text should be here'}}">
+          <slot name="content" />
+        </view>
+        <view a:else>
+          {{content}}
+        </view>
+      </view>
+      <view>
+        <view a:if="{{ btnText === 'Button Text' && !btnText2 }}">
+          <slot name="button__group" />
+        </view>
+        <view a:else class="dialog__button__group-px">
+          <bni-button
+            type="primary"
+            className="txt-label1-sb-px bg-turquoise-300"
+            onTap="onPrimary"
+            pixel
+          >
+            {{btnText}}
+          </bni-button>
+          <bni-button type="outline" onTap="onDefault" className="txt-label4-sb-px border-gray" pixel>
+            {{btnText2}}
+          </bni-button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</block>

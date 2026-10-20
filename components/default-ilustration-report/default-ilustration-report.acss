@@ -1,0 +1,136 @@
+.container-ilustration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.image-content {
+  width: 534rpx;
+  height: 300rpx;
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-content-wealth{
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wealth {
+  width: 372.8rpx;
+  height: 252.4rpx;
+}
+
+.image-content-wealth2{
+  width: 534rpx;
+  height: 310rpx;
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.border{
+  border-style: solid;
+  border-width: 2rpx;
+}
+
+.image-content text , .image-content-wealth text, .image-content-wealth2 text{
+  width: 209rpx;
+}
+
+.image-content image {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+}
+
+.title {
+  margin-top: 48rpx ;
+  margin-bottom: 32rpx;
+}
+
+.title-wealth{
+  margin-bottom: 32rpx;
+}
+
+.label{
+  margin-top: 32rpx;
+  margin-bottom: 16rpx;
+}
+
+/* PIXEL */
+
+.container-ilustration-px {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.image-content-px {
+  width: 267px;
+  height: 150px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-content-wealth-px{
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 109px;
+}
+
+.image-wealth-px {
+  width: 186.4px;
+  height: 126.2px;
+}
+
+.image-content-wealth2-px{
+  width: 267px;
+  height: 150px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.border-px{
+  border-style: solid;
+  border-width: 1px;
+}
+
+.image-content-px text , .image-content-wealth-px text, .image-content-wealth2-px text{
+  width: 104.5px;
+}
+
+.image-content-px image {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+}
+
+.title-px {
+  margin-top: 24px ;
+  margin-bottom: 16px;
+}
+
+.title-wealth-px{
+  margin-bottom: 16px;
+}
+
+.label-px{
+  margin-top: 16px;
+  margin-bottom: 8px;
+}

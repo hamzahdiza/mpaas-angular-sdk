@@ -1,0 +1,31 @@
+<view a:if="{{ showCoachmark }}" class="container-overlay" id="{{ idCoachmark }}">
+  <view style="height: {{statusBarHeight}}px" />
+  <view class="overlay {{ centerPosition ? 'centered' : '' }}">
+    <view class="cutout" 
+    style="--cutout-width: {{ dynamicWidth ? `100vw` : `${highlightPosition.width}px` }}; 
+    --cutout-height: {{ highlightPosition.height }}px; 
+    margin-top: {{ highlightPosition.top }}px; 
+    margin-right: {{ highlightPosition.right }}px;
+    margin-left: {{ dynamicWidth ? highlightPosition.right : '0px'}} ">
+    </view>
+  </view>
+  <view class="container-detail-guide">
+    <view class="content-detail-guide">
+      <view class="txt-h5-px title">
+        {{ title }}
+      </view>
+      <view class="detail txt-body3-px">
+        {{ description }}
+      </view>
+      <view class="button-guide">
+        <bni-button
+          className="bg-turquoise-300 txt-label2-sb-px button-popover"
+          onTap="onTapButton"
+          type="primary"
+        >
+          {{ buttonText }}
+        </bni-button>
+      </view>
+    </view>
+  </view>
+</view>

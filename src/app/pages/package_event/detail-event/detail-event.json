@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "loading": "@bni-maverick-mpaas/lib/es/loading/loading",
+    "loading": "/components/loading/loading",
     "culinary-detail-template-one": "/src/app/components/culinary-detail-templates/culinary-detail-template-one/culinary-detail-template-one",
     "culinary-detail-template-two": "/src/app/components/culinary-detail-templates/culinary-detail-template-two/culinary-detail-template-two",
     "culinary-detail-template-three": "/src/app/components/culinary-detail-templates/culinary-detail-template-three/culinary-detail-template-three",

@@ -1,0 +1,87 @@
+<block a:if="{{ !pixel }}">
+  <view a:if="{{ type !== `full` && loading }}">
+    <view class="ring-border" style="
+        width:{{ring.diameter[type]}}; 
+        height:{{ring.diameter[type]}};
+        -webkit-mask: radial-gradient(circle at center, transparent, transparent {{ring.mask[type]}}, black {{ring.mask[type]}});
+        background-image: conic-gradient(from 0deg at 50% 50%, #ffffff00 2%, #ffffff00 21%, {{color}} 82%, {{color}});">
+      <view class="round-tip" style="
+          width:{{ring.tip[type]}}; 
+          height:{{ring.tip[type]}};
+          background-color: {{color}};" />
+    </view>
+  </view>
+
+  <view a:if="{{ type !== `full` && fail }}">
+    <bni-button type="quite" className="txt-label1-sb txt-orange-300" ghost onTap="handleReload">
+      <view slot="left-icon" style="display:flex; justify-content: center; align-items:center">
+        <view a:if="{{ !reloadIcon }}" class="reload-icon" />
+        <image a:if="{{ reloadIcon }}" src="{{reloadIcon}}" class="reload-icon-custom" />
+      </view>
+      {{failMessage}}
+    </bni-button>
+  </view>
+
+
+  <view a:if="{{ type === `full` && loading}}" class="full-mask">
+    <view class="ring-padding" style="width:{{ring.diameter[`big`]}}; height:{{ring.diameter[`big`]}}">
+      <view class="ring-border" style="
+          width:{{ring.diameter[`big`]}}; 
+          height:{{ring.diameter[`big`]}};
+          -webkit-mask: radial-gradient(circle at center, transparent, transparent {{ring.mask[`big`]}}, black {{ring.mask[`big`]}});
+          background-image: conic-gradient(from 0deg at 50% 50%, #ffffff00 2%, #ffffff00 21%, {{color}} 82%, {{color}});">
+        <view class="round-tip" style="
+          width:{{ring.tip[`big`]}}; 
+          height:{{ring.tip[`big`]}};
+          background-color: {{color}};" />
+      </view>
+    </view>
+  </view>
+</block>
+
+<block a:if="{{ pixel }}">
+  <view a:if="{{ type !== `full` && loading }}">
+    <view class="ring-border-px" style="
+        width:{{ringpixel.diameter[type]}}; 
+        height:{{ringpixel.diameter[type]}};
+        -webkit-mask: radial-gradient(circle at center, transparent, transparent {{ringpixel.mask[type]}}, black {{ringpixel.mask[type]}});
+        background-image: conic-gradient(from 0deg at 50% 50%, #ffffff00 2%, #ffffff00 21%, {{color}} 82%, {{color}});">
+      <view class="round-tip-px" style="
+          width:{{ringpixel.tip[type]}}; 
+          height:{{ringpixel.tip[type]}};
+          background-color: {{color}};" />
+    </view>
+  </view>
+
+  <view a:if="{{ type !== `full` && fail }}">
+    <bni-button
+      type="quite"
+      pixel={{true}}
+      className="txt-label1-sb-px txt-orange-300"
+      ghost
+      onTap="handleReload"
+    >
+      <view slot="left-icon" style="display:flex; justify-content: center; align-items:center">
+        <view a:if="{{ !reloadIcon }}" class="reload-icon-px" />
+        <image a:if="{{ reloadIcon }}" src="{{reloadIcon}}" class="reload-icon-custom-px" />
+      </view>
+      {{failMessage}}
+    </bni-button>
+  </view>
+
+
+  <view a:if="{{ type === `full` && loading}}" class="full-mask-px">
+    <view class="ring-padding-px" style="width:{{ringpixel.diameter[`big`]}}; height:{{ringpixel.diameter[`big`]}}">
+      <view class="ring-border-px" style="
+          width:{{ringpixel.diameter[`big`]}}; 
+          height:{{ringpixel.diameter[`big`]}};
+          -webkit-mask: radial-gradient(circle at center, transparent, transparent {{ringpixel.mask[`big`]}}, black {{ringpixel.mask[`big`]}});
+          background-image: conic-gradient(from 0deg at 50% 50%, #ffffff00 2%, #ffffff00 21%, {{color}} 82%, {{color}});">
+        <view class="round-tip-px" style="
+          width:{{ringpixel.tip[`big`]}}; 
+          height:{{ringpixel.tip[`big`]}};
+          background-color: {{color}};" />
+      </view>
+    </view>
+  </view>
+</block>

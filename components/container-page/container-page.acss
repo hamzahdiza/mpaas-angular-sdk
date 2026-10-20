@@ -1,0 +1,7 @@
+.container {
+  padding: 0 48rpx;
+}
+
+.container-px {
+  padding: 0 24px;
+}

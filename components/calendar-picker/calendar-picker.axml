@@ -1,0 +1,143 @@
+<view a:if="{{ show }}" class="hp-cal-overlay">
+  <!-- Header Area -->
+  <view class="hp-cal-header">
+    <view class="hp-cal-close-row">
+      <image
+        class="hp-cal-close-icon"
+        src="/src/assets/icons/ic_close.svg"
+        onTap="onCloseTap"
+      />
+    </view>
+
+    <!-- Month & Year Selector Trigger -->
+    <view class="hp-cal-title-row" onTap="onToggleCalendarMode">
+      <text a:if="{{ calendarMode !== 'month' }}" class="hp-cal-title-text txt-h3-px">
+        {{ tempMonth }} {{ tempYear }}
+      </text>
+      <text a:else class="hp-cal-title-text txt-h3-px">
+        {{ selectedMonthNameVal }} {{ selectedYearVal }}
+      </text>
+      <image a:if="{{ mode !== 'month' }}" class="hp-cal-chevron-icon" src="/src/assets/icons/ic_chevron_right.svg" />
+    </view>
+
+    <view a:if="{{ mode !== 'month' }}" class="hp-cal-action-row">
+      <text class="hp-cal-action-label txt-label1-sb-px">
+        {{ actionLabelString }}
+      </text>
+      <text
+        class="hp-cal-action-reset txt-label1-sb-px txt-underline {{ hasSelection ? 'hp-cal-action-reset-active' : '' }}"
+        onTap="onCalendarReset"
+      >
+        Reset
+      </text>
+    </view>
+  </view>
+
+  <!-- DATE VIEW (Scrollable date grid) -->
+  <scroll-view
+    a:if="{{ calendarMode == 'date' }}"
+    scroll-y="{{ true }}"
+    class="hp-cal-content {{ (type == 'range' && rangeStart && rangeEnd) ? 'hp-cal-has-range' : '' }}"
+    onScroll="onCalendarScroll"
+    scroll-into-view="{{ scrollTargetId }}"
+    scroll-with-animation="{{ scrollWithAnimation }}"
+  >
+    <view
+      a:for="{{ scrollableMonths }}"
+      class="hp-cal-month-section"
+      id="{{ item.id }}"
+      a:key="id"
+    >
+      <text class="hp-cal-month-header txt-body2-sb-px">
+        {{ item.name }} {{ item.year }}
+      </text>
+
+      <!-- Weekday Headers -->
+      <view class="hp-cal-weekdays">
+        <text class="hp-cal-weekday txt-body2-px">M</text>
+        <text class="hp-cal-weekday txt-body2-px">S</text>
+        <text class="hp-cal-weekday txt-body2-px">S</text>
+        <text class="hp-cal-weekday txt-body2-px">R</text>
+        <text class="hp-cal-weekday txt-body2-px">K</text>
+        <text class="hp-cal-weekday txt-body2-px">J</text>
+        <text class="hp-cal-weekday txt-body2-px">S</text>
+      </view>
+
+      <!-- Day Cells -->
+      <view class="hp-cal-days-grid">
+        <view
+          a:for="{{ item.days }}"
+          class="hp-cal-day-cell {{ item.isOffset ? 'hp-cal-day-offset' : '' }} {{ item.isDisabled ? 'hp-cal-day-disabled' : '' }} {{ (type == 'single' && item.val == selectedDayVal && item.monthName == selectedMonthNameVal && item.year == selectedYearVal) ? 'hp-cal-day-selected' : '' }} {{ (type == 'range' && item.isStart) ? 'hp-cal-day-selected-start' : '' }} {{ (type == 'range' && item.isEnd) ? 'hp-cal-day-selected-end' : '' }} {{ (type == 'range' && item.isInRange) ? 'hp-cal-day-range-in' : '' }}"
+          onTap="onSelectDay"
+          data-day="{{ item.val }}"
+          data-month="{{ item.monthName }}"
+          data-year="{{ item.year }}"
+          data-disabled="{{ item.isDisabled }}"
+          a:key="*this"
+        >
+          <text a:if="{{ item.isToday }}" class="hp-cal-today-label">Hari ini</text>
+          <text class="hp-cal-day-num {{ item.isToday ? 'hp-cal-today-num' : '' }}">
+            {{ item.val }}
+          </text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- MONTH VIEW (Year/Month Picker) — separate scroll-view so scroll-into-view works on first render -->
+  <scroll-view
+    a:if="{{ calendarMode == 'month' }}"
+    scroll-y="{{ true }}"
+    class="hp-cal-content"
+    scroll-into-view="{{ monthScrollTargetId }}"
+    scroll-with-animation="false"
+  >
+    <!-- Previous Year -->
+    <view class="hp-cal-year-section">
+      <text class="hp-cal-year-header txt-h4-px">{{ yearHeaderPrev }}</text>
+      <view class="hp-cal-months-grid">
+        <view
+          a:for="{{ monthsListPrev }}"
+          id="{{ item.id }}"
+          class="hp-cal-month-cell {{ item.isActive ? 'hp-cal-month-active' : '' }} {{ item.isDisabled ? 'hp-cal-month-disabled' : '' }}"
+          onTap="onSelectMonth"
+          data-month="{{ item.name }}"
+          data-year="{{ yearHeaderPrev }}"
+          data-disabled="{{ item.isDisabled }}"
+          a:key="name"
+        >
+          <text class="txt-label1-px">{{ item.name }}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Current Year -->
+    <view class="hp-cal-year-section">
+      <text class="hp-cal-year-header txt-h4-px">{{ yearHeaderCur }}</text>
+      <view class="hp-cal-months-grid">
+        <view
+          a:for="{{ monthsListCur }}"
+          id="{{ item.id }}"
+          class="hp-cal-month-cell {{ item.isActive ? 'hp-cal-month-active' : '' }} {{ item.isDisabled ? 'hp-cal-month-disabled' : '' }}"
+          onTap="onSelectMonth"
+          data-month="{{ item.name }}"
+          data-year="{{ yearHeaderCur }}"
+          data-disabled="{{ item.isDisabled }}"
+          a:key="name"
+        >
+          <text class="txt-label1-px">{{ item.name }}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- Footer Area (Simpan button) -->
+  <view class="hp-cal-footer">
+    <view
+      class="hp-cal-save-btn {{ (calendarMode == 'month' || (type == 'single' && selectedDayVal) || (type == 'range' && rangeStart && rangeEnd)) ? 'hp-cal-save-active' : 'hp-cal-save-disabled' }}"
+      onTap="onSaveTap"
+    >
+      <text class="hp-cal-save-text txt-label1-sb-px">{{ saveLabel || 'Simpan' }}</text>
+    </view>
+  </view>
+</view>

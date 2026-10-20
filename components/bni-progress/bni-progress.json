@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "progress": "antd-mini/es/Progress/index",
+    "icon": "antd-mini/es/Icon/index"
+  }
+}

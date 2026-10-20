@@ -1,0 +1,205 @@
+.swipe-component-container {
+  width: calc(100% - 64rpx) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 32rpx;
+  background: #FFF !important;
+  overflow: clip;
+}
+
+.swipe-component-slot {
+  flex: 1;
+}
+
+.swipe-component-action {
+  margin-top: 48rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swipe-component-action .swipe-action-button:nth-last-child(1){
+  margin-left:16rpx;
+}
+
+.swipe-action-button {
+  display: flex;
+  height: max-content;
+  width: 196.00rpx;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+}
+
+.swipe-action-icon {
+  display: flex;
+  margin-bottom: 16rpx;
+  width: 72rpx;
+  height: 72rpx;
+  padding: 24.00rpx;
+  justify-content: center;
+  align-items: center;
+  border-radius: 48.00rpx;
+}
+
+.button-edit{
+  border: 2.00rpx solid var(--functional-bw-tones-light-gray, #C6C6C6);
+}
+
+.button-confirm{
+  background: var(--functional-status-success-success-light, #E1FEF7);
+}
+
+.button-edit-icon-svg{
+  height: 80%;
+  width: 80%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15.6 5.7C15 5.1 14.1 5.1 13.5 5.7L3.5 15.6V19.5C3.5 20.3 4.2 21 5 21H8.9L18.8 11.1C19.4 10.5 19.4 9.6 18.8 9L15.6 5.7ZM8.1 19H5.5V16.4L14.5 7.4L17.1 10L8.1 19ZM22.2 7.4L20.6 9H20.5L15.6 4.1V4L17.2 2.4C17.4 2.2 17.7 2.2 17.9 2.4L22.2 6.7C22.3 6.9 22.3 7.2 22.2 7.4Z" fill="%234E4E4E"/></svg>');
+}
+
+.button-confirm-icon-svg {
+  height: 80%;
+  width: 80%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"><path d="M10.59 17.95C10.21 17.95 9.82 17.8 9.53 17.51L4.5 12.48L5.91 11.07L10.59 15.75L19.38 7L20.79 8.42L11.64 17.52C11.35 17.81 10.97 17.96 10.58 17.96L10.59 17.95Z" fill="%2302C794"/></svg>');
+}
+
+.button-text {
+  align-self: stretch;
+  color: var(--functional-bw-tones-black, #0E0E0E);
+  text-align: center;
+  font-feature-settings: 'clig'off, 'liga'off;
+  font-family: TT Interphases Pro;
+  font-size: 24.00rpx;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+.bni-swipe-out {
+  animation-name: swipe-out-animation;
+}
+
+@keyframes swipe-out-animation {
+  0% {
+    transform: translate3d(0rpx, 0rpx, 0rpx) rotate(0deg) scale(1);
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(200rpx, 0rpx, 0rpx) rotate(20deg) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* pixel */
+
+.swipe-component-container-px {
+  width: calc(100% - 32px) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 16px;
+  background: #FFF !important;
+  overflow: clip;
+}
+
+.swipe-component-slot-px {
+  flex: 1;
+}
+
+.swipe-component-action-px {
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swipe-component-action-px .swipe-action-button-px:nth-last-child(1){
+  margin-left:8px;
+}
+
+.swipe-action-button-px {
+  display: flex;
+  height: max-content;
+  width: 98px;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+}
+
+.swipe-action-icon-px {
+  display: flex;
+  margin-bottom: 8px;
+  width: 36px;
+  height: 36px;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+}
+
+.button-edit-px{
+  border: 1px solid var(--functional-bw-tones-light-gray, #C6C6C6);
+}
+
+.button-confirm-px{
+  background: var(--functional-status-success-success-light, #E1FEF7);
+}
+
+.button-edit-icon-svg-px{
+  height: 80%;
+  width: 80%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15.6 5.7C15 5.1 14.1 5.1 13.5 5.7L3.5 15.6V19.5C3.5 20.3 4.2 21 5 21H8.9L18.8 11.1C19.4 10.5 19.4 9.6 18.8 9L15.6 5.7ZM8.1 19H5.5V16.4L14.5 7.4L17.1 10L8.1 19ZM22.2 7.4L20.6 9H20.5L15.6 4.1V4L17.2 2.4C17.4 2.2 17.7 2.2 17.9 2.4L22.2 6.7C22.3 6.9 22.3 7.2 22.2 7.4Z" fill="%234E4E4E"/></svg>');
+}
+
+.button-confirm-icon-svg-px {
+  height: 80%;
+  width: 80%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"><path d="M10.59 17.95C10.21 17.95 9.82 17.8 9.53 17.51L4.5 12.48L5.91 11.07L10.59 15.75L19.38 7L20.79 8.42L11.64 17.52C11.35 17.81 10.97 17.96 10.58 17.96L10.59 17.95Z" fill="%2302C794"/></svg>');
+}
+
+.button-text-px {
+  align-self: stretch;
+  color: var(--functional-bw-tones-black, #0E0E0E);
+  text-align: center;
+  font-feature-settings: 'clig'off, 'liga'off;
+  font-family: TT Interphases Pro;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+.bni-swipe-out-px {
+  animation-name: swipe-out-animation-px;
+}
+
+@keyframes swipe-out-animation-px {
+  0% {
+    transform: translate3d(0px, 0px, 0px) rotate(0deg) scale(1);
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(100px, 0px, 0px) rotate(20deg) scale(1.1);
+    opacity: 0;
+  }
+}

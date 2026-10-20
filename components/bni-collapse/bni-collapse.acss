@@ -1,0 +1,129 @@
+.container-collapse {
+  width: 100%;
+  background-color: white;
+}
+ 
+.container-label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: white;
+}
+ 
+.tab-label {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "TT Interphases Pro";
+  font-size: 28rpx;
+  font-weight: 700;
+  color: black;
+  background-color: white;
+  border: none;
+}
+ 
+.tab-content {
+  background-color: white;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+ 
+.tab-content.open {
+  max-height: 2000rpx;
+  opacity: 1;
+}
+ 
+.tab-content text {
+  color: var(--functional-bw-tones-black, #0E0E0E);
+  font-feature-settings: 'liga'off, 'clig'off;
+  font-family: "TT Interphases Pro";
+  font-size: 28rpx;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  margin-top: 16rpx;
+}
+ 
+.divider-between-labels {
+  height: 2rpx;
+  background: #DADADA;
+  margin-top: 0;
+}
+ 
+.p-b-16 {
+  padding: 0rpx 0rpx 16rpx 0rpx;
+}
+ 
+.icon-collapse {
+  height: 48rpx;
+  width: 48rpx;
+}
+ 
+/* PIXEL MODE */
+ 
+.container-collapse-px {
+  width: 100%;
+  background-color: white;
+}
+ 
+.container-label-px {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: white;
+}
+ 
+.tab-label-px {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "TT Interphases Pro";
+  font-size: 14px;
+  font-weight: 700;
+  color: black;
+  background-color: white;
+  border: none;
+}
+ 
+.tab-content-px {
+  background-color: white;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+ 
+.tab-content-px.open-px {
+  max-height: 1000px;
+  opacity: 1;
+}
+ 
+.tab-content-px text {
+  color: var(--functional-bw-tones-black, #0E0E0E);
+  font-feature-settings: 'liga'off, 'clig'off;
+  font-family: "TT Interphases Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  margin-top: 8px;
+}
+ 
+.divider-between-labels-px {
+  height: 1px;
+  background: #DADADA;
+  margin-top: 0;
+}
+ 
+.p-b-16-px {
+  padding: 0px 0px 8px 0px;
+}
+ 
+.icon-collapse-px {
+  height: 24px;
+  width: 24px;
+}

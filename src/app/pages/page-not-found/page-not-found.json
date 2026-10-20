@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "bni-button": "/node_modules/@bni-maverick-mpaas/lib/es/bni-button/bni-button"
+    "bni-button": "/components/bni-button/bni-button"
   },
     "transparentTitle": "always",
     "titlePenetrate": "YES",

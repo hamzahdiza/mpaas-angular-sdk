@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  color: #333333;
+  align-items: flex-start;
+}
+
+.content {
+  padding: 0px;
+}

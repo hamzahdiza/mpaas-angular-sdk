@@ -1,0 +1,9 @@
+.ant-popup-content {
+  padding: 32rpx 32rpx 48rpx 32rpx;
+  margin: 0 48rpx 95rpx 48rpx;
+  border-radius: 15rpx;
+  border-radius: 32rpx;
+  background: var(--functional-bw-tones-white, #FFF);
+  box-shadow: 0rpx 10rpx 32rpx 0rpx rgba(78, 78, 78, 0.27);
+  height: auto;
+}

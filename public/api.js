@@ -1,10 +1,12 @@
-import request from "@bni-maverick-mpaas/lib/es/utils/helpers/request"
-
+/**
+ * Mock Root Public API Service
+ */
 export function getNewLockey(languageVersion) {
-  return request({
-    url: `/content-mpaas/v1/retrieve-language-pack?languageVersion=${languageVersion}&feature=WEALTH`,
-    headers: {
-      "Screen-Id": "portfolioLandingScreen",
+  return Promise.resolve({
+    data: {
+      languageVersion: languageVersion || 'id',
+      lockeys: {}
     },
-  })
+    statusCode: 200
+  });
 }

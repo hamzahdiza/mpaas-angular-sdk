@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "button-bni": "/src/bni-button/bni-button"
+  }
+}

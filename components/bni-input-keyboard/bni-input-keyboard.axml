@@ -1,0 +1,520 @@
+<view a:if="{{ !pixel }}">
+
+<view style="position:relative">
+  <view a:if="{{ showCopy }}" class="popover-container">
+    <view class="popover-content">
+      <view onTap="onCopy">
+        Copy
+      </view>
+      <view>
+        |
+      </view>
+      <view onTap="onPaste">
+        Paste
+      </view>
+    </view>
+  </view>
+</view>
+
+<view id="input1" onTap="onFocused" onLongTap="onLongTap" class="
+    {{type == 'amountWithClear' ? 'input-amount' : (type == 'amountType' ? 'input-amount-type' : 'input')}}
+    {{inputFocusStatus ? 'border-turquoise-400' : 'border-light-gray'}} 
+    {{error && type != 'amount'&& 'border-error'}} 
+    {{success && 'border-success'}} 
+    {{type == 'read-only' ?  'bg-snow-white border-snow-white' : 'bg-white'}} 
+    {{type == 'disabled' ?  'bg-off-white border-off-white' : 'bg-white'}}
+    {{type == 'amount' && 'bottom-border border-light-gray'}}
+    {{type == 'amountWithClear' && 'bottom-border-amount'}}
+    {{type == 'search' && 'search-style'}}
+    ">
+
+  <image
+    a:if="{{ prefixIcon }}"
+    id="{{assignIdPrefix}}"
+    mode="aspectFit"
+    class="prefix-icon-style"
+    src="{{prefixIcon}}"
+    onTap="onPrefix"
+  />
+
+  <text a:if="{{ prefixIconText }}" class="prefix-icon-text-style txt-amount2 txt-black {{type === 'amountWithClear' && 'amount-gap'}} {{type === 'amountType' && 'prefix-icon-gap border-right-gray'}} {{(error && type === 'amountType') ? 'border-right-red': ''}} {{(!error && inputFocusStatus && type === 'amountType') ? 'border-right-green': ''}}">
+    {{prefixIconText}}
+  </text>
+
+  <view class="{{ ( type === 'amountType' || type === 'amountWithClear') ? 'amount-center':'input-group'}}">
+
+    <text id={{idLabel}} a:if="{{ type != 'amount' && type != 'search' && type !== 'amountWithClear' && type !== 'amountType'}}"
+      class="txt-body{{inputFocusStatus || inputValue || placeholder ? '3 input-label' : '2'}} 
+        {{(inputValue || inputFocusStatus || placeholder) && type != 'disabled' ? 'txt-black' : 'txt-gray'}}"
+    >
+      {{inputLabel}}
+    </text>
+
+    <view class="
+      {{type == 'read-only' && 'bg-snow-white'}} 
+      {{type == 'disabled' }}
+      {{(type == 'amount' || type == 'amountWithClear' || type == 'amountType') ? 'txt-amount2 amount-height txt-black' : 'txt-body2 txt-black '}}">
+
+      <scroll-view
+        class="{{prefixIconText == 'USD' ? 'scroll-view-usd' : 'scroll-view'}}"
+        id="input2"
+        scroll-x={{true}}
+      >
+        <view a:if="{{ inputValue }}" id={{idValue}}  class="input-value-container {{prefixText ? 'txt-body2': ''}}">
+          <text a:if="{{prefixText}}">{{prefixText}}</text>{{ inputValue }}
+          <text class="{{inputFocusStatus ? 'clear-input-icon-container-blink' :'clear-input-icon-container'}}"/>
+        </view>
+      </scroll-view>
+
+      <view id="{{assignId}}" a:if="{{ !inputValue && inputFocusStatus }}" class="{{inputFocusStatus ? 'clear-input-icon-container-blink' :'clear-input-icon-container'}}">
+        <view  class="amount-input-placeholder">
+          {{placeholder}}
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view a:if="{{ inputFocusStatus }}">
+    <view
+      a:if="{{ type === 'amountWithClear' && inputValue !=='' && inputValue !== '0' }}"
+      catchTap="onClear"
+    >
+      <image id={{idClearIcon}} src="{{clearIcon}}" class="amount-clear-icon" />
+    </view>
+    <image
+      a:if="{{ (suffixIcon && inputValue !=='' && inputValue !== '0')}}"
+      id={{idSuffixIcon}}
+      mode="aspectFit"
+      class="suffix-icon-style "
+      src="{{suffixIcon}}"
+      onTap="onSuffix"
+    />
+  </view>
+</view>
+
+<view
+  a:if="{{ ((type === 'amountWithClear' || type === 'amountType') && error)  || (type !== 'amountWithClear' && type !== 'amountType') }}"
+  class="{{type == 'amount' || type == 'amountWithClear' || type === 'amountType' ? 'message-amount' : (isCaptionVisible || error || success ? 'message' : '')}}"
+>
+
+  <view a:if="{{ isCaptionVisible || error || success  }}" class="caption-container">
+    <view id={{idMessageIcon}} a:if="{{ error || success }}" class="
+        message-icon-style 
+        {{error && 'error bg-error'}} 
+        {{success && 'success bg-success'}}">
+    </view>
+    <text id={{idMessage}} a:if="{{ caption && (isCaptionVisible || error || success) }}" class="
+        txt-label2 
+        {{type == 'disabled' || type == 'read-only' ? 'txt-charcoal' : 'txt-black'}} 
+        {{error && 'txt-error'}} 
+        {{success && 'txt-success'}}
+      ">
+      {{caption}}
+    </text>
+  </view>
+
+  <view>
+    <text a:if="{{ counter && isCaptionVisible}}" class="
+        txt-label2 
+        {{type == 'disabled' || type == 'read-only' ? 'txt-charcoal' : 'txt-black'}} 
+        {{error && 'txt-error'}} 
+        {{success && 'txt-success'}}
+      ">
+      {{inputValue.length}}/{{maxChar}}
+    </text>
+  </view>
+
+</view>
+
+
+<view a:if="{{ inputFocusStatus }}" id="input-keyboard" class="input-keyboard" catchTap="onFocused">
+  <view id="input-keyboard-selesai" class="input-keyboard-selesai">
+    <view
+      id="{{idFinishInput ? idFinishInput : 'input-keyboard-selesai-button'}}"
+      class="input-keyboard-selesai-text"
+      catchTap="handlePopupClose"
+    >
+      {{keyboardButtonText}}
+    </view>
+  </view>
+  <view id="input-keyboard-group" class="input-keyboard-group">
+    <view class="input-keyboard-group-row">
+      <button
+        id="input-keyboard-button1"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='1'
+      >
+        1
+      </button>
+      <button
+        id="input-keyboard-button2"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='2'
+      >
+        2
+      </button>
+      <button
+        id="input-keyboard-button3"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='3'
+      >
+        3
+      </button>
+    </view>
+    <view class="input-keyboard-group-row">
+      <button
+        id="input-keyboard-button4"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='4'
+      >
+        4
+      </button>
+      <button
+        id="input-keyboard-button5"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='5'
+      >
+        5
+      </button>
+      <button
+        id="input-keyboard-button6"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='6'
+      >
+        6
+      </button>
+    </view>
+    <view class="input-keyboard-group-row">
+      <button
+        id="input-keyboard-button7"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='7'
+      >
+        7
+      </button>
+      <button
+        id="input-keyboard-button8"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='8'
+      >
+        8
+      </button>
+      <button
+        id="input-keyboard-button9"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='9'
+      >
+        9
+      </button>
+    </view>
+    <view class="input-keyboard-group-row">
+      <button
+        a:if="{{currencyType == 'Rp'}}"
+        id="input-keyboard-button000"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='000'
+      >
+        000
+      </button>
+      <button
+        a:if="{{currencyType == 'USD'}}"
+        id="input-keyboard-button-drop"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='.'
+      >
+        .
+      </button>
+      <button
+        id="input-keyboard-button0"
+        class="input-keyboard-group-button"
+        onTap="onHandleClick"
+        data-attr='0'
+      >
+        0
+      </button>
+      <view
+        id="delete-button-box"
+        class="input-keyboard-delete-button-box"
+        onTap="onHandleClickDelete"
+      >
+        <button id="input-keyboard-delete-button" class="input-keyboard-group-delete-button">
+          <view class="delete-icon" />
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+
+</view>
+<!-- PX -->
+<view a:if="{{ pixel }}">
+
+  <view style="position:relative">
+    <view a:if="{{ showCopy }}" class="popover-container-px">
+      <view class="popover-content-px">
+        <view onTap="onCopy">
+          Copy
+        </view>
+        <view>
+          |
+        </view>
+        <view onTap="onPaste">
+          Paste
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view id="input1" onTap="onFocused" onLongTap="onLongTap" class="
+      {{type == 'amountWithClear' ? 'input-amount-px' : (type == 'amountType' ? 'input-amount-type-px' : 'input-px')}}
+      {{inputFocusStatus ? 'border-turquoise-400' : 'border-light-gray'}} 
+      {{error && type != 'amount'&& 'border-error'}} 
+      {{success && 'border-success'}} 
+      {{type == 'read-only' ?  'bg-snow-white border-snow-white' : 'bg-white'}} 
+      {{type == 'disabled' ?  'bg-off-white border-off-white' : 'bg-white'}}
+      {{type == 'amount' && 'bottom-border-px border-light-gray'}}
+      {{type == 'amountWithClear' && 'bottom-border-amount-px'}}
+      {{type == 'search' && 'search-style-px'}}
+      ">
+  
+    <image
+      a:if="{{ prefixIcon }}"
+      id="{{assignIdPrefix}}"
+      mode="aspectFit"
+      class="prefix-icon-style-px"
+      src="{{prefixIcon}}"
+      onTap="onPrefix"
+    />
+  
+    <text a:if="{{ prefixIconText }}" class="prefix-icon-text-style-px txt-amount2-px txt-black {{type === 'amountWithClear' && 'amount-gap-px'}} {{type === 'amountType' && 'prefix-icon-gap-px border-right-gray-px'}} {{(error && type === 'amountType') ? 'border-right-red-px': ''}} {{(!error && inputFocusStatus && type === 'amountType') ? 'border-right-green-px': ''}}">
+      {{prefixIconText}}
+    </text>
+  
+    <view class="{{ ( type === 'amountType' || type === 'amountWithClear') ? 'amount-center-px':'input-group-px'}}">
+  
+      <text id={{idLabel}} a:if="{{ type != 'amount' && type != 'search' && type !== 'amountWithClear' && type !== 'amountType'}}"
+        class="txt-body{{inputFocusStatus || inputValue || placeholder ? '3-px input-label' : '2-px'}} 
+          {{(inputValue || inputFocusStatus || placeholder) && type != 'disabled' ? 'txt-black' : 'txt-gray'}}"
+      >
+        {{inputLabel}}
+      </text>
+  
+      <view class="
+        {{type == 'read-only' && 'bg-snow-white'}} 
+        {{type == 'disabled' }}
+        {{(type == 'amount' || type == 'amountWithClear' || type == 'amountType') ? 'txt-amount2-px amount-height-px txt-black' : 'txt-body2-px txt-black '}}">
+  
+        <scroll-view
+          class="{{prefixIconText == 'USD' ? 'scroll-view-usd-px' : 'scroll-view-px'}}"
+          id="input2"
+          scroll-x={{true}}
+        >
+          <view a:if="{{ inputValue }}" id={{idValue}}  class="input-value-container-px {{prefixText ? 'txt-body2-px': ''}}">
+            <text a:if="{{prefixText}}">{{prefixText}}</text>{{ inputValue }}
+            <text class="{{inputFocusStatus ? 'clear-input-icon-container-blink-px' :'clear-input-icon-container-px'}}"/>
+          </view>
+        </scroll-view>
+  
+        <view id="{{assignId}}" a:if="{{ !inputValue && inputFocusStatus }}" class="{{inputFocusStatus ? 'clear-input-icon-container-blink-px' :'clear-input-icon-container-px'}}">
+          <view  class="amount-input-placeholder-px">
+            {{placeholder}}
+          </view>
+        </view>
+      </view>
+  
+    </view>
+    <view a:if="{{ inputFocusStatus }}">
+      <view
+        a:if="{{ type === 'amountWithClear' && inputValue !=='' && inputValue !== '0' }}"
+        catchTap="onClear"
+      >
+        <image id={{idClearIcon}} src="{{clearIcon}}" class="amount-clear-icon-px" />
+      </view>
+      <image
+        a:if="{{ (suffixIcon && inputValue !=='' && inputValue !== '0')}}"
+        id={{idSuffixIcon}}
+        mode="aspectFit"
+        class="suffix-icon-style-px "
+        src="{{suffixIcon}}"
+        onTap="onSuffix"
+      />
+    </view>
+  </view>
+  
+  <view
+    a:if="{{ ((type === 'amountWithClear' || type === 'amountType') && error)  || (type !== 'amountWithClear' && type !== 'amountType') }}"
+    class="{{type == 'amount' || type == 'amountWithClear' || type === 'amountType' ? 'message-amount-px' : (isCaptionVisible || error || success ? 'message-px' : '')}}"
+  >
+  
+    <view a:if="{{ isCaptionVisible || error || success  }}" class="caption-container-px">
+      <view id={{idMessageIcon}} a:if="{{ error || success }}" class="
+          message-icon-style-px 
+          {{error && 'error-px bg-error'}} 
+          {{success && 'success-px bg-success'}}">
+      </view>
+      <text id={{idMessage}} a:if="{{ caption && (isCaptionVisible || error || success) }}" class="
+          txt-label2-px 
+          {{type == 'disabled' || type == 'read-only' ? 'txt-charcoal' : 'txt-black'}} 
+          {{error && 'txt-error'}} 
+          {{success && 'txt-success'}}
+        ">
+        {{caption}}
+      </text>
+    </view>
+  
+    <view>
+      <text a:if="{{ counter && isCaptionVisible}}" class="
+          txt-label2-px 
+          {{type == 'disabled' || type == 'read-only' ? 'txt-charcoal' : 'txt-black'}} 
+          {{error && 'txt-error'}} 
+          {{success && 'txt-success'}}
+        ">
+        {{inputValue.length}}/{{maxChar}}
+      </text>
+    </view>
+  
+  </view>
+  
+  
+  <view a:if="{{ inputFocusStatus }}" id="input-keyboard" class="input-keyboard-px" catchTap="onFocused">
+    <view id="input-keyboard-selesai" class="input-keyboard-selesai-px">
+      <view
+        id="{{idFinishInput ? idFinishInput : 'input-keyboard-selesai-button'}}"
+        class="input-keyboard-selesai-text-px"
+        catchTap="handlePopupClose"
+      >
+        {{keyboardButtonText}}
+      </view>
+    </view>
+    <view id="input-keyboard-group" class="input-keyboard-group-px">
+      <view class="input-keyboard-group-row-px">
+        <button
+          id="input-keyboard-button1"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='1'
+        >
+          1
+        </button>
+        <button
+          id="input-keyboard-button2"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='2'
+        >
+          2
+        </button>
+        <button
+          id="input-keyboard-button3"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='3'
+        >
+          3
+        </button>
+      </view>
+      <view class="input-keyboard-group-row-px">
+        <button
+          id="input-keyboard-button4"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='4'
+        >
+          4
+        </button>
+        <button
+          id="input-keyboard-button5"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='5'
+        >
+          5
+        </button>
+        <button
+          id="input-keyboard-button6"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='6'
+        >
+          6
+        </button>
+      </view>
+      <view class="input-keyboard-group-row-px">
+        <button
+          id="input-keyboard-button7"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='7'
+        >
+          7
+        </button>
+        <button
+          id="input-keyboard-button8"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='8'
+        >
+          8
+        </button>
+        <button
+          id="input-keyboard-button9"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='9'
+        >
+          9
+        </button>
+      </view>
+      <view class="input-keyboard-group-row-px">
+        <button
+          a:if="{{currencyType == 'Rp'}}"
+          id="input-keyboard-button000"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='000'
+        >
+          000
+        </button>
+        <button
+          a:if="{{currencyType == 'USD'}}"
+          id="input-keyboard-button-drop"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='.'
+        >
+          .
+        </button>
+        <button
+          id="input-keyboard-button0"
+          class="input-keyboard-group-button-px"
+          onTap="onHandleClick"
+          data-attr='0'
+        >
+          0
+        </button>
+        <view
+          id="delete-button-box"
+          class="input-keyboard-delete-button-box-px"
+          onTap="onHandleClickDelete"
+        >
+          <button id="input-keyboard-delete-button" class="input-keyboard-group-delete-button-px">
+            <view class="delete-icon-px" />
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  </view>
+

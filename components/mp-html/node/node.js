@@ -1,0 +1,115 @@
+"use strict";
+
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function t(t, e, r) {
+  return e in t ? Object.defineProperty(t, e, {
+    value: r,
+    enumerable: !0,
+    configurable: !0,
+    writable: !0
+  }) : t[e] = r, t;
+}
+Component({
+  data: {
+    ctrl: {}
+  },
+  props: {
+    childs: [],
+    opts: []
+  },
+  options: {
+    addGlobalClass: !0
+  },
+  didMount: function didMount() {
+    this.props.onAdd(this);
+  },
+  methods: {
+    noop: function noop() {},
+    getNode: function getNode(t) {
+      try {
+        for (var e = t.split("_"), r = this.props.childs[e[0]], i = 1; i < e.length; i++) r = r.children[e[i]];
+        return r;
+      } catch (t) {
+        return {
+          text: "",
+          attrs: {},
+          children: []
+        };
+      }
+    },
+    play: function play(t) {
+      if (this.root.props.onPlay && this.root.props.onPlay(), this.root.props.pauseVideo) {
+        for (var e = !1, r = t.target.id, i = this.root._videos.length; i--;) this.root._videos[i].id === r ? e = !0 : this.root._videos[i].pause();
+        if (!e) {
+          var o = my.createVideoContext(r, this);
+          o.id = r, this.root.playbackRate && o.playbackRate(this.root.playbackRate), this.root._videos.push(o);
+        }
+      }
+    },
+    imgTap: function imgTap(t) {
+      var e = this.getNode(t.target.dataset.i);
+      if (e.a) return this.linkTap(e.a);
+      if (!e.attrs.ignore && (this.root.props.onImgtap && this.root.props.onImgtap(e.attrs), this.root.props.previewImg)) {
+        var r = e.i;
+        my.previewImage({
+          enablesavephoto: this.root.props.showImgMenu,
+          enableShowPhotoDownload: this.root.props.showImgMenu,
+          current: r,
+          urls: this.root.imgList
+        });
+      }
+    },
+    imgLoad: function imgLoad(e) {
+      var r,
+        i = e.target.dataset.i,
+        o = this.getNode(i);
+      o.w ? (this.props.opts[1] && !this.data.ctrl[i] || -1 === this.data.ctrl[i]) && (r = 1) : r = e.detail.width, r && this.setData(t({}, "ctrl." + i, r)), this.checkReady();
+    },
+    checkReady: function checkReady() {
+      var t = this;
+      this.root.props.lazyLoad || (this.root.imgList._unloadimgs -= 1, this.root.imgList._unloadimgs || setTimeout(function () {
+        t.root.getRect().then(function (e) {
+          t.root.props.onReady && t.root.props.onReady(e);
+        })["catch"](function () {
+          t.root.props.onReady && t.root.props.onReady({});
+        });
+      }, 350));
+    },
+    linkTap: function linkTap(t) {
+      var e = t.currentTarget ? this.getNode(t.currentTarget.dataset.i) : {},
+        r = e.attrs || t,
+        i = r.href;
+      this.root.props.onLinktap && this.root.props.onLinktap(_extends({
+        innerText: this.root.getText(e.children || [])
+      }, r)), i && ("#" === i[0] ? this.root.navigateTo(i.substring(1))["catch"](function () {}) : i.split("?")[0].includes("://") ? this.root.props.copyLink && my.setClipboard({
+        text: i,
+        success: function success() {
+          return my.showToast({
+            content: "链接已复制"
+          });
+        }
+      }) : my.navigateTo({
+        url: i,
+        fail: function fail() {
+          my.switchTab({
+            url: i,
+            fail: function fail() {}
+          });
+        }
+      }));
+    },
+    mediaError: function mediaError(e) {
+      var r = e.target.dataset.i,
+        i = this.getNode(r);
+      if ("video" === i.name || "audio" === i.name) {
+        var o = (this.data.ctrl[r] || 0) + 1;
+        if (o > i.src.length && (o = 0), o < i.src.length) return this.setData(t({}, "ctrl." + r, o));
+      } else "img" === i.name && (this.props.opts[2] && this.setData(t({}, "ctrl." + r, -1)), this.checkReady());
+      this.root && this.root.props.onError && this.root.props.onError({
+        source: i.name,
+        attrs: i.attrs,
+        errMsg: e.detail.errMsg
+      });
+    }
+  }
+});

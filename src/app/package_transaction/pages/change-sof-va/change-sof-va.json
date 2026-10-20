@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar",
-    "bni-chip": "@bni-maverick-mpaas/lib/es/bni-chip/bni-chip"
+    "top-bar": "/components/top-bar/top-bar",
+    "bni-chip": "/components/bni-chip/bni-chip"
   },
   "transparentTitle": "always",
   "titlePenetrate": "YES",

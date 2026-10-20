@@ -1,0 +1,21 @@
+<view a:if="{{ !pixel }}">
+  <view
+    class="toggle {{disabled ? 'bg-disabled' : toggleStatus ? 'bg-turquoise-300' : 'bg-granite'}}"
+    onTap="onClick"
+  >
+    <view class="circle" style=" 
+      margin-left : {{toggleStatus ? '49rpx' : '0'}};">
+    </view>
+  </view>
+</view>
+
+<view a:if="{{ pixel }}">
+  <view
+    class="toggle-px {{disabled ? 'bg-disabled' : toggleStatus ? 'bg-turquoise-300' : 'bg-granite'}}"
+    onTap="onClick"
+  >
+    <view class="circle-px" style=" 
+      margin-left : {{toggleStatus ? '24.5px' : '0'}};">
+    </view>
+  </view>
+</view>

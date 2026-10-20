@@ -1,8 +1,8 @@
-@import "@bni-maverick-mpaas/lib/es/utils/styles/theme.acss";
-@import "@bni-maverick-mpaas/lib/es/utils/styles/shimmer.acss";
-@import "@bni-maverick-mpaas/lib/es/utils/styles/typography.acss";
-@import "@bni-maverick-mpaas/lib/es/utils/styles/spacing.acss";
-@import "@bni-maverick-mpaas/lib/es/utils/styles/layout.acss";
+@import "/components/utils/styles/theme.acss";
+@import "/components/utils/styles/shimmer.acss";
+@import "/components/utils/styles/typography.acss";
+@import "/components/utils/styles/spacing.acss";
+@import "/components/utils/styles/layout.acss";
 
 /* Font Regular */
 @font-face {

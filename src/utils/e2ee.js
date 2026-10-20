@@ -1,44 +1,38 @@
-  var tools = require('./e2ee/e2ee.wsx')
-  /**
-   *  Encrypt API request and response body
-   * @param {*} sessionKey
-   * @param {*} data 
-   */
-  export function encryptAPIData(sessionKey, data) {
-    return tools.encryptData(sessionKey, data)
-  }
+/**
+ * Mock E2EE Implementation (Zero External Dependencies)
+ */
 
-  /**
-   * Decrypt API request and response body
-   * @param {*} sessionKey
-   * @param {*} data
-   */
-  export function decryptAPIData(sessionKey, data) {
-    return tools.decryptData(sessionKey, data)
-  }
+export function encryptAPIData(sessionKey, data) {
+  return typeof data === 'object' ? JSON.stringify(data) : String(data);
+}
 
-  /**
-   * Encrypt MP
-   * @param {*} beE2EEPublicKey
-   * @param {*} userId
-   * @param {*} mp
-   */
-  export function encryptMPIN(beE2EEPublicKey, userId, mp) {
-    return tools.encryptPassword(beE2EEPublicKey, userId, mp)
+export function decryptAPIData(sessionKey, data) {
+  if (typeof data === 'string') {
+    try {
+      return JSON.parse(data);
+    } catch (e) {
+      return data;
+    }
   }
+  return data;
+}
 
-  /**
-   * Encrypt sessionKey
-   * @param {*} beEncryptPublicKey 
-   * @param {*} data 
-   */
-  export function encryptSessionKey(beEncryptPublicKey, data) {
-    return tools.encryptKey(beEncryptPublicKey, data)
-  }
+export function encryptMPIN(beE2EEPublicKey, userId, mp) {
+  return `MOCK_ENCRYPTED_PIN_${mp}`;
+}
 
-  /**
-   * Create sessionKey
-   */
-  export function createKey() {
-    return tools.createKey()
-  }
+export function encryptSessionKey(beEncryptPublicKey, data) {
+  return 'MOCK_ENCRYPTED_SESSION_KEY_0123456789abcdef';
+}
+
+export function createKey() {
+  return '0123456789abcdef0123456789abcdef';
+}
+
+export function generateUUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0;
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}

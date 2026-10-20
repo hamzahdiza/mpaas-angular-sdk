@@ -1,0 +1,241 @@
+<view a:if="{{type == 'historyBookingBranch'}}" class="container-list-date">
+  <block
+    a:for="{{dateTransactionList}}"
+    a:for-index="index"
+    a:for-item="item"
+    a:key="{{index}}"
+  >
+    <view
+      a:if="{{index == 0 || dateTransactionList[index-1].date != item.date}}"
+      class="date"
+    >
+      <text>{{item.date}}</text>
+    </view>
+    <view
+      a:if="{{index == 0 || dateTransactionList[index-1].date != item.date}}"
+      class="divider-date"
+    />
+    <view class="container-list-item" onTap="handleOnTap" data-item="{{item}}">
+      <view class="image-icon">
+        <image class="image" mode="widthFix" src="{{item.icon}}" />
+      </view>
+      <view class="container-detail-date">
+        <view class="date-title">
+          <text class="text-date-title">{{item.title}}</text>
+        </view>
+        <view class="container-metadata">
+          <view class="metadata-left">
+            <text class="text-metadata-left">{{item.description}}</text>
+          </view>
+          <view class="metadata-right">
+            <text class="text-metadata-right" style="{{ item.statusColor === 'done' ? 'color: #02C794' : item.statusColor === 'canceled' ? 'color: #D65C5C' : item.statusColor === 'expired' ? 'color: #A0A0A0' : 'color: #0E0E0E' }}">
+              {{item.status}}
+            </text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view a:if="{{type == 'transactionHistory'}}" class="container-list-date">
+  <block
+    a:for="{{transactionHistoryList}}"
+    a:for-index="index"
+    a:for-item="item"
+    a:key="{{index}}"
+  >
+    <view
+      a:if="{{index == 0 || transactionHistoryList[index-1].date != item.date}}"
+      class="date"
+    >
+      <text>{{item.trxDate}}</text>
+    </view>
+    <view
+      a:if="{{index == 0 || transactionHistoryList[index-1].date != item.date}}"
+      class="divider-date"
+    />
+    <view class="container-list-item" onTap="handleOnTap" data-item="{{item}}">
+      <view class="image-icon-transactionHistory">
+        <image class="image-transactionHistoy" mode="widthFix" src="{{item.icon}}" />
+      </view>
+      <view class="container-detail-date">
+        <view class="date-title">
+          <text class="text-date-title">{{item.title}}</text>
+          <text class="amount-container">{{item.amount}}</text>
+
+        </view>
+        <view class="container-metadata">
+          <view class="metadata-left">
+            <text class="text-metadata-left">{{item.description}}</text>
+          </view>
+          <view class="metadata-right">
+            <text class="text-metadata-right" style="{{ item.statusColor === 'done' ? 'color: #02C794' : item.statusColor === 'canceled' ? 'color: #D65C5C' : item.statusColor === 'expired' ? 'color: #A0A0A0' : item.statusColor === 'inprogress' ? 'color: #EBBC44' : 'color: #0E0E0E' }}">
+              {{item.status}}
+            </text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view a:if="{{type == 'contacts'}}" class="container-list-date">
+  <block a:for="{{ contactList }}" a:for-index="index" a:for-item="item" a:if="{{ contactList[0].letter }}">
+    <view class="container-group">
+      <view class="letter">
+        <text id="{{id.letter}}">{{item.letter}}</text>
+      </view>
+      <view class="divider-custom-contacts" />
+      <block
+        a:for="{{ item.dataContact }}"
+        a:for-index="index"
+        a:for-item="item"
+        a:key="dataContact"
+      >
+        <view
+          class="container-list-item custom-contacts"
+          onTap="handleOnTap"
+          data-item="{{item}}"
+        >
+          <view id="{{id.initial}}" class="initial txt-turquoise-400 bg-snow-white txt-body1-sb-px">
+            {{item.initial}}
+          </view>
+          <view class="container-detail-date">
+            <view class="account-number-container">
+              <text
+                a:for="{{ item.highlight.accountName }}"
+                a:for-index="index"
+                a:for-item="segment"
+                a:if="{{ item.highlight.accountName }}"
+                id="{{id.accountName}}"
+                class="{{ segment.hit ? 'highlited-search bg-turquoise-100' : '' }}"
+              >
+                {{segment.text}}
+              </text>
+              <text a:if="{{ !item.highlight.accountName }}" id="{{id.accountName}}">
+                {{item.accountName}}
+              </text>
+            </view>
+            <view class="container-metadata">
+              <view class="account-number-container">
+                <view class="txt-body3-px txt-granite">
+                  <text
+                    a:for="{{ item.highlight.beneficiaryBankAliasName }}"
+                    a:for-index="index"
+                    a:for-item="segment"
+                    a:if="{{ item.highlight.beneficiaryBankAliasName }}"
+                    id="{{id.beneficiaryBankAliasName}}"
+                    class="{{ segment.hit ? 'highlited-search bg-turquoise-100' : '' }}"
+                  >
+                    {{segment.text}}
+                  </text>
+                  <text
+                    a:if="{{ !item.highlight.beneficiaryBankAliasName }}"
+                    id="{{id.beneficiaryBankAliasName}}"
+                  >
+                    {{item.beneficiaryBankAliasName}}
+                  </text>
+                </view>
+                <view class="txt-body3-px txt-granite margin-4">
+                  •
+                </view>
+                <view class="txt-body3-px txt-granite">
+                  <text
+                    a:for="{{ item.highlight.beneficiaryAccountNumber }}"
+                    a:for-index="index"
+                    a:for-item="segment"
+                    a:if="{{ item.highlight.beneficiaryAccountNumber }}"
+                    id="{{id.beneficiaryAccountNumber}}"
+                    class="{{ segment.hit ? 'highlited-search bg-turquoise-100' : '' }}"
+                  >
+                    {{segment.text}}
+                  </text>
+                  <text
+                    a:if="{{ !item.highlight.beneficiaryAccountNumber }}"
+                    id="{{id.beneficiaryAccountNumber}}"
+                  >
+                    {{item.beneficiaryAccountNumber}}
+                  </text>
+
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+
+  <block a:for="{{ contactList }}" a:for-index="index" a:for-item="item" a:if="{{ !contactList[0].letter }}">
+    <view class="container-list-item custom-contacts" onTap="handleOnTap" data-item="{{item}}">
+      <view
+        class="initial txt-turquoise-400 bg-snow-white txt-body1-sb-px"
+        id="{{id.initial}}"
+      >
+        {{item.initial}}
+      </view>
+      <view class="container-detail-date">
+        <view class="account-number-container">
+          <text
+            a:for="{{ item.highlight.accountName }}"
+            a:for-index="index"
+            a:for-item="segment"
+            a:if="{{ item.highlight.accountName }}"
+            class="{{ segment.hit ? 'highlited-search bg-turquoise-100' : '' }}"
+            id="{{id.accountName}}"
+          >
+            {{segment.text}}
+          </text>
+          <text a:if="{{ !item.highlight.accountName }}" id="{{id.accountName}}">
+            {{item.accountName}}
+          </text>
+        </view>
+        <view class="container-metadata">
+          <view class="account-number-container">
+            <view class="txt-body3-px txt-granite">
+              <text
+                a:for="{{ item.highlight.beneficiaryBankAliasName }}"
+                a:for-index="index"
+                a:for-item="segment"
+                a:if="{{ item.highlight.beneficiaryBankAliasName }}"
+                id="{{id.beneficiaryBankAliasName}}"
+                class="{{ segment.hit ? 'highlited-search bg-turquoise-100' : '' }}"
+              >
+                {{segment.text}}
+              </text>
+              <text
+                a:if="{{ !item.highlight.beneficiaryBankAliasName }}"
+                id="{{id.beneficiaryBankAliasName}}"
+              >
+                {{item.beneficiaryBankAliasName}}
+              </text>
+            </view>
+            <view class="txt-body3-px txt-granite margin-4">
+              •
+            </view>
+            <view class="txt-body3-px txt-granite">
+              <text
+                a:for="{{ item.highlight.beneficiaryAccountNumber }}"
+                a:for-index="index"
+                a:for-item="segment"
+                a:if="{{ item.highlight.beneficiaryAccountNumber }}"
+                id="{{id.beneficiaryAccountNumber}}"
+                class="{{ segment.hit ? 'highlited-search bg-turquoise-100' : '' }}"
+              >
+                {{segment.text}}
+              </text>
+              <text
+                a:if="{{ !item.highlight.beneficiaryAccountNumber }}"
+                id="{{id.beneficiaryAccountNumber}}"
+              >
+                {{item.beneficiaryAccountNumber}}
+              </text>
+
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

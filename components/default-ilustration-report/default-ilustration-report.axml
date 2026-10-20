@@ -1,0 +1,128 @@
+<view a:if="{{ !pixel }}">
+
+  <view a:if="{{ type === 'pfm' }}" class="container-ilustration">
+    <view a:if="{{ imgUrl }}" class="image-content">
+      <image src="{{imgUrl}}" class="image-wealth" />
+    </view>
+    <view a:else class="image-content border border-black bg-turquoise-200 txt-h6">
+      <text>Ilustration Placeholder</text>
+    </view>
+
+    <view class="title txt-h3">
+      {{ title }}
+    </view>
+
+    <view class="txt-body2">
+      {{ content }}
+    </view>
+  </view>
+
+  <view a:elif="{{ type === 'wealth1'}}" class="container-ilustration">
+    <view a:if="{{ imgUrl }}" class="image-content-wealth mg-b-24">
+      <image src="{{imgUrl}}" class="image-wealth" />
+    </view>
+
+    <view a:else class="image-content-wealth border border-black bg-turquoise-200 txt-h6">
+      <text>Ilustration Placeholder</text>
+    </view>
+
+    <!--<view class="label txt-label1"><slot name="label"/></view> -->
+
+    <view class="title-wealth txt-h3 mg-t-48">
+      {{ title }}
+    </view>
+
+    <view class="content-wealth txt-body2">
+      {{ content }}
+    </view>
+  </view>
+
+  <view a:elif="{{ type === 'wealth2' }}" class="container-ilustration">
+    <view a:if="{{ imgUrl }}" class="image-content-wealth2">
+      <image src="{{imgUrl}}" />
+    </view>
+
+    <view a:else class="image-content-wealth2 border border-black bg-turquoise-200 txt-h6">
+      <text>Ilustration Placeholder</text>
+    </view>
+
+    <view class="label txt-label1">
+      <slot name='label' />
+    </view>
+
+    <view class="title-wealth txt-h2">
+      <slot name='title' />
+    </view>
+
+    <view class="content-wealth txt-body3">
+      <slot name='content' />
+    </view>
+  </view>
+
+
+</view>
+
+<!-- PIXEL -->
+<view a:if="{{ pixel }}">
+
+  <view a:if="{{ type === 'pfm' }}" class="container-ilustration-px">
+    <view a:if="{{ imgUrl }}" class="image-content-px">
+      <image src="{{imgUrl}}" class="image-wealth-px" />
+    </view>
+    <view a:else class="image-content-px border-px border-black bg-turquoise-200 txt-h6">
+      <text>Ilustration Placeholder</text>
+    </view>
+
+    <view class="title-px txt-h3">
+      {{ title }}
+    </view>
+
+    <view class="txt-body2">
+      {{ content }}
+    </view>
+  </view>
+
+  <view a:elif="{{ type === 'wealth1'}}" class="container-ilustration-px">
+    <view a:if="{{ imgUrl }}" class="image-content-wealth-px mg-b-24">
+      <image src="{{imgUrl}}" class="image-wealth-px" />
+    </view>
+
+    <view a:else class="image-content-wealth-px border-px border-black bg-turquoise-200 txt-h6">
+      <text>Ilustration Placeholder</text>
+    </view>
+
+    <!--<view class="label txt-label1"><slot name="label"/></view> -->
+
+    <view class="title-wealth-px txt-h3 mg-t-48">
+      {{ title }}
+    </view>
+
+    <view class="content-wealth-px txt-body2">
+      {{ content }}
+    </view>
+  </view>
+
+  <view a:elif="{{ type === 'wealth2' }}" class="container-ilustration-px">
+    <view a:if="{{ imgUrl }}" class="image-content-wealth2-px">
+      <image src="{{imgUrl}}" />
+    </view>
+
+    <view a:else class="image-content-wealth2-px border-px border-black bg-turquoise-200 txt-h6">
+      <text>Ilustration Placeholder</text>
+    </view>
+
+    <view class="label-px txt-label1">
+      <slot name='label' />
+    </view>
+
+    <view class="title-wealth-px txt-h2">
+      <slot name='title' />
+    </view>
+
+    <view class="content-wealth-px txt-body3">
+      <slot name='content' />
+    </view>
+  </view>
+
+
+</view>

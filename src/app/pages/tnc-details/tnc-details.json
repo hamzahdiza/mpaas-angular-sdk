@@ -1,10 +1,10 @@
 {
   "usingComponents": {
-    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar",
-    "bni-button": "@bni-maverick-mpaas/lib/es/bni-button/bni-button",
+    "top-bar": "/components/top-bar/top-bar",
+    "bni-button": "/components/bni-button/bni-button",
     "mp-html": "/src/app/components/mp-html/index",
     "popup": "antd-mini/es/Popup/index",
-    "loading": "@bni-maverick-mpaas/lib/es/loading/loading"
+    "loading": "/components/loading/loading"
   },
   "transparentTitle": "always",
   "titlePenetrate": "YES",

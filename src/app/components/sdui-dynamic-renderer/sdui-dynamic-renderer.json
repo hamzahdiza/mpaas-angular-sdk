@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "mp-html": "/src/app/components/mp-html/index",
-    "bni-button": "/node_modules/@bni-maverick-mpaas/lib/es/bni-button/bni-button"
+    "bni-button": "/components/bni-button/bni-button"
   },
   "component": true,
   "styleIsolation": "apply-shared"

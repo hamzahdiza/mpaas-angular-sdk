@@ -1,0 +1,88 @@
+
+.snackbar {
+  display: grid;
+  grid-template-columns: 48rpx 1fr;
+  gap: 16rpx;
+  width: 654rpx;
+  padding: 32rpx;
+  align-items: center;
+  border-radius: 16rpx;
+  box-shadow: 0rpx 16rpx 20rpx 0rpx rgba(78, 78, 78, 0.10);
+  background: var(--white);
+  box-sizing: border-box;
+}
+
+.snackbar-container {
+  position: fixed;
+  top: 5%;
+  display: flex;
+  padding: 48rpx;
+}
+.snackbar-txt {
+  /* white-space: nowrap; */
+  text-overflow: ellipsis;
+}
+
+.snackbar-icon {
+  width: 48rpx;
+  height: 48rpx;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><g id="General/ic_common_check_filled"><path id="Icon" d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2ZM10.8 16.2C10.4 16.2 10.1 16.1 9.8 15.8L5.9 12L7.3 10.6L10.8 14.1L16.8 8.1L18.2 9.5L11.8 15.9C11.5 16.1 11.1 16.2 10.8 16.2Z" fill="%2302C794"/></g></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.snackbar-icon-err {
+  width: 48rpx;
+  height: 48rpx;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none"><g id="General/ic_common_error_filled"><path id="Icon" d="M8.50001 1.33331C4.83334 1.33331 1.83334 4.33331 1.83334 7.99998C1.83334 11.6666 4.83334 14.6666 8.50001 14.6666C12.1667 14.6666 15.1667 11.6666 15.1667 7.99998C15.1667 4.33331 12.1667 1.33331 8.50001 1.33331ZM8.50001 12C8.10001 12 7.83334 11.7333 7.83334 11.3333C7.83334 10.9333 8.10001 10.6666 8.50001 10.6666C8.90001 10.6666 9.16668 10.9333 9.16668 11.3333C9.16668 11.7333 8.90001 12 8.50001 12ZM9.16668 9.33331H8.50001H7.83334V3.99998H8.50001H9.16668V9.33331Z" fill="%23D65C5C"/></g></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* PIXEL */
+.snackbar-px {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 8px;
+  width: 327px;
+  padding: 16px;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0px 8px 10px 0px rgba(78, 78, 78, 0.10);
+  background: var(--white);
+  box-sizing: border-box;
+}
+
+.snackbar-container-px {
+  width: calc(100% - 48px);
+  position: fixed;
+  top: 5%;
+  display: flex;
+  padding: 24px;
+  justify-content: center;
+}
+.snackbar-txt-px {
+  /* white-space: nowrap; */
+  text-overflow: ellipsis;
+}
+
+.snackbar-icon-px {
+  width: 24px;
+  height: 24px;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><g id="General/ic_common_check_filled"><path id="Icon" d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2ZM10.8 16.2C10.4 16.2 10.1 16.1 9.8 15.8L5.9 12L7.3 10.6L10.8 14.1L16.8 8.1L18.2 9.5L11.8 15.9C11.5 16.1 11.1 16.2 10.8 16.2Z" fill="%2302C794"/></g></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.snackbar-icon-err-px {
+  width: 24px;
+  height: 24px;
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none"><g id="General/ic_common_error_filled"><path id="Icon" d="M8.50001 1.33331C4.83334 1.33331 1.83334 4.33331 1.83334 7.99998C1.83334 11.6666 4.83334 14.6666 8.50001 14.6666C12.1667 14.6666 15.1667 11.6666 15.1667 7.99998C15.1667 4.33331 12.1667 1.33331 8.50001 1.33331ZM8.50001 12C8.10001 12 7.83334 11.7333 7.83334 11.3333C7.83334 10.9333 8.10001 10.6666 8.50001 10.6666C8.90001 10.6666 9.16668 10.9333 9.16668 11.3333C9.16668 11.7333 8.90001 12 8.50001 12ZM9.16668 9.33331H8.50001H7.83334V3.99998H8.50001H9.16668V9.33331Z" fill="%23D65C5C"/></g></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.snackbar-custom{
+  width: 24px;
+  height: 24px;
+}

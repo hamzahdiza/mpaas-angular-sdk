@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "modal": "antd-mini/es/Modal/index",
+    "bni-button": "../bni-button/bni-button",
+    "button": "antd-mini/es/Button/index"
+  }
+}

@@ -2,7 +2,7 @@
   "usingComponents": {
     "ant-radio-group": "antd-mini/es/Radio/RadioGroup/index",
     "ant-container": "antd-mini/es/Container/index",
-    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar"
+    "top-bar": "/components/top-bar/top-bar"
   },
   "styleIsolation": "apply-shared"
 }

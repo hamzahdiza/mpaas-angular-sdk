@@ -1,0 +1,447 @@
+/* type toggle css */
+.tab-container {
+  width: calc(100% - 8rpx);
+  padding: 4rpx;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.select-bar {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 16rpx 0;
+  flex: 1 0 0;
+  align-self: stretch; 
+}
+
+.pad-rigth{
+  width: calc(100% - 64rpx);
+  padding: 16rpx 32rpx;
+}
+
+/* type toggle csds */
+
+
+/* type primary css */
+
+.select-outline {
+  box-sizing: border-box;
+  width: calc(100% - 64rpx);
+  padding: 8rpx 32rpx;
+  text-align: center;
+  border-bottom-width: 4rpx;
+  border-bottom-style: solid;
+}
+
+/* type primary css */
+
+
+/* type secondary css */
+
+.container-secondary {
+  width: fit-content;
+  padding: 4rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.center-secondary {
+  justify-content: center;
+}
+
+.bar-secondary {
+  border-style: solid;
+  border-width: 4rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12rpx 22rpx;
+}
+
+.gap-secondary {
+  margin-right: 16rpx;
+}
+
+.secondary-content-tab {
+  min-width: 95rpx;
+  min-height: 40rpx;
+  display: flex;
+}
+
+.active-secondary {
+  border-style: solid;
+  border-width: 4rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  text-shadow: 2rpx 3rpx 5rpx rgba(0, 0, 0, 0.2);
+}
+
+/* type secondary css */
+
+/* general css */
+.title-content-tab {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 100%;
+}
+
+.active-tab {
+  border-radius: 50rpx;
+  text-align: center;
+  /* background-color: var(--lime-200); */
+  z-index: 1;
+}
+
+.badge-tab {
+  padding: 8rpx 16rpx;
+  border-radius: 16rpx;
+}
+
+.content-tab {
+  min-width: 162rpx;
+  min-height: 48rpx;
+  display: flex;
+}
+
+.radius-tab {
+  border-radius: 58rpx;
+}
+
+.gap-tab {
+  margin-right:16rpx;
+}
+
+
+/* general css */
+
+/* icons */
+.tab-container-icons {
+  box-sizing: border-box;
+  margin: auto;
+  padding: 4rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.select-bar-icons {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12rpx;
+  border-style: solid;
+  border-width: 4rpx;
+  /* width: 36px;
+  height: 36px; */
+}
+
+.border-pasive-icons {
+  border-color: transparent;
+}
+
+.contant-tab-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* icons */
+
+
+/* scroll tabs */
+.container-scroll {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+}
+
+.scroll{
+  width: 100%;
+}
+
+.scroll-content-tab{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bar-scroll {
+  border-radius: 50rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 16rpx 32rpx;
+}
+
+.active-scroll {
+  border-radius: 50rpx;
+  text-align: center;
+  text-shadow: 2rpx 3rpx 5rpx rgba(0, 0, 0, 0.2);
+}
+.text-title{
+  display: inline;
+}
+
+
+.gap-icon{
+  margin-right: 8rpx;
+}
+/* scroll tabs */
+
+
+.transparent{
+  color: transparent;
+}
+
+.radius50{
+  border-radius: 50rpx;
+}
+.content-tab-slide {
+  position: absolute;
+  border-radius: 50rpx;
+  overflow: hidden;
+  transition: left .3s ease-in-out;
+}
+
+.content-disabled{
+  position: absolute;
+  width:88%;
+}
+
+/* PIXEL MODE */
+.tab-container-px {
+  width: calc(100% - 4px);
+  padding: 2px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.select-bar-px {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+  flex: 1 0 0;
+  align-self: stretch; 
+}
+
+.pad-rigth-px{
+  width: calc(100% - 32px);
+  padding: 8px 16px;
+}
+
+/* type toggle csds */
+
+
+/* type primary css */
+
+.select-outline-px {
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  padding: 4px 16px;
+  text-align: center;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+
+/* type primary css */
+
+
+/* type secondary css */
+
+.container-secondary-px {
+  width: fit-content;
+  padding: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.center-secondary-px {
+  justify-content: center;
+}
+
+.bar-secondary-px {
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 25px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 11px;
+}
+
+.gap-secondary-px {
+  margin-right: 8px;
+}
+
+.secondary-content-tab-px {
+  min-width: 47.5px;
+  min-height: 20px;
+  display: flex;
+}
+
+.active-secondary-px {
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 25px;
+  text-align: center;
+  text-shadow: 1px 1.5px 2.5px rgba(0, 0, 0, 0.2);
+}
+
+/* type secondary css */
+
+/* general css */
+.title-content-tab-px {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 100%;
+}
+
+.active-tab-px {
+  border-radius: 25px;
+  text-align: center;
+  /* background-color: var(--lime-200); */
+  z-index: 1;
+}
+
+.badge-tab-px {
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.content-tab-px {
+  min-width: 81px;
+  min-height: 24px;
+  display: flex;
+}
+
+.radius-tab-px {
+  border-radius: 29px;
+}
+
+.gap-tab-px {
+  margin-right:8px;
+}
+
+
+/* general css */
+
+/* icons */
+.tab-container-icons-px {
+  box-sizing: border-box;
+  margin: auto;
+  padding: 2px;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.select-bar-icons {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  border-style: solid;
+  border-width: 2px;
+  /* width: 36px;
+  height: 36px; */
+}
+
+.border-pasive-icons-px {
+  border-color: transparent;
+}
+
+.contant-tab-icons-px {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* icons */
+
+
+/* scroll tabs */
+.container-scroll-px {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+}
+
+.scroll-px{
+  width: 100%;
+}
+
+.scroll-content-tab-px{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bar-scroll-px {
+  border-radius: 25px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 8px 16px;
+}
+
+.active-scroll-px {
+  border-radius: 25px;
+  text-align: center;
+  text-shadow: 1px 1.5px 2.5px rgba(0, 0, 0, 0.2);
+}
+.text-title-px{
+  display: inline;
+}
+
+
+.gap-icon-px{
+  margin-right: 4px;
+}
+/* scroll tabs */
+
+
+.transparent-px{
+  color: transparent;
+}
+
+.radius50-px{
+  border-radius: 25px;
+}
+.content-tab-slide-px {
+  position: absolute;
+  border-radius: 25px;
+  overflow: hidden;
+  transition: left .3s ease-in-out;
+}
+
+.content-disabled-px{
+  position: absolute;
+  width:88%;
+}

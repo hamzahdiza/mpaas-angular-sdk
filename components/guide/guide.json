@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "popover": "antd-mini/es/Popover/index",
+    "button-bni": "../bni-button/bni-button"
+  }  
+}

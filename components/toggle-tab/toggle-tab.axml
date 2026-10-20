@@ -1,0 +1,305 @@
+<block a:if="{{ !pixel }}">
+  <view a:if="{{ type ==='toggle' }}">
+    <view
+      a:if="{{ isLoading }}"
+      class=" skeleton transparent radius-tab tab-container"
+      style="height:{{heightShimmer}}"
+    />
+    <scroll-view a:if="{{ !isLoading }}" scroll-x="{{true}}" class="tab-container  {{background ||'bg-white'}} radius-tab">
+      <view a:if="{{ disabled }}" class="content-disabled zi-1000" style="height:{{heightShimmer}};" />
+      <block a:for="{{ items }}" a:for-index="index">
+        <view
+          class="select-bar  txt-label1
+          {{items.length >  3 ? 'pad-rigth':''}}
+          {{item.title === selection || index === selection ? (isLoading ?'skeleton transparent' : ((isShowSlide ? '' : 'bg-lime-200 ') + 'active-tab txt-label1-sb')) : ''}}"
+          data-name="{{item.title}}"
+          data-num="{{index}}"
+          onTap="handleClick"
+          id={{item.id}}
+          key="{{index}}"
+        >
+          <view class="content-tab">
+            <view class="title-content-tab">
+              <text class=" {{item.badge ? 'gap-tab':''}}" id="title{{index}}"> {{item.title}}
+              </text>
+              <text a:if="{{ item.badge }}" class="badge-tab bg-orange-300 txt-body3-sb txt-white"> {{item.badge > 99?'99+':item.badge  }}
+              </text>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view
+        a:if="{{ isShowSlide }}"
+        class="content-tab-slide bg-lime-200"
+        style="left:{{slideLeft + 'px'}}; height: {{slideHeight}}; width: {{slideWidth}}"
+      />
+    </scroll-view>
+  </view>
+
+
+  <view a:if="{{ type ==='primary' }}">
+    <scroll-view scroll-x="{{true}}" class="tab-container">
+      <view
+        a:for="{{ items }}"
+        a:for-index="index"
+        class="select-outline {{item.title === selection || index === selection ? 'outline txt-label1-sb border-turquoise-400':'txt-label1 border-granite'}}"
+        onTap="handleClick"
+        data-name="{{item.title}}"
+        data-num="{{index}}"
+      >
+        <view class="content-tab">
+          <view class="title-content-tab">
+            <text class=" {{item.badge ? 'gap-tab':''}}"> {{item.title}}</text>
+            <text a:if="{{ item.badge }}" class="badge-tab  bg-orange-300 txt-body3-sb txt-white"> {{item.badge > 99?'99+':item.badge}}
+            </text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view a:if="{{ type === 'secondary' }}" class="secondary-view">
+    <scroll-view scroll-x="{{true}}" class="scroll">
+      <view class="container-secondary {{items.length<4? 'center-secondary':''}} {{background || 'bg-white'}} radius-tab ">
+        <view
+          a:for="{{ items }}"
+          a:for-index="index"
+          class="bar-secondary {{item.title === selection || index === selection ? className.length != 0 ? 'active-secondary ' + className : 'active-secondary bg-turquoise-300 border-turquoise-300 txt-label1' : 'txt-label1 bg-white border-gray '}} {{index !== items.length - 1 ? 'gap-secondary' : ''}}  "
+          onTap="handleClick"
+          data-name="{{item.title}}"
+          data-num="{{index}}"
+        >
+          <view class="secondary-content-tab">
+            <view class="title-content-tab">
+              <image
+                a:if="{{ item.icon }}"
+                src="{{item.icon}}"
+                mode="scaleToFill"
+                style="width: 32rpx; height:32rpx;"
+                class="badge-icon {{item.icon ? 'gap-icon':''}}"
+              />
+              <view class="view-title">{{item.title}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view >
+  </view>
+
+  <view a:if="{{ type === 'scroll' }}" class="type-scroll">
+    <scroll-view
+      scroll-left="{{scrollFocus}}"
+      onScroll="{{onScroll}}"
+      lower-threshold="{{lowerThreshold}}"
+      scroll-into-view="{{scrollView}}"
+      scroll-x="{{true}}"
+      class="scroll {{background ||'bg-white'}}  radius-tab "
+    >
+      <view class=" container-scroll">
+        <block a:for="{{ items }}" a:for-index="index">
+          <view
+            class="bar-scroll  txt-label1 
+          {{
+            isLoading ? 'skeleton transparent' :
+            [item.title,index].includes(selection) ? 
+            `${activeColor} active-scroll` : pasiveColor
+          }} 
+          {{index !== items.length - 1 ? 'gap-secondary' : ''}}"
+            onTap="handleClick"
+            data-name="{{item.title}}"
+            data-num="{{index}}"
+            id="{{item.id}}"
+          >
+            <view id="{{index}}" class="scroll-content-tab">
+              <view class="title-content-tab">
+                <image
+                  a:if="{{ item.icon && isLoading !== true }}"
+                  src="{{item.icon}}"
+                  mode="scaleToFill"
+                  style="width: 32rpx; height:32rpx;"
+                  class="badge-icon {{item.icon ? 'gap-icon':''}}"
+                />
+                <view class="view-title">{{item.title}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+
+  </view>
+
+  <view a:if="{{ type ==='icons' }}">
+    <scroll-view scroll-x="{{true}}" class="tab-container-icons {{background ||'bg-white'}} radius-tab">
+      <view a:for="{{ items }}" a:for-index="index" class="select-bar-icons 
+        {{
+          [item.title,index].includes(selection) ? 
+          ( isLoading ? 'skeleton transparent radius50' 
+          : 'active-tab  txt-label1-sb border-white' 
+          ) 
+          : 'txt-label1 border-pasive-icons'
+        }}" onTap="handleClick" data-name="{{item.title}}" data-num="{{index}}">
+        <view class="contant-tab-icons">
+          <image
+            mode="scaleToFill"
+            src="{{isLoading ? '':(item.title === selection || index === selection ? item.iconActive:item.iconPassive)}}"
+            style="width:{{width}}; height:{{height}}"
+          />
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</block>
+
+<block a:if="{{ pixel }}">
+  <view a:if="{{ type ==='toggle' }}">
+    <view
+      a:if="{{ isLoading }}"
+      class=" skeleton transparent-px radius-tab-px tab-container-px"
+      style="height:{{heightShimmer}}"
+    />
+    <scroll-view a:if="{{ !isLoading }}" scroll-x="{{true}}" class="tab-container-px  {{background ||'bg-white'}} radius-tab-px">
+      <view a:if="{{ disabled }}" class="content-disabled-px zi-1000" style="height:{{heightShimmer}};" />
+      <block a:for="{{ items }}" a:for-index="index">
+        <view
+          class="select-bar-px  txt-label1-px
+          {{items.length >  3 ? 'pad-rigth-px':''}}
+          {{item.title === selection || index === selection ? (isLoading ?'skeleton transparent-px' : ((isShowSlide ? '' : 'bg-lime-200 ') + 'active-tab-px txt-label1-sb-px')) : ''}}"
+          data-name="{{item.title}}"
+          data-num="{{index}}"
+          onTap="handleClick"
+          id={{item.id}}
+          key="{{index}}"
+        >
+          <view class="content-tab-px">
+            <view class="title-content-tab-px">
+              <text class=" {{item.badge ? 'gap-tab-px':''}}" id="title{{index}}"> {{item.title}}
+              </text>
+              <text a:if="{{ item.badge }}" class="badge-tab-px bg-orange-300 txt-body3-sb-px txt-white"> {{item.badge > 99?'99+':item.badge  }}
+              </text>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view
+        a:if="{{ isShowSlide }}"
+        class="content-tab-slide-px bg-lime-200"
+        style="left:{{slideLeft + 'px'}}; height: {{slideHeight}}; width: {{slideWidth}}"
+      />
+    </scroll-view>
+  </view>
+
+
+  <view a:if="{{ type ==='primary' }}">
+    <scroll-view scroll-x="{{true}}" class="tab-container-px">
+      <view
+        a:for="{{ items }}"
+        a:for-index="index"
+        class="select-outline-px {{item.title === selection || index === selection ? 'outline txt-label1-sb-px border-turquoise-400':'txt-label1-px border-granite'}}"
+        onTap="handleClick"
+        data-name="{{item.title}}"
+        data-num="{{index}}"
+      >
+        <view class="content-tab-px">
+          <view class="title-content-tab-px">
+            <text class=" {{item.badge ? 'gap-tab-px':''}}"> {{item.title}}</text>
+            <text a:if="{{ item.badge }}" class="badge-tab-px  bg-orange-300 txt-body3-sb-px txt-white"> {{item.badge > 99?'99+':item.badge}}
+            </text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view a:if="{{ type === 'secondary' }}" class="secondary-view-px">
+    <scroll-view scroll-x="{{true}}" class="scroll-px">
+      <view class="container-secondary-px {{items.length<4? 'center-secondary-px':''}} {{background || 'bg-white'}} radius-tab-px ">
+        <view
+          a:for="{{ items }}"
+          a:for-index="index"
+          class="bar-secondary-px {{item.title === selection || index === selection ? className.length != 0 ? 'active-secondary-px ' + className : 'active-secondary-px bg-turquoise-300 border-turquoise-300 txt-label1-px' : 'txt-label1-px bg-white border-gray '}} {{index !== items.length - 1 ? 'gap-secondary-px' : ''}}  "
+          onTap="handleClick"
+          data-name="{{item.title}}"
+          data-num="{{index}}"
+        >
+          <view class="secondary-content-tab-px">
+            <view class="title-content-tab-px">
+              <image
+                a:if="{{ item.icon }}"
+                src="{{item.icon}}"
+                mode="scaleToFill"
+                style="width: 16px; height:16px;"
+                class="badge-icon-px {{item.icon ? 'gap-icon-px':''}}"
+              />
+              <view class="view-title-px">{{item.title}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view >
+  </view>
+
+  <view a:if="{{ type === 'scroll' }}" class="type-scroll-px">
+    <scroll-view
+      scroll-left="{{scrollFocus}}"
+      onScroll="{{onScroll}}"
+      lower-threshold="{{lowerThreshold}}"
+      scroll-into-view="{{scrollView}}"
+      scroll-x="{{true}}"
+      class="scroll {{background ||'bg-white'}}  radius-tab-px "
+    >
+      <view class=" container-scroll-px">
+        <block a:for="{{ items }}" a:for-index="index">
+          <view
+            class="bar-scroll-px  txt-label1-px 
+          {{
+            isLoading ? 'skeleton transparent-px' :
+            [item.title,index].includes(selection) ? 
+            `${activeColor} active-scroll-px` : pasiveColor
+          }} 
+          {{index !== items.length - 1 ? 'gap-secondary-px' : ''}}"
+            onTap="handleClick"
+            data-name="{{item.title}}"
+            data-num="{{index}}"
+            id="{{item.id}}"
+          >
+            <view id="{{index}}" class="scroll-content-tab-px">
+              <view class="title-content-tab-px">
+                <image
+                  a:if="{{ item.icon && isLoading !== true }}"
+                  src="{{item.icon}}"
+                  mode="scaleToFill"
+                  style="width: 16px; height:16px;"
+                  class="badge-icon-px {{item.icon ? 'gap-icon-px':''}}"
+                />
+                <view class="view-title-px">{{item.title}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+
+  </view>
+
+  <view a:if="{{ type ==='icons' }}">
+    <scroll-view scroll-x="{{true}}" class="tab-container-icons-px {{background ||'bg-white'}} radius-tab-px">
+      <view a:for="{{ items }}" a:for-index="index" class="select-bar-icons-px 
+        {{
+          [item.title,index].includes(selection) ? 
+          ( isLoading ? 'skeleton transparent-px radius50-px' 
+          : 'active-tab-px  txt-label1-sb-px border-white' 
+          ) 
+          : 'txt-label1-px border-pasive-icons-px'
+        }}" onTap="handleClick" data-name="{{item.title}}" data-num="{{index}}">
+        <view class="contant-tab-icons-px">
+          <image
+            mode="scaleToFill"
+            src="{{isLoading ? '':(item.title === selection || index === selection ? item.iconActive:item.iconPassive)}}"
+            style="width:{{width}}; height:{{height}}"
+          />
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</block>

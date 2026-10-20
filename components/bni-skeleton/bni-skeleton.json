@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "avatar": "antd-mini/es/Avatar/index",
+    "skeleton": "antd-mini/es/Skeleton/index",
+    "skeleton-avatar": "antd-mini/es/Skeleton/Avatar/index",
+    "skeleton-title": "antd-mini/es/Skeleton/Title/index",
+    "skeleton-button": "antd-mini/es/Skeleton/Button/index",
+    "skeleton-paragraph": "antd-mini/es/Skeleton/Paragraph/index",
+    "skeleton-input": "antd-mini/es/Skeleton/Input/index"
+  }
+
+}

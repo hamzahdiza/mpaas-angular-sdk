@@ -1,15 +1,15 @@
 {
   "usingComponents": {
-    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar",
-    "bni-input": "@bni-maverick-mpaas/lib/es/bni-input/bni-input",
-    "bni-button": "/node_modules/@bni-maverick-mpaas/lib/es/bni-button/bni-button",
-    "switch": "@bni-maverick-mpaas/lib/es/toggle-button/toggle-button",
+    "top-bar": "/components/top-bar/top-bar",
+    "bni-input": "/components/bni-input/bni-input",
+    "bni-button": "/components/bni-button/bni-button",
+    "switch": "/components/toggle-button/toggle-button",
     "popup": "antd-mini/es/Popup/index",
     "bottom-popup": "/src/app/components/bottom-popup/bottom-popup",
     "bni-collapse": "antd-mini/es/Collapse/index",
-    "loading-bni" : "@bni-maverick-mpaas/lib/es/loading/loading",
-    "loading" : "@bni-maverick-mpaas/lib/es/loading/loading",
-    "default-ilustration-component": "@bni-maverick-mpaas/lib/es/default-ilustration-report/default-ilustration-report"
+    "loading-bni" : "/components/loading/loading",
+    "loading" : "/components/loading/loading",
+    "default-ilustration-component": "/components/default-ilustration-report/default-ilustration-report"
   },
   "transparentTitle": "always",
   "titlePenetrate": "YES",

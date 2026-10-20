@@ -1,0 +1,131 @@
+.indicator-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.unactive-dots {
+  width: 8px; 
+  height: 8px; 
+  margin-right: 8rpx; 
+  mask-image: url('data:image/svg+xml,%3Csvg width%3D%229%22 height%3D%228%22 viewBox%3D%220 0 9 8%22 fill%3D%22none%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg id%3D%22Component%20Breakdown_Carousel%22%3E%3Ccircle id%3D%22Shape%22 cx%3D%224.5%22 cy%3D%224%22 r%3D%224%22 fill%3D%22%23C6C6C6%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  background-color: #C6C6C6; 
+  transition: mask-image 1s ease;
+}
+
+.active-dots {
+  width: 8px; 
+  height: 8px; 
+  margin-right: 8rpx; 
+  mask-image: url('data:image/svg+xml,%3Csvg width%3D%229%22 height%3D%228%22 viewBox%3D%220 0 9 8%22 fill%3D%22none%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg id%3D%22Component%20Breakdown_Carousel%22%3E%3Ccircle id%3D%22Shape%22 cx%3D%224.5%22 cy%3D%224%22 r%3D%224%22 fill%3D%22%230E0E0E%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  background-color: #0E0E0E;
+  transition: mask-image 1s ease;
+}
+
+.scrollbar-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  margin-top: 16rpx;
+}
+
+.scrollbar-inactive {
+  height: 8rpx;
+  width: 48rpx;
+  background-color: #dddddd;
+}
+
+.scrollbar-active {
+  background-color: #0E0E0E;
+  height: 8rpx;
+  width: 48rpx;
+  border-radius: 10rpx;
+  transition: transform 0.3s ease;
+}
+
+.scrollbar-active:first-child,
+.scrollbar-inactive:first-child {
+  border-top-left-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+}
+
+.scrollbar-active:last-child,
+.scrollbar-inactive:last-child {
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+
+/* PIXEL MODE */
+
+.indicator-item-px {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.unactive-dots-px {
+  width: 8px; 
+  height: 8px; 
+  margin-right: 4px; 
+  mask-image: url('data:image/svg+xml,%3Csvg width%3D%229%22 height%3D%228%22 viewBox%3D%220 0 9 8%22 fill%3D%22none%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg id%3D%22Component%20Breakdown_Carousel%22%3E%3Ccircle id%3D%22Shape%22 cx%3D%224.5%22 cy%3D%224%22 r%3D%224%22 fill%3D%22%23C6C6C6%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  background-color: #C6C6C6; 
+  transition: mask-image 1s ease;
+}
+
+.active-dots-px {
+  width: 8px; 
+  height: 8px; 
+  margin-right: 4px; 
+  mask-image: url('data:image/svg+xml,%3Csvg width%3D%229%22 height%3D%228%22 viewBox%3D%220 0 9 8%22 fill%3D%22none%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg id%3D%22Component%20Breakdown_Carousel%22%3E%3Ccircle id%3D%22Shape%22 cx%3D%224.5%22 cy%3D%224%22 r%3D%224%22 fill%3D%22%230E0E0E%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  background-color: #0E0E0E;
+  transition: mask-image 1s ease;
+}
+
+.scrollbar-container-px {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.scrollbar-inactive-px {
+  height: 4px;
+  width: 24px;
+  background-color: #dddddd;
+}
+
+.scrollbar-active-px {
+  background-color: #0E0E0E;
+  height: 4px;
+  width: 24px;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.scrollbar-active-px:first-child,
+.scrollbar-inactive-px:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.scrollbar-active-px:last-child,
+.scrollbar-inactive-px:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

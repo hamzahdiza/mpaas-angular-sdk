@@ -1,0 +1,17 @@
+<block a:if="{{ !pixel }}">
+  <view style="{{ 'background-color:' + backgroundColor }}" class={{ type == 'small' ? 'filled-container-small' : iconRightUrl || iconLeftUrl ? 'container-with-icon' : 'filled-container-medium' }}>
+    <image a:if="{{ iconLeftUrl }}" class="icon-left" src="{{ iconLeftUrl }}" />
+    <text style="color: {{ textColor }};" class={{ type == 'small' ? 'txt-label3 text-small' : 'txt-label2 text-medium' }}>{{label}}
+    </text>
+    <image a:if="{{ iconRightUrl }}" class="icon-right" src="{{ iconRightUrl }}" />
+  </view>
+</block>
+
+<block a:if="{{ pixel }}">
+  <view style="{{ 'background-color:' + backgroundColor }}" class={{ type == 'small' ? 'filled-container-small-px' : iconRightUrl || iconLeftUrl ? 'container-with-icon-px' : 'filled-container-medium-px' }}>
+    <image a:if="{{ iconLeftUrl }}" class="icon-left-px" src="{{ iconLeftUrl }}" />
+    <text style="color: {{ textColor }};" class={{ type == 'small' ? 'txt-label3-px text-small-px' : 'txt-label2-px text-medium-px' }}>{{label}}
+    </text>
+    <image a:if="{{ iconRightUrl }}" class="icon-right-px" src="{{ iconRightUrl }}" />
+  </view>
+</block>

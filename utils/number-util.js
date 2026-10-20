@@ -1,4 +1,3 @@
-const tools = require('./e2ee/e2ee.wsx')
 /**
  * Big data character truncation; The retention rule is that if it is an integer, it directly returns the integer. 
  * If it is a decimal and the number of decimal places is less than the predetermined number n, zero is not added.
@@ -25,13 +24,11 @@ export function bigTruncRetain(value, n = 0) {
  * @returns {string} UUID
  */
 export function generateUUID() {
-  let key32 = tools.createKey().toLowerCase();
-  let uuid = ""
-  for (let i = 1; i <= 32; i++) {
-    uuid += key32.charAt(i - 1)
-    if (i == 8 || i == 12 || i == 16 || i == 20) uuid += "-";
-  }
-  return uuid;
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0;
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
 }
 
 /**

@@ -1,0 +1,55 @@
+.toggle {
+  height: 40rpx;
+  width: 88rpx; 
+  display: flex;
+  align-items: center;
+  border-radius: 52rpx;
+  transition: background-color 0.3s;
+  padding: 4rpx;
+}
+
+.circle {
+  width: 40rpx; 
+  height: 40rpx;
+  background-color:white;
+  border-radius: 100%;
+  transition: margin-left 0.3s;
+}
+.bg-granite {
+  background-color: rgba(122, 122, 122, 1);
+}
+.bg-turquoise-300{
+  background-color: rgba(113, 219, 211, 1);
+}
+.bg-disabled {
+  background-color: rgba(212, 241, 240, 1);
+}
+
+/* PIXEL MODE */
+
+.toggle-px {
+  height: 20px;
+  width: 44px; 
+  display: flex;
+  align-items: center;
+  border-radius: 26px;
+  transition: background-color 0.3s;
+  padding: 2px;
+}
+
+.circle-px {
+  width: 20px; 
+  height: 20px;
+  background-color:white;
+  border-radius: 100%;
+  transition: margin-left 0.3s;
+}
+.bg-granite {
+  background-color: rgba(122, 122, 122, 1);
+}
+.bg-turquoise-300{
+  background-color: rgba(113, 219, 211, 1);
+}
+.bg-disabled {
+  background-color: rgba(212, 241, 240, 1);
+}

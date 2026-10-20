@@ -1,0 +1,93 @@
+<view a:if="{{ !pixel }}">
+  <popover
+    color="#ffffff"
+    contentStyle="border-radius:16rpx;"
+    placement={{placement}}
+    content={{content}}
+    visible={{visible === true ? visible : false }}
+    maskStyle="background: rgba(0, 0, 0, 0.6);"
+  >
+    <slot/>
+    <view slot="content" class="content-container txt-black">
+      <view class="margin-b">
+        <text class="guide-content-text">
+          <slot name="text"></slot>
+        </text>
+      </view>
+      <view class="bottom-content">
+        <view a:if="{{ type === 'withBack' }}" class="carousel-dot-container">
+          <view a:for="{{ 3 }}" a:for-index="index" class="carousel-dot bg-gray {{indexActive === index ? 'bg-black' : ''}}" />
+        </view>
+        <view class="bottom-content-button-container" style="{{ type !== 'withBack' ? 'width:35%;display:flex;margin-left:auto;' :''}}">
+          <button-bni
+            a:if="{{ type === 'withBack' }}"
+            type="primary"
+            className="txt-body3 border-granite margin-r"
+            compact
+            onTap="handleBackButton"
+            id="guide-back-button"
+          >
+            {{secondaryButtonName}}
+          </button-bni>
+          <button-bni
+            type="primary"
+            className="txt-body3 bg-turquoise-300 txt-black"
+            onTap="handleSubmitButton"
+            id="guide-submit-button"
+            compact
+          >
+            {{primaryButtonName}}
+          </button-bni>
+        </view>
+      </view>
+    </view>
+  </popover>
+</view>
+
+<view a:if="{{ pixel }}">
+  <popover
+    color="#ffffff"
+    contentStyle="border-radius:8px;"
+    placement={{placement}}
+    content={{content}}
+    visible={{visible === true ? visible : false }}
+    maskStyle="background: rgba(0, 0, 0, 0.6);"
+  >
+    <slot/>
+    <view slot="content" class="content-container-px txt-black">
+      <view class="margin-b-px">
+        <text class="guide-content-text-px">
+          <slot name="text"></slot>
+        </text>
+      </view>
+      <view class="bottom-content-px">
+        <view a:if="{{ type === 'withBack' }}" class="carousel-dot-container-px">
+          <view a:for="{{ 3 }}" a:for-index="index" class="carousel-dot-px bg-gray {{indexActive === index ? 'bg-black' : ''}}" />
+        </view>
+        <view class="bottom-content-button-container-px" style="{{ type !== 'withBack' ? 'width:35%;display:flex;margin-left:auto;' :''}}">
+          <button-bni
+            a:if="{{ type === 'withBack' }}"
+            type="primary"
+            className="txt-body3-px border-granite margin-r-px"
+            compact
+            onTap="handleBackButton"
+            id="guide-back-button"
+            pixel={{true}}
+          >
+            {{secondaryButtonName}}
+          </button-bni>
+          <button-bni
+            type="primary"
+            className="txt-body3-px bg-turquoise-300 txt-black"
+            onTap="handleSubmitButton"
+            id="guide-submit-button"
+            compact
+            pixel={{true}}
+          >
+            {{primaryButtonName}}
+          </button-bni>
+        </view>
+      </view>
+    </view>
+  </popover>
+</view>

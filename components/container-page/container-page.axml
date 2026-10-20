@@ -1,0 +1,11 @@
+<block a:if="{{ !pixel }}">
+  <view class="container {{className ? className : ''}}">
+    <slot></slot>
+  </view>
+</block>
+
+<block a:if="{{ pixel }}">
+  <view class="container-px {{className ? className : ''}}">
+    <slot></slot>
+  </view>
+</block>

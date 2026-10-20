@@ -1,0 +1,140 @@
+@import "../utils/styles/theme.acss";
+
+.content-container {
+  width: calc(654rpx - 64rpx);
+  height: auto;
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16rpx;
+}
+
+.ant-popover-inner {
+  padding: 0;
+}
+
+.guide-content-text {
+  color: var(--functional-bw-tones-black, #0E0E0E);
+  font-feature-settings: 'clig'off, 'liga'off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  /* 19.6px */
+}
+
+.bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70rpx;
+}
+
+.bottom-content-button-container {
+  display: flex;
+  width: fit-content;
+  width: 75%;
+  justify-content: flex-end;
+}
+
+.carousel-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 100%;
+}
+
+.carousel-dot-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-gap: 16rpx;
+}
+
+.button-temp {
+  display: flex;
+  height: 64rpx;
+  padding: 16rpx 48rpx;
+  justify-content: center;
+  align-items: center;
+  gap: 8rpx;
+  border-radius: var(--rounded-corner-x-large-32-px, 64rpx);
+  background: var(--brand-bni-turqoise-turquoise-300-primary, #71DBD3);
+}
+
+.margin-r {
+  margin-right: 10rpx;
+}
+
+.margin-b {
+  margin-bottom: 32rpx;
+}
+
+/* PIXEL MODE */
+
+.content-container-px {
+  width: calc(327px - 32px);
+  /* width: calc(100vw - 48px); */
+  height: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+}
+
+.ant-popover-inner {
+  padding: 0;
+}
+
+.guide-content-text-px {
+  color: var(--functional-bw-tones-black, #0E0E0E);
+  font-feature-settings: 'clig'off, 'liga'off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  /* 19.6px */
+}
+
+.bottom-content-px {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 35px;
+}
+
+.bottom-content-button-container-px {
+  display: flex;
+  width: fit-content;
+  width: 75%;
+  justify-content: flex-end;
+}
+
+.carousel-dot-px {
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+}
+
+.carousel-dot-container-px {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-gap: 8px;
+}
+
+.button-temp-px {
+  display: flex;
+  height: 32px;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: var(--rounded-corner-x-large-32-px, 32px);
+  background: var(--brand-bni-turqoise-turquoise-300-primary, #71DBD3);
+}
+
+.margin-r-px {
+  margin-right: 5px;
+}
+
+.margin-b-px {
+  margin-bottom: 16px;
+}

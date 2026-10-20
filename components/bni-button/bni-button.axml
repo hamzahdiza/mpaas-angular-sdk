@@ -1,0 +1,238 @@
+<block a:if="{{ !pixel }}">
+  <button
+    a:if="{{ type == `primary` && !compact }}"
+    class="outline-none bni-button {{className}} "
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <button
+    a:if="{{ type == `outline` && !compact }}"
+    class="bni-button {{className}} {{ !disabled?`outline`:``}}"
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <button
+    a:if="{{ type == `quite` && !compact }}"
+    class="quite {{!ghost? `underline`:``}} {{className}} {{ !disabled?`quite-col`:``}}"
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <button
+    a:if="{{ type == `primary` && compact }}"
+    class="outline-none bni-button-compact {{className}} {{ !disabled?`primary`:``}}"
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <button
+    a:if="{{ type == `outline` && compact }}"
+    class="bni-button-compact {{className}} {{ !disabled?`outline`:``}}"
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <button
+    a:if="{{ type == `quite` && compact }}"
+    class="quite-compact {{!ghost? `underline`:``}} {{className}} {{ !disabled?`quite-col`:``}}"
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <view a:if="{{ type == 'sticky' }}" class="bni-sticky-wrapper {{className}}">
+    <view class="bni-sticky-container {{shadow ? 'shadow-sticky' : ''}}">
+      <slot name="upside-sticky-button" />
+
+      <view class="button-cover">
+        <button
+          class="outline-none bni-button txt-label1-sb bg-turquoise-300 {{disabledPrimaryButton ? 'bg-snow-white' : ''}}"
+          disabled={{disabledPrimaryButton}}
+          data-props={{data? data: null}}
+          form-type="{{formType? formType: false}}"
+          onTap="{{!formType && onTapPrimaryButton? 'handlePrimaryButton':false }}"
+          id="{{idPrimaryButton}}"
+        >
+          {{titlePrimaryButton}}
+        </button>
+
+        <button
+          a:if="{{ titleSecondaryButton }}"
+          class="bni-button txt-label1-sb {{ !disabled? 'outline': ''}} {{disabledSecondaryButton ? 'bg-snow-white' : 'border-granite'}}"
+          disabled={{disabledSecondaryButton}}
+          data-props={{data? data: null}}
+          form-type="{{formType? formType: false}}"
+          onTap="{{!formType && onTapSecondaryButton? 'handleSecondaryButton' : false }}"
+          id="{{idSecondaryButton}}"
+        >
+          {{titleSecondaryButton}}
+        </button>
+      </view>
+
+      <view class="indicator-bottom"></view>
+    </view>
+  </view>
+</block>
+
+
+<block a:if="{{ pixel }}">
+  <button
+    a:if="{{ type == `primary` && !compact }}"
+    class="outline-none-px bni-button-px {{className}} "
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <button
+    a:if="{{ type == `outline` && !compact }}"
+    class="bni-button-px {{className}} {{ !disabled?`outline-px`:``}}"
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <button
+    a:if="{{ type == `quite` && !compact }}"
+    class="quite-px {{!ghost? `underline`:``}} {{className}} {{ !disabled?`quite-col-px`:``}}"
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <button
+    a:if="{{ type == `primary` && compact }}"
+    class="outline-none-px bni-button-compact-px {{className}} {{ !disabled?`primary`:``}}"
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <button
+    a:if="{{ type == `outline` && compact }}"
+    class="bni-button-compact-px {{className}} {{ !disabled?`outline-px`:``}}"
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <button
+    a:if="{{ type == `quite` && compact }}"
+    class="quite-compact-px {{!ghost? `underline`:``}} {{className}} {{ !disabled?`quite-col-px`:``}}"
+    disabled={{disabled}}
+    data-props={{data? data: null}}
+    form-type="{{formType? formType: false}}"
+    onTap="{{!formType && onTap? `handleEvent`:false }}"
+  >
+    <slot name="left-icon" />
+    <slot>
+    </slot>
+    <slot name="right-icon" />
+  </button>
+
+  <view a:if="{{ type == 'sticky' }}" class="bni-sticky-wrapper-px {{className}}">
+    <view class="bni-sticky-container-px {{shadow ? 'shadow-sticky-px' : ''}}">
+      <slot name="upside-sticky-button" />
+
+      <view class="button-cover-px">
+        <button
+          class="outline-none-px bni-button-px txt-label1-sb-px bg-turquoise-300 {{disabledPrimaryButton ? 'bg-snow-white' : ''}}"
+          disabled={{disabledPrimaryButton}}
+          data-props={{data? data: null}}
+          form-type="{{formType? formType: false}}"
+          onTap="{{!formType && onTapPrimaryButton? 'handlePrimaryButton':false }}"
+          id="{{idPrimaryButton}}"
+        >
+          {{titlePrimaryButton}}
+        </button>
+
+        <button
+          a:if="{{ titleSecondaryButton }}"
+          class="bni-button-px txt-label1-sb-px {{ !disabled? 'outline-px': ''}} {{disabledSecondaryButton ? 'bg-snow-white' : 'border-granite'}}"
+          disabled={{disabledSecondaryButton}}
+          data-props={{data? data: null}}
+          form-type="{{formType? formType: false}}"
+          onTap="{{!formType && onTapSecondaryButton? 'handleSecondaryButton' : false }}"
+          id="{{idSecondaryButton}}"
+        >
+          {{titleSecondaryButton}}
+        </button>
+      </view>
+
+      <view class="indicator-bottom-px"></view>
+    </view>
+  </view>
+</block>

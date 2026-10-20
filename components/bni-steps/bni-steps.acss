@@ -1,0 +1,144 @@
+.status-transaksi-continer{
+  width: calc(100%);
+}
+/* horizontal */
+.container-horizontal-status{
+  display: flex;
+  flex-direction: column;
+  border-radius: 20rpx;
+  border: 3rpx solid var(--pale-gray);
+  background-color: var(--white);
+  padding: 32rpx;
+}
+.top-horizontal-status{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.box-content-status{
+  width: 130rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: var(--white);
+  z-index: 10;
+}
+.icon-status-area{
+  height: 70rpx;
+  width: 70rpx;
+  border-radius: 50%;
+  margin-bottom: 16rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.line-horizontal{
+  flex:1;
+  border-top-width:5rpx ;
+  border-top-style: dotted;
+}
+
+/* vertical */
+.list-vertical-status{
+  padding: 10rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+}
+.area-list-vertical-status{
+  display: flex;
+  position: relative;
+  
+}
+.icon-status-area-vertical{
+  height: 52rpx;
+  width: 52rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-icon-status-area-vertical{
+  height:45rpx;
+  width:45rpx;border-radius:50%
+  ;display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+
+/* PX  */
+
+.status-transaksi-continer-px{
+  width: calc(100%);
+}
+/* horizontal */
+.container-horizontal-status-px{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1.5px solid var(--pale-gray);
+  background-color: var(--white);
+  padding: calc(5%);
+}
+.top-horizontal-status-px{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.box-content-status-px{
+  width: 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: var(--white);
+  z-index: 10;
+}
+.icon-status-area-px{
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.line-horizontal-px{
+  flex:1;
+  border-top-width:2.5px ;
+  border-top-style: dotted;
+}
+
+/* vertical */
+.list-vertical-status-px{
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+}
+.area-list-vertical-status-px{
+  display: flex;
+  position: relative;
+  
+}
+.icon-status-area-vertical-px{
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-icon-status-area-vertical-px{
+  height:22.5px;
+  width:22.5px;border-radius:50%
+  ;display:flex;
+  justify-content:center;
+  align-items:center;
+}

@@ -1,0 +1,55 @@
+<view
+  a:if="{{ !pixel }}"
+  class="swipe-component-container {{swipeOut?'bni-swipe-out':''}}"
+  style="
+    width:100%;
+    transition: transform {{cardEffectDuration}}ms ease-in, box-shadow {{cardEffectDuration}}ms ease-in;
+    {{swipeOut && `-webkit-animation-duration: ${swipeOutDuration}ms;`}};
+    {{swipeOut && `animation-duration: ${swipeOutDuration}ms;`}}"
+>
+  <view class="swipe-component-slot">
+    <slot></slot>
+    <view a:if="{{ !customButtons }}" class="swipe-component-action">
+      <view onTap="onTapEdit" class="swipe-action-button">
+        <view class="swipe-action-icon button-edit">
+          <view class="button-edit-icon-svg" />
+        </view>
+        <view class="button-text">Ubah Kategori</view>
+      </view>
+      <view onTap="onTapConfirm" class="swipe-action-button">
+        <view class="swipe-action-icon button-confirm">
+          <view class="button-confirm-icon-svg" />
+        </view>
+        <view class="button-text">Oke</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view
+  a:if="{{ pixel }}"
+  class="swipe-component-container {{swipeOut?'bni-swipe-out-px':''}}"
+  style="
+    width:100%;
+    transition: transform {{cardEffectDuration}}ms ease-in, box-shadow {{cardEffectDuration}}ms ease-in;
+    {{swipeOut && `-webkit-animation-duration: ${swipeOutDuration}ms;`}};
+    {{swipeOut && `animation-duration: ${swipeOutDuration}ms;`}}"
+>
+  <view class="swipe-component-slot-px">
+    <slot></slot>
+    <view a:if="{{ !customButtons }}" class="swipe-component-action-px">
+      <view onTap="onTapEdit" class="swipe-action-button-px">
+        <view class="swipe-action-icon-px button-edit-px">
+          <view class="button-edit-icon-svg-px" />
+        </view>
+        <view class="button-text-px">Ubah Kategori</view>
+      </view>
+      <view onTap="onTapConfirm" class="swipe-action-button-px">
+        <view class="swipe-action-icon-px button-confirm-px">
+          <view class="button-confirm-icon-svg-px" />
+        </view>
+        <view class="button-text-px">Oke</view>
+      </view>
+    </view>
+  </view>
+</view>

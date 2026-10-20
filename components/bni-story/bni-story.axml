@@ -1,0 +1,50 @@
+<view style="position:relative"  onTouchStart="handleTouchStart" 
+onTouchEnd="handleTouchEnd">
+  <view a:if="{{ progressBar }}" class="indicator" style="padding:{{paddingBar}}">
+    <view a:for="{{ items }}" >
+      <view
+        data-index="{{index}}"
+        class="{{index == currentIndex ? 'indicator-load indicator-active': 'indicator-active'}}"
+        style="
+        background-color:{{index <= currentIndex ?progressColor : '' }};
+        animation-duration:{{fillDuration}}ms;
+        animation-play-state:{{animationState}};
+        "
+      />
+      <view  class="indicator-bar" style="background:{{backgroundColor}}" />
+    </view>
+  </view>
+
+  <view a:if="{{ withChevron }}" class="container-chevron">
+    <view a:if="{{ currentIndex > 0 }}" onTap="handlePrev" class="chevron-left {{classChevronLeft || 'content-chevron-left'}} "/>
+    <view a:if="{{ currentIndex !== (items - 1) }}"  onTap="handleNext" class="chevron-right {{classChevronRight ||'content-chevron-right'}}"/>
+  </view>
+
+  <swiper
+  disable-touch="{{disabledSwipe}}"
+  easing-function="{{disabledSwipe === true ? 'easeInOutCubic':'default'}}"
+  horizontal
+  current="{{currentIndex}}"
+  onChange="swiperChange"
+  autoplay ="{{swiperAutoPlay}}"
+  interval ="{{swiperInterval}}"
+  adjust-height-with-highest-item 
+  >
+    <block a:for="{{items}}" a:key="index">
+      <swiper-item>
+          <slot name="content_{{type === 'adjust' ? item.key : index}}"></slot>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view a:if="{{ indicatorType === 'dots' }}" class="indicator-item-px">
+    <block a:for="{{ items }}" a:for-index="index" a:for-item="item">
+      <view
+        class="{{currentIndex === index ? 'active-dots-px' : 'unactive-dots-px'}}"
+        onTap="onDotTap"
+        data-index="{{index}}"
+      >
+      </view>
+    </block>
+  </view>
+</view>

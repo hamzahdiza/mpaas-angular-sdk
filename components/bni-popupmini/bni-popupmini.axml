@@ -1,0 +1,11 @@
+<block a:if="{{ pixel }}">
+  <popup visible="{{basicVisible}}" position="bottom" onClose="handlePopupClose">
+    <slot name="contentInside" />
+  </popup>
+
+</block>
+<block a:if="{{ !pixel }}">
+  <popup visible="{{basicVisible}}" position="bottom" onClose="handlePopupClose">
+    <slot name="contentInside" />
+  </popup>
+</block>

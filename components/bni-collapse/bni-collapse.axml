@@ -1,0 +1,118 @@
+<block a:if="{{ !pixel }}">
+  <view a:if="{{ type === 'accordion' }}" class="container-collapse">
+    <block a:for="{{collapseItem}}" a:for-index="index" a:for-item="item">
+      <view class="tab">
+        <view a:if="{{index > 0}}" class="divider-between-labels" />
+        <view class="container-label" data-index="{{index}}" onTap="toggleAccordion">
+          <button class="tab-label">
+            <text a:if="{{ !titleSlot }}" style="text-align : left" id={{item.idTitle}}>{{item.title}}</text>
+            <slot a:elif="{{ titleSlot }}" name="{{'contentTitle_' + index}}" />
+            <image
+              mode="widthFix"
+              id={{item.idIcon}}
+              class="icon-collapse"
+              src="{{collapseStatus[index] ? arrowUp : arrowDown }}"
+            />
+          </button>
+        </view>
+        <view class="tab-content {{collapseStatus[index] ? 'open' : ''}}">
+          <text id={{item.idDesc}}>
+            {{item.content}}
+          </text>
+          <slot name="{{'contentInside_' + index}}" />
+          <view class="p-b-16" />
+        </view>
+      </view>
+    </block>
+  </view>
+ 
+ 
+  <view a:if="{{ type === 'default' }}" class="container-collapse">
+    <block a:for="{{collapseItem}}" a:for-index="index" a:for-item="item">
+      <view class="tab">
+        <view a:if="{{index > 0}}" class="divider-between-labels" />
+        <view class="{{collapseStatus[index] ? 'tab open' : 'tab'}}">
+          <view class="container-label" data-index="{{index}}" onTap="toggleCollapse">
+            <button class="tab-label">
+              <text a:if="{{ !titleSlot }}" style="text-align : left" id={{item.idTitle}}>{{item.title}}</text>
+              <slot a:elif="{{ titleSlot }}" name="{{'contentTitle_' + index}}" />
+              <image
+                mode="widthFix"
+                id={{item.idIcon}}
+                class="icon-collapse"
+                src="{{collapseStatus[index] ? arrowUp : arrowDown }}"
+              />
+            </button>
+          </view>
+          <view class="tab-content {{collapseStatus[index] ? 'open' : ''}}">
+            <text id={{item.idDesc}}>
+              {{item.content}}
+            </text>
+            <slot name="{{'contentInside_' + index}}" />
+            <view class="p-b-16" />
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</block>
+ 
+<block a:if="{{ pixel }}">
+  <view a:if="{{ type === 'accordion' }}" class="container-collapse-px">
+    <block a:for="{{collapseItem}}" a:for-index="index" a:for-item="item">
+      <view class="tab-px">
+        <view a:if="{{index > 0}}" class="divider-between-labels-px" />
+        <view class="container-label-px" data-index="{{index}}" onTap="toggleAccordion">
+          <button class="tab-label-px">
+            <text a:if="{{ !titleSlot }}" style="text-align : left" id={{item.idTitle}}>{{item.title}}</text>
+            <slot a:elif="{{ titleSlot }}" name="{{'contentTitle_' + index}}" />
+            <image
+              mode="widthFix"
+              id={{item.idIcon}}
+              class="icon-collapse-px"
+              src="{{collapseStatus[index] ? arrowUp : arrowDown }}"
+            />
+          </button>
+        </view>
+        <view class="tab-content-px {{collapseStatus[index] ? 'open-px' : ''}}">
+          <text id={{item.idDesc}}>
+            {{item.content}}
+          </text>
+          <slot name="{{'contentInside_' + index}}" />
+          <view class="p-b-16-px" />
+        </view>
+      </view>
+    </block>
+  </view>
+ 
+ 
+  <view a:if="{{ type === 'default' }}" class="container-collapse-px">
+    <block a:for="{{collapseItem}}" a:for-index="index" a:for-item="item">
+      <view class="tab-px">
+        <view a:if="{{index > 0}}" class="divider-between-labels-px" />
+        <view class="{{collapseStatus[index] ? 'tab-px open-px' : 'tab-px'}}">
+          <view class="container-label-px" data-index="{{index}}" onTap="toggleCollapse">
+            <button class="tab-label-px">
+              <text a:if="{{ !titleSlot }}" style="text-align : left" id={{item.idTitle}}>{{item.title}}</text>
+              <slot a:elif="{{ titleSlot }}" name="{{'contentTitle_' + index}}" />
+              <image
+                mode="widthFix"
+                id={{item.idIcon}}
+                class="icon-collapse-px"
+                src="{{collapseStatus[index] ? arrowUp : arrowDown }}"
+              />
+            </button>
+          </view>
+          <view class="tab-content-px {{collapseStatus[index] ? 'open-px' : ''}}">
+            <text id={{item.idDesc}}>
+              {{item.content}}
+            </text>
+            <slot name="{{'contentInside_' + index}}" />
+            <view class="p-b-16-px" />
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+ 
+</block>

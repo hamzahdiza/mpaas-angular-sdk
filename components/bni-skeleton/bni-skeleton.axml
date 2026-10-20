@@ -1,0 +1,31 @@
+<skeleton-avatar a:if="{{type==`avatar`}}" className="{{className}}" animate="{{showAnimate}}" />
+
+<skeleton-paragraph
+  a:if="{{type==`paragraph`}}"
+  className="{{className}}"
+  rows="{{rowsCount}}"
+  animate="{{showAnimate}}"
+/>
+
+<skeleton-input a:if="{{type==`input`}}" className="{{className}}" animate="{{showAnimate}}" />
+
+<skeleton-button
+  a:if="{{type==`button`}}"
+  className="{{className}}"
+  size="{{buttonSize}}"
+  animate="{{showAnimate}}"
+/>
+
+<skeleton
+  a:if="{{type==`skeltoncomplex`}}"
+  loading="{{showLoading}}"
+  title="{{false}}"
+  avatar="{{showAvatar}}"
+  paragraph="{{paragraph}}"
+  animate="{{showAnimate}}"
+>
+  <view class="container">
+    <slot name="contentInside" />
+  </view>
+</skeleton>
+

@@ -1,0 +1,159 @@
+<block a:if="{{ pixel }}">
+  <view class="status-transaksi-continer-px" id="{{assignId}}">
+
+    <!-- vertical -->
+
+    <view class="list-vertical-status-px">
+      <block a:for="{{ data }}" a:for-index="idx">
+        <view a:if="{{ item.status !== 'blocked' }}" class="area-list-vertical-status-px">
+          <!-- icon with css -->
+          <view class="container-icon-area-vertical-px">
+            <view
+              class="icon-status-area-vertical-px bg-{{item.status ==='process' ? 'success':'pale-gray'}}"
+              id="{{item.iconId}}"
+            >
+              <view
+                a:if="{{ item.status ==='success' || item.status === 'error' }}"
+                class="icon-status-area-vertical-px bg-{{item.status}}"
+              >
+                <image mode="scaleToFill" src={{item.icon}} />
+              </view>
+              <view a:else class="content-icon-status-area-vertical-px bg-white">
+                <text class="txt-body3-sb-px txt-{{item.status === 'process' ? 'success':'gray'}} ">
+                  {{idx+1}}
+                </text>
+              </view>
+            </view>
+          </view>
+
+          <view a:if="{{ item.status !=='waiting' }}" class="detail-status-area-vertical-px">
+            <view a:if="{{ item.seeDate }}" id={{item.dateId}} class="txt-label2-px date-text-area-px">
+              <text>{{item.date}}</text>
+            </view>
+            <view
+              id={{item.nameId}}
+              class="txt-body2-sb-px {{item.status==='error'?'txt-error':''}}"
+              style="margin:4px 0px"
+            >
+              {{item.name}}
+            </view>
+            <mp-html
+              a:if="{{ item.seeDetail }}"
+              content={{item.detail}}
+              id={{item.detailId}}
+              class="txt-body3-px"
+            />
+            <view
+              a:if="{{ idx !== data.length-1 && item.status !== 'error' }}"
+              style="height:25px"
+            />
+            <slot a:if="{{ idx === data.length-1 || item.status ==='error'}}" />
+          </view>
+          <view a:else class="detail-status-area-vertical-px">
+            <view class="txt-body2-sb-px txt-gray" style="margin:4px 0px">
+              {{item.name}}
+            </view>
+            <view a:if="{{ idx !== data.length-1 }}" style="height:25px" />
+            <slot a:if="{{ idx === data.length-1 || item.status ==='error'}}" />
+          </view>
+          <!-- line -->
+          <view
+            a:if="{{ data[idx+1].status !=='blocked' }}"
+            class="posisition-line-step-px"
+            id="{{item.lineId}}"
+          >
+            <view
+              a:if="{{ idx < data.length-1 }}"
+              class="bg-pale-gray bg-{{data[idx+1].status !== 'waiting'?'success':''}}"
+              style="
+            width:2px;
+            height:100%;
+            "
+            />
+          </view>
+        </view>
+      </block>
+    </view>
+    <!-- vertical new -->
+  </view>
+</block>
+
+<block a:if="{{ !pixel }}">
+  <view class="status-transaksi-continer" id="{{assignId}}">
+
+    <!-- vertical -->
+
+    <view class="list-vertical-status">
+      <block a:for="{{ data }}" a:for-index="idx">
+        <view a:if="{{ item.status !== 'blocked' }}" class="area-list-vertical-status">
+          <!-- icon with css -->
+          <view class="container-icon-area-vertical">
+            <view
+              class="icon-status-area-vertical bg-{{item.status ==='process' ? 'success':'pale-gray'}}"
+              id="{{item.iconId}}"
+            >
+              <view
+                a:if="{{ item.status ==='success' || item.status === 'error' }}"
+                class="icon-status-area-vertical bg-{{item.status}}"
+              >
+                <image mode="scaleToFill" src={{item.icon}} />
+              </view>
+              <view a:else class="content-icon-status-area-vertical bg-white">
+                <text class="txt-body3-sb txt-{{item.status === 'process' ? 'success':'gray'}} ">
+                  {{idx+1}}
+                </text>
+              </view>
+            </view>
+          </view>
+
+          <view a:if="{{ item.status !=='waiting' }}" class="detail-status-area-vertical">
+            <view a:if="{{ item.seeDate }}" id={{item.dateId}} class="txt-label2 date-text-area">
+              <text>{{item.date}}</text>
+            </view>
+            <view
+              id={{item.nameId}}
+              class="txt-body2-sb {{item.status==='error'?'txt-error':''}}"
+              style="margin:8rpx 0rpx"
+            >
+              {{item.name}}
+            </view>
+            <mp-html
+              a:if="{{ item.seeDetail }}"
+              content={{item.detail}}
+              id={{item.detailId}}
+              class="txt-body3"
+            />
+            <view
+              a:if="{{ idx !== data.length-1 && item.status !== 'error' }}"
+              style="height:50rpx"
+            />
+            <slot a:if="{{ idx === data.length-1 || item.status ==='error'}}" />
+          </view>
+          <view a:else class="detail-status-area-vertical">
+            <view class="txt-body2-sb txt-gray" style="margin:8rpx 0rpx">
+              {{item.name}}
+            </view>
+            <view a:if="{{ idx !== data.length-1 }}" style="height:50rpx" />
+            <slot a:if="{{ idx === data.length-1 || item.status ==='error'}}" />
+          </view>
+          <!-- line -->
+          <view
+            a:if="{{ data[idx+1].status !=='blocked' }}"
+            class="posisition-line-step"
+            id="{{item.lineId}}"
+          >
+            <view
+              a:if="{{ idx < data.length-1 }}"
+              class="bg-pale-gray bg-{{data[idx+1].status !== 'waiting'?'success':''}}"
+              style="
+            width:2px;
+            height:100%;
+            "
+            />
+          </view>
+        </view>
+      </block>
+    </view>
+    <!-- vertical new -->
+  </view>
+</block>

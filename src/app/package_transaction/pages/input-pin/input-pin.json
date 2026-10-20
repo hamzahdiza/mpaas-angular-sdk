@@ -1,11 +1,11 @@
 {
   "usingComponents": {
-    "dialog": "@bni-maverick-mpaas/lib/es/modal-toast/modal-toast",
+    "dialog": "/components/modal-toast/modal-toast",
     "mask": "antd-mini/es/Mask/index",
     "popup": "antd-mini/es/Popup/index",
-    "top-bar":"@bni-maverick-mpaas/lib/es/top-bar/top-bar",
-    "bni-button":"@bni-maverick-mpaas/lib/es/bni-button/bni-button",
-    "loading": "@bni-maverick-mpaas/lib/es/loading/loading",
+    "top-bar":"/components/top-bar/top-bar",
+    "bni-button":"/components/bni-button/bni-button",
+    "loading": "/components/loading/loading",
     "authorizations-error": "/src/app/components/authorizations-error/authorizations-error",
     "transactions-error": "/src/app/components/transactions-error/transactions-error"
   },

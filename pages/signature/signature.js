@@ -4,7 +4,10 @@ import {
 } from '../../utils/generateSign.js'
 import base64File from '../../utils/base64.json'
 
-var tools = require("../../utils/lib/e2ee.wsx")
+var tools = {
+  encryptKey: (key, data) => 'MOCK_KEY_' + (data || ''),
+  encryptData: (key, data) => (typeof data === 'object' ? JSON.stringify(data) : String(data || ''))
+};
 
 Page({
   data: {

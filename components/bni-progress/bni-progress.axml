@@ -1,0 +1,143 @@
+<block a:if="{{ !pixel }}">
+  <!-- START PROGRESS CIRCLE -->
+  <!--<view a:if="{{ type === 'circle' && percent<= 0}}" class="circular-progress"><view class="txt-label3 progress-value">0%</view></view> -->
+
+  <progress
+    a:if="{{ type == 'circle' && percent > 0}}"
+    type="circle"
+    percent="{{percent}}"
+    width="{{width}}"
+    stroke-width="{{strokeWidth}}"
+    trailColor="{{backgroundColor}}"
+    strokeColor="{{foregroundColor}}"
+    background-color="red"
+  />
+
+  <view a:if="{{ type === 'circle' && percent === 0 }}" style="width:{{width}}rpx;height:{{width}}rpx;position:relative;">
+    <image mode="scaleToFill" src="/assets/icons/ic_common_circle.svg" style="width:{{width}}rpx;height:{{width}}rpx;" />
+    <view class="circle-position circle-text" style="transform: translate(-50%, -50%);">
+      {{percent}}%
+    </view>
+  </view>
+
+  <!--<view a:if="{{ type === 'circle' && percent === 0 }}" style="position:relative;padding: 4rpx;max-width:{{width-8}}rpx;max-height:{{width-8}}rpx;"><view
+    style="border-color: {{backgroundColor}};width:{{width-28}}rpx;height:{{width-28}}rpx;"
+    class="progress-circle-fill"
+  ><view class="circle-text">
+      {{percent}}%</view></view></view> -->
+  <!-- END PROGRESS CIRCLE -->
+
+
+  <!-- START PROGRESS LINE  -->
+  <view a:if="{{ type === 'line' }}" class="progress-line {{percent == 0 ? 'bg-light-gray ' : (warning ? 'bg-error-off' : 'bg-turquoise-200')}}">
+
+    <view
+      class="progress-fill {{warning ? 'bg-error' : 'bg-turquoise-400'}}"
+      style="--width:{{percent}}%"
+    >
+    </view>
+
+    <text class="txt-label3-sb {{ percent == 0 ? 'txt-black' : percent >= 85 ? 'txt-white' : (warning ? 'txt-error' : 'txt-turquoise-500') }} progress-txt">
+      {{ percent }}% terpakai
+    </text>
+  </view>
+  <!-- END PROGRESS LINE  -->
+
+  <!-- START Steps LINE  -->
+  <view
+    a:if="{{ type === 'steps' }}"
+    style="width:{{width}};height:{{height}};background-color:{{backgroundColor}}"
+    class="progress-steps"
+  >
+
+    <view class="progress-fill-steps animation-{{animationKey}}" style="--width:{{percent}}%;background-color:{{progressColor}};--from-width:{{initialFill}}%;">
+    </view>
+  </view>
+  <!-- END Steps LINE  -->
+
+  <view a:if="{{ type == 'custom-circle'}}" class="circle-wrap">
+    <view class="rect-left">
+      <view class="circle-left" style="transform: {{leftTransform}};border-top-color: {{backgroundColor}};border-right-color: {{backgroundColor}}">
+      </view>
+    </view>
+    <view class="rect-right">
+      <view class="circle-right" style="transform: {{rightTransform}};border-bottom-color: {{backgroundColor}};border-left-color: {{backgroundColor}}">
+      </view>
+    </view>
+    <view class="progress-text">
+      {{percent}}%
+    </view>
+  </view>
+</block>
+
+<block a:if="{{ pixel }}">
+  <!-- START PROGRESS CIRCLE -->
+  <!--<view a:if="{{ type === 'circle' && percent<= 0}}" class="circular-progress"><view class="txt-label3 progress-value">0%</view></view> -->
+
+  <progress
+    a:if="{{ type == 'circle' && percent > 0}}"
+    type="circle"
+    percent="{{percent}}"
+    width="{{width}}"
+    stroke-width="{{strokeWidth}}"
+    trailColor="{{backgroundColor}}"
+    strokeColor="{{foregroundColor}}"
+    background-color="red"
+  />
+
+  <view a:if="{{ type === 'circle' && percent === 0 }}" style="width:{{width}}px;height:{{width}}px;position:relative;">
+    <image mode="scaleToFill" src="/assets/icons/ic_common_circle.svg" style="width:{{width}}px;height:{{width}}px;" />
+    <view class="circle-position-px circle-text-px" style="transform: translate(-50%, -50%);">
+      {{percent}}%
+    </view>
+  </view>
+
+  <!--<view a:if="{{ type === 'circle' && percent === 0 }}" style="position:relative;padding: 4rpx;max-width:{{width-8}}rpx;max-height:{{width-8}}rpx;"><view
+      style="border-color: {{backgroundColor}};width:{{width-28}}rpx;height:{{width-28}}rpx;"
+      class="progress-circle-fill"
+    ><view class="circle-text">
+        {{percent}}%</view></view></view> -->
+  <!-- END PROGRESS CIRCLE -->
+
+
+  <!-- START PROGRESS LINE  -->
+  <view a:if="{{ type === 'line' }}" class="progress-line-px {{percent == 0 ? 'bg-light-gray ' : (warning ? 'bg-error-off' : 'bg-turquoise-200')}}">
+
+    <view
+      class="progress-fill-px {{warning ? 'bg-error' : 'bg-turquoise-400'}}"
+      style="--width:{{percent}}%"
+    >
+    </view>
+
+    <text class="txt-label3-sb-px {{ percent == 0 ? 'txt-black' : percent >= 85 ? 'txt-white' : (warning ? 'txt-error' : 'txt-turquoise-500') }} progress-txt-px">
+      {{ percent }}% terpakai
+    </text>
+  </view>
+  <!-- END PROGRESS LINE  -->
+
+  <!-- START Steps LINE  -->
+  <view
+    a:if="{{ type === 'steps' }}"
+    style="width:{{width}};height:{{height}};background-color:{{backgroundColor}}"
+    class="progress-steps-px"
+  >
+
+    <view class="progress-fill-steps-px animation-{{animationKey}}" style="--width:{{percent}}%;background-color:{{progressColor}};--from-width:{{initialFill}}%;">
+    </view>
+  </view>
+  <!-- END Steps LINE  -->
+
+  <view a:if="{{ type == 'custom-circle'}}" class="circle-wrap-px">
+    <view class="rect-left-px">
+      <view class="circle-left-px" style="transform: {{leftTransform}};border-top-color: {{backgroundColor}};border-right-color: {{backgroundColor}}">
+      </view>
+    </view>
+    <view class="rect-right-px">
+      <view class="circle-right-px" style="transform: {{rightTransform}};border-bottom-color: {{backgroundColor}};border-left-color: {{backgroundColor}}">
+      </view>
+    </view>
+    <view class="progress-text-px">
+      {{percent}}%
+    </view>
+  </view>
+</block>

@@ -1,174 +1,136 @@
-import generalError from "./generalError";
+/**
+ * Mock Request Interceptor for mpaas-angular-sdk
+ * Intercepts any request call and resolves from mock data.
+ * ZERO Network calls.
+ */
+
 import {
-  generateUUID
-} from "./number-util";
-const errorCodeConfig = require("../public/error_code_config.json");
+  MOCK_MENU,
+  MOCK_EVENTS,
+  MOCK_RUNNING_EVENTS,
+  MOCK_FAVORITE_EVENTS,
+  MOCK_TEMPLATES,
+  MOCK_TEMPLATE_DETAILS,
+  MOCK_STORES,
+  MOCK_STORE_CATEGORIES,
+  MOCK_PRODUCTS,
+  MOCK_PRODUCT_DETAILS,
+  MOCK_ORDERS,
+  MOCK_ECOMMERCE_ORDERS,
+  MOCK_PERSONAL_DATA,
+  MOCK_EVENT_CATEGORY_TICKETS,
+  MOCK_EVENT_TICKETS,
+  MOCK_LOV,
+  MOCK_TNC,
+  MOCK_LIMIT,
+  MOCK_POSTAL_CODES
+} from '../mock/mockData.js';
 
-/* JShield-obfus:enable */
-const baseUri = "https://be-mpaas-template-management.vercel.app";
-/* JShield-obfus:disable */
+export default function request({ url, method = 'GET', data = null, headers = null }, that = null) {
+  return new Promise((resolve) => {
+    console.info('[MOCK REQUEST]', method, url, data);
 
-/**
- * use to send API request
- */
-export default function request({
-  url,
-  method,
-  data,
-  headers = null
-}, that = null) {
-  return new Promise((resolve, reject) => {
-    setTimeout(
-      () => {
-        console.info(url, "<<< MPAAS_URL");
-        my.request({
-          url: baseUri + url,
-          method: method,
-          data: data,
-          timeout: 120000,
-          headers: generateHeaders(headers),
-          success: (res) => {
-            console.info(res, "<<< MPAAS_RES ")
-            resolve(res);
-          },
-          fail: (err) => {
-            console.log(err, "<<< MPAAS_ERROR");
-            err.statusCode = (err.status ? err.status : err.statusCode)
-            handleErrorCode(err)
-            reject(err);
-          },
-          complete: () => {
-            that &&
-              that.setData({
-                isLoading: false,
-              });
-          },
-        });
-      },
-    );
-  });
-}
-/**
- * Intercept public error codes
- */
-function handleErrorCode(err) {
-  if (err && err.data && err.data.errorCode) {
-    if (errorCodeConfig.toNearestBranch.includes(err.data.errorCode)) {
-      my.call('openViewNearestBranch', {}, () => {});
-    } else if (errorCodeConfig.toSplashScreen.includes(err.data.errorCode)) {
-      generalError({
-        err,
-        isSwipe: true,
-        event: 'goToSplashScreen',
-        param: {},
-      })
-    } else if (errorCodeConfig.validateUSerCredentialResetPassword.includes(err.data.errorCode)) {
-      generalError({
-        err,
-        isSwipe: true,
-        event: 'validateUserCredential',
-        param: {
-          scenario: 'RESET_PASSWORD'
+    let mockResponse = { data: {}, statusCode: 200 };
+
+    if (!url) {
+      mockResponse = { data: {}, statusCode: 200 };
+    } else if (url.includes('/lifestyle/v1/menu')) {
+      mockResponse = MOCK_MENU;
+    } else if (url.includes('/lifestyle/v1/all-running-events')) {
+      mockResponse = MOCK_RUNNING_EVENTS;
+    } else if (url.includes('/lifestyle/v1/favorite-events')) {
+      mockResponse = MOCK_FAVORITE_EVENTS;
+    } else if (url.includes('/lifestyle/v1/all-events')) {
+      mockResponse = MOCK_EVENTS;
+    } else if (url.includes('/api/v1/stores/categories')) {
+      mockResponse = MOCK_STORE_CATEGORIES;
+    } else if (url.includes('/api/v1/stores')) {
+      mockResponse = MOCK_STORES;
+    } else if (url.includes('/api/v1/products/')) {
+      const pid = url.split('/api/v1/products/')[1].split('?')[0];
+      const prod = MOCK_PRODUCT_DETAILS[pid] || (MOCK_PRODUCTS.data && MOCK_PRODUCTS.data.find(p => p.id === pid)) || (MOCK_PRODUCTS.data && MOCK_PRODUCTS.data[0]);
+      mockResponse = { success: true, data: prod };
+    } else if (url.includes('/api/v1/products')) {
+      mockResponse = MOCK_PRODUCTS;
+    } else if (url.includes('/api/v1/templates/')) {
+      const tid = url.split('/api/v1/templates/')[1].split('?')[0];
+      const normId = tid.replace('template-', '');
+      const schema = MOCK_TEMPLATE_DETAILS[tid] || MOCK_TEMPLATE_DETAILS[normId] || MOCK_TEMPLATE_DETAILS['1'];
+      mockResponse = { data: schema, statusCode: 200, success: true };
+    } else if (url.includes('/api/v1/templates')) {
+      mockResponse = MOCK_TEMPLATES;
+    } else if (url.includes('/api/v1/ecommerce/orders/') && url.includes('/pay')) {
+      mockResponse = { success: true, message: 'Pembayaran berhasil', data: { status: 'PAID' } };
+    } else if (url.includes('/api/v1/ecommerce/orders/') && url.includes('/returns')) {
+      mockResponse = { success: true, message: 'Pengajuan retur berhasil dikirim', data: { returnStatus: 'REQUESTED' } };
+    } else if (url.includes('/api/v1/ecommerce/orders/')) {
+      const oid = url.split('/api/v1/ecommerce/orders/')[1].split('?')[0];
+      const ord = (MOCK_ECOMMERCE_ORDERS.data && MOCK_ECOMMERCE_ORDERS.data.find(o => o.id === oid)) || (MOCK_ECOMMERCE_ORDERS.data && MOCK_ECOMMERCE_ORDERS.data[0]);
+      mockResponse = { success: true, data: ord };
+    } else if (url.includes('/api/v1/ecommerce/orders')) {
+      if (method === 'POST') {
+        const orderId = 'ECOM-' + Date.now();
+        const newOrder = {
+          id: orderId,
+          orderNumber: 'INV-' + Date.now().toString().slice(-8),
+          status: 'PENDING',
+          items: (data && data.items) || [],
+          shippingCost: (data && data.shippingCost) || 15000,
+          totalAmount: (data && data.totalAmount) || 250000
+        };
+        mockResponse = { success: true, data: newOrder };
+      } else {
+        mockResponse = MOCK_ECOMMERCE_ORDERS;
+      }
+    } else if (url.includes('/api/orders/') && url.includes('/complete-payment')) {
+      mockResponse = { success: true, message: 'Pembayaran berhasil' };
+    } else if (url.includes('/api/orders/')) {
+      const oid = url.split('/api/orders/')[1].split('?')[0];
+      const ord = (MOCK_ORDERS.data && MOCK_ORDERS.data.find(o => o.id === oid)) || (MOCK_ORDERS.data && MOCK_ORDERS.data[0]);
+      mockResponse = { success: true, data: ord, statusCode: 200 };
+    } else if (url.includes('/api/orders')) {
+      mockResponse = MOCK_ORDERS;
+    } else if (url.includes('/lifestyle-javajazz/v1/personal-data')) {
+      mockResponse = MOCK_PERSONAL_DATA;
+    } else if (url.includes('/lifestyle-javajazz/v1/category-ticket')) {
+      const m = url.match(/id=([^&]+)/);
+      const eid = m ? m[1] : 'run-001';
+      mockResponse = MOCK_EVENT_CATEGORY_TICKETS[eid] || MOCK_EVENT_CATEGORY_TICKETS['run-001'] || Object.values(MOCK_EVENT_CATEGORY_TICKETS)[0];
+    } else if (url.includes('/lifestyle-javajazz/v1/tickets')) {
+      const m = url.match(/id=([^&]+)/);
+      const eid = m ? m[1] : 'run-001';
+      mockResponse = MOCK_EVENT_TICKETS[eid] || MOCK_EVENT_TICKETS['run-001'] || Object.values(MOCK_EVENT_TICKETS)[0];
+    } else if (url.includes('/content/v1/tnc')) {
+      mockResponse = MOCK_TNC;
+    } else if (url.includes('/reference/v1/lov')) {
+      mockResponse = MOCK_LOV;
+    } else if (url.includes('/limit/v1/transaction-limit')) {
+      mockResponse = MOCK_LIMIT;
+    } else if (url.includes('/lifestyle-javajazz/v1/subdistrict-postcode')) {
+      mockResponse = MOCK_POSTAL_CODES;
+    } else if (url.includes('/bill-payment/v1/biller/preparation')) {
+      mockResponse = {
+        data: {
+          billerCode: "01",
+          billKey1Label: "Kode Pembayaran",
+          billAmount: (data && data.amount) || 250000,
+          completionTime: new Date().toISOString(),
+          billerName: "Wondr Event & UMKM",
+          transactionId: "TRX-" + Date.now(),
+          referenceId: "REF-" + Date.now()
         },
-      })
-    } else if (errorCodeConfig.validateUSerCredentialProvisioning.includes(err.data.errorCode)) {
-      generalError({
-        err,
-        isSwipe: true,
-        event: 'validateUserCredential',
-        param: {
-          scenario: 'PROVISIONING'
-        },
-      })
-    } else if (errorCodeConfig.toHomeScreen.includes(err.data.errorCode) || err.data.errorCode.startsWith('LIM-')) {
-      generalError({
-        err,
-        isSwipe: true,
-        event: 'goToHomeScreen',
-        param: {},
-      })
-    } else if (err.data.errorCode.startsWith('GTW-')) {
-      generalError({
-        err,
-        isSwipe: true,
-        event: 'isRequest',
-      })
+        statusCode: 200
+      };
+    } else {
+      mockResponse = { data: {}, statusCode: 200, success: true };
     }
-  }
-}
-/**
- * refresh token
- */
-function refreshToken() {
-  return new Promise((resolve, reject) => {
-    my.request({
-      url: `${baseUri}/identity/v1/refresh-tokens`,
-      method: "POST",
-      headers: generateHeaders({
-        "Mav-Authorization": getApp().globalData.nativeData.refreshToken
-      }),
-      success: (res) => {
-        getApp().globalData.nativeData.accessToken = res.data.data.token;
-        getApp().globalData.nativeData.refreshToken = res.data.data.refreshToken;
-        my.call("saveToken", {
-          accessToken: res.data.data.token,
-          refreshToken: res.data.data.refreshToken
-        });
-        resolve(res);
-      },
-      fail: (err) => {
-        err.statusCode = (err.status ? err.status : err.statusCode)
-        reject(err);
-      },
-    });
+
+    setTimeout(() => {
+      console.info('[MOCK RESPONSE]', url, mockResponse);
+      if (that && that.setData) {
+        that.setData({ isLoading: false });
+      }
+      resolve(JSON.parse(JSON.stringify(mockResponse)));
+    }, 50);
   });
-}
-/**
- * generate headers
- */
-function generateHeaders(headers = null) {
-  const app = getApp();
-  const nativeData = (app && app.globalData && app.globalData.nativeData) || {};
-  const personalData = (app && app.globalData && app.globalData.personalData) || (my.getStorageSync({ key: 'personalData' }) && my.getStorageSync({ key: 'personalData' }).data) || {};
-  return Object.assign({
-      "content-type": "application/json",
-      "Channel-Id": "MVR",
-      "Client-Platform": nativeData.clientPlatform || "Android",
-      "Client-Version": nativeData.clientVersion || "1.0.0",
-      "Client-Release": nativeData.clientRelease || "release",
-      "Accept-Language": nativeData.language || "id-ID",
-      "User-Agent": nativeData.userAgent || "wondr/1.0.0",
-      "Device-Id": nativeData.deviceId || "DEV-DEVICE-001",
-      "Request-Id": generateUUID(),
-      authorization: nativeData.authorization || "",
-      "Enc-Session-Key": nativeData.encSessionKey || "",
-      "wondr-client": nativeData.clientPlatform || "Android",
-      "X-CIF": personalData.cif || "CIF-HAMZAH-001",
-      "X-Customer-Phone": personalData.phone || "081234567890",
-      "X-Account-Number": personalData.accountNumber || "1000785003",
-      "x-cif": personalData.cif || "CIF-HAMZAH-001",
-      "x-customer-phone": personalData.phone || "081234567890",
-      "x-account-number": personalData.accountNumber || "1000785003"
-    },
-    headers
-  );
-}
-/**
- * Handle api return error code 503
- * @param {API Return} err 
- */
-function handle503Error(err) {
-  const errorCode = err.data.errorCode;
-  if (errorCodeConfig.downTimeErrorTrue.includes(errorCode)) {
-    my.call('downTimeError', {
-      isScheduled: true,
-      endTime: err.data.downtimeEndTime
-    }, () => {})
-  } else if (errorCodeConfig.downTimeErrorFalse.includes(errorCode)) {
-    my.call('downTimeError', {
-      isScheduled: false
-    }, () => {})
-  } else if (errorCodeConfig.normalFeatureOff.includes(errorCode)) {
-    my.featureCheckModalFunc(true);
-  }
 }

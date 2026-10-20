@@ -1,10 +1,10 @@
 {
   "component": true,
   "usingComponents": {
-    "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar",
-    "bni-button": "@bni-maverick-mpaas/lib/es/bni-button/bni-button",
-    "bni-chip": "@bni-maverick-mpaas/lib/es/bni-chip/bni-chip",
-    "snackbar": "@bni-maverick-mpaas/lib/es/snackbar/snackbar",
-    "loading": "@bni-maverick-mpaas/lib/es/loading/loading"
+    "top-bar": "/components/top-bar/top-bar",
+    "bni-button": "/components/bni-button/bni-button",
+    "bni-chip": "/components/bni-chip/bni-chip",
+    "snackbar": "/components/snackbar/snackbar",
+    "loading": "/components/loading/loading"
   }
 }

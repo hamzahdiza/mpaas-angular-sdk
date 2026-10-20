@@ -1,0 +1,94 @@
+/* coach mark */
+.container-overlay {
+  z-index: 1000;
+  top: 0;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-detail-guide {
+  position: relative;
+  width: 100vw;
+  padding: 0 24px;
+  box-sizing: border-box;
+  margin-top: 16px;
+  z-index: 1001;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeInScale 0.5s ease-out forwards;
+  animation-delay: 1s;
+}
+
+.content-detail-guide {
+  background-color: white;
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.content-detail-guide>.title {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.content-detail-guide>.detail {
+  margin-top: 4px;
+  margin-bottom: 16px;
+  animation-delay: 1s;
+}
+
+.overlay {
+  width: 100vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.overlay.centered {
+  justify-content: center;
+  align-items: center;
+}
+
+.cutout {
+  background: transparent;
+  border-radius: 8px;
+  box-shadow: 0 0 0 9999px rgba(14, 14, 14, 0.80);
+  animation: cutoutShrink 0.5s ease-out forwards;
+  transform-origin: center center;
+}
+
+.button-guide {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-popover {
+  width: auto;
+  padding: 8px 24px;
+  white-space: nowrap;
+  height: 32px;
+}
+
+@keyframes cutoutShrink {
+  0% {
+    height: 3000px;
+    width: 3000px;
+    margin: -1000px;
+  }
+
+  100% {
+    width: var(--cutout-width);
+    height: var(--cutout-height);
+  }
+}
+
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

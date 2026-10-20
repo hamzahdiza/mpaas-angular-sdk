@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "default-ilustration-component": "../default-ilustration-report/default-ilustration-report",
+    "bni-button":"../bni-button/bni-button"
+  }
+}
