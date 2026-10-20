@@ -1,12 +1,12 @@
 const customUrlQueryData = 'customUrlQueryData'
 
 /**
- * Routing jump with parameters, the receiving page uses my. customUrlQueryData [query. customUrlQueryData] to retrieve object data
- * @param {url:Sting,  data:Object,  success:Function,  fail:Function,  complete:Function,  mode:String}  
+ * Routing jump with parameters, the receiving page uses my.customUrlQueryData [query.customUrlQueryData] to retrieve object data
+ * @param {url:String,  data:Object,  success:Function,  fail:Function,  complete:Function,  mode:String}  
  */
 export function customNavigateTo({
   url,
-  data,
+  data = {},
   success,
   fail,
   complete,
@@ -14,11 +14,13 @@ export function customNavigateTo({
 }) {
   const urls = url.split('/')
   const mark = urls[urls.length - 1]
+  const safeData = data !== undefined ? data : {};
+  
   if (my[customUrlQueryData]) {
-    my[customUrlQueryData][`${mark}`] = JSON.parse(JSON.stringify(data))
+    my[customUrlQueryData][`${mark}`] = JSON.parse(JSON.stringify(safeData))
   } else {
     my[customUrlQueryData] = {
-      [`${mark}`] : JSON.parse(JSON.stringify(data))
+      [`${mark}`] : JSON.parse(JSON.stringify(safeData))
     }
   }
   if (my[mode]) {

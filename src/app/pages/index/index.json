@@ -6,11 +6,6 @@
     "popup-image": "antd-mini/es/Popup/index",
     "bni-button": "/node_modules/@bni-maverick-mpaas/lib/es/bni-button/bni-button",
     "loading": "/node_modules/@bni-maverick-mpaas/lib/es/loading/loading",
-    "template-one": "/src/app/components/templates/template-one/index",
-    "template-two": "/src/app/components/templates/template-two/index",
-    "template-three": "/src/app/components/templates/template-three/index",
-    "template-four": "/src/app/components/templates/template-four/index",
-    "template-five": "/src/app/components/templates/template-five/index",
     "sdui-dynamic-renderer": "/src/app/components/sdui-dynamic-renderer/sdui-dynamic-renderer"
   },
   "transparentTitle": "always",

@@ -1,129 +1,315 @@
-<booking-template-one
-  a:if="{{templateId == 1 || !templateId}}"
-  lang="{{lang}}"
-  isLoading="{{isLoading}}"
-  ticketData="{{ticketData}}"
-  eventDetail="{{eventDetail}}"
-  showTab="{{showTab}}"
-  tabFilter="{{tabFilter}}"
-  tabActive="{{tabActive}}"
-  dataPromoList="{{dataPromoList}}"
-  dataRegulerList="{{dataRegulerList}}"
-  totalTicket="{{totalTicket}}"
-  totalAmount="{{totalAmount}}"
-  totalPrice="{{totalPrice}}"
-  errorApi="{{errorApi}}"
-  isExit="{{isExit}}"
-  isCopyTriggered="{{isCopyTriggered}}"
-  isToastIn="{{isToastIn}}"
-  onHandleFilter="handleFilter"
-  onHandleRemove="handleRemove"
-  onHandlePlus="handlePlus"
-  onDisableToast="disableToast"
-  onNextPage="nextPage"
-  onHandleNotif="handleNotif"
-/>
+<view class="book-ticket-page {{ templateId == 4 ? 'theme-maroon' : (templateId == 2 ? 'theme-navy' : (templateId == 3 ? 'theme-slate' : 'theme-clean')) }}" a:if="{{!errorApi}}">
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- TOP STICKY BAR                                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <view class="sticky-top bg-white">
+    <top-bar
+      type="navigation"
+      navigate="{{true}}"
+      exit="{{isExit}}"
+      backgroundColor="#FFFFFF"
+      color="#0F172A"
+      title="{{lang.javaJazzFestivalListTicketScreenHeaderTitleLabel || 'Pilih tiket'}}"
+      iconL="/src/assets/icons/ic_common_arrow_back.svg"
+      safeArea="{{true}}"
+      pixel
+    />
+    
+    <view a:if="{{ isCopyTriggered }}" onTap="disableToast" class="{{isToastIn ? 'toast-container-in' : 'toast-container-out'}} toast-position">
+      <snackbar
+        pixel
+        class="snackbar-container"
+        isSnackbarVisible="true"
+        iconCustom="/src/assets/icons/ic_common_warning_filled.svg"
+        txt="{{lang.javaJazzFestivalListTicketScreenToastMaxTicketLabel || 'Jumlah tiket melebihi batas maksimal'}}"
+      />
+    </view>
+  </view>
 
-<booking-template-two
-  a:elif="{{templateId == 2}}"
-  lang="{{lang}}"
-  isLoading="{{isLoading}}"
-  ticketData="{{ticketData}}"
-  eventDetail="{{eventDetail}}"
-  showTab="{{showTab}}"
-  tabFilter="{{tabFilter}}"
-  tabActive="{{tabActive}}"
-  dataPromoList="{{dataPromoList}}"
-  dataRegulerList="{{dataRegulerList}}"
-  totalTicket="{{totalTicket}}"
-  totalAmount="{{totalAmount}}"
-  totalPrice="{{totalPrice}}"
-  errorApi="{{errorApi}}"
-  isExit="{{isExit}}"
-  isCopyTriggered="{{isCopyTriggered}}"
-  isToastIn="{{isToastIn}}"
-  onHandleFilter="handleFilter"
-  onHandleRemove="handleRemove"
-  onHandlePlus="handlePlus"
-  onDisableToast="disableToast"
-  onNextPage="nextPage"
-  onHandleNotif="handleNotif"
-/>
+  <loading pixel loading="{{ isLoading }}" />
 
-<booking-template-three
-  a:elif="{{templateId == 3}}"
-  lang="{{lang}}"
-  isLoading="{{isLoading}}"
-  ticketData="{{ticketData}}"
-  eventDetail="{{eventDetail}}"
-  showTab="{{showTab}}"
-  tabFilter="{{tabFilter}}"
-  tabActive="{{tabActive}}"
-  dataPromoList="{{dataPromoList}}"
-  dataRegulerList="{{dataRegulerList}}"
-  totalTicket="{{totalTicket}}"
-  totalAmount="{{totalAmount}}"
-  totalPrice="{{totalPrice}}"
-  errorApi="{{errorApi}}"
-  isExit="{{isExit}}"
-  isCopyTriggered="{{isCopyTriggered}}"
-  isToastIn="{{isToastIn}}"
-  onHandleFilter="handleFilter"
-  onHandleRemove="handleRemove"
-  onHandlePlus="handlePlus"
-  onDisableToast="disableToast"
-  onNextPage="nextPage"
-  onHandleNotif="handleNotif"
-/>
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- MAIN SCROLL VIEW                                            -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <scroll-view scroll-y="{{true}}" a:if="{{ !isLoading }}" class="container-book" style="padding-bottom: {{safeAreaBottom + 120}}px;">
 
-<booking-template-four
-  a:elif="{{templateId == 4}}"
-  lang="{{lang}}"
-  isLoading="{{isLoading}}"
-  ticketData="{{ticketData}}"
-  eventDetail="{{eventDetail}}"
-  showTab="{{showTab}}"
-  tabFilter="{{tabFilter}}"
-  tabActive="{{tabActive}}"
-  dataPromoList="{{dataPromoList}}"
-  dataRegulerList="{{dataRegulerList}}"
-  totalTicket="{{totalTicket}}"
-  totalAmount="{{totalAmount}}"
-  totalPrice="{{totalPrice}}"
-  errorApi="{{errorApi}}"
-  isExit="{{isExit}}"
-  isCopyTriggered="{{isCopyTriggered}}"
-  isToastIn="{{isToastIn}}"
-  onHandleFilter="handleFilter"
-  onHandleRemove="handleRemove"
-  onHandlePlus="handlePlus"
-  onDisableToast="disableToast"
-  onNextPage="nextPage"
-  onHandleNotif="handleNotif"
-/>
+    <!-- ============================================================== -->
+    <!-- TEMPLATE 4: CRIMSON MAROON (Match CMS Preview 1-to-1)           -->
+    <!-- ============================================================== -->
+    <block a:if="{{ templateId == 4 || templateId == '4' || templateId == 'template-4' }}">
+      <!-- Header Info (Centered) -->
+      <view class="t4-header-card">
+        <text class="t4-event-title">{{eventName || eventDetail.eventName || eventDetail.name || 'Nama Event'}}</text>
+        <text class="t4-event-desc">{{eventDescription || eventDetail.description || 'Deskripsi acara event'}}</text>
+      </view>
 
-<booking-template-five
-  a:elif="{{templateId == 5}}"
-  lang="{{lang}}"
-  isLoading="{{isLoading}}"
-  ticketData="{{ticketData}}"
-  eventDetail="{{eventDetail}}"
-  showTab="{{showTab}}"
-  tabFilter="{{tabFilter}}"
-  tabActive="{{tabActive}}"
-  dataPromoList="{{dataPromoList}}"
-  dataRegulerList="{{dataRegulerList}}"
-  totalTicket="{{totalTicket}}"
-  totalAmount="{{totalAmount}}"
-  totalPrice="{{totalPrice}}"
-  errorApi="{{errorApi}}"
-  isExit="{{isExit}}"
-  isCopyTriggered="{{isCopyTriggered}}"
-  isToastIn="{{isToastIn}}"
-  onHandleFilter="handleFilter"
-  onHandleRemove="handleRemove"
-  onHandlePlus="handlePlus"
-  onDisableToast="disableToast"
-  onNextPage="nextPage"
-  onHandleNotif="handleNotif"
-/>
+      <!-- Ticket Cards List with Maroon Top Banner Strip -->
+      <view class="t4-ticket-list">
+        <block a:for="{{ tabActive === 0 ? dataPromoList : dataRegulerList }}" a:for-index="idx" a:key="ticketId">
+          <view class="t4-card-box {{item.isAvailable == 0 ? 'disabled' : ''}}">
+            <!-- Maroon Top Header Strip -->
+            <view class="t4-card-header">
+              <text class="t4-card-name">{{item.ticketName}}</text>
+              <view class="t4-badge-pill">
+                <text class="t4-badge-text">{{item.isAvailable == 0 ? 'Sold Out' : 'Available'}}</text>
+              </view>
+            </view>
+
+            <!-- Card Body -->
+            <view class="t4-card-body">
+              <text class="t4-card-desc">{{item.descriptionText}}</text>
+
+              <view class="t4-card-footer">
+                <view class="t4-price-wrap">
+                  <text class="t4-price-val">{{item.formatPriceTaxService}}</text>
+                  <text a:if="{{ item.oldPrice > item.price }}" class="t4-price-old">{{item.oldPriceFormat}}</text>
+                </view>
+
+                <!-- Stepper / + Add Button -->
+                <view class="t4-action-wrap">
+                  <block a:if="{{item.count === 0}}">
+                    <button
+                      class="t4-btn-add {{item.isAvailable == 0 ? 'btn-disabled' : ''}}"
+                      onTap="{{item.isAvailable == 0 ? '' : 'handlePlus'}}"
+                      data-index="{{idx}}"
+                      data-item="{{item}}"
+                      data-count="{{item.count}}"
+                      data-amount="{{item.price}}"
+                      data-title="{{item.ticketName}}"
+                      data-type="{{item.type}}"
+                      data-ticket-id="{{item.ticketId}}"
+                      data-count-add="{{1}}"
+                    >
+                      + Add
+                    </button>
+                  </block>
+                  <block a:else>
+                    <view class="t4-stepper">
+                      <view
+                        class="t4-stepper-btn"
+                        onTap="handleRemove"
+                        data-index="{{idx}}"
+                        data-item="{{item}}"
+                        data-count="{{item.count}}"
+                        data-amount="{{item.price}}"
+                        data-title="{{item.ticketName}}"
+                        data-type="{{item.type}}"
+                        data-ticket-id="{{item.ticketId}}"
+                        data-count-add="{{1}}"
+                      >
+                        <text class="t4-stepper-symbol">-</text>
+                      </view>
+                      <text class="t4-stepper-val">{{item.count}}</text>
+                      <view
+                        class="t4-stepper-btn {{item.count >= item.maxOrder ? 'disabled' : ''}}"
+                        onTap="handlePlus"
+                        data-index="{{idx}}"
+                        data-item="{{item}}"
+                        data-count="{{item.count}}"
+                        data-amount="{{item.price}}"
+                        data-title="{{item.ticketName}}"
+                        data-type="{{item.type}}"
+                        data-ticket-id="{{item.ticketId}}"
+                        data-count-add="{{1}}"
+                      >
+                        <text class="t4-stepper-symbol">+</text>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+
+    <!-- ============================================================== -->
+    <!-- TEMPLATE 2: CORPORATE NAVY                                     -->
+    <!-- ============================================================== -->
+    <block a:elif="{{ templateId == 2 || templateId == '2' || templateId == 'template-2' }}">
+      <view class="t2-navy-header">
+        <text class="t2-event-title">{{eventName || eventDetail.eventName || eventDetail.name || 'Nama Event'}}</text>
+        <text class="t2-event-desc">{{eventDescription || eventDetail.description || 'Deskripsi acara event'}}</text>
+      </view>
+
+      <view class="t2-ticket-list">
+        <block a:for="{{ tabActive === 0 ? dataPromoList : dataRegulerList }}" a:for-index="idx" a:key="ticketId">
+          <view class="t2-card-box {{item.isAvailable == 0 ? 'disabled' : ''}}">
+            <view class="t2-card-top">
+              <view>
+                <text class="t2-card-name">{{item.ticketName}}</text>
+                <text class="t2-badge-avail">{{item.isAvailable == 0 ? 'Sold Out' : 'Available'}}</text>
+              </view>
+            </view>
+            <text class="t2-card-desc">{{item.descriptionText}}</text>
+            <view class="t2-card-footer">
+              <view class="t2-price-wrap">
+                <text class="t2-price-val">{{item.formatPriceTaxService}}</text>
+                <text a:if="{{ item.oldPrice > item.price }}" class="t2-price-old">{{item.oldPriceFormat}}</text>
+              </view>
+              <view class="t2-action-wrap">
+                <block a:if="{{item.count === 0}}">
+                  <button
+                    class="t2-btn-add {{item.isAvailable == 0 ? 'btn-disabled' : ''}}"
+                    onTap="{{item.isAvailable == 0 ? '' : 'handlePlus'}}"
+                    data-index="{{idx}}"
+                    data-item="{{item}}"
+                    data-count="{{item.count}}"
+                    data-amount="{{item.price}}"
+                    data-title="{{item.ticketName}}"
+                    data-type="{{item.type}}"
+                    data-ticket-id="{{item.ticketId}}"
+                    data-count-add="{{1}}"
+                  >
+                    + Add
+                  </button>
+                </block>
+                <block a:else>
+                  <view class="t2-stepper">
+                    <view class="t2-stepper-btn" onTap="handleRemove" data-index="{{idx}}" data-item="{{item}}" data-count="{{item.count}}" data-amount="{{item.price}}" data-title="{{item.ticketName}}" data-type="{{item.type}}" data-ticket-id="{{item.ticketId}}" data-count-add="{{1}}">-</view>
+                    <text class="t2-stepper-val">{{item.count}}</text>
+                    <view class="t2-stepper-btn {{item.count >= item.maxOrder ? 'disabled' : ''}}" onTap="handlePlus" data-index="{{idx}}" data-item="{{item}}" data-count="{{item.count}}" data-amount="{{item.price}}" data-title="{{item.ticketName}}" data-type="{{item.type}}" data-ticket-id="{{item.ticketId}}" data-count-add="{{1}}">+</view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+
+    <!-- ============================================================== -->
+    <!-- TEMPLATE 3: SPORTY ATHLETIC / DARK SLATE                       -->
+    <!-- ============================================================== -->
+    <block a:elif="{{ templateId == 3 || templateId == '3' || templateId == 'template-3' }}">
+      <view class="t3-header-card">
+        <text class="t3-event-title">{{eventName || eventDetail.eventName || eventDetail.name || 'Nama Event'}}</text>
+        <text class="t3-event-desc">{{eventDescription || eventDetail.description || 'Deskripsi acara event'}}</text>
+      </view>
+
+      <view class="t3-ticket-list">
+        <block a:for="{{ tabActive === 0 ? dataPromoList : dataRegulerList }}" a:for-index="idx" a:key="ticketId">
+          <view class="t3-card-box {{item.isAvailable == 0 ? 'disabled' : ''}}">
+            <view class="t3-card-header">
+              <text class="t3-card-name">{{item.ticketName}}</text>
+              <view class="t3-badge-slot">
+                <text class="t3-badge-text">{{item.isAvailable == 0 ? 'SLOT FULL' : 'SLOT AVAILABLE'}}</text>
+              </view>
+            </view>
+            <view class="t3-desc-box">
+              <text class="t3-card-desc">{{item.descriptionText}}</text>
+            </view>
+            <view class="t3-card-footer">
+              <view class="t3-price-wrap">
+                <text class="t3-price-val">{{item.formatPriceTaxService}}</text>
+                <text a:if="{{ item.oldPrice > item.price }}" class="t3-price-old">{{item.oldPriceFormat}}</text>
+              </view>
+              <view class="t3-action-wrap">
+                <block a:if="{{item.count === 0}}">
+                  <button
+                    class="t3-btn-add {{item.isAvailable == 0 ? 'btn-disabled' : ''}}"
+                    onTap="{{item.isAvailable == 0 ? '' : 'handlePlus'}}"
+                    data-index="{{idx}}"
+                    data-item="{{item}}"
+                    data-count="{{item.count}}"
+                    data-amount="{{item.price}}"
+                    data-title="{{item.ticketName}}"
+                    data-type="{{item.type}}"
+                    data-ticket-id="{{item.ticketId}}"
+                    data-count-add="{{1}}"
+                  >
+                    + Slot
+                  </button>
+                </block>
+                <block a:else>
+                  <view class="t3-stepper">
+                    <view class="t3-stepper-btn" onTap="handleRemove" data-index="{{idx}}" data-item="{{item}}" data-count="{{item.count}}" data-amount="{{item.price}}" data-title="{{item.ticketName}}" data-type="{{item.type}}" data-ticket-id="{{item.ticketId}}" data-count-add="{{1}}">-</view>
+                    <text class="t3-stepper-val">{{item.count}}</text>
+                    <view class="t3-stepper-btn {{item.count >= item.maxOrder ? 'disabled' : ''}}" onTap="handlePlus" data-index="{{idx}}" data-item="{{item}}" data-count="{{item.count}}" data-amount="{{item.price}}" data-title="{{item.ticketName}}" data-type="{{item.type}}" data-ticket-id="{{item.ticketId}}" data-count-add="{{1}}">+</view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+
+    <!-- ============================================================== -->
+    <!-- TEMPLATE 1: CLEAN CARD THEME / DEFAULT / SDUI                  -->
+    <!-- ============================================================== -->
+    <block a:else>
+      <view class="t1-header-card">
+        <text class="t1-event-title">{{eventName || eventDetail.eventName || eventDetail.name || 'Nama Event'}}</text>
+        <text class="t1-event-desc">{{eventDescription || eventDetail.description || 'Deskripsi acara event'}}</text>
+      </view>
+
+      <view class="t1-ticket-list">
+        <block a:for="{{ tabActive === 0 ? dataPromoList : dataRegulerList }}" a:for-index="idx" a:key="ticketId">
+          <view class="t1-card-box {{item.isAvailable == 0 ? 'disabled' : ''}}">
+            <view class="t1-card-top">
+              <view>
+                <text class="t1-card-name">{{item.ticketName}}</text>
+                <text class="t1-badge-avail">{{item.isAvailable == 0 ? 'Sold Out' : 'Available'}}</text>
+              </view>
+            </view>
+            <text class="t1-card-desc">{{item.descriptionText}}</text>
+            <view class="t1-card-footer">
+              <view class="t1-price-wrap">
+                <text class="t1-price-val">{{item.formatPriceTaxService}}</text>
+                <text a:if="{{ item.oldPrice > item.price }}" class="t1-price-old">{{item.oldPriceFormat}}</text>
+              </view>
+              <view class="t1-action-wrap">
+                <block a:if="{{item.count === 0}}">
+                  <button
+                    class="t1-btn-add {{item.isAvailable == 0 ? 'btn-disabled' : ''}}"
+                    onTap="{{item.isAvailable == 0 ? '' : 'handlePlus'}}"
+                    data-index="{{idx}}"
+                    data-item="{{item}}"
+                    data-count="{{item.count}}"
+                    data-amount="{{item.price}}"
+                    data-title="{{item.ticketName}}"
+                    data-type="{{item.type}}"
+                    data-ticket-id="{{item.ticketId}}"
+                    data-count-add="{{1}}"
+                  >
+                    + Add
+                  </button>
+                </block>
+                <block a:else>
+                  <view class="t1-stepper">
+                    <view class="t1-stepper-btn" onTap="handleRemove" data-index="{{idx}}" data-item="{{item}}" data-count="{{item.count}}" data-amount="{{item.price}}" data-title="{{item.ticketName}}" data-type="{{item.type}}" data-ticket-id="{{item.ticketId}}" data-count-add="{{1}}">-</view>
+                    <text class="t1-stepper-val">{{item.count}}</text>
+                    <view class="t1-stepper-btn {{item.count >= item.maxOrder ? 'disabled' : ''}}" onTap="handlePlus" data-index="{{idx}}" data-item="{{item}}" data-count="{{item.count}}" data-amount="{{item.price}}" data-title="{{item.ticketName}}" data-type="{{item.type}}" data-ticket-id="{{item.ticketId}}" data-count-add="{{1}}">+</view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+
+  </scroll-view>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- STICKY BOTTOM SUMMARY BAR                                    -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <view a:if="{{ !isLoading }}" class="bottom-container" style="padding-bottom: {{safeAreaBottom + 16}}px;">
+    <view a:if="{{ totalTicket > 0 }}" class="bottom-summary-row">
+      <text class="total-label-txt">Total</text>
+      <text class="total-price-txt">Rp {{totalPrice}}</text>
+    </view>
+    <view>
+      <button
+        id="book-ticket-buy-button"
+        class="bottom-cta-btn {{ totalTicket === 0 ? 'btn-disabled' : (templateId == 4 ? 'cta-maroon' : (templateId == 2 ? 'cta-navy' : (templateId == 3 ? 'cta-orange' : 'cta-teal'))) }}"
+        disabled="{{totalTicket === 0}}"
+        onTap="nextPage"
+      >
+        {{ templateId == 3 ? 'Lanjutkan Registrasi' : 'Lanjut' }}
+      </button>
+    </view>
+  </view>
+</view>

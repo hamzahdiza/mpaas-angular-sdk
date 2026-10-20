@@ -1,83 +1,203 @@
-<view class="sticky-top">
-  <top-bar
-    type="navigation"
-    navigate={{true}}
-    backgroundColor="#9B7EDC"
-    color="#FFFFFF"
-    title="Konfirmasi Pesanan"
-    iconL="../../../assets/icons/ic_common_arrow_back_white.svg"
-    onIconLTap="onBack"
-    safeArea
-    pixel
-  />
-</view>
+<view class="checkout-page-container">
+  <view class="sticky-top">
+    <top-bar
+      type="navigation"
+      navigate={{true}}
+      backgroundColor="#FFFFFF"
+      color="#0F172A"
+      title=" "
+      iconL="/src/assets/icons/ic_common_arrow_back.svg"
+      onIconLTap="onBack"
+      safeArea
+      pixel
+    />
+  </view>
 
-<scroll-view scroll-y="{{true}}" class="scroll-container">
-  <view class="cart-section">
-    <view class="shadow-sm merchant-card">
-      <view class="merchant-header">
-        <text class="uppercase merchant-type">{{orderType}}</text>
-        <text class="merchant-name">{{serviceName}}</text>
-      </view>
-    </view>
-
-    <view class="shadow-sm info-section">
-      <text class="section-title">Detail Pemesan</text>
-      <view class="info-row">
-        <text class="info-label">Nama</text>
-        <text class="info-val">{{customerName}}</text>
-      </view>
-      <view class="info-row">
-        <text class="info-label">Telepon</text>
-        <text class="info-val">{{customerPhone}}</text>
-      </view>
-    </view>
-
-    <view class="shadow-sm info-section">
-      <text class="section-title">Ringkasan Pesanan</text>
-      
-      <!-- Multi Item Cart -->
-      <block a:if="{{cart.length > 0}}">
-        <view class="cart-item-list">
-          <view a:for="{{cart}}" class="cart-item-row">
-            <view class="cart-item-info">
-              <text class="cart-item-name">{{item.name}}</text>
-              <text class="cart-item-price">Rp {{item.price.toLocaleString('id-ID')}}</text>
+  <scroll-view scroll-y="{{true}}" class="scroll-container">
+    <block a:if="{{ cart && cart.length > 0 }}">
+      <view class="checkout-content">
+        
+        <!-- 1. Alamat Pengiriman -->
+        <view class="checkout-card address-card">
+          <view class="card-header-row">
+            <view class="header-left">
+              <text class="header-icon">📍</text>
+              <text class="card-title">Alamat Pengiriman</text>
             </view>
-            <view class="qty-controls">
-              <view class="btn-qty minus" onTap="onDecrease" data-index="{{index}}">-</view>
-              <text class="cart-item-qty">{{item.quantity}}</text>
-              <view class="btn-qty plus" onTap="onIncrease" data-index="{{index}}">+</view>
-              <view class="btn-remove" onTap="onRemove" data-index="{{index}}">
-                <image src="/src/assets/icons/ic_common_close.svg" mode="aspectFit" class="icon-remove" />
+            <text class="badge-tag">Utama</text>
+          </view>
+          <view class="address-body">
+            <text class="recipient-name">{{shippingAddress.recipientName}} <text class="recipient-phone">({{shippingAddress.phone}})</text></text>
+            <text class="recipient-address">{{shippingAddress.street}}</text>
+            <text class="recipient-city">{{shippingAddress.city}}, {{shippingAddress.postalCode}}</text>
+          </view>
+        </view>
+
+        <!-- 2. Toko & Daftar Barang Pesanan -->
+        <view class="checkout-card items-card">
+          <view class="store-header-row">
+            <text class="store-icon">🏪</text>
+            <text class="store-name">{{serviceName}}</text>
+            <text class="official-tag">✓ Official</text>
+          </view>
+
+          <view class="items-list">
+            <block a:for="{{cart}}" a:key="id">
+              <view class="cart-item-row">
+                <image class="item-img" src="{{item.image || (item.images && item.images[0]) || 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=300'}}" mode="aspectFill" />
+                <view class="item-info">
+                  <text class="item-name">{{item.name}}</text>
+                  <text class="item-variant" a:if="{{item.variantName && item.variantName !== '-'}}">{{item.variantName}}</text>
+                  <view class="item-price-qty-row">
+                    <text class="item-price">Rp {{item.price.toLocaleString('id-ID')}}</text>
+                    <view class="qty-stepper">
+                      <view class="btn-qty minus" onTap="onDecrease" data-index="{{index}}">-</view>
+                      <text class="qty-num">{{item.quantity || 1}}</text>
+                      <view class="btn-qty plus" onTap="onIncrease" data-index="{{index}}">+</view>
+                    </view>
+                  </view>
+                </view>
               </view>
+            </block>
+          </view>
+
+          <!-- Catatan Pesanan -->
+          <view class="notes-input-row">
+            <text class="notes-label">Catatan:</text>
+            <input 
+              type="text" 
+              class="notes-input" 
+              placeholder="Tulis pesan untuk penjual (opsional)..." 
+              value="{{notes}}" 
+              onInput="onNotesInput" 
+            />
+          </view>
+        </view>
+
+        <!-- 3. Pilihan Ekspedisi Pengiriman -->
+        <view class="checkout-card courier-card">
+          <view class="card-header-row">
+            <view class="header-left">
+              <text class="header-icon">🚚</text>
+              <text class="card-title">Opsi Pengiriman (Kurir)</text>
+            </view>
+          </view>
+          
+          <view class="courier-options-list">
+            <block a:for="{{courierOptions}}" a:key="id">
+              <view 
+                class="courier-option-item {{selectedCourierId === item.id ? 'active' : ''}}" 
+                onTap="selectCourier" 
+                data-id="{{item.id}}"
+              >
+                <view class="courier-info-col">
+                  <view class="courier-name-row">
+                    <text class="courier-name">{{item.name}}</text>
+                    <text class="courier-service">{{item.service}}</text>
+                  </view>
+                  <text class="courier-cost">Rp {{item.cost.toLocaleString('id-ID')}}</text>
+                </view>
+                <view class="radio-circle {{selectedCourierId === item.id ? 'radio-active' : ''}}">
+                  <view class="radio-inner" a:if="{{selectedCourierId === item.id}}" />
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+
+        <!-- 4. Metode Pembayaran BNI -->
+        <view class="checkout-card payment-card">
+          <view class="card-header-row">
+            <view class="header-left">
+              <text class="header-icon">💳</text>
+              <text class="card-title">Metode Pembayaran</text>
+            </view>
+          </view>
+
+          <view class="payment-options-list">
+            <block a:for="{{paymentOptions}}" a:key="id">
+              <view 
+                class="payment-option-item {{selectedPaymentMethod === item.name ? 'active' : ''}}" 
+                onTap="selectPaymentMethod" 
+                data-method="{{item.name}}"
+              >
+                <text class="payment-icon">{{item.icon}}</text>
+                <view class="payment-info-col">
+                  <text class="payment-name">{{item.name}}</text>
+                  <text class="payment-desc">{{item.desc}}</text>
+                </view>
+                <view class="radio-circle {{selectedPaymentMethod === item.name ? 'radio-active' : ''}}">
+                  <view class="radio-inner" a:if="{{selectedPaymentMethod === item.name}}" />
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+
+        <!-- 5. Rincian Pembayaran & Ringkasan Total -->
+        <view class="checkout-card summary-card">
+          <view class="card-header-row">
+            <view class="header-left">
+              <text class="header-icon">📑</text>
+              <text class="card-title">Rincian Pembayaran</text>
+            </view>
+          </view>
+
+          <view class="summary-rows">
+            <view class="sum-row">
+              <text class="sum-label">Subtotal Produk</text>
+              <text class="sum-val">{{itemsSubtotalFormatted}}</text>
+            </view>
+            <view class="sum-row">
+              <text class="sum-label">Total Ongkos Kirim</text>
+              <text class="sum-val">{{shippingCostFormatted}}</text>
+            </view>
+            <view class="sum-row discount-row" a:if="{{discountFormatted}}">
+              <text class="sum-label-discount">Diskon Promo BNI</text>
+              <text class="sum-val-discount">{{discountFormatted}}</text>
+            </view>
+            <view class="sum-row">
+              <text class="sum-label">Biaya Layanan</text>
+              <text class="sum-val">{{serviceFeeFormatted}}</text>
+            </view>
+            <view class="divider" />
+            <view class="sum-row total-row">
+              <text class="total-label">Total Tagihan</text>
+              <text class="total-val">{{totalAmountFormatted}}</text>
             </view>
           </view>
         </view>
-      </block>
-      
-      <!-- Single Item (Legacy) -->
-      <block a:else>
-        <view class="info-row">
-          <text class="info-label">{{notes}}</text>
-          <text class="info-val">x{{quantity}}</text>
-        </view>
-      </block>
 
-      <view class="divider" />
-      <view class="info-row total-row">
-        <text class="total-label">Total Pembayaran</text>
-        <text class="total-val">Rp {{totalAmount.toLocaleString('id-ID')}}</text>
       </view>
+    </block>
+
+    <!-- Empty State: Ketika keranjang belanja kosong -->
+    <block a:else>
+      <view class="empty-cart-container">
+        <view class="empty-cart-icon-circle">
+          <image class="empty-cart-img" src="https://cdn-icons-png.flaticon.com/128/11329/11329060.png" mode="aspectFit" />
+        </view>
+        <text class="empty-cart-title">Keranjang Belanja Kosong</text>
+        <text class="empty-cart-desc">Belum ada barang di keranjang belanja Anda. Yuk jelajahi katalog toko & temukan produk pilihan Anda!</text>
+        <view class="btn-start-shopping" onTap="onBack">
+          <text class="btn-start-shopping-txt">Mulai Belanja</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- Sticky Bottom Checkout Bar (Hanya muncul jika ada barang di keranjang) -->
+  <view class="checkout-bottom-bar" a:if="{{ cart && cart.length > 0 }}">
+    <view class="total-preview-col">
+      <text class="total-caption">Total Pembayaran</text>
+      <text class="total-price-large">{{totalAmountFormatted}}</text>
+    </view>
+    <view class="btn-pay-now" onTap="handlePayment">
+      <text class="btn-pay-txt">Bayar Sekarang</text>
     </view>
   </view>
-</scroll-view>
 
-<view class="bottom-bar">
-  <button class="pay-btn" onTap="handlePayment" loading="{{isLoading}}" disabled="{{isLoading}}">
-    KONFIRMASI & PESAN
-  </button>
+  <error-internet></error-internet>
+  <general-error></general-error>
 </view>
 
-<error-internet></error-internet>
-<general-error></general-error>

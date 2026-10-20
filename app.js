@@ -3,7 +3,10 @@ const languagePacks = require("/src/public/language-pack.json");
 App({
   globalData: {
     personalData: {
-      phone: ""
+      fullName: "Hamzah Diza",
+      phone: "081234567890",
+      cif: "CIF-HAMZAH-001",
+      accountNumber: "1000785003"
     },
     languagePack: {},
     dayjsLocale: "id",
@@ -94,21 +97,39 @@ App({
     merchantInfo: null
   },
   addToCart(item, merchant) {
-    if (this.globalData.merchantInfo && this.globalData.merchantInfo.id !== merchant.id) {
-      // Clear cart if different merchant
+    if (this.globalData.merchantInfo && merchant && this.globalData.merchantInfo.id !== merchant.id) {
+      // Clear cart if adding from a different merchant
       this.globalData.cart = [];
     }
-    this.globalData.merchantInfo = merchant;
-    
-    const existingItem = this.globalData.cart.find(i => i.id === item.id);
+    if (merchant) {
+      this.globalData.merchantInfo = merchant;
+    }
+
+    // Uniquely identify cart items by Product ID + Selected Variant
+    const variantTag = item.selectedVariantSummary || item.variantSummary || item.variantName || '';
+    const cartKey = item.cartItemId || (variantTag ? `${item.productId || item.id}__${variantTag}` : `${item.productId || item.id}`);
+    item.id = cartKey;
+    item.cartItemId = cartKey;
+
+    const existingItem = this.globalData.cart.find(i => i.id === cartKey || i.cartItemId === cartKey);
+    const addQty = Math.max(1, Number(item.quantity) || 1);
+
     if (existingItem) {
-      existingItem.quantity += 1;
+      existingItem.quantity = (existingItem.quantity || 1) + addQty;
+      if (item.price) existingItem.price = item.price;
     } else {
-      this.globalData.cart.push({ ...item, quantity: 1 });
+      this.globalData.cart.push({ ...item, quantity: addQty });
+    }
+
+    try {
+      my.setStorageSync({ key: 'ecom_cart', data: this.globalData.cart });
+      my.setStorageSync({ key: 'ecom_merchant', data: this.globalData.merchantInfo });
+    } catch (e) {
+      console.warn("Storage sync error:", e);
     }
   },
   removeFromCart(itemId) {
-    const index = this.globalData.cart.findIndex(i => i.id === itemId);
+    const index = this.globalData.cart.findIndex(i => i.id === itemId || i.cartItemId === itemId);
     if (index > -1) {
       if (this.globalData.cart[index].quantity > 1) {
         this.globalData.cart[index].quantity -= 1;
@@ -119,13 +140,51 @@ App({
     if (this.globalData.cart.length === 0) {
       this.globalData.merchantInfo = null;
     }
+    try {
+      my.setStorageSync({ key: 'ecom_cart', data: this.globalData.cart });
+      my.setStorageSync({ key: 'ecom_merchant', data: this.globalData.merchantInfo });
+    } catch (e) {
+      console.warn("Storage sync error:", e);
+    }
+  },
+  deleteFromCart(itemId) {
+    this.globalData.cart = this.globalData.cart.filter(i => i.id !== itemId && i.cartItemId !== itemId);
+    if (this.globalData.cart.length === 0) {
+      this.globalData.merchantInfo = null;
+    }
+    try {
+      my.setStorageSync({ key: 'ecom_cart', data: this.globalData.cart });
+      my.setStorageSync({ key: 'ecom_merchant', data: this.globalData.merchantInfo });
+    } catch (e) {
+      console.warn("Storage sync error:", e);
+    }
   },
   clearCart() {
     this.globalData.cart = [];
     this.globalData.merchantInfo = null;
+    try {
+      my.removeStorageSync({ key: 'ecom_cart' });
+      my.removeStorageSync({ key: 'ecom_merchant' });
+    } catch (e) {
+      console.warn("Storage remove error:", e);
+    }
   },
   onLaunch(options) {
-    this.globalData.nativeData.sessionKey = "db39fc728d9f6c3da4420e901c2a1fec"
+    this.globalData.nativeData.sessionKey = "db39fc728d9f6c3da4420e901c2a1fec";
     this.globalData.languagePack = languagePacks.languagePack["id-ID"] || {};
+
+    // Restore persisted cart
+    try {
+      const storedCart = my.getStorageSync({ key: 'ecom_cart' });
+      if (storedCart && storedCart.data && Array.isArray(storedCart.data)) {
+        this.globalData.cart = storedCart.data;
+      }
+      const storedMerchant = my.getStorageSync({ key: 'ecom_merchant' });
+      if (storedMerchant && storedMerchant.data) {
+        this.globalData.merchantInfo = storedMerchant.data;
+      }
+    } catch (e) {
+      console.warn("Error restoring cart on launch:", e);
+    }
   },
 });

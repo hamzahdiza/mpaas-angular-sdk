@@ -1,8 +1,6 @@
 .middle-container {
   margin: 0 24px;
-  padding-bottom: 145px;
-
-
+  padding-bottom: 160px;
 }
 
 .image-container {
@@ -68,7 +66,6 @@
   justify-content: center;
   margin: 0 12px;
   margin-top: 24px;
-
 }
 
 .feature-container {
@@ -194,4 +191,431 @@
 
 .indicator-bottom-px{
   min-height: 17px
+}
+
+.qr-carousel-section {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.qr-single-ticket-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.qr-ticket-card.single-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 20px;
+}
+
+.single-qr-box {
+  padding: 16px;
+  background: #F8FAFC;
+  border-radius: 20px;
+  border: 1px solid #E2E8F0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-qr-canvas {
+  width: 180px;
+  height: 180px;
+  display: block;
+}
+
+.qr-carousel-scroll {
+  width: 100%;
+}
+
+.qr-carousel-track {
+  display: flex;
+  flex-direction: row;
+  padding: 8px 4px;
+  gap: 16px;
+}
+
+.qr-ticket-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 250px;
+  padding: 16px;
+  border-radius: 20px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.qr-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.qr-code-container {
+  padding: 12px;
+  border-radius: 16px;
+  background: #F8FAFC;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #F1F5F9;
+}
+
+.qr-canvas {
+  width: 120px;
+  height: 120px;
+  display: block;
+}
+
+.qr-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px;
+  width: 100%;
+  justify-content: center;
+}
+
+.qr-event-name {
+  max-width: 100%;
+  text-align: center;
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #0F172A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qr-holder-name {
+  max-width: 100%;
+  margin-top: 4px;
+  color: #64748B;
+  font-size: 22rpx;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qr-status-badge {
+  margin-top: 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #ECFDF5;
+}
+
+.qr-status-badge.status-pending {
+  background: #FFF3E0;
+}
+
+.qr-status-text {
+  font-size: 20rpx;
+  font-weight: 600;
+  color: #059669;
+}
+
+.qr-status-badge.status-pending .qr-status-text {
+  color: #B26A00;
+}
+
+.ticket-modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 36px 20px;
+  background: #FFFFFF;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+}
+
+.ticket-modal-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 999px;
+  background: #CBD5E1;
+  margin-bottom: 20px;
+}
+
+.ticket-modal-qr-container {
+  padding: 16px;
+  border-radius: 20px;
+  background: #F8FAFC;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.ticket-modal-qr-image {
+  width: 240px;
+  height: 240px;
+}
+
+.qr-source-canvas {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  width: 240px;
+  height: 240px;
+}
+
+.ticket-modal-event-name {
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.ticket-modal-holder-name {
+  margin-top: 6px;
+  color: #64748B;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+/* ==========================================================================
+   E-COMMERCE RESULT CARD STYLES
+   ========================================================================== */
+.ecom-result-card {
+  margin-top: 20px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid #E2E8F0;
+  padding: 16px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.ecom-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.ecom-store-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  overflow: hidden;
+  margin-right: 8px;
+}
+
+.ecom-store-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.ecom-store-name {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #0F172A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ecom-status-badge {
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.ecom-status-text {
+  color: #059669;
+  font-size: 20rpx;
+  font-weight: 700;
+}
+
+.ecom-invoice-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #F8FAFC;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.ecom-invoice-label {
+  color: #64748B;
+  font-size: 22rpx;
+}
+
+.ecom-invoice-val {
+  color: #0F172A;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.ecom-divider {
+  height: 1px;
+  background: #F1F5F9;
+  margin: 12px 0;
+}
+
+.ecom-items-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.ecom-section-title {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 10px;
+}
+
+.ecom-item-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ecom-item-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background: #F1F5F9;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.ecom-item-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ecom-item-title {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #1E293B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ecom-item-variant-row {
+  margin-top: 2px;
+}
+
+.ecom-variant-chip {
+  display: inline-block;
+  background: #F1F5F9;
+  color: #475569;
+  font-size: 18rpx;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ecom-item-price-qty {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.ecom-item-price {
+  color: #0F172A;
+  font-weight: 700;
+  font-size: 22rpx;
+}
+
+.ecom-item-qty {
+  color: #64748B;
+  font-size: 22rpx;
+}
+
+.ecom-shipping-section {
+  background: #F8FAFC;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.ecom-shipping-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.ecom-shipping-icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ecom-shipping-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.ecom-shipping-text-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ecom-courier-title {
+  color: #0F172A;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.ecom-recipient-title {
+  color: #334155;
+  font-size: 20rpx;
+  margin-top: 2px;
+}
+
+.ecom-address-text {
+  color: #64748B;
+  font-size: 18rpx;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.ecom-history-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #F0FDF4;
+  border: 1px solid #DCFCE7;
+}
+
+.ecom-history-text {
+  color: #15803D;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.ecom-history-arrow {
+  width: 14px;
+  height: 14px;
 }

@@ -11,20 +11,13 @@
     "src/app/pages/visitor-input-screen/visitor-input-screen",
     "src/app/pages/visitor-list-screen/visitor-list-screen",
     "src/app/pages/book-ticket/book-ticket",
-    "src/app/pages/package_hotel/detail-hotel/detail-hotel",
-    "src/app/pages/package_hotel/landing-hotel/landing-hotel",
-    "src/app/pages/package_hotel/index/index",
-    "src/app/pages/package_culinary/landing-culinary/landing-culinary",
-    "src/app/pages/package_culinary/index/index",
-    "src/app/pages/package_culinary/detail-culinary/detail-culinary",
-    "src/app/pages/package_rental/index/index",
-    "src/app/pages/package_rental/detail-rental/detail-rental",
     "src/app/pages/package_event/detail-event/detail-event",
     "src/app/pages/package_event/landing-event/landing-event",
     "src/app/pages/package_event/index/index",
     "src/app/pages/package_umkm/index/index",
     "src/app/pages/package_umkm/detail-umkm/detail-umkm",
     "src/app/pages/transaction-history/transaction-history",
+    "src/app/pages/transaction-history-detail/transaction-history-detail",
     "src/app/pages/package_running/detail-running/detail-running",
     "src/app/pages/package_running/landing-running/landing-running",
     "src/app/pages/package_running/index/index",
@@ -50,5 +43,10 @@
     "feature-modal": "/src/app/components/intf-featureOFF/intf-featureOFF",
     "general-error": "/src/app/components/general-error/general-error",
     "error-internet": "/src/app/components/error-internet/error-internet"
-  }
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES",
+  "defaultTitle": "",
+  "allowsBounceVertical": "NO",
+  "pullRefresh": false
 }

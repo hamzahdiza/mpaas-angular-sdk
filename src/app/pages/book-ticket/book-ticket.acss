@@ -1,420 +1,721 @@
-.container-result {
-  height: 100vh;
+/* ═════════════════════════════════════════════════════════════════ */
+/* BOOK TICKET — MULTI-TEMPLATE STYLING (SDUI 1-TO-1 WITH CMS)       */
+/* ═════════════════════════════════════════════════════════════════ */
+
+.book-ticket-page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "TT Interphases Pro", "Segoe UI", Roboto, sans-serif;
+  color: #0E0E0E;
+  -webkit-font-smoothing: antialiased;
 }
 
-.m-t-16 {
-  margin-top: 16px;
+.book-ticket-page.theme-maroon {
+  background-color: #FFFFFF;
 }
 
-.m-y-8 {
-  margin-left: 8px;
-  margin-right: 8px;
+.book-ticket-page.theme-navy {
+  background-color: #F5F5F5;
 }
 
-.container-book {
-  padding: 0 24px;
+.book-ticket-page.theme-slate {
+  background-color: #F8FAFC;
 }
 
-.ticket {
-  position: relative;
-  border: 1px solid var(--purple-300);
-  background: var(--white);
-  color: var(--black);
-  display: inline-block;
-  /* padding: 1em 2em; */
-  width: calc(100% - 32px);
-  border-radius: 8px;
-  padding: 0 16px;
+.book-ticket-page.theme-clean {
+  background-color: #F5F5F5;
 }
-
-.ticket:before,
-.ticket:after {
-  /* height: 80px; */
-  /* width:100%; */
-  content: '';
-  position: absolute;
-  background-color: var(--white) !important;
-  bottom: 40px;
-  height: 15px;
-  width: 10px;
-  border: 1px solid var(--purple-300);
-}
-
-.ticket:before {
-  left: -1.5px;
-  border-radius: 0 99px 99px 0;
-  background-color: var(--white) !important;
-  border-left-color: white;
-}
-
-.ticket:after {
-  right: -1.5px;
-  border-radius: 99px 0 0 99px;
-  background-color: var(--white) !important;
-  border-right-color: white;
-}
-
-.bottom-container {
-  background-color: var(--white);
-  position: fixed;
-  bottom: 0;
-  width: calc(100% - 48px);
-  padding: 16px 24px 32px 24px;
-  box-shadow: 0px -3px 10px 0px rgba(78, 78, 78, 0.15);
-}
-
-.resize-indicator {
-  width: 34px;
-  height: 3px;
-  border-radius: 3px;
-}
-
 
 .sticky-top {
   position: sticky;
   top: 0;
+  z-index: 1000;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #F0F0F0;
 }
 
-.card-description {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  padding: 12px 0;
+.container-book {
+  padding: 16px;
+  box-sizing: border-box;
 }
 
-.bottom-container-text {
-  display: flex;
-  justify-content: space-between;
+/* ═════════════════════════════════════════════════════════════════ */
+/* TEMPLATE 4: CRIMSON MAROON                                        */
+/* ═════════════════════════════════════════════════════════════════ */
+
+.t4-header-card {
+  text-align: center;
+  padding: 12px 16px 16px;
+  background: #FFFFFF;
+  margin-bottom: 12px;
 }
 
-.line-image {
-  border-top: 2px dashed var(--pale-gray);
-  margin: 12px 0;
+.t4-event-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0E0E0E;
+  display: block;
+  text-align: center;
+  margin-bottom: 6px;
 }
 
-.card-footer {
-  display: flex;
-  justify-content: space-between;
-}
-
-
-.count-width {
-  min-width: 20px;
+.t4-event-desc {
+  font-size: 12px;
+  color: #7A7A7A;
+  line-height: 18px;
+  display: block;
   text-align: center;
 }
 
-.divider {
-  height: 1px;
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23DADADA' stroke-width='4' stroke-dasharray='6%2c 10' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
-  background-size: 10px 10px;
-}
-
-.icon {
-  background-image: url('/src/assets/icons/Spinner.svg');
-  background-size: 200px 200px;
-  width: 200px;
-  height: 200px;
-
-}
-
-.title-description {
-  display: grid;
+.t4-ticket-list {
+  display: flex;
   flex-direction: column;
-  grid-template-columns: auto;
-  align-items: flex-start;
-  gap: 4px;
-  align-self: stretch;
+  gap: 16px;
 }
 
-.txt-chip-promo {
-  color: var(--black, #0E0E0E);
-  text-align: center;
-  font-feature-settings: 'liga'off, 'clig'off;
-
-  /* Mobile/Label/Label 3 - DemiBold */
-  font-family: "TT Interphases Pro";
-  font-size: 9.5px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 120%;
-}
-
-.header-title {
-  display: flex;
-  justify-content: space-between;
-}
-
-.strikethrough {
-  text-decoration: line-through;
-  color: var(--functional-bw-tones-granite-gray, #7A7A7A);
-  font-feature-settings: 'liga'off, 'clig'off;
-  font-family: "TT Interphases Pro";
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 12px;
-  /* 12px */
-  margin-left: 4px;
-}
-
-.snackbar-container {
-  top: 2% !important;
-}
-
-.toast-container-out {
-  animation: toast-out 0.255s forwards;
-}
-
-@keyframes toast-out {
-  from {
-    opacity: 1
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-.toast-container-in {
-  animation: toast-in 0.25s forwards;
-}
-
-@keyframes toast-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-
-.icon-size-24 {
-  width: 24px;
-  height: 24px;
-}
-
-.disabled-icon {
-  opacity: 0.3;
-}
-
-.disabled {
-  display: flex;
-  position: relative;
-  border: 1px solid var(--pale-gray);
-  background-color: var(--off-white);
-  color: var(--light-gray);
-  display: inline-block;
-  /* padding: 1em 2em; */
-  width: calc(100% - 32px);
-  border-radius: 10px;
-  padding: 0 16px;
-}
-
-.disabled:before,
-.disabled:after {
-  /* height: 90px; */
-  /* width:100%; */
-  content: '';
-  position: absolute;
-  bottom: 40px;
-  height: 15px;
-  width: 10px;
-  border: 1px solid var(--pale-gray);
-}
-
-.disabled:before {
-  left: -1px;
-  border-radius: 0 99px 99px 0;
-  background-color: var(--white);
-  border-left-color: var(--white);
-}
-
-.disabled:after {
-  right: -1px;
-  border-radius: 99px 0 0 99px;
-  background-color: var(--white);
-  border-right-color: var(--white);
-}
-
-.min-height {
-  height: 24px;
-}
-
-.ic-remove {
-  width: 24px;
-  height: 24px;
-}
-
-.dash {
-  height: 2px;
-  width: 100%
-}
-
-.p-10 {
-  padding: 5px;
-}
-
-.m-x-8 {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.m-b-24 {
-  margin-bottom: 24px;
-}
-
-.m-b-8 {
-  margin-bottom: 8px;
-}
-
-.upSize {
-  max-height: 0;
-  opacity: 0;
+.t4-card-box {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid #F0F0F0;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(156, 6, 33, 0.06);
 }
 
-.upSize.open {
-  transition: max-height 2s ease-out;
-  max-height: 100%;
-  opacity: 1;
+.t4-card-box.disabled {
+  opacity: 0.6;
 }
 
-.upSize.close {
-  max-height: 0;
-  opacity: 0;
-}
-
-.circle {
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-}
-
-
-@media (min-width: 600px) {
-  .container-book {
-    padding: 0 24px;
-  }
-
-  .ticket {
-    position: relative;
-    border: 1px solid var(--purple-300);
-    background: white;
-    color: black;
-    display: inline-block;
-    /* padding: 1em 2em; */
-    width: calc(100% - 43px);
-    border-radius: 10px;
-    padding: 0 16px;
-  }
-
-  .ticket:before,
-  .ticket:after {
-    height: 90px;
-    /* width:100%; */
-    content: '';
-    position: absolute;
-    background-color: var(--white) !important;
-    bottom: 40px;
-    height: 15px;
-    width: 10px;
-    border: 1px solid var(--purple-300);
-  }
-
-  .ticket:before {
-    left: -1.5px;
-    border-radius: 0 99px 99px 0;
-    background-color: var(--white) !important;
-    border-left-color: white;
-  }
-
-  .ticket:after {
-    right: -1.5px;
-    border-radius: 99px 0 0 99px;
-    background-color: var(--white) !important;
-    border-right-color: white;
-  }
-
-  .bottom-container {
-    background-color: white;
-    position: fixed;
-    bottom: 0;
-    width: calc(100% - 48px);
-    padding: 16px 24px 32px 24px;
-    box-shadow: 0px -3px 10px 0px rgba(78, 78, 78, 0.15);
-  }
-
-  .resize-indicator {
-    width: 36px;
-    height: 5px;
-    border-radius: 5px;
-  }
-
-}
-
-.loading-mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(14, 14, 14, 0.8);
-  z-index: 999999999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.ex-card {
-  margin-top: 20px;
+.t4-card-header {
+  background: #9C0621;
+  padding: 12px 16px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  /* background-color: yellow; */
+  justify-content: space-between;
 }
 
-.midle {
-  width: 100%;
-  height: 113px;
-  border-top: 1px solid #9B7EDC;
-  border-bottom: 1px solid #9B7EDC;
+.t4-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
-.ex-left {
-  /* height: 100%; */
-  width: 16px;
+.t4-badge-pill {
+  background: rgba(255, 255, 255, 0.18);
+  padding: 3px 12px;
+  border-radius: 9999px;
 }
 
-.ex-right {
-  /* height: 100%; */
-  width: 16px;
+.t4-badge-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #FFFFFF;
 }
 
-.tab-filter {
+.t4-card-body {
+  padding: 16px;
   display: flex;
-  margin-top: 16px;
+  flex-direction: column;
 }
 
-.tab-content {
-  padding: 6px 16px;
-  border-radius: 16px;
-  border-style: solid;
-  border-width: 1px;
-  margin-right: 8px;
+.t4-card-desc {
+  font-size: 11px;
+  color: #7A7A7A;
+  line-height: 1.45;
+  margin-bottom: 14px;
 }
 
-.bni-chip {
+.t4-card-footer {
   display: flex;
-  padding: 5.5px 8px;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-  border-radius: var(--Rounded-Corner-Medium---16px, 16px);
+  justify-content: space-between;
 }
 
-.ticket-desc {
-  padding-bottom: 24px;
+.t4-price-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.t4-price-val {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0E0E0E;
+}
+
+.t4-price-old {
+  font-size: 11px;
+  color: #ABABAB;
+  text-decoration: line-through;
+}
+
+.t4-btn-add {
+  height: 32px;
+  border-radius: 32px;
+  border: 1px solid #7A7A7A;
+  background: #FFFFFF;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #0E0E0E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 30px;
+}
+
+.t4-stepper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.t4-stepper-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #7A7A7A;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0E0E0E;
+}
+
+.t4-stepper-symbol {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.t4-stepper-val {
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+  color: #0E0E0E;
+}
+
+/* ═════════════════════════════════════════════════════════════════ */
+/* TEMPLATE 2: CORPORATE NAVY                                        */
+/* ═════════════════════════════════════════════════════════════════ */
+
+.t2-navy-header {
+  background: #0E3453;
+  padding: 16px;
+  margin: -16px -16px 16px -16px;
+}
+
+.t2-event-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.t2-event-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 18px;
+  display: block;
+}
+
+.t2-ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.t2-card-box {
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid rgba(14, 52, 83, 0.2);
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(14, 52, 83, 0.1);
+}
+
+.t2-card-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.t2-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0E0E0E;
+  text-transform: uppercase;
+  display: block;
+}
+
+.t2-badge-avail {
+  font-size: 12px;
+  font-weight: 600;
+  color: #22C55E;
+  display: block;
+  margin-top: 2px;
+}
+
+.t2-card-desc {
+  font-size: 11px;
+  color: #7A7A7A;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.t2-card-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #F1F5F9;
+  padding-top: 10px;
+}
+
+.t2-price-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.t2-price-val {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0E0E0E;
+}
+
+.t2-price-old {
+  font-size: 11px;
+  color: #ABABAB;
+  text-decoration: line-through;
+}
+
+.t2-btn-add {
+  height: 32px;
+  border-radius: 4px;
+  background: #0E3453;
+  color: #FFFFFF;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.t2-stepper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.t2-stepper-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #7A7A7A;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #0E0E0E;
+}
+
+.t2-stepper-val {
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+  color: #0E0E0E;
+}
+
+/* ═════════════════════════════════════════════════════════════════ */
+/* TEMPLATE 3: SPORTY ATHLETIC                                       */
+/* ═════════════════════════════════════════════════════════════════ */
+
+.t3-header-card {
+  border-bottom: 1px dashed #CBD5E1;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.t3-event-title {
+  font-size: 16px;
+  font-weight: 900;
+  color: #0F172A;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.t3-event-desc {
+  font-size: 12px;
+  color: #64748B;
+  line-height: 18px;
+  display: block;
+}
+
+.t3-ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.t3-card-box {
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid #F1F5F9;
+  border-left: 4px solid #EA580C;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.t3-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.t3-card-name {
+  font-size: 15px;
+  font-weight: 900;
+  color: #0F172A;
+  text-transform: uppercase;
+}
+
+.t3-badge-slot {
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.t3-badge-text {
+  font-size: 10px;
+  font-weight: 700;
+  color: #047857;
+}
+
+.t3-desc-box {
+  background: #F8FAFC;
+  border: 1px solid #F1F5F9;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+}
+
+.t3-card-desc {
+  font-size: 11px;
+  color: #64748B;
+  line-height: 1.4;
+  display: block;
+}
+
+.t3-card-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #F1F5F9;
+  padding-top: 10px;
+}
+
+.t3-price-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.t3-price-val {
+  font-size: 16px;
+  font-weight: 900;
+  color: #0F172A;
+}
+
+.t3-price-old {
+  font-size: 11px;
+  color: #94A3B8;
+  text-decoration: line-through;
+}
+
+.t3-btn-add {
+  height: 32px;
+  border-radius: 12px;
+  background: linear-gradient(to right, #F97316, #F59E0B);
+  color: #FFFFFF;
+  padding: 0 20px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.t3-stepper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #F1F5F9;
+  border-radius: 10px;
+  padding: 2px;
+  border: 1px solid #E2E8F0;
+}
+
+.t3-stepper-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 900;
+  color: #1E293B;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.t3-stepper-val {
+  font-size: 13px;
+  font-weight: 900;
+  min-width: 24px;
+  text-align: center;
+  color: #0F172A;
+}
+
+/* ═════════════════════════════════════════════════════════════════ */
+/* TEMPLATE 1: CLEAN CARD THEME                                      */
+/* ═════════════════════════════════════════════════════════════════ */
+
+.t1-header-card {
+  padding: 12px 0 14px;
+}
+
+.t1-event-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0E0E0E;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.t1-event-desc {
+  font-size: 12px;
+  color: #7A7A7A;
+  line-height: 18px;
+  display: block;
+}
+
+.t1-ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.t1-card-box {
+  background: #F9F9F9;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.t1-card-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.t1-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0E0E0E;
+  text-transform: uppercase;
+  display: block;
+}
+
+.t1-badge-avail {
+  font-size: 12px;
+  font-weight: 600;
+  color: #22C55E;
+  display: block;
+  margin-top: 2px;
+}
+
+.t1-card-desc {
+  font-size: 11px;
+  color: #7A7A7A;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.t1-card-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.t1-price-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.t1-price-val {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0E0E0E;
+}
+
+.t1-price-old {
+  font-size: 11px;
+  color: #ABABAB;
+  text-decoration: line-through;
+}
+
+.t1-btn-add {
+  height: 32px;
+  border-radius: 32px;
+  border: 1px solid #7A7A7A;
+  background: #FFFFFF;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #0E0E0E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 30px;
+}
+
+.t1-stepper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.t1-stepper-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #7A7A7A;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #0E0E0E;
+}
+
+.t1-stepper-val {
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+  color: #0E0E0E;
+}
+
+/* ═════════════════════════════════════════════════════════════════ */
+/* STICKY BOTTOM CONTAINER & CTA BUTTONS                             */
+/* ═════════════════════════════════════════════════════════════════ */
+
+.bottom-container {
+  background-color: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 20px 24px;
+  box-shadow: 0 -3px 10px 0 rgba(78, 78, 78, 0.12);
+  border-top: 1px solid #ECECEC;
+  z-index: 1000;
+}
+
+.bottom-summary-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.total-label-txt {
+  font-size: 14px;
+  color: #7A7A7A;
+}
+
+.total-price-txt {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0E0E0E;
+}
+
+.bottom-cta-btn {
+  height: 56px;
+  width: 100%;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cta-maroon {
+  background-color: #9C0621 !important;
+  color: #FFFFFF !important;
+}
+
+.cta-navy {
+  background-color: #0E3453 !important;
+  color: #FFFFFF !important;
+}
+
+.cta-orange {
+  background: linear-gradient(to right, #F97316, #F59E0B) !important;
+  color: #FFFFFF !important;
+  border-radius: 12px !important;
+  height: 50px !important;
+  text-transform: uppercase;
+}
+
+.cta-teal {
+  background-color: #75D7D0 !important;
+  color: #0E0E0E !important;
+}
+
+.btn-disabled {
+  background-color: #E5E5E5 !important;
+  color: #ABABAB !important;
+  cursor: not-allowed;
+}
+
+/* Toast */
+.toast-position {
+  position: absolute;
+  top: 60px;
+  left: 16px;
+  right: 16px;
+  z-index: 100;
 }

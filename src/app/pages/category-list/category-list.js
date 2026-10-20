@@ -48,41 +48,11 @@ Page({
 
     const category = (partnerSelected.partnerCategory || '').toLowerCase();
     
-    if (category === 'rental') {
-      customNavigateTo({
-        url: "/src/app/pages/package_rental/index/index",
-        data: {
-          rentalData: partnerSelected.rawMenu.rawMenu || partnerSelected.rawMenu
-        }
-      });
-      return;
-    }
-
     if (category === 'umkm') {
       customNavigateTo({
         url: "/src/app/pages/package_umkm/index/index",
         data: {
           umkmData: partnerSelected.rawMenu.rawMenu || partnerSelected.rawMenu
-        }
-      });
-      return;
-    }
-
-    if (category === 'hotel') {
-      customNavigateTo({
-        url: "/src/app/pages/package_hotel/index/index",
-        data: {
-          hotelData: partnerSelected.rawMenu.rawMenu || partnerSelected.rawMenu
-        }
-      });
-      return;
-    }
-
-    if (category === 'cafe' || category === 'restoran' || category === 'restaurant') {
-      customNavigateTo({
-        url: "/src/app/pages/package_culinary/index/index",
-        data: {
-          culinaryData: partnerSelected.rawMenu.rawMenu || partnerSelected.rawMenu
         }
       });
       return;

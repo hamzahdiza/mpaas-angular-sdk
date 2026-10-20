@@ -6,39 +6,60 @@ Page({
     templateId: 1
   },
   onLoad(query) {
-    const { hotelData } = my.customUrlQueryData[query.customUrlQueryData];
+    const queryData = my.customUrlQueryData && query && query.customUrlQueryData ? my.customUrlQueryData[query.customUrlQueryData] : {};
+    const eventData = queryData.eventData || queryData.detailEvent || queryData.hotelData;
     
-    if (hotelData) {
-      const templateId = hotelData.templateId
-        || hotelData.selected_template
-        || hotelData.selectedTemplate
-        || (hotelData.templates && hotelData.templates.index && hotelData.templates.index.id)
-        || 'template-1';
+    if (eventData) {
+      const templateId = eventData.templateId
+        || eventData.selected_template
+        || eventData.selectedTemplate
+        || (eventData.templates && eventData.templates.index && eventData.templates.index.id)
+        || '1';
 
       this.setData({
         detailEvent: {
-          ...hotelData,
+          ...eventData,
           templateId,
           selected_template: templateId,
         },
-        templateId
+        templateId,
+        successFetch: true,
+        isLoading: false
       });
     }
   },
-  goToRoomDetail(roomData) {
+
+  goToTicketList(eventOrData) {
+    let ticketData;
+    if (eventOrData && eventOrData.target && eventOrData.target.dataset) {
+      ticketData = eventOrData.target.dataset.ticketData;
+    } else {
+      ticketData = eventOrData;
+    }
+
+    const eventDetail = {
+      ...(this.data.detailEvent || {}),
+      ticketCategories: (this.data.detailEvent && (this.data.detailEvent.ticketCategories || this.data.detailEvent.tickets || this.data.detailEvent.ticket_tiers)) || []
+    };
+
+    const templateId = this.data.templateId || (eventDetail && (eventDetail.templateId || eventDetail.selected_template || eventDetail.selectedTemplate)) || 1;
+
+    console.log("[Package Event Index] Navigating to book-ticket with templateId:", templateId);
     customNavigateTo({
-      url: "/src/app/pages/package_hotel/detail-hotel/detail-hotel",
-      data: { 
-        roomData,
-        hotelData: this.data.hotelData 
+      url: "/src/app/pages/book-ticket/book-ticket",
+      data: {
+        templateId: templateId,
+        ticketData: ticketData || (eventDetail.ticketCategories && eventDetail.ticketCategories[0]),
+        eventDetail: eventDetail,
+        runningData: eventDetail
       }
     });
-    // my.navigateTo({
-    //   url: '/src/app/pages/package_hotel/detail-hotel/detail-hotel',
-    //   data: { 
-    //     roomData,
-    //     hotelData: this.data.hotelData 
-    //   }
-    // });
+  },
+
+  goToTransactionHistory() {
+    customNavigateTo({
+      url: "/src/app/pages/transaction-history/transaction-history",
+      data: {}
+    });
   }
 });

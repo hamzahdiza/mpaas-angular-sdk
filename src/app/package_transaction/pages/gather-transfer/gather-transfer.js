@@ -328,6 +328,13 @@ Page({
     })
   },
 
+  onConfirmExit() {
+    this.setData({
+      basicVisible: false
+    });
+    my.navigateBack();
+  },
+
   backToLifestyle() {
     this.setData({
       basicVisible: false

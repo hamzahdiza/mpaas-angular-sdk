@@ -1,359 +1,308 @@
-<view class="sticky-top">
-  <top-bar
-    type="{{'navigation'}}"
-    navigate={{true}}
-    backgroundColor="#9B7EDC"
-    color="#FFFFFF"
-    title="{{'Partner Menu'}}"
-    iconL="../../../assets/icons/ic_common_arrow_back_white.svg"
-    safeArea
-    pixel
-  />
-</view>
+<view class="landing-page-root">
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- TOP APP BAR                                                 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <view class="sticky-nav">
+    <top-bar
+      type="navigation"
+      navigate="{{true}}"
+      backgroundColor="#0F172A"
+      color="#FFFFFF"
+      title="Wondr Lifestyle"
+      iconL="/src/assets/icons/ic_common_arrow_back_white.svg"
+      iconR="/src/assets/icons/Icon_transaction_history_white.svg"
+      onIconRTap="goToTransactionHistory"
+      safeArea="{{true}}"
+      pixel="{{true}}"
+    />
+  </view>
 
-<view class="{{ errorReload == 0 ? 'base-background-0' : 'base-background'}}"></view>
-
-<scroll-view
-  a:if="{{ errorReload == 0 }}"
-  scroll-y="{{true}}"
-  style="height:calc(100vh - 56px - {{statusBarHeight}}px);"
-  onScroll="onScroll"
-  class="scroll-container"
->
-
-  <view class="background-content-base"></view>
-
-  <!-- HERO HEADER -->
-  <view class="main-hero-header">
-    <view class="hero-header">
-      <image mode="widthFix" class="landing-image-left" src="../../../assets/images/lifestyle-header-left-images.svg" />
-      <image mode="widthFix" class="landing-image-right" src="../../../assets/images/lifestyle-header-right-images.svg" />
-      <view class="header-content">
-        <view a:if="{{ isLoading }}" class="header-content-left">
-          <text class="header-content-title-loading skeleton" />
-          <text class="header-content-description-loading skeleton" />
+  <scroll-view
+    scroll-y="{{true}}"
+    class="landing-scroll-body"
+    style="height: calc(100vh - 56px - {{statusBarHeight}}px);"
+  >
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- HERO DISCOVERY BANNER & SEARCH                              -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <view class="hero-wrapper">
+      <view class="hero-mesh-bg" />
+      <view class="hero-content">
+        <view class="hero-tag-pill">
+          <text class="hero-tag-dot">●</text>
+          <text class="hero-tag-text">BNI Lifestyle Hub</text>
         </view>
-        <view a:else class="header-content-left">
-          <text class="header-content-title">{{lang.lifestyleLandingPageScreenTitleLabel}}</text>
-          <text class="header-content-description">{{lang.lifestyleLandingPageScreenSubTitleLabel}}</text>
+        <text class="hero-headline">Jelajahi Event & Produk Pilihan</text>
+        <text class="hero-subtext">Temukan tiket konser, olahraga, pameran, serta ragam produk UMKM unggulan binaan BNI.</text>
+
+        <!-- Search Bar -->
+        <view class="search-bar-box">
+          <text class="search-icon">🔍</text>
+          <input
+            class="search-input"
+            placeholder="Cari event, konser, atau toko UMKM..."
+            placeholder-class="search-placeholder"
+            value="{{searchQuery}}"
+            onInput="onSearchInput"
+          />
         </view>
       </view>
     </view>
-    <view class="color-base-hero-header"></view>
-  </view>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- QUICK ACCESS PILLS — horizontal scroll      -->
-  <!-- ═══════════════════════════════════════════ -->
-  <view class="quick-access-section">
-    <view class="section-header">
-      <text class="section-header-label">Kategori</text>
-    </view>
-    <scroll-view scroll-x="{{true}}" class="quick-pills-scroll">
-      <view class="quick-pills-row">
-
-        <block a:for="{{ uniqueCategories }}" a:for-index="index" a:for-item="item" a:if="{{ !isLoading }}">
-          <view class="quick-pill" onTap="{{item.onTap}}" data-category="{{item.name}}">
-            <view class="quick-pill-icon quick-pill-icon--{{item.theme}}">
-              <image class="quick-pill-img" src="{{item.icon}}" mode="aspectFit" />
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- MAIN CATEGORY HUB (4 PRIMARY HUBS)                          -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <view class="category-hub-card">
+      <view class="category-hub-grid">
+        <block a:for="{{ quickCategories }}" a:key="id">
+          <view class="category-hub-item" onTap="{{item.onTap}}">
+            <view class="category-icon-wrap {{item.theme}}">
+              <image class="category-icon-img" src="{{item.icon}}" mode="aspectFit" />
+              <text class="category-badge {{item.badgeColor}}" a:if="{{item.badge}}">{{item.badge}}</text>
             </view>
-            <text class="quick-pill-label">{{item.name}}</text>
+            <text class="category-item-title">{{item.name}}</text>
+            <text class="category-item-sub">{{item.subtitle}}</text>
           </view>
         </block>
-
-        <!-- loading pills -->
-        <block a:for="{{ loadingArr }}" a:if="{{ isLoading }}">
-          <view class="quick-pill">
-            <view class="quick-pill-icon skeleton" style="width:60px;height:60px;border-radius:20px;"></view>
-            <text class="quick-pill-label skeleton" style="width:40px;height:12px;border-radius:4px;margin-top:4px;"></text>
-          </view>
-        </block>
-
       </view>
-    </scroll-view>
-  </view>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- SECTION: Semua Layanan — 2-col grid         -->
-  <!-- ═══════════════════════════════════════════ -->
-  <view a:if="{{ allRunning.length > 0 }}" class="services-section">
-    <view class="section-header">
-      <text class="section-header-label">Event Seru Untukmu 📢</text>
     </view>
 
-    <scroll-view scroll-x="{{true}}" class="quick-pills-scroll">
-      <view class="quick-pills-row">
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SHIMMER LOADING STATE                                       -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <view a:if="{{ isLoading }}" class="shimmer-container">
+      <view class="shimmer-section-head skeleton" />
+      <view class="shimmer-card-row">
+        <view class="shimmer-card-item skeleton" />
+        <view class="shimmer-card-item skeleton" />
+      </view>
+      <view class="shimmer-section-head skeleton" style="margin-top: 24px;" />
+      <view class="shimmer-list-item skeleton" />
+      <view class="shimmer-list-item skeleton" />
+    </view>
 
-        <block a:if="{{ allRunning }}" a:for="{{ allRunning }}" a:for-index="idx" a:for-item="event" >
-          <view class="event-card-section" onTap="goToRunningIndex" data-runningData="{{event}}" id="{{'event-card-' + event.id}}">
-            <view class="event-banner-wrapper">
-              
-              <image
-                class="event-banner-img"
-                mode="scaleToFill"
-                src="{{event.bannerUrl}}"
-                data-index="{{idx}}"
-              />
-              <view class="event-price-badge">
-                <text class="event-price-badge-label">Mulai dari</text>
-                <text class="event-price-badge-amount">{{event.formattedPrice}}</text>
-              </view>
-            </view>
-            <view class="event-info">
-              <text class="event-name">{{event.name}}</text>
-              <view class="event-meta">
-                <view class="event-meta-row">
-                  <image class="event-meta-icon" src="../../../assets/icons/ic_common_calendar_today.svg" mode="scaleToFill" />
-                  <text class="event-meta-text">{{event.formattedDate}}</text>
-                </view>
-                <view class="event-meta-row">
-                  <image class="event-meta-icon" src="../../../assets/icons/ic_common_location.svg" mode="scaleToFill" />
-                  <text class="event-meta-text">{{event.location}}</text>
-                </view>
-              </view>
-            </view>
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- LOADED CONTENT                                              -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <block a:else>
+
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <!-- SECTION 1: FEATURED & TRENDING EVENTS                      -->
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <view class="section-block" a:if="{{ highlightEvents.length > 0 }}">
+        <view class="section-title-row">
+          <view class="title-left">
+            <text class="sec-title">Event Pilihan & Populer</text>
+            <text class="sec-subtitle">Tiket konser, olahraga, dan festival terbaik</text>
           </view>
-        </block>
-        <!-- Hotel
-        <view class="service-card theme-blue" id="lifestyle-landing-page-hotel-list" onTap="goToHotelIndex">
-          <view class="service-card-img">
-            <image class="service-card-icon" src="../../../assets/icons/ic_hotel_primary.svg" mode="aspectFit" />
-          </view>
-          <view class="service-card-body">
-            <view class="service-card-tag service-tag-blue">Travel</view>
-            <text class="service-card-title">{{lang.lifestyleLandingHotelTitleLabel || 'Reservasi Hotel'}}</text>
-            <text class="service-card-sub">{{lang.lifestyleLandingHotelDescLabel || 'Penginapan terbaik untuk liburanmu'}}</text>
+          <view class="see-all-btn" onTap="goToAllEvents">
+            <text class="see-all-text">Lihat Semua</text>
+            <text class="see-all-arrow">›</text>
           </view>
         </view>
 
-        <!-- Cafe -->
-        <!-- <view class="service-card theme-green" id="lifestyle-landing-page-cafe-list" onTap="goToCafeIndex">
-          <view class="service-card-img">
-            <image class="service-card-icon" src="../../../assets/icons/ic_common_entertainment.svg" mode="aspectFit" />
-          </view>
-          <view class="service-card-body">
-            <view class="service-card-tag service-tag-green">Kuliner</view>
-            <text class="service-card-title">Cafe</text>
-            <text class="service-card-sub">Suasana nyaman, menu cafe favorit</text>
-          </view>
-        </view> -->
+        <!-- Horizontal Snap Card Scroll -->
+        <scroll-view scroll-x="{{true}}" class="featured-events-scroll">
+          <view class="featured-events-row">
+            <block a:for="{{ highlightEvents }}" a:key="id">
+              <view class="featured-event-card" onTap="goToEventDetail" data-event="{{item}}">
+                <view class="card-thumb-wrap">
+                  <image class="card-thumb-img" src="{{item.bannerUrl}}" mode="aspectFill" />
+                  <view class="card-thumb-gradient" />
+                  
+                  <!-- Top Badges -->
+                  <view class="card-tag-pill">
+                    <text class="tag-icon">{{item.categoryIcon}}</text>
+                    <text class="tag-label">{{item.categoryTag}}</text>
+                  </view>
 
-        <!-- Restoran -->
-        <!-- <view class="service-card theme-amber" id="lifestyle-landing-page-restaurant-list" onTap="goToRestaurantIndex">
-          <view class="service-card-img">
-            <image class="service-card-icon" src="../../../assets/icons/ic_common_location.svg" mode="aspectFit" />
-          </view>
-          <view class="service-card-body">
-            <view class="service-card-tag service-tag-amber">Kuliner</view>
-            <text class="service-card-title">Restoran</text>
-            <text class="service-card-sub">Reservasi & pemesanan menu keluarga</text>
-          </view>
-        </view> --> 
+                  <!-- Bottom Price Pill -->
+                  <view class="card-price-overlay">
+                    <text class="price-prefix">Mulai dari</text>
+                    <view class="price-val-row">
+                      <text class="price-val">{{item.formattedPrice}}</text>
+                      <text class="price-strike" a:if="{{item.formattedNormalPrice}}">{{item.formattedNormalPrice}}</text>
+                    </view>
+                  </view>
+                </view>
 
-        <!-- Partner cards dari API
-        <block a:for="{{ dataPartner }}" a:for-index="index" a:for-item="item" a:if="{{ !isLoading }}">
-          <view
-            class="service-card theme-purple"
-            id="{{'lifestyle-landing-page-screen-card-' + item.partnerTitle}}"
-            onTap="goToPartnerWebview"
-            data-selectedPartner="{{item}}"
-          >
-            <view class="service-card-img">
-              <view a:if="{{ item.isImageLoading }}" class="service-card-img-skeleton skeleton"></view>
-              <view
-                class="service-card-cover"
-                style="background-image: url('{{item.pertnerDisplayImage}}'); {{item.isImageLoading ? 'display:none' : ''}}"
-                data-index="{{index}}"
-              ></view>
-              <image
-                class="service-card-cover"
-                mode="scaleToFill"
-                src="{{item.pertnerDisplayImage}}"
-                style="display:none"
-                data-index="{{index}}"
-                onLoad="imageLoad"
-              />
-            </view>
-            <view class="service-card-body">
-              <view class="service-card-tag service-tag-purple">{{item.partnerCategory}}</view>
-              <text class="service-card-title">{{lang[item.partnerTitle]}}</text>
-              <text class="service-card-sub">{{lang[item.partnerDescription]}}</text>
-            </view>
-          </view>
-        </block> -->
-
-        <!-- Loading skeleton cards -->
-        <block a:for="{{ loadingArr }}" a:if="{{ isEventsLoading }}">
-          <view class="service-card skeleton">
-            <view class="service-card-img"></view>
-            <view class="service-card-body">
-              <view style="width:48px;height:14px;border-radius:4px;background:#e0e0e0;margin-bottom:6px;"></view>
-              <view style="width:80px;height:14px;border-radius:4px;background:#e0e0e0;margin-bottom:4px;"></view>
-              <view style="width:100%;height:22px;border-radius:4px;background:#e0e0e0;"></view>
-            </view>
-          </view>
-        </block>
-      </view>
-    </scroll-view>
-  </view>
-
-  <view a:if="{{ allHotels.length > 0 }}" class="services-section">
-    <view class="section-header">
-      <text class="section-header-label">Hotel Favorit✨</text>
-    </view>
-    <scroll-view scroll-x="{{true}}" class="quick-pills-scroll">
-      <view class="quick-pills-row">
-        
-        <block a:for="{{ allHotels }}" a:for-index="idx" a:for-item="event" a:if="{{ !isEventsLoading }}">
-          <view class="event-card-section" onTap="goToHotelIndex" data-event="{{event}}" id="{{'event-card-' + event.id}}">
-            <view class="event-banner-wrapper">
-              <view a:if="{{ event.isImageLoading }}" class="event-banner-skeleton skeleton"></view>
-              <image
-                class="event-banner-img"
-                mode="scaleToFill"
-                src="{{event.bannerUrl}}"
-                data-index="{{idx}}"
-                onLoad="eventImageLoad"
-              />
-              <!-- <view class="event-price-badge">
-                <text class="event-price-badge-label">Mulai dari</text>
-                <text class="event-price-badge-amount">{{event.formattedPrice}}</text>
-              </view> -->
-            </view>
-            <view class="event-info">
-              <text class="event-name">{{event.name}}</text>
-              <view class="event-meta">
-                <!-- <view class="event-meta-row">
-                  <image class="event-meta-icon" src="../../../assets/icons/ic_common_calendar_today.svg" mode="scaleToFill" />
-                  <text class="event-meta-text">{{event.formattedDate}}</text>
-                </view> -->
-                <view class="event-meta-row">
-                  <image class="event-meta-icon" src="../../../assets/icons/ic_common_location.svg" mode="scaleToFill" />
-                  <text class="event-meta-text">{{event.location}}</text>
+                <!-- Card Body -->
+                <view class="featured-card-body">
+                  <text class="featured-event-name">{{item.name}}</text>
+                  <view class="event-meta-pill-row">
+                    <view class="meta-mini-pill">
+                      <text class="meta-mini-icon">📅</text>
+                      <text class="meta-mini-text">{{item.formattedDate}}</text>
+                    </view>
+                    <view class="meta-mini-pill">
+                      <text class="meta-mini-icon">📍</text>
+                      <text class="meta-mini-text">{{item.location}}</text>
+                    </view>
+                  </view>
                 </view>
               </view>
-            </view>
+            </block>
           </view>
-        </block>
-          <!-- Loading skeleton cards -->
-          <block a:for="{{ loadingArr }}" a:if="{{ isEventsLoading }}">
-            <view class="service-card skeleton">
-              <view class="service-card-img"></view>
-              <view class="service-card-body">
-                <view style="width:48px;height:14px;border-radius:4px;background:#e0e0e0;margin-bottom:6px;"></view>
-                <view style="width:80px;height:14px;border-radius:4px;background:#e0e0e0;margin-bottom:4px;"></view>
-                <view style="width:100%;height:22px;border-radius:4px;background:#e0e0e0;"></view>
+        </scroll-view>
+      </view>
+
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <!-- SECTION 2: TOKO UMKM BINAAN BNI                             -->
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <view class="section-block" a:if="{{ umkmStores.length > 0 }}">
+        <view class="section-title-row">
+          <view class="title-left">
+            <text class="sec-title">Mall UMKM Binaan BNI</text>
+            <text class="sec-subtitle">Katalog produk autentik langsung dari mitra pengrajin</text>
+          </view>
+          <view class="see-all-btn" onTap="goToUmkmMall">
+            <text class="see-all-text">Kunjungi Mall</text>
+            <text class="see-all-arrow">›</text>
+          </view>
+        </view>
+
+        <!-- Horizontal Stores Showcase -->
+        <scroll-view scroll-x="{{true}}" class="stores-showcase-scroll">
+          <view class="stores-showcase-row">
+            <block a:for="{{ umkmStores }}" a:key="id">
+              <view class="store-showcase-card" onTap="goToUmkmStore" data-store="{{item}}">
+                <!-- Store Header -->
+                <view class="store-card-header">
+                  <image class="store-card-logo" src="{{item.logoUrl}}" mode="aspectFill" />
+                  <view class="store-card-info">
+                    <view class="store-name-row">
+                      <text class="store-name-text">{{item.name}}</text>
+                      <text class="store-official-badge">✓</text>
+                    </view>
+                    <text class="store-city-text">📍 {{item.cityName}}</text>
+                  </view>
+                </view>
+
+                <!-- Store Preview Products -->
+                <view class="store-mini-products" a:if="{{ item.previewProducts && item.previewProducts.length > 0 }}">
+                  <block a:for="{{ item.previewProducts }}" a:for-item="prod" a:key="id">
+                    <view class="store-mini-prod-item">
+                      <image class="mini-prod-img" src="{{prod.firstImage}}" mode="aspectFill" />
+                      <text class="mini-prod-price">{{prod.priceDisplay}}</text>
+                    </view>
+                  </block>
+                </view>
+
+                <view class="store-visit-cta">
+                  <text>Kunjungi Toko</text>
+                  <text class="cta-arrow">➔</text>
+                </view>
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <!-- SECTION 3: PRODUK UMKM PILIHAN                              -->
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <view class="section-block" a:if="{{ umkmProducts.length > 0 }}">
+        <view class="section-title-row">
+          <view class="title-left">
+            <text class="sec-title">Produk UMKM Pilihan</text>
+            <text class="sec-subtitle">Koleksi batik, fashion, kerajinan, & kuliner</text>
+          </view>
+          <view class="see-all-btn" onTap="goToUmkmMall">
+            <text class="see-all-text">Lihat Semua</text>
+            <text class="see-all-arrow">›</text>
+          </view>
+        </view>
+
+        <!-- 2-Column Product Grid -->
+        <view class="products-grid-2col">
+          <block a:for="{{ umkmProducts }}" a:key="id">
+            <view class="product-card-item" onTap="goToUmkmProductDetail" data-product="{{item}}">
+              <view class="prod-img-wrap">
+                <image class="prod-img" src="{{item.firstImage}}" mode="aspectFill" />
+                <view class="prod-stock-pill" a:if="{{ item.stock > 0 }}">
+                  <text>Stok {{item.stock}}</text>
+                </view>
+              </view>
+              <view class="prod-body">
+                <text class="prod-name">{{item.name}}</text>
+                <text class="prod-price">{{item.priceDisplay}}</text>
+                <text class="prod-category">{{item.categoryName || 'UMKM Lokal'}}</text>
               </view>
             </view>
           </block>
+        </view>
       </view>
-    </scroll-view>
-    
-  </view>
 
-
-
-  <!-- ALL EVENTS SECTION -->
-  <view  class="events-section">
-    <view class="section-header">
-      <text class="section-header-label">Upcoming Events 📅</text>
-    </view>
-    <view class="events-list">
-      <block a:for="{{ allEvents }}" a:for-index="idx" a:for-item="event" a:if="{{ !isEventsLoading }}">
-        <view class="event-card" onTap="goToEventDetail" data-event="{{event}}" id="{{'event-card-' + event.id}}">
-          <view class="event-banner-wrapper">
-            <view a:if="{{ event.isImageLoading }}" class="event-banner-skeleton skeleton"></view>
-            <image
-              class="event-banner-img"
-              mode="scaleToFill"
-              src="{{event.bannerUrl}}"
-              data-index="{{idx}}"
-              onLoad="eventImageLoad"
-              style="{{ event.isImageLoading ? 'opacity:0' : 'opacity:1' }}"
-            />
-            <view class="event-price-badge">
-              <text class="event-price-badge-label">Mulai dari</text>
-              <text class="event-price-badge-amount">{{event.formattedPrice}}</text>
-              <text a:if="{{event.formattedNormalPrice}}" class="event-price-badge-strike" style="text-decoration: line-through; color: rgba(255,255,255,0.7); font-size: 10px; margin-left: 4px;">{{event.formattedNormalPrice}}</text>
-            </view>
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <!-- SECTION 4: UNIVERSAL EVENT DIRECTORY & FILTER CHIPS         -->
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <view class="section-block">
+        <view class="section-title-row">
+          <view class="title-left">
+            <text class="sec-title">Agenda Event Mendatang</text>
+            <text class="sec-subtitle">Pilih kategori event sesuai minatmu</text>
           </view>
-          <view class="event-info">
-            <text class="event-name">{{event.name}}</text>
-            <view class="event-meta">
-              <view class="event-meta-row">
-                <image class="event-meta-icon" src="../../../assets/icons/ic_common_calendar_today.svg" mode="scaleToFill" />
-                <text class="event-meta-text">{{event.formattedDate}}</text>
-              </view>
-              <view class="event-meta-row">
-                <image class="event-meta-icon" src="../../../assets/icons/ic_common_location.svg" mode="scaleToFill" />
-                <text class="event-meta-text">{{event.location}}</text>
-              </view>
-            </view>
+          <view class="see-all-btn" onTap="goToAllEvents">
+            <text class="see-all-text">Katalog Event</text>
+            <text class="see-all-arrow">›</text>
           </view>
         </view>
-      </block>
 
-      <block a:for="{{ eventsLoadingArr }}" a:if="{{ isEventsLoading }}">
-        <view class="event-card">
-          <view class="event-banner-wrapper skeleton" style="height:180px;"></view>
-          <view class="event-info">
-            <text class="event-name skeleton" style="width:80%;height:18px;min-height:18px;margin-bottom:8px;"></text>
-            <view class="event-meta">
-              <view class="event-meta-row skeleton" style="width:60%;height:14px;min-height:14px;margin-bottom:6px;"></view>
-              <view class="event-meta-row skeleton" style="width:70%;height:14px;min-height:14px;"></view>
+        <!-- Dynamic Filter Chips -->
+        <scroll-view scroll-x="{{true}}" class="filter-chips-scroll">
+          <view class="filter-chips-row">
+            <block a:for="{{ eventFilterCategories }}" a:key="id">
+              <view
+                class="filter-chip {{ selectedEventFilter === item.id ? 'active' : '' }}"
+                onTap="filterEventsByCategory"
+                data-id="{{item.id}}"
+              >
+                <text class="chip-icon">{{item.icon}}</text>
+                <text class="chip-label">{{item.label}}</text>
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+
+        <!-- Event List -->
+        <view class="events-vertical-list">
+          <block a:for="{{ filteredEvents }}" a:key="id">
+            <view class="event-list-card" onTap="goToEventDetail" data-event="{{item}}">
+              <image class="event-list-thumb" src="{{item.bannerUrl}}" mode="aspectFill" />
+              <view class="event-list-body">
+                <view class="list-tag-row">
+                  <text class="list-category-tag">{{item.categoryTag}}</text>
+                </view>
+                <text class="list-event-name">{{item.name}}</text>
+                <view class="list-meta-row">
+                  <text class="list-meta-text">📅 {{item.formattedDate}}</text>
+                  <text class="list-meta-dot">•</text>
+                  <text class="list-meta-text list-meta-loc">📍 {{item.location}}</text>
+                </view>
+                <view class="list-price-row">
+                  <text class="list-price-val">{{item.formattedPrice}}</text>
+                  <view class="list-buy-btn">Beli Tiket ›</view>
+                </view>
+              </view>
             </view>
+          </block>
+
+          <!-- Empty State -->
+          <view a:if="{{ filteredEvents.length === 0 }}" class="empty-state-box">
+            <text class="empty-icon">🎪</text>
+            <text class="empty-title">Tidak Ada Event Ditemukan</text>
+            <text class="empty-desc">Coba ubah kata kunci pencarian atau pilih kategori lainnya.</text>
           </view>
         </view>
-      </block>
-
-      <view a:if="{{ !isEventsLoading && allEvents.length == 0 }}" class="events-empty">
-        <image class="events-empty-icon" src="../../../assets/icons/ic_common_illustration_failed.svg" />
-        <text class="events-empty-text">Belum ada event tersedia</text>
       </view>
-    </view>
-  </view>
 
-  <!-- TNC -->
-  <view class="tnc-container">
-    <text class="tnc-main-text">
-      {{lang.lifestyleLandingPageScreenTncFirstLabel}}
-      <text onTap="goToTnc" class="tnc-hightlight-text">
-        &nbsp;{{lang.lifestyleLandingPageScreenTncMiddleLabel}}&nbsp;
-      </text> {{lang.lifestyleLandingPageScreenTncLastLabel}}
-    </text>
-  </view>
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <!-- FOOTER NOTE & T&C                                           -->
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <view class="landing-footer">
+        <text class="footer-secured-badge">🛡️ Transaksi Terenkripsi & Dijamin Aman oleh PT Bank Negara Indonesia (Persero) Tbk</text>
+      </view>
 
-</scroll-view>
-
-<!-- Failed Get Data -->
-<view a:if="{{ !isLoading && errorReload == 2 }}" class="transaction-history-body-prompt">
-  <image class="image-illustration" src="../../../assets/icons/ic_common_illustration_failed.svg" />
-  <text class="txt-h3-px mg-t-24-px">{{ lang.lifestyleTransactionHistoryFailedToLoadScreenTitleLabel }}</text>
-  <text class="txt-center txt-body2-px mg-t-16-px">{{ lang.lifestyleTransactionHistoryFailedToLoadScreenDescLabel }}</text>
-  <view id="btn-reload" class="mg-t-32-px d-f-row jc-center ai-center" onTap="handleRequest">
-    <image class="mg-r-8-px icon-size-48" src="../../../assets/icons/ic_common_refresh.svg" />
-    <text class="txt-h5-px txt-orange-300">{{ lang.lifestyleTransactionHistoryFailedToLoadScreenRetryButtonLabel }}</text>
-  </view>
+    </block>
+  </scroll-view>
 </view>
-
-<popup visible="{{isShowLottery && !isLoading && errorReload == 0}}">
-  <view class="container-content-comp-modal">
-    <view class="comp-title">
-      <image mode="scaleToFill" class="comp-image-error" src="/src/assets/icons/ic_common_error_filled.svg" />
-      <text class="comp-title-text">{{lang["lifestyleLandingPageScreenNoSOFModalTitleLabel"]}}</text>
-    </view>
-    <view class="comp-description">
-      <text class="comp-description-text">{{lang["lifestyleLandingPageScreenNoSOFModalDescLabel"]}}</text>
-    </view>
-  </view>
-  <view>
-    <bni-button pixel class="local-primary-btn" onTap="closeModal">
-      {{lang["lifestyleLandingPageScreenNoSOFModalOpenSavingAccountButton"]}}
-    </bni-button>
-  </view>
-</popup>
-<loading loading="{{ isLoading }}" />
-
-<feature-modal></feature-modal>
-<error-internet></error-internet>
-<general-error></general-error>

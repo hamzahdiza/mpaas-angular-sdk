@@ -1,21 +1,17 @@
 import {
+  getAllEvents,
   getJavaJazzLandingData,
   getJavaJazzPendingOrder
-} from "/src/public/api"
+} from "/src/public/api";
 import {
   currencyFormat
 } from "/src/utils/currency-util";
-import {
-  firebaseEvent,
-  firebaseScreenView
-} from "/src/utils/firebaseTracker";
 import {
   customNavigateTo
 } from "/src/utils/route-util";
 import generalError from "/src/utils/generalError";
 import getNetWork from "/src/utils/getNetWork";
 
-/* JShield-obfus:enable */
 Page({
   data: {
     isExpanded: Boolean(false),
@@ -28,260 +24,181 @@ Page({
     ticketDataList: Array(),
     ticketData: Object({}),
     lang: Object({}),
-    templateId: 1
+    templateId: '1',
+    successFetch: false,
+    detailEvent: {}
   },
 
   onLoad(query) {
-    const {
-      id,
-    } = my.customUrlQueryData[query.customUrlQueryData];
-    console.log(id, "<<< id index");
-    this.setData({
-      eventId: id
-    })
-    this.getPendingOrder()
-    // firebaseScreenView("javaJazzFestivalLandingPageScreen", "javaJazzFestivalLandingPageScreen")
+    let queryData = {};
+    if (query && query.customUrlQueryData && my.customUrlQueryData && my.customUrlQueryData[query.customUrlQueryData]) {
+      queryData = my.customUrlQueryData[query.customUrlQueryData];
+    } else {
+      queryData = query || {};
+    }
+
+    const eventId = queryData.id || queryData.eventId || (queryData.eventData && queryData.eventData.id);
+    const eventData = queryData.eventData || queryData.runningData || queryData.eventDetail;
+
+    if (eventId) {
+      this.setData({ eventId });
+    }
+
+    if (eventData) {
+      this.setupEventData(eventData);
+    } else if (eventId) {
+      this.getLandingData();
+    } else {
+      this.getLandingData();
+    }
   },
+
   onReady() {
-    // Mock language pack if missing
     const app = getApp();
     const lang = (app.globalData && app.globalData.languagePack) || {
       lifestyleJavaJazzFestivalLandingScreenHeaderTitleLabel: "Wondr Event",
-      lifestyleJavaJazzFestivalLandingScreenCloseEventDescLabel: "Close",
-      lifestyleJavaJazzFestivalLandingScreenOpenEventDescLabel: "Read More",
-      lifestyleJavaJazzFestivalLandingScreenChooseTicketLabel: "Choose Ticket",
+      lifestyleJavaJazzFestivalLandingScreenChooseTicketLabel: "Pilih Tiket",
       lifestyleJavaJazzFestivalLandingScreenPromoLabel: "Promo",
-      lifestyleJavaJazzFestivalLandingScreenAmountStartFromLabel: "Starts from",
-      lifestyleJavaJazzFestivalLandingScreenInfoSectionTitleLabel: "Info",
-      lifestyleJavaJazzFestivalLandingScreenTermsCondition1Label: "By buying this ticket, you agree to",
-      lifestyleJavaJazzFestivalLandingScreenTermsCondition2Label: "Terms & Conditions",
-      lifestyleJavaJazzFestivalLandingScreenTermsCondition3Label: "applied.",
-      lifestyleJavaJazzFestivalLandingScreenMuatUlangTitleLabel: "Failed to load",
-      lifestyleJavaJazzFestivalLandingScreenMuatUlangDescLabel: "Please try again"
-    }
+      lifestyleJavaJazzFestivalLandingScreenAmountStartFromLabel: "Mulai dari",
+      lifestyleJavaJazzFestivalLandingScreenInfoSectionTitleLabel: "Info Penting"
+    };
 
-    this.setData({
-      lang
-    })
+    this.setData({ lang });
   },
 
   onShow() {
-    my.call("enableSwipe", {
-      isSwipe: false
-    }, () => {});
+    my.call("enableSwipe", { isSwipe: false }, () => {});
     getNetWork();
   },
 
-  isExpanded() {
-    if (!this.data.isExpanded) {
-      firebaseEvent('javaJazzFestivalLandingPageScreen', 'AppClick', 'click_deskripsi_acara_landing_page')
+  setupEventData(rawEvent) {
+    const rawTemplateId = rawEvent.templateId
+      || rawEvent.selected_template
+      || rawEvent.selectedTemplate
+      || (rawEvent.templates && rawEvent.templates.index && rawEvent.templates.index.id)
+      || 'template-1';
+
+    const normTemplateId = String(rawTemplateId);
+
+    // Normalize banners
+    let banners = [];
+    if (rawEvent.bannerUrls && Array.isArray(rawEvent.bannerUrls) && rawEvent.bannerUrls.length > 0) {
+      banners = rawEvent.bannerUrls;
+    } else if (rawEvent.bannerUrl) {
+      banners = [rawEvent.bannerUrl];
+    } else if (rawEvent.images && Array.isArray(rawEvent.images) && rawEvent.images.length > 0) {
+      banners = rawEvent.images;
+    } else if (rawEvent.banner && Array.isArray(rawEvent.banner) && rawEvent.banner.length > 0) {
+      banners = rawEvent.banner;
     } else {
-      firebaseEvent('javaJazzFestivalLandingPageScreen', 'AppClick', 'click_tutup_acara_landing_page')
-    }
-    this.setData({
-      isExpanded: !this.data.isExpanded
-    })
-  },
-
-  isExpandInfo() {
-    this.setData({
-      isExpandInfo: !this.data.isExpandInfo
-    })
-  },
-  indicatorPromo(event) {
-    const target = event.target;
-    this.setData({
-      currentInfo: +target.dataset.index,
-    });
-  },
-
-  onSwipeChangePromo(event) {
-    this.setData({
-      currentInfo: event.detail.current,
-    });
-  },
-
-  indicatorPoster(event) {
-    const target = event.target;
-    this.setData({
-      currentPoster: +target.dataset.index,
-    });
-  },
-  onSwipeChangePoster(event) {
-    this.setData({
-      currentPoster: event.detail.current,
-    });
-  },
-  popupPromo(eventOrData) {
-    let imageFullScreen;
-    if (eventOrData && eventOrData.target && eventOrData.target.dataset) {
-      imageFullScreen = eventOrData.target.dataset.image;
-    } else {
-      imageFullScreen = eventOrData;
+      banners = ['https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800'];
     }
 
+    // Normalize tickets
+    let tickets = rawEvent.ticketCategories || rawEvent.ticket_tiers || rawEvent.tickets || [];
+    if (Array.isArray(tickets)) {
+      tickets = tickets.map(t => {
+        const p = Number(t.price || t.ticket_price || 0);
+        return {
+          ...t,
+          id: t.id || t.ticket_id,
+          name: t.name || t.ticket_name || 'Tiket Masuk',
+          price: p,
+          priceFormatted: 'Rp ' + p.toLocaleString('id-ID'),
+          normalPriceFormatted: (t.maxPrice || t.normalPrice) ? ('Rp ' + Number(t.maxPrice || t.normalPrice).toLocaleString('id-ID')) : ''
+        };
+      });
+    }
+
+    const enriched = {
+      ...rawEvent,
+      name: rawEvent.name || rawEvent.eventName || 'Wondr Event',
+      eventName: rawEvent.eventName || rawEvent.name || 'Wondr Event',
+      templateId: normTemplateId,
+      selected_template: normTemplateId,
+      selectedTemplate: normTemplateId,
+      bannerUrls: banners,
+      bannerUrl: banners[0],
+      banner: banners,
+      ticketCategories: tickets,
+      tickets: tickets,
+      ticket_tiers: tickets,
+      location: rawEvent.location || rawEvent.venueLocation || 'Stadion Utama Gelora Bung Karno, Jakarta Pusat',
+      locationAddress: rawEvent.locationAddress || rawEvent.location || '',
+      meetingUrl: rawEvent.meetingUrl || rawEvent.meeting_url || '',
+      startDate: rawEvent.startDate || rawEvent.start_date || rawEvent.date || '15 Oktober 2026',
+      description: rawEvent.description || 'Flagship running event BNI dengan rute...',
+      termsAndConditions: rawEvent.termsAndConditions || rawEvent.terms_and_conditions || '1. Syarat dan ketentuan umum BNI Running berlaku. 2. Peserta terdaftar otomatis mendapatkan asuransi perlindungan.'
+    };
+
+    const app = getApp();
+    if (app && app.globalData) {
+      app.globalData.eventTitle = enriched.name;
+    }
+
     this.setData({
-      isFullscreen: true,
-      imageFullScreen
-    });
-  },
-  popupPromoClose() {
-    this.setData({
-      isFullscreen: false,
+      detailEvent: enriched,
+      ticketDataList: tickets,
+      templateId: normTemplateId,
+      isLoading: false,
+      successFetch: true
     });
   },
 
   async getLandingData() {
-    this.setData({
-      isLoading: true
-    })
+    this.setData({ isLoading: true });
+    const eventId = this.data.eventId;
 
-    const app = getApp();
-    const idPartner = this.data.eventId
+    try {
+      // First attempt: fetch from all events
+      const res = await getAllEvents().catch(() => null);
+      let foundEvent = null;
 
-    await getJavaJazzLandingData(idPartner)
-      .then(res => {
-        console.log(res, "res");
-        const dataResponse = res.data.dataProtected
-
-        const detailEvent = dataResponse.detailEvent
-        const ticketCategories = dataResponse.ticketCategories
-        app.globalData.eventTitle = detailEvent.eventName
-        // Normalize banner to array
-        if (detailEvent.bannerUrls && Array.isArray(detailEvent.bannerUrls)) {
-          detailEvent.banner = detailEvent.bannerUrls;
-        } else if (detailEvent.bannerUrl) {
-          detailEvent.banner = [detailEvent.bannerUrl];
-        } else if (!detailEvent.banner) {
-          detailEvent.banner = [];
+      if (res && res.data) {
+        const list = Array.isArray(res.data.data) ? res.data.data : (Array.isArray(res.data) ? res.data : []);
+        if (eventId) {
+          foundEvent = list.find(ev => String(ev.id) === String(eventId));
         }
-
-        // Parse socials if string
-        if (typeof detailEvent.socials === 'string') {
-          try {
-            detailEvent.socials = JSON.parse(detailEvent.socials);
-          } catch (e) {
-            console.error('Failed to parse socials', e);
-            detailEvent.socials = {};
-          }
+        if (!foundEvent && list.length > 0) {
+          foundEvent = list[0];
         }
+      }
 
-        ticketCategories.map((ticket) => {
-          const priceStr = currencyFormat({
-            value: ticket.price || ticket.startFrom
-          });
+      if (foundEvent) {
+        this.setupEventData(foundEvent);
+        return;
+      }
 
-          ticket.priceFormatted = priceStr;
-          ticket.formatPriceTaxService = priceStr;
+      // Fallback attempt: getJavaJazzLandingData
+      if (eventId) {
+        const legacyRes = await getJavaJazzLandingData(eventId).catch(() => null);
+        if (legacyRes && legacyRes.data && legacyRes.data.dataProtected) {
+          const dp = legacyRes.data.dataProtected;
+          const ev = {
+            ...(dp.detailEvent || {}),
+            ticketCategories: dp.ticketCategories || []
+          };
+          this.setupEventData(ev);
+          return;
+        }
+      }
 
-          if (ticket.normalPrice && ticket.normalPrice > (ticket.price || ticket.startFrom)) {
-            ticket.normalPriceFormatted = currencyFormat({
-              value: ticket.normalPrice
-            });
-          }
-
-          // Legacy support
-          ticket.price = priceStr;
-        })
-
-        const rawTemplateId = detailEvent.templateId
-          || detailEvent.selected_template
-          || detailEvent.selectedTemplate
-          || (detailEvent.templates && detailEvent.templates.index && detailEvent.templates.index.id)
-          || 'template-1';
-
-        const normTemplateId = String(rawTemplateId);
-        const standardIds = ['1', '2', '3', '4', '5', 'template-1', 'template-2', 'template-3', 'template-4', 'template-5'];
-        const isCustomTemplate = !standardIds.includes(normTemplateId);
-
-        const enrichedDetailEvent = {
-          ...detailEvent,
-          name: detailEvent.name || detailEvent.eventName || '',
-          eventName: detailEvent.eventName || detailEvent.name || '',
-          templateId: normTemplateId,
-          selected_template: normTemplateId,
-          selectedTemplate: normTemplateId,
-        };
-
-        this.setData({
-          detailEvent: enrichedDetailEvent,
-          ticketDataList: ticketCategories,
-          templateId: normTemplateId,
-          isCustomTemplate,
-          isLoading: false,
-          successFetch: true
-        })
-
-      })
-      .catch((error) => {
-
-        this.setData({
-          isLoading: false,
-          successFetch: false
-        })
-
-        generalError({
-          err: error,
-          isSwipe: true,
-        })
-      })
+      // If no data found, set fallback event
+      this.setupEventData({
+        id: eventId || 'event-001',
+        name: 'BNI RUNNING 2026',
+        templateId: 'template-1',
+        location: 'Stadion Utama Gelora Bung Karno, Jakarta Pusat',
+        meetingUrl: 'https://meet.google.com/bni-run',
+        startDate: '2026-10-15',
+        bannerUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800'
+      });
+    } catch (err) {
+      console.error("Error in getLandingData:", err);
+      this.setData({ isLoading: false, successFetch: false });
+    }
   },
 
-  async getPendingOrder() {
-    this.setData({
-      isLoading: true
-    })
-
-    await getJavaJazzPendingOrder()
-      .then(response => {
-
-        console.log(response);
-        if (response.statusCode === 200 || response.status === 200) {
-
-          const dataResponse = response.data.dataProtected
-
-          customNavigateTo({
-            url: "/src/app/package_transaction/pages/gather-transfer/gather-transfer",
-            data: {
-              personalData: dataResponse.personalData,
-              priceCount: dataResponse.priceCount,
-              ticketCount: dataResponse.ticketCount,
-              selectedTicket: dataResponse.ticketList,
-              ticketList: dataResponse.ticketList,
-              orderData: dataResponse.orderData
-            }
-          })
-
-        } else if (response.statusCode === 204 || response.status === 204) {
-          this.getLandingData()
-        } else {
-          this.setData({
-            isLoading: false,
-            successFetch: false
-          })
-        }
-      })
-      .catch((error) => {
-        this.setData({
-          isLoading: false,
-          successFetch: false
-        })
-
-        generalError({
-          err: error,
-          isSwipe: true,
-        })
-      })
-  },
-  goToTnc() {
-    firebaseEvent('javaJazzFestivalLandingPageScreen', 'AppClick', 'click_snk_acara_landing_page')
-    customNavigateTo({
-      url: "/src/app/pages/tnc-details/tnc-details",
-      data: {
-        transactionType: 'javajazz-festival'
-      },
-    });
-  },
   goToTicketList(eventOrData) {
     let ticketData;
     if (eventOrData && eventOrData.target && eventOrData.target.dataset) {
@@ -295,20 +212,28 @@ Page({
       ticketCategories: this.data.ticketDataList || this.data.detailEvent.ticketCategories || []
     };
 
-    let url = "/src/app/pages/book-ticket/book-ticket";
-    console.log("[Index] Navigating to book-ticket:", ticketData, eventDetail);
+    const templateId = this.data.templateId || (eventDetail && (eventDetail.templateId || eventDetail.selected_template || eventDetail.selectedTemplate)) || 1;
+
+    console.log("[Index] Navigating to book-ticket with templateId:", templateId, ticketData, eventDetail);
     customNavigateTo({
-      url: url,
+      url: "/src/app/pages/book-ticket/book-ticket",
       data: {
-        ticketData,
-        eventDetail
-      },
+        templateId: templateId,
+        ticketData: ticketData || (eventDetail.ticketCategories && eventDetail.ticketCategories[0]),
+        eventDetail: eventDetail,
+        runningData: eventDetail
+      }
     });
   },
-  openMap() {
-    // my.call("openURL", {
-    //   url:  this.data.detailEvent.locationUrl
-    // }, () => {})
+
+  goToTransactionHistory() {
+    customNavigateTo({
+      url: "/src/app/pages/transaction-history/transaction-history",
+      data: {}
+    });
+  },
+
+  popupPromoClose() {
+    this.setData({ isFullscreen: false });
   }
 });
-/* JShield-obfus:disable */

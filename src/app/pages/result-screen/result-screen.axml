@@ -1,6 +1,6 @@
 <view>
 
-  <top-bar safeArea="true" title=" " pixel backgroundColor="bg-white" />
+  <top-bar safeArea="true" title=" " pixel backgroundColor="bg-white" iconR="/src/assets/icons/Icon_transaction_history_white.svg" onIconRTap="goToTransactionHistory" />
   <view class="middle-container">
     <view class="image-container">
       <image id="" class="illustration" src={{illustrationSource}} />
@@ -50,7 +50,126 @@
       </view>
 
     </view>
-    <view class="account-container">
+
+    <!-- QR Ticket Section (Single or Multi Carousel) -->
+    <view a:if="{{ ticketList && ticketList.length > 0 }}" class="qr-carousel-section">
+      <!-- Single Ticket: Fits width perfectly -->
+      <view a:if="{{ ticketList.length === 1 }}" class="qr-single-ticket-container">
+        <view class="qr-ticket-card single-card" onTap="openTicketModal" data-idx="0">
+          <view class="qr-content">
+            <view class="qr-code-container single-qr-box">
+              <image class="qr-canvas single-qr-canvas" src="{{ticketList[0].qrUrl}}" mode="aspectFit" />
+            </view>
+            <view class="qr-detail-container">
+              <text class="qr-event-name txt-label1-sb-px">{{ticketList[0].eventName}}</text>
+              <text class="qr-holder-name txt-body2-px">{{ticketList[0].holderName}}</text>
+              <view class="qr-status-badge status-success">
+                <text class="qr-status-text">{{ticketList[0].status || 'Berhasil'}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- Multiple Tickets: Horizontal Carousel -->
+      <scroll-view a:else scroll-x="{{true}}" class="qr-carousel-scroll" scroll-with-animation="{{true}}">
+        <view class="qr-carousel-track">
+          <view
+            a:for="{{ticketList}}"
+            a:for-index="idx"
+            a:for-item="ticket"
+            class="qr-ticket-card"
+            a:key="idx"
+            onTap="openTicketModal"
+            data-idx="{{idx}}"
+          >
+            <view class="qr-content">
+              <view class="qr-code-container">
+                <image class="qr-canvas" src="{{ticket.qrUrl}}" mode="aspectFit" />
+              </view>
+              <view class="qr-detail-container">
+                <text class="qr-event-name txt-label1-sb-px">
+                  {{ticket.eventName}}
+                </text>
+                <text class="qr-holder-name txt-body2-px">
+                  {{ticket.holderName}}
+                </text>
+                <view class="qr-status-badge status-success">
+                  <text class="qr-status-text">
+                    {{ticket.status || 'Berhasil'}}
+                  </text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- E-Commerce Receipt & Shipping Summary Card (No Barcode / No QR) -->
+    <view a:if="{{ isEcommerce && ecommerceInfo }}" class="ecom-result-card">
+      <!-- Card Header: Store & Status -->
+      <view class="ecom-result-header">
+        <view class="ecom-store-info">
+          <image class="ecom-store-icon" src="/src/assets/icons/ic_common_entertainment.svg" />
+          <text class="ecom-store-name txt-label1-sb-px">{{ecommerceInfo.storeName}}</text>
+        </view>
+        <view class="ecom-status-badge">
+          <text class="ecom-status-text">Lunas • Diproses</text>
+        </view>
+      </view>
+
+      <!-- Order Invoice & Date -->
+      <view class="ecom-invoice-row">
+        <text class="ecom-invoice-label txt-body3-px">No. Pesanan</text>
+        <text class="ecom-invoice-val txt-label2-sb-px">{{ecommerceInfo.orderId}}</text>
+      </view>
+
+      <view class="ecom-divider"></view>
+
+      <!-- Purchased Items List -->
+      <view class="ecom-items-section">
+        <text class="ecom-section-title txt-label2-sb-px">Ringkasan Produk Belanja</text>
+        <view a:for="{{ ecommerceInfo.items }}" a:for-item="item" a:key="index" class="ecom-item-row">
+          <image class="ecom-item-img" src="{{ item.imageUrl }}" mode="aspectFill" />
+          <view class="ecom-item-detail">
+            <text class="ecom-item-title txt-label2-sb-px">{{ item.productName }}</text>
+            <view class="ecom-item-variant-row" a:if="{{ item.variantName && item.variantName !== '-' }}">
+              <text class="ecom-variant-chip">{{ item.variantName }}</text>
+            </view>
+            <view class="ecom-item-price-qty">
+              <text class="ecom-item-price txt-body2-px">{{ item.priceFormatted }}</text>
+              <text class="ecom-item-qty txt-body2-px">x{{ item.quantity }}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="ecom-divider"></view>
+
+      <!-- Shipping & Delivery Info -->
+      <view class="ecom-shipping-section">
+        <view class="ecom-shipping-row">
+          <view class="ecom-shipping-icon-box">
+            <image class="ecom-shipping-icon" src="/src/assets/icons/ic_common_transportation.svg" />
+          </view>
+          <view class="ecom-shipping-text-box">
+            <text class="ecom-courier-title txt-label2-sb-px">{{ ecommerceInfo.courierName }} ({{ ecommerceInfo.courierService }})</text>
+            <text class="ecom-recipient-title txt-body2-px">{{ ecommerceInfo.recipientName }} • {{ ecommerceInfo.recipientPhone }}</text>
+            <text class="ecom-address-text txt-body3-px">{{ ecommerceInfo.street }}, {{ ecommerceInfo.city }} {{ ecommerceInfo.postalCode }}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Order History Direct Link -->
+      <view class="ecom-history-action" onTap="goToTransactionHistory">
+        <text class="ecom-history-text txt-label2-sb-px">Lihat Riwayat & Lacak Status Pesanan</text>
+        <image class="ecom-history-arrow" src="/src/assets/icons/ic_common_chevron_right.svg" />
+      </view>
+    </view>
+
+    <!-- Event Provider Info (Only for Event Tickets) -->
+    <view a:if="{{ !isEcommerce }}" class="account-container">
       <text id="" class="account-title  txt-label2-sb-px">
         {{lang.lifestyleBillPaymentJavaJazzFestivalResultScreenProviderTitleLabel}}
       </text>
@@ -129,5 +248,26 @@
     </view>
   </view>
 </ant-popup>
+
+<ant-popup animation=true visible={{ticketModalVisible}} zIndex="{{1000}}" onClose="closeTicketModal">
+  <view class="popup-container full-modal ticket-modal-container">
+    <view class="ticket-modal-handle"></view>
+    <view class="ticket-modal-qr-container">
+      <image a:if="{{modalQrImage}}" class="ticket-modal-qr-image" src="{{modalQrImage}}" mode="aspectFit" />
+    </view>
+    <text class="txt-h3-px ticket-modal-event-name">
+      {{selectedTicket.eventName}}
+    </text>
+    <text class="txt-body2-px ticket-modal-holder-name">
+      {{selectedTicket.holderName}}
+    </text>
+    <view class="qr-status-badge status-success">
+      <text class="qr-status-text">
+        {{selectedTicket.status || 'Berhasil'}}
+      </text>
+    </view>
+  </view>
+</ant-popup>
+
 <loading loading="{{ isFetching }}" pixel></loading>
 <error-internet></error-internet>

@@ -202,15 +202,14 @@
 
       <view>
         <view>
-          <navigator open-type="exit">
-            <bni-button
-              type="primary"
-              className="txt-body2-sb-px bg-turquoise-300 mg-b-8-px"
-              pixel={{true}}
-            >
-              {{lang.javaJazzFestivalGatherScreenButtonConfirmationLabel}}
-            </bni-button>
-          </navigator>
+          <bni-button
+            type="primary"
+            className="txt-body2-sb-px bg-turquoise-300 mg-b-8-px"
+            onTap="onConfirmExit"
+            pixel={{true}}
+          >
+            {{lang.javaJazzFestivalGatherScreenButtonConfirmationLabel}}
+          </bni-button>
         </view>
 
         <bni-button

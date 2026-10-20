@@ -1,0 +1,439 @@
+<view class="detail-page-container">
+  <view a:if="{{!isLoading}}" class="top-bar-wrapper">
+    <top-bar
+      type="navigation"
+      navigate
+      safeArea
+      pixel
+      title="{{ isUmkmOrder ? 'Detail Pesanan & Resi' : 'Detail Transaksi' }}"
+      iconL="/src/assets/icons/ic_common_arrow_back.svg"
+      backgroundColor="#FFFFFF"
+      color="#111827"
+    />
+  </view>
+
+  <scroll-view scroll-y="{{true}}" class="detail-scroll-container" scroll-with-animation="{{true}}">
+    <view a:if="{{isError && !isLoading}}" class="empty-state-wrapper">
+      <text class="empty-icon">⚠️</text>
+      <text class="empty-title">Gagal Memuat Detail</text>
+      <button class="shop-now" onTap="fetchDetail">Coba Lagi</button>
+    </view>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- VIEW A: GENERAL DETAIL PESANAN & RESI UMKM (STANDARD)       -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <view a:elif="{{!isLoading && isUmkmOrder && umkmOrder}}" class="umkm-detail-wrapper">
+      
+      <!-- Top Status Banner Card (Clean Modern Card) -->
+      <view class="umkm-status-hero-card">
+        <view class="hero-status-header">
+          <view class="status-icon-box status-icon-{{umkmOrder.status ? umkmOrder.status.toLowerCase() : 'paid'}}">
+            <text class="hero-status-icon">{{umkmOrder.status === 'PENDING' ? '⏳' : (umkmOrder.status === 'CANCELLED' ? '✕' : (umkmOrder.status === 'SHIPPED' ? '🚚' : (umkmOrder.status === 'DELIVERED' || umkmOrder.status === 'COMPLETED' ? '✓' : '📦')))}}</text>
+          </view>
+          <view class="status-header-text-col">
+            <text class="hero-status-title">{{umkmOrder.statusLabel}}</text>
+            <view class="hero-status-meta-row">
+              <text class="hero-meta-clock-icon">🕒</text>
+              <text class="hero-meta-date">{{umkmOrder.formattedOrderDate}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="hero-card-divider" />
+
+        <view class="hero-invoice-footer">
+          <view class="invoice-info-col">
+            <text class="invoice-label">Nomor Pesanan</text>
+            <text class="invoice-code">{{umkmOrder.orderNumber}}</text>
+          </view>
+          <view class="btn-copy-invoice" onTap="copyOrderNumber">
+            <text class="copy-invoice-txt">Salin No. Pesanan</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Courier & AWB Resi Tracking Card -->
+      <view class="resi-tracking-card" a:if="{{umkmOrder.trackingNumber}}">
+        <view class="resi-header-row">
+          <view class="resi-courier-col">
+            <text class="resi-courier-name">{{umkmOrder.courier.courierName}} ({{umkmOrder.courier.service || 'Reguler'}})</text>
+            <view class="resi-number-row">
+              <text class="resi-label">No. Resi:</text>
+              <text class="resi-val">{{umkmOrder.trackingNumber}}</text>
+            </view>
+          </view>
+          <view class="btn-copy-resi" onTap="copyTrackingNumber">
+            <text class="copy-txt">Salin Resi</text>
+          </view>
+        </view>
+
+        <!-- Visual Barcode -->
+        <view class="resi-barcode-box">
+          <view class="barcode-lines">||||| || |||| ||| ||||| || |||| ||| ||||</view>
+          <text class="barcode-sub">{{umkmOrder.trackingNumber}}</text>
+        </view>
+      </view>
+
+      <!-- Live Shipment Journey Timeline -->
+      <view class="tracking-timeline-card">
+        <view class="card-section-title">
+          <text class="section-title-icon">📍</text>
+          <text class="section-title-txt">Lacak Status Pengiriman</text>
+        </view>
+        <view class="timeline-stepper-list">
+          <block a:for="{{trackingSteps}}" a:key="title">
+            <view class="timeline-step-item {{item.isActive ? 'step-active' : ''}} {{item.isDone ? 'step-done' : ''}}">
+              <view class="step-indicator-col">
+                <view class="step-dot {{item.isDone ? 'dot-done' : (item.isActive ? 'dot-active' : 'dot-pending')}}">
+                  <text class="dot-inner-icon">{{item.isDone ? '✓' : (item.isActive ? '•' : '○')}}</text>
+                </view>
+                <view class="step-line {{item.isDone ? 'line-done' : ''}}" a:if="{{index < trackingSteps.length - 1}}" />
+              </view>
+              <view class="step-content-col">
+                <text class="step-title-txt {{item.isActive ? 'txt-highlight' : ''}}">{{item.title}}</text>
+                <text class="step-time-txt">{{item.time}}</text>
+                <text class="step-desc-txt">{{item.desc}}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <!-- Store Seller Card -->
+      <view class="store-seller-card">
+        <view class="store-seller-left">
+          <image class="store-seller-logo" src="{{umkmOrder.store.logoUrl || 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=100'}}" mode="aspectFill" />
+          <view class="store-seller-meta">
+            <view class="store-name-badge-row">
+              <text class="store-seller-name">{{umkmOrder.store.name}}</text>
+              <text class="store-official-badge">✓ Official</text>
+            </view>
+            <text class="store-seller-city">📍 {{umkmOrder.store.cityName || 'Indonesia'}}</text>
+          </view>
+        </view>
+        <view class="btn-contact-seller" onTap="contactStore">
+          <text class="contact-txt">💬 Hubungi</text>
+        </view>
+      </view>
+
+      <!-- Purchased Items Breakdown -->
+      <view class="purchased-items-card">
+        <view class="card-section-title">
+          <text class="section-title-icon">🛍️</text>
+          <text class="section-title-txt">Rincian Produk ({{umkmOrder.items.length}} Barang)</text>
+        </view>
+        <view class="items-list-col">
+          <block a:for="{{umkmOrder.items}}" a:key="id">
+            <view class="item-detail-row">
+              <image class="item-thumb" src="{{item.imageUrl || (item.images && item.images[0]) || 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=300'}}" mode="aspectFill" />
+              <view class="item-info-col">
+                <text class="item-title">{{item.productName || item.name}}</text>
+                <text class="item-variant-tag" a:if="{{item.variantName && item.variantName !== '-'}}">Varian: {{item.variantName}}</text>
+                <view class="item-calc-row">
+                  <text class="item-unit-price">{{item.formattedPrice}}</text>
+                  <text class="item-qty">x{{item.quantity || 1}}</text>
+                  <text class="item-subtotal">{{item.formattedSubtotal}}</text>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <!-- Shipping Destination Address -->
+      <view class="shipping-address-card">
+        <view class="card-section-title">
+          <text class="section-title-icon">🏠</text>
+          <text class="section-title-txt">Alamat Pengiriman</text>
+        </view>
+        <view class="address-body">
+          <text class="recipient-name-txt">{{umkmOrder.shippingAddress.recipientName}} ({{umkmOrder.shippingAddress.phone}})</text>
+          <text class="recipient-street-txt">{{umkmOrder.shippingAddress.street}}</text>
+          <text class="recipient-city-txt">{{umkmOrder.shippingAddress.city}}, {{umkmOrder.shippingAddress.postalCode}}</text>
+        </view>
+      </view>
+
+      <!-- Payment Breakdown Card -->
+      <view class="payment-breakdown-card">
+        <view class="card-section-title">
+          <text class="section-title-icon">💳</text>
+          <text class="section-title-txt">Rincian Pembayaran</text>
+        </view>
+        <view class="payment-meta-row">
+          <text class="pay-label">Metode Pembayaran</text>
+          <text class="pay-val-highlight">{{umkmOrder.paymentMethod}}</text>
+        </view>
+        <view class="divider-dashed" />
+        <view class="pay-row">
+          <text class="pay-label">Total Harga Barang</text>
+          <text class="pay-val">{{umkmOrder.formattedSubtotal}}</text>
+        </view>
+        <view class="pay-row">
+          <text class="pay-label">Total Ongkos Kirim</text>
+          <text class="pay-val">{{umkmOrder.formattedShippingCost}}</text>
+        </view>
+        <view class="pay-row discount-row" a:if="{{umkmOrder.formattedDiscount}}">
+          <text class="pay-label-discount">Diskon Promo BNI</text>
+          <text class="pay-val-discount">{{umkmOrder.formattedDiscount}}</text>
+        </view>
+        <view class="pay-row" a:if="{{umkmOrder.formattedServiceFee}}">
+          <text class="pay-label">Biaya Layanan</text>
+          <text class="pay-val">{{umkmOrder.formattedServiceFee}}</text>
+        </view>
+        <view class="divider-solid" />
+        <view class="pay-row grand-total-row">
+          <text class="grand-total-label">Total Pembayaran</text>
+          <text class="grand-total-val">{{umkmOrder.formattedTotalAmount}}</text>
+        </view>
+      </view>
+
+      <!-- Return / Complaint Active Banner -->
+      <view a:if="{{umkmOrder.status === 'RETURNED'}}" class="return-status-banner">
+        <view class="return-banner-header">
+          <text class="return-banner-icon">⚠️</text>
+          <text class="return-banner-title">Pengajuan Komplain & Retur Aktif</text>
+        </view>
+        <text class="return-banner-desc">Pengajuan retur Anda sedang ditinjau oleh penjual. Dana pesanan sebesar {{umkmOrder.formattedTotalAmount}} saat ini ditahan di Escrow dan akan dikembalikan jika disetujui.</text>
+        <view class="return-banner-reason-box" a:if="{{umkmOrder.returns && umkmOrder.returns.length > 0}}">
+          <text class="return-reason-lbl">Alasan Pengajuan:</text>
+          <text class="return-reason-val">{{umkmOrder.returns[0].reason}}</text>
+        </view>
+      </view>
+
+      <!-- Bottom Action CTAs -->
+      <view class="umkm-bottom-actions">
+        <view a:if="{{umkmOrder.status === 'PENDING'}}" class="btn-pay-now" onTap="payNow">
+          <text class="btn-pay-now-txt">Bayar Sekarang</text>
+        </view>
+        <view a:if="{{umkmOrder.status === 'DELIVERED' || umkmOrder.status === 'COMPLETED'}}" class="btn-return-action" onTap="openReturnModal">
+          <text class="btn-return-txt">🔄 Ajukan Komplain / Retur Barang</text>
+        </view>
+        <view class="btn-shop-more" onTap="goToStore">
+          <text class="btn-shop-more-txt">Belanja Lagi di Toko</text>
+        </view>
+        <view class="btn-home" onTap="goToHome">
+          <text class="btn-home-txt">Kembali ke Beranda</text>
+        </view>
+      </view>
+
+    </view>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- VIEW B: EVENT / TIKET KONSER (STANDARD)                     -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <view a:elif="{{!isLoading && !isUmkmOrder}}" class="detail-content-wrapper">
+      <!-- Status Header Section -->
+      <view class="status-header-section">
+        <view class="status-icon-circle status-circle-{{detailData.status ? detailData.status.toLowerCase() : 'success'}}">
+          <text class="status-header-icon-text">{{detailData.status === 'SUCCESS' ? '✓' : '✕'}}</text>
+        </view>
+        <text class="status-title-text txt-label1-sb-px">{{detailData.statusLabel || 'Transaksi Berhasil'}}</text>
+        <text class="nominal-amount-text txt-h2-px">{{detailData.formattedTotalAmount}}</text>
+        <text class="timestamp-text txt-body2-px">{{detailData.formattedTransactionDate}}</text>
+        
+        <view class="ref-numbers-col">
+          <text class="ref-item-text txt-body2-px">Ref ID: {{detailData.refId}}</text>
+          <text class="ref-item-text txt-body2-px">No. Transaksi (Core Banking): {{detailData.coreBankingRef}}</text>
+        </view>
+      </view>
+
+      <view class="section-divider-line" />
+
+      <!-- Event / Service Info Card -->
+      <view class="event-info-card">
+        <view class="event-thumb-box">
+          <text class="event-thumb-emoji">🎟️</text>
+        </view>
+        <view class="event-detail-box">
+          <text class="event-name-text txt-label1-sb-px">{{detailData.eventName}}</text>
+          <view class="event-row">
+            <text class="mini-icon-text">📅</text>
+            <text class="mini-text txt-body2-px">{{detailData.formattedEventDate}}</text>
+          </view>
+          <view class="event-row">
+            <text class="mini-icon-text">📍</text>
+            <text class="mini-text txt-body2-px">{{detailData.location}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Two Column Info Row -->
+      <view class="two-column-info-row">
+        <view class="info-card-box left-box">
+          <text class="info-box-label txt-label2-sb-px">Pemilik Tiket</text>
+          <view class="info-box-content">
+            <text class="info-box-icon-text">👤</text>
+            <text class="info-box-value txt-body2-px">{{detailData.fullName}}</text>
+          </view>
+        </view>
+
+        <view class="info-card-box right-box">
+          <text class="info-box-label txt-label2-sb-px">Sumber Dana</text>
+          <view class="info-box-content">
+            <text class="info-box-icon-text">💳</text>
+            <text class="info-box-value txt-body2-px">{{detailData.maskedAccountNumber}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Ticket Voucher & QR Section -->
+      <view a:if="{{tickets && tickets.length > 0}}" class="ticket-voucher-section">
+        <view class="ticket-section-header">
+          <text class="ticket-section-title txt-h5-px">E-Tiket Anda</text>
+          <text class="ticket-section-pagination txt-label2-sb-px">{{currentTicketIndex + 1}} / {{tickets.length}} Tiket</text>
+        </view>
+
+        <view class="voucher-slider-wrapper">
+          <view
+            class="slider-arrow arrow-left {{currentTicketIndex === 0 ? 'arrow-disabled' : ''}}"
+            onTap="onPrevTicket"
+          >
+            <text class="arrow-text">‹</text>
+          </view>
+
+          <!-- E-Ticket Physical Card -->
+          <view class="voucher-ticket-card" onTap="openTicketModal">
+            <view class="cutout cutout-left" />
+            <view class="cutout cutout-right" />
+
+            <view class="voucher-left-col">
+              <text class="voucher-ticket-title txt-label1-sb-px">{{currentTicket.ticketTitle}}</text>
+              <view class="voucher-meta-col">
+                <text class="voucher-meta-row txt-body2-px">Pintu Masuk: {{currentTicket.gate}}</text>
+                <text class="voucher-meta-row txt-body2-px">Kategori: {{currentTicket.category}}</text>
+                <text class="voucher-meta-row txt-body2-px">Pemegang: {{currentTicket.holderName}}</text>
+              </view>
+              <view class="booking-code-box">
+                <text class="booking-code-label">KODE BOOKING / QR PASS</text>
+                <text class="booking-code-value">{{currentTicket.bookingCode}}</text>
+              </view>
+            </view>
+
+            <view class="voucher-perforation" />
+
+            <view class="voucher-right-col">
+              <view class="qr-canvas-box">
+                <image
+                  a:if="{{cardQrImage}}"
+                  class="voucher-qr-img"
+                  src="{{cardQrImage}}"
+                  mode="aspectFit"
+                />
+                <canvas
+                  a:else
+                  id="qrCanvasDetail"
+                  canvas-id="qrCanvasDetail"
+                  class="voucher-qr-canvas"
+                ></canvas>
+              </view>
+              <text class="tap-to-enlarge">Ketuk untuk memperbesar</text>
+            </view>
+          </view>
+
+          <view
+            class="slider-arrow arrow-right {{currentTicketIndex === tickets.length - 1 ? 'arrow-disabled' : ''}}"
+            onTap="onNextTicket"
+          >
+            <text class="arrow-text">›</text>
+          </view>
+        </view>
+
+        <!-- Pagination Dots for Multi-Ticket -->
+        <view a:if="{{tickets.length > 1}}" class="dots-indicator-row">
+          <view
+            a:for="{{tickets}}"
+            a:for-index="dotIdx"
+            a:key="dotIdx"
+            class="dot-item {{currentTicketIndex === dotIdx ? 'dot-active' : ''}}"
+            onTap="onSelectTicketIndex"
+            data-index="{{dotIdx}}"
+          />
+        </view>
+      </view>
+
+      <view class="action-buttons-section">
+        <button class="btn-home-outline txt-label1-sb-px" onTap="goToHome">
+          Kembali ke Beranda
+        </button>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- Enlarged Ticket QR Modal Popup -->
+  <ant-popup animation="{{true}}" visible="{{ticketModalVisible}}" zIndex="{{1000}}" onClose="closeTicketModal">
+    <view class="popup-container full-modal ticket-modal-container">
+      <view class="ticket-modal-handle"></view>
+      <view class="ticket-modal-qr-container">
+        <image a:if="{{modalQrImage}}" class="ticket-modal-qr-image" src="{{modalQrImage}}" mode="aspectFit" />
+        <canvas a:else id="qrCanvasModalSource" canvas-id="qrCanvasModalSource" class="ticket-modal-qr-image"></canvas>
+      </view>
+      <text class="txt-h3-px ticket-modal-event-name">
+        {{detailData.eventName}}
+      </text>
+      <text class="txt-body2-px ticket-modal-holder-name">
+        {{currentTicket.holderName || detailData.fullName}} • {{currentTicket.category}}
+      </text>
+      <view class="qr-status-badge {{detailData.status === 'SUCCESS' ? 'status-success' : 'status-pending'}}">
+        <text class="qr-status-text">
+          {{detailData.status === 'SUCCESS' ? 'Tiket Valid' : 'Menunggu Check-in'}}
+        </text>
+      </view>
+    </view>
+  </ant-popup>
+
+  <!-- Return & Complaint Form Modal Popup -->
+  <ant-popup animation="{{true}}" visible="{{isReturnModalOpen}}" zIndex="{{1000}}" onClose="closeReturnModal">
+    <view class="return-modal-container">
+      <view class="return-modal-handle"></view>
+      
+      <view class="return-modal-header">
+        <text class="return-modal-title">Ajukan Komplain / Retur</text>
+        <text class="return-modal-sub">Pilih alasan pengembalian barang dan berikan keterangan detail.</text>
+      </view>
+
+      <!-- Reason Options List -->
+      <view class="return-reasons-list">
+        <block a:for="{{returnReasonOptions}}" a:key="*this">
+          <view class="return-reason-option {{returnReason === item ? 'reason-selected' : ''}}" onTap="onSelectReturnReason" data-reason="{{item}}">
+            <view class="radio-circle {{returnReason === item ? 'radio-active' : ''}}">
+              <view class="radio-inner" a:if="{{returnReason === item}}"></view>
+            </view>
+            <text class="reason-text">{{item}}</text>
+          </view>
+        </block>
+      </view>
+
+      <!-- Notes Textarea -->
+      <view class="return-notes-box">
+        <text class="notes-label">Catatan Tambahan (Opsional):</text>
+        <view class="textarea-wrapper">
+          <textarea class="notes-textarea" placeholder="Jelaskan kondisi barang yang diterima secara rinci..." value="{{returnNotes}}" onInput="onReturnNotesInput" maxlength="300" />
+          <text class="char-counter">{{(returnNotes || '').length}}/300</text>
+        </view>
+      </view>
+
+      <!-- Refund Summary Info -->
+      <view class="refund-summary-card">
+        <view class="refund-lbl-col">
+          <text class="refund-lbl">Estimasi Pengembalian Dana:</text>
+        </view>
+        <text class="refund-val">{{umkmOrder.formattedTotalAmount}}</text>
+      </view>
+
+      <!-- CTA Buttons -->
+      <view class="return-modal-actions">
+        <view class="btn-cancel-return" onTap="closeReturnModal">
+          <text class="btn-cancel-txt">Batal</text>
+        </view>
+        <view class="btn-submit-return {{isSubmittingReturn ? 'btn-disabled' : ''}}" onTap="submitReturnRequest">
+          <text class="btn-submit-txt">{{isSubmittingReturn ? 'Mengirim...' : 'Kirim Pengajuan'}}</text>
+        </view>
+      </view>
+    </view>
+  </ant-popup>
+
+  <canvas id="qrCanvasModalSource" canvas-id="qrCanvasModalSource" class="qr-source-canvas"></canvas>
+
+  <loading loading="{{ isLoading }}" pixel></loading>
+</view>
+

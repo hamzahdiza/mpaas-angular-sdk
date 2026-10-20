@@ -1,57 +1,205 @@
-<view className="history-container">
-  <view class="sticky-top">
+<view class="history-page-container">
+  <view class="top-bar-wrapper">
     <top-bar
       type="navigation"
       navigate
       safeArea
       pixel
-      backgroundColor="var(--white)"
-      title="Riwayat Transaksi"
+      title="{{ pageTitle }}"
       iconL="/src/assets/icons/ic_common_arrow_back.svg"
+      backgroundColor="#FFFFFF"
+      color="#0F172A"
     />
   </view>
-  
-  <view className="header">
-    <text className="title">Riwayat Transaksi</text>
-    <text className="subtitle">Lacak pesanan gaya hidup Anda</text>
-  </view>
 
-  <view a:if="{{isLoading}}" className="loading-state">
-    <view className="spinner"></view>
-    <text>Memuat riwayat...</text>
-  </view>
-
-  <view a:elif="{{transactions.length > 0}}" className="history-list">
-    <view a:for="{{transactions}}" key="{{item.id}}" className="history-item" onTap="goToDetail" data-id="{{item.id}}">
-      <view className="item-main">
-        <view className="category-icon {{item.orderType}}">
-          <text>{{item.categoryIcon}}</text>
-        </view>
-        <view className="item-info">
-          <text className="service-name">{{item.serviceName}}</text>
-          <text className="order-date">{{item.formattedDate}}</text>
-          <view className="status-badge {{item.status}}">
-            <text>{{item.displayStatus}}</text>
-          </view>
-        </view>
-        <view className="item-amount">
-          <text className="amount">{{item.formattedAmount}}</text>
-          <text className="invoice-no" a:if="{{item.invoiceNumber}}">{{item.invoiceNumber}}</text>
-        </view>
-      </view>
-      
-      <!-- Timeline sederhana untuk status operasional Cafe/Resto -->
-      <view a:if="{{item.orderType === 'cafe' || item.orderType === 'restaurant'}}" className="operational-note">
-        <text a:if="{{item.status === 'preparing'}}">👨‍🍳 Sedang dimasak oleh chef...</text>
-        <text a:if="{{item.status === 'ready'}}">✅ Makanan sudah siap!</text>
-        <text a:if="{{item.status === 'delivering'}}">🛵 Driver sedang menuju lokasi Anda</text>
-      </view>
+  <!-- Navigation Category Filter Tabs (Shown ONLY when accessed from Landing Hub) -->
+  <view class="history-nav-tabs" a:if="{{!isFromUmkm}}">
+    <view 
+      class="nav-tab-item {{ currentTab === 'all' ? 'active' : '' }}" 
+      onTap="switchTab" 
+      data-tab="all"
+    >
+      Semua
+    </view>
+    <view 
+      class="nav-tab-item {{ currentTab === 'umkm' ? 'active' : '' }}" 
+      onTap="switchTab" 
+      data-tab="umkm"
+    >
+      🛍️ Pesanan UMKM
+    </view>
+    <view 
+      class="nav-tab-item {{ currentTab === 'event' ? 'active' : '' }}" 
+      onTap="switchTab" 
+      data-tab="event"
+    >
+      🎟️ Tiket & Event
     </view>
   </view>
 
-  <view a:else className="empty-state">
-    <text className="empty-icon">📂</text>
-    <text className="empty-text">Belum ada transaksi terekam</text>
-    <button className="shop-now" onTap="homeHandler">Mulai Belanja</button>
-  </view>
+  <scroll-view scroll-y="{{true}}" class="history-scroll-container" scroll-with-animation="{{true}}">
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 1. LOADING SKELETON STATE                                    -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <view a:if="{{isLoading}}" class="shimmer-history-list">
+      <view class="shimmer-history-card skeleton" />
+      <view class="shimmer-history-card skeleton" />
+      <view class="shimmer-history-card skeleton" />
+    </view>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 2. ERROR STATE                                               -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <view a:elif="{{isError}}" class="empty-state-wrapper">
+      <text class="empty-icon">⚠️</text>
+      <text class="empty-title">Gagal Memuat Data</text>
+      <view class="shop-now" onTap="fetchHistory">Coba Lagi</view>
+    </view>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 3. LOADED TRANSACTIONS LIST                                  -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <view a:elif="{{displayedTransactions && displayedTransactions.length > 0}}" class="transactions-list">
+      <block a:for="{{displayedTransactions}}" a:for-index="idx" a:key="transactionId">
+        
+        <!-- CARD A: PESANAN E-COMMERCE TOKO UMKM -->
+        <view
+          a:if="{{item.isUmkm}}"
+          class="transaction-card umkm-order-card"
+          onTap="goToDetail"
+          data-id="{{item.transactionId}}"
+          data-isumkm="{{true}}"
+        >
+          <!-- Store Header -->
+          <view class="card-store-header">
+            <view class="store-badge-left">
+              <image class="store-tiny-logo" src="{{item.storeLogo}}" mode="aspectFill" />
+              <text class="store-title-txt">{{item.storeName}}</text>
+              <text class="umkm-pill-tag">UMKM</text>
+            </view>
+            <view class="status-pill status-{{item.status.toLowerCase()}}">
+              <text class="status-text">{{item.displayStatus || item.status}}</text>
+            </view>
+          </view>
+
+          <!-- Order Meta -->
+          <view class="order-meta-row">
+            <text class="order-no-txt">No. Pesanan: {{item.orderNumber}}</text>
+            <text class="order-date-txt">{{item.formattedDate}}</text>
+          </view>
+
+          <!-- Product Item Preview -->
+          <view class="product-item-row">
+            <image class="prod-thumbnail" src="{{item.itemImage}}" mode="aspectFill" />
+            <view class="prod-desc-col">
+              <text class="prod-name-txt">{{item.title}}</text>
+              <text class="prod-variant-txt" a:if="{{item.variantName && item.variantName !== '-'}}">Varian: {{item.variantName}}</text>
+              <view class="prod-qty-price-row">
+                <text class="prod-price-txt">{{item.firstItemPrice}}</text>
+                <text class="prod-qty-txt">x{{item.firstItemQty}}</text>
+              </view>
+            </view>
+          </view>
+
+          <!-- Other Items Count (if multi-item) -->
+          <view class="more-items-notice" a:if="{{item.otherItemsCount > 0}}">
+            <text class="more-items-txt">+ {{item.otherItemsCount}} produk lainnya dalam pesanan ini</text>
+          </view>
+
+          <!-- Courier & Tracking Status Banner -->
+          <view class="courier-tracking-strip">
+            <view class="courier-strip-left">
+              <text class="strip-icon">🚚</text>
+              <view class="strip-text-col">
+                <text class="strip-courier-name">{{item.courierName}} ({{item.courierService}})</text>
+                <text class="strip-resi-txt" a:if="{{item.trackingNumber}}">No. Resi: <text class="resi-bold">{{item.trackingNumber}}</text></text>
+                <text class="strip-resi-txt" a:else>Status: {{item.displayStatus}}</text>
+              </view>
+            </view>
+            <view class="track-badge-btn" a:if="{{item.trackingNumber}}">
+              Lacak Resi
+            </view>
+          </view>
+
+          <view class="card-divider" />
+
+          <!-- Card Footer -->
+          <view class="card-footer-row">
+            <view class="footer-left">
+              <text class="total-label-txt">Total Pesanan ({{item.totalQuantity}} Barang):</text>
+              <text class="amount-text">{{item.formattedAmount}}</text>
+            </view>
+            <view class="footer-actions-row">
+              <view 
+                a:if="{{item.status === 'PENDING' || item.status === 'pending'}}" 
+                class="btn-pay-action" 
+                catchTap="payNow" 
+                data-id="{{item.transactionId}}"
+              >
+                <text class="btn-pay-action-txt">Bayar Sekarang</text>
+              </view>
+              <view class="action-cta-btn">
+                <text class="cta-btn-txt">Detail Pesanan & Resi</text>
+                <text class="cta-arrow-icon">›</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- CARD B: TIKET EVENT / ATTRACTION -->
+        <view
+          a:else
+          class="transaction-card event-ticket-card"
+          onTap="goToDetail"
+          data-id="{{item.transactionId}}"
+          data-isumkm="{{false}}"
+        >
+          <view class="card-main-row">
+            <view class="card-thumb-wrapper">
+              <text class="category-icon-emoji">{{item.categoryIcon || '🎟️'}}</text>
+            </view>
+            <view class="card-info-col">
+              <text class="event-title">{{item.title}}</text>
+              <view class="meta-row">
+                <text class="meta-icon-text">📅</text>
+                <text class="meta-text">{{item.formattedDate}}</text>
+              </view>
+              <view class="meta-row" a:if="{{item.subtitle}}">
+                <text class="meta-icon-text">📍</text>
+                <text class="meta-text">{{item.subtitle}}</text>
+              </view>
+              <view class="ticket-badge">
+                <text class="ticket-badge-text">{{item.quantity}} Tiket / Item</text>
+              </view>
+            </view>
+            <view class="card-arrow-wrapper">
+              <text class="chevron-arrow">›</text>
+            </view>
+          </view>
+
+          <view class="card-divider" />
+
+          <view class="card-footer-row">
+            <view class="status-pill status-{{item.status.toLowerCase()}}">
+              <text class="status-text">{{item.displayStatus || item.status}}</text>
+            </view>
+            <view class="amount-wrapper">
+              <text class="amount-text">{{item.formattedAmount}}</text>
+            </view>
+          </view>
+        </view>
+
+      </block>
+    </view>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 4. EMPTY STATE                                               -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <view a:else class="empty-state-wrapper">
+      <text class="empty-icon">📂</text>
+      <text class="empty-title">Belum Ada Transaksi</text>
+      <text class="empty-desc">Riwayat pesanan pada kategori ini akan muncul di sini.</text>
+      <view class="shop-now" onTap="goToHome">Mulai Belanja</view>
+    </view>
+  </scroll-view>
 </view>

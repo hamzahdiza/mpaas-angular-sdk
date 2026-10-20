@@ -1,53 +1,120 @@
-<view class="hotel-index-container">
-  <view class="sticky-top">
+<view class="event-catalog-container">
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- TOP STICKY BAR                                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <view class="sticky-header-wrapper">
     <top-bar
-      type="{{'navigation'}}"
-      navigate={{true}}
-      backgroundColor="#FFFFFF"
-      color="#00000"
-      title="{{'Wondr Event'}}"
-      iconL="../../../../assets/icons/ic_common_arrow_back.svg"
+      type="navigation"
+      navigate="{{true}}"
+      backgroundColor="#0F172A"
+      color="#FFFFFF"
+      title="Katalog Event & Tiket"
+      iconL="/src/assets/icons/ic_common_arrow_back_white.svg"
       safeArea
       pixel
     />
- 
+
+    <!-- Search & Filter Bar Section -->
+    <view class="header-filter-panel">
+      <!-- Search Input Box -->
+      <view class="search-box">
+        <text class="search-icon">🔍</text>
+        <input
+          class="search-input"
+          placeholder="Cari konser, lari, atau pameran..."
+          placeholder-class="search-placeholder"
+          value="{{searchQuery}}"
+          onInput="onSearchInput"
+        />
+      </view>
+
+      <!-- Category Filter Pills -->
+      <scroll-view scroll-x="{{true}}" class="filter-chips-scroll">
+        <view class="filter-chips-row">
+          <block a:for="{{ filterCategories }}" a:key="id">
+            <view
+              class="filter-chip {{ selectedCategory === item.id ? 'active' : '' }}"
+              onTap="filterByCategory"
+              data-id="{{item.id}}"
+            >
+              <text class="chip-icon">{{item.icon}}</text>
+              <text class="chip-label">{{item.label}}</text>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
   </view>
 
-  <scroll-view scroll-y="{{true}}" class="scroll-content">
-    <view a:if="{{ successFetch }}" class="list-wrapper">
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- MAIN SCROLLABLE CONTENT                                     -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <scroll-view scroll-y="{{true}}" class="event-scroll-body">
+    
+    <!-- 1. LOADING SKELETON STATE -->
+    <view a:if="{{ isLoading }}" class="shimmer-catalog-list">
+      <view class="shimmer-event-card skeleton" />
+      <view class="shimmer-event-card skeleton" />
+      <view class="shimmer-event-card skeleton" />
+    </view>
 
-      <block a:for="{{ eventList }}" a:for-item="event">
-
-        <!--<view 
-          a:if="{{ hotel.templateId == 1 }}" 
-          class="hotel-card-t1" 
-          onTap="goToDetail" 
-          data-id="{{hotel.id}}"
-        ><image class="banner-t1" src="{{hotel.bannerUrl}}" mode="aspectFill" /><view class="info-t1"><text class="name-t1">{{hotel.name}}</text><view class="meta-t1"><image src="/src/assets/icons/ic_common_location.svg" class="icon-12" /><text class="loc-t1">{{hotel.location}}</text></view><view class="price-row"><text class="price-start">Mulai dari</text><text class="price-val">{{hotel.formattedPrice}}</text></view></view></view> -->
-
-        <view class="hotel-card-t2" onTap="goToDetail" data-id="{{event.id}}">
-          <view class="badge-luxury">Event</view>
-          <image class="banner-t2" src="{{event.bannerUrl}}" mode="aspectFill" />
-          <view class="overlay-t2">
-            <text class="name-t2">{{event.name}}</text>
-            <view class="stars-row">
-              <image
-                a:for="{{event.stars}}"
-                src="/src/assets/icons/ic_common_star_filled.svg"
-                class="icon-star"
-              />
+    <!-- 2. LOADED EVENT LIST -->
+    <view a:elif="{{ filteredEvents && filteredEvents.length > 0 }}" class="events-card-list">
+      <block a:for="{{ filteredEvents }}" a:key="id">
+        <view class="catalog-event-card" onTap="goToDetail" data-id="{{item.id}}">
+          <!-- Thumbnail & Badges -->
+          <view class="card-thumb-container">
+            <image class="card-banner-img" src="{{item.bannerUrl}}" mode="aspectFill" />
+            <view class="card-banner-overlay" />
+            
+            <view class="card-tag-pill">
+              <text class="tag-icon">{{item.categoryIcon}}</text>
+              <text class="tag-label">{{item.categoryTag}}</text>
             </view>
-            <text class="price-t2">{{event.formattedPrice}} / org</text>
+          </view>
+
+          <!-- Card Content Body -->
+          <view class="card-content-body">
+            <text class="card-event-title">{{item.name}}</text>
+
+            <view class="card-meta-column">
+              <view class="meta-item-row">
+                <text class="meta-icon">📅</text>
+                <text class="meta-val">{{item.formattedDate}}</text>
+              </view>
+              <view class="meta-item-row">
+                <text class="meta-icon">📍</text>
+                <text class="meta-val">{{item.location}}</text>
+              </view>
+            </view>
+
+            <view class="card-divider" />
+
+            <!-- Price & CTA Action -->
+            <view class="card-footer-action">
+              <view class="price-info-col">
+                <text class="price-prefix-txt">Mulai dari</text>
+                <view class="price-val-wrap">
+                  <text class="price-primary-txt">{{item.formattedPrice}}</text>
+                  <text class="price-strike-txt" a:if="{{item.formattedNormalPrice}}">{{item.formattedNormalPrice}}</text>
+                </view>
+              </view>
+              <view class="btn-ticket-cta">
+                <text class="btn-ticket-txt">Pesan Tiket</text>
+                <text class="btn-arrow-txt">›</text>
+              </view>
+            </view>
           </view>
         </view>
-
       </block>
     </view>
 
-    <view a:if="{{ !isLoading && !successFetch }}" class="error-state">
-      <error-reload onReload="fetchHotels" />
+    <!-- 3. EMPTY STATE -->
+    <view a:else class="catalog-empty-state">
+      <text class="empty-emoji">🎪</text>
+      <text class="empty-title">Tidak Ada Event Ditemukan</text>
+      <text class="empty-subtitle">Coba cari dengan kata kunci lain atau pilih kategori Semua Event.</text>
     </view>
-  </scroll-view>
 
-  <loading loading="{{ isLoading }}" />
+  </scroll-view>
 </view>

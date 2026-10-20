@@ -1,5 +1,10 @@
 {
   "usingComponents": {
     "top-bar": "@bni-maverick-mpaas/lib/es/top-bar/top-bar"
-  }
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES",
+  "defaultTitle": " ",
+  "allowsBounceVertical": "NO",
+  "pullRefresh": false
 }

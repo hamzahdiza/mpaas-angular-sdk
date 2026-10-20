@@ -1,49 +1,431 @@
-<view class="umkm-index-page">
-  <block>
-    <umkm-template-one
-      a:if="{{ templateId == 1 || !templateId }}"
-      data="{{ umkmData }}"
-      cartCount="{{ cartCount }}"
-      totalCartPrice="{{ totalCartPrice }}"
-      onProductTap="handleProductTap"
-      onAddToCart="handleAddToCart"
-      onCheckoutClick="handleCheckout"
+<view class="umkm-mall-page">
+  <view class="sticky-top">
+    <top-bar
+      type="navigation"
+      navigate="{{true}}"
+      safeArea="{{true}}"
+      pixel="{{true}}"
+      backgroundColor="{{ isStorefrontMode && storeThemeColor ? storeThemeColor : '#FFFFFF' }}"
+      color="{{ isStorefrontMode && storeThemeColor ? '#FFFFFF' : '#0F172A' }}"
+      title=" "
+      iconL="{{ isStorefrontMode && storeThemeColor ? '/src/assets/icons/ic_common_arrow_back_white.svg' : '/src/assets/icons/ic_common_arrow_back.svg' }}"
+      iconR="{{ isStorefrontMode && storeThemeColor ? '/src/assets/icons/Icon_transaction_history_white.svg' : '/src/assets/icons/Icon_transaction_history.svg' }}"
+      onIconRTap="goToOrders"
+      onIconLTap="onBack"
     />
-    <umkm-template-two
-      a:elif="{{ templateId == 2 }}"
-      data="{{ umkmData }}"
-      cartCount="{{ cartCount }}"
-      totalCartPrice="{{ totalCartPrice }}"
-      onProductTap="handleProductTap"
-      onAddToCart="handleAddToCart"
-      onCheckoutClick="handleCheckout"
-    />
-    <umkm-template-three
-      a:elif="{{ templateId == 3 }}"
-      data="{{ umkmData }}"
-      cartCount="{{ cartCount }}"
-      totalCartPrice="{{ totalCartPrice }}"
-      onProductTap="handleProductTap"
-      onAddToCart="handleAddToCart"
-      onCheckoutClick="handleCheckout"
-    />
-    <umkm-template-four
-      a:elif="{{ templateId == 4 }}"
-      data="{{ umkmData }}"
-      cartCount="{{ cartCount }}"
-      totalCartPrice="{{ totalCartPrice }}"
-      onProductTap="handleProductTap"
-      onAddToCart="handleAddToCart"
-      onCheckoutClick="handleCheckout"
-    />
-    <umkm-template-five
-      a:elif="{{ templateId == 5 }}"
-      data="{{ umkmData }}"
-      cartCount="{{ cartCount }}"
-      totalCartPrice="{{ totalCartPrice }}"
-      onProductTap="handleProductTap"
-      onAddToCart="handleAddToCart"
-      onCheckoutClick="handleCheckout"
-    />
-  </block>
+  </view>
+
+  <scroll-view scroll-y="{{true}}" class="mall-scroll">
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- MODE 1: SDUI CUSTOM STOREFRONT (OPENED FROM TENANT CARD)       -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <block a:if="{{ isStorefrontMode }}">
+      
+      <!-- Store Header Banner -->
+      <view class="store-hero-banner" style="background-image: url('{{ storeBannerUrl }}');">
+        <view class="store-hero-overlay">
+          <view class="store-profile-box">
+            <image class="store-logo" src="{{ storeLogoUrl }}" mode="aspectFill" />
+            <view class="store-meta">
+              <view class="store-title-row">
+                <text class="store-name">{{ storeData.name }}</text>
+                <text class="verified-tag">✓</text>
+              </view>
+              <text class="store-city">📍 {{ storeData.cityName || 'Indonesia' }}</text>
+              <view class="store-stats">
+                <text class="stat-item">⭐ {{ storeData.rating || '5.0' }}</text>
+                <text class="stat-sep">•</text>
+                <text class="stat-item">{{ storeData.totalSales || '100+' }} Penjualan</text>
+                <text class="stat-sep">•</text>
+                <text class="stat-item">{{ storeProducts.length }} Produk</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- Announcement Ticker Bar (from CMS SDUI) -->
+      <view class="announcement-ticker" a:if="{{ announcementText }}" style="background-color: {{ storeThemeColor || '#0F172A' }};">
+        <text class="ticker-icon">📢</text>
+        <text class="ticker-text">{{ announcementText }}</text>
+      </view>
+
+      <!-- Dynamic Promo Banners Slider (from CMS SDUI) -->
+      <view class="promo-slider-wrap" a:if="{{ promoBanners && promoBanners.length > 0 && currentStoreTab === 'home' }}">
+        <swiper 
+          class="promo-swiper" 
+          indicator-dots="{{true}}" 
+          autoplay="{{true}}" 
+          interval="3500" 
+          circular="{{true}}"
+        >
+          <block a:for="{{ promoBanners }}" a:key="id">
+            <swiper-item>
+              <view class="promo-slide-item">
+                <image src="{{ item.imageUrl }}" mode="aspectFill" class="promo-slide-img" />
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+
+      <!-- Claimable Store Vouchers (from CMS SDUI) -->
+      <view class="vouchers-section" a:if="{{ vouchers && vouchers.length > 0 && currentStoreTab === 'home' }}">
+        <scroll-view scroll-x="{{true}}" class="vouchers-scroll">
+          <view class="vouchers-row">
+            <block a:for="{{ vouchers }}" a:key="id">
+              <view class="voucher-card">
+                <view class="voucher-left">
+                  <text class="v-icon">🎟️</text>
+                  <view class="v-text-wrap">
+                    <text class="v-title">{{ item.discountText || item.title }}</text>
+                    <text class="v-min">Min. Rp {{ item.minSpend ? item.minSpend.toLocaleString('id-ID') : '0' }}</text>
+                  </view>
+                </view>
+                <view class="v-claim-btn" onTap="claimVoucher" data-code="{{item.code}}">Klaim</view>
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- Store Tabs -->
+      <view class="store-nav-tabs">
+        <view 
+          class="tab-item {{ currentStoreTab === 'home' ? 'active' : '' }}" 
+          onTap="switchStoreTab" 
+          data-tab="home"
+          style="{{ currentStoreTab === 'home' ? 'color: ' + (storeThemeColor || '#0F172A') + '; border-bottom-color: ' + (storeThemeColor || '#0F172A') + ';' : '' }}"
+        >
+          Beranda Toko
+        </view>
+        <view 
+          class="tab-item {{ currentStoreTab === 'products' ? 'active' : '' }}" 
+          onTap="switchStoreTab" 
+          data-tab="products"
+          style="{{ currentStoreTab === 'products' ? 'color: ' + (storeThemeColor || '#0F172A') + '; border-bottom-color: ' + (storeThemeColor || '#0F172A') + ';' : '' }}"
+        >
+          Semua Produk ({{ storeProducts.length }})
+        </view>
+      </view>
+
+      <view class="section-title-wrap" a:if="{{ storeHeroTitle && currentStoreTab === 'home' }}">
+        <text class="sdui-section-title">{{ storeHeroTitle }}</text>
+      </view>
+
+      <!-- Store Products Grid (SDUI Layout based on CMS template config) -->
+      
+      <!-- Layout Option A: 2-Column Grid (Default) -->
+      <view a:if="{{ storeLayoutClass === 'layout-2col' }}" class="products-container layout-2col">
+        <block a:for="{{ storeProducts }}" a:key="id">
+          <view class="product-card card-2col" onTap="handleProductTap" data-product="{{item}}">
+            <image class="prod-thumb" src="{{ item.image }}" mode="aspectFill" />
+            <view class="prod-info">
+              <text class="prod-title">{{ item.name }}</text>
+              <text class="prod-category-badge">{{ item.categoryName || 'UMKM' }}</text>
+              <view class="prod-price-row">
+                <text class="prod-price" style="color: {{ storeThemeColor || '#0F172A' }};">{{ item.priceDisplay || ('Rp ' + item.price.toLocaleString('id-ID')) }}</text>
+                <text class="prod-sold">{{ item.soldCount || 0 }} terjual</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <!-- Layout Option B: 1-Column List -->
+      <view a:elif="{{ storeLayoutClass === 'layout-1col' }}" class="products-container layout-1col">
+        <block a:for="{{ storeProducts }}" a:key="id">
+          <view class="product-card card-1col" onTap="handleProductTap" data-product="{{item}}">
+            <image class="prod-thumb-list" src="{{ item.image }}" mode="aspectFill" />
+            <view class="prod-info-list">
+              <view class="prod-info-top">
+                <text class="prod-title-list">{{ item.name }}</text>
+                <text class="prod-category-badge">{{ item.categoryName || 'UMKM' }}</text>
+              </view>
+              <view class="prod-price-row-list">
+                <text class="prod-price" style="color: {{ storeThemeColor || '#0F172A' }};">{{ item.priceDisplay || ('Rp ' + item.price.toLocaleString('id-ID')) }}</text>
+                <text class="prod-sold">{{ item.soldCount || 0 }} terjual</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <!-- Layout Option C: Masonry -->
+      <view a:else class="products-container layout-masonry">
+        <block a:for="{{ storeProducts }}" a:key="id">
+          <view class="product-card card-masonry" onTap="handleProductTap" data-product="{{item}}">
+            <image class="prod-thumb-masonry" src="{{ item.image }}" mode="aspectFill" style="height: {{ index % 2 === 0 ? '145px' : '105px' }};" />
+            <view class="prod-info">
+              <text class="prod-title">{{ item.name }}</text>
+              <text class="prod-category-badge">{{ item.categoryName || 'UMKM' }}</text>
+              <view class="prod-price-row">
+                <text class="prod-price" style="color: {{ storeThemeColor || '#0F172A' }};">{{ item.priceDisplay || ('Rp ' + item.price.toLocaleString('id-ID')) }}</text>
+                <text class="prod-sold">{{ item.soldCount || 0 }} terjual</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- MODE 2: DIREKTORI TOKO UMKM (LANDING FROM CATEGORY)            -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <block a:else>
+      <!-- Search & Filter Header (BNI Orange) -->
+      <view class="search-bar-wrap">
+        <view class="search-input-box">
+          <text class="search-icon">🔍</text>
+          <input 
+            type="text" 
+            class="search-input" 
+            placeholder="Cari toko UMKM, produk, atau kota..." 
+            value="{{ searchQuery }}" 
+            onInput="onSearchInput" 
+          />
+        </view>
+      </view>
+
+      <!-- ══════════════════════════════════════════════════════════ -->
+      <!-- 1. SHIMMER SKELETON LOADING STATE                         -->
+      <!-- ══════════════════════════════════════════════════════════ -->
+      <view a:if="{{ isLoading }}" class="shimmer-container">
+        
+        <!-- Category Chips Shimmer -->
+        <view class="category-carousel-section">
+          <view class="cat-row">
+            <view class="shimmer-cat-pill shimmer-box" />
+            <view class="shimmer-cat-pill shimmer-box" />
+            <view class="shimmer-cat-pill shimmer-box" />
+            <view class="shimmer-cat-pill shimmer-box" />
+            <view class="shimmer-cat-pill shimmer-box" />
+          </view>
+        </view>
+
+        <view class="section-container">
+          <!-- Header Section Shimmer -->
+          <view class="section-head">
+            <view class="section-head-title-wrap">
+              <view class="shimmer-title-bar shimmer-box" />
+              <view class="shimmer-sub-bar shimmer-box" />
+            </view>
+            <view class="shimmer-count-badge shimmer-box" />
+          </view>
+
+          <!-- Store Tenant Skeleton Cards -->
+          <view class="stores-directory-list">
+            
+            <view class="shimmer-store-card">
+              <view class="shimmer-card-banner shimmer-box" />
+              <view class="shimmer-card-body">
+                <view class="shimmer-identity-row">
+                  <view class="shimmer-avatar shimmer-box" />
+                  <view class="shimmer-meta-col">
+                    <view class="shimmer-name-line shimmer-box" />
+                    <view class="shimmer-desc-line shimmer-box" />
+                    <view class="shimmer-stats-line shimmer-box" />
+                  </view>
+                </view>
+                <view class="shimmer-tags-row">
+                  <view class="shimmer-tag-pill shimmer-box" />
+                  <view class="shimmer-tag-pill shimmer-box" />
+                  <view class="shimmer-tag-pill shimmer-box" />
+                </view>
+                <view class="shimmer-preview-grid">
+                  <view class="shimmer-preview-box shimmer-box" />
+                  <view class="shimmer-preview-box shimmer-box" />
+                  <view class="shimmer-preview-box shimmer-box" />
+                </view>
+                <view class="shimmer-cta-bar shimmer-box" />
+              </view>
+            </view>
+
+            <view class="shimmer-store-card">
+              <view class="shimmer-card-banner shimmer-box" />
+              <view class="shimmer-card-body">
+                <view class="shimmer-identity-row">
+                  <view class="shimmer-avatar shimmer-box" />
+                  <view class="shimmer-meta-col">
+                    <view class="shimmer-name-line shimmer-box" />
+                    <view class="shimmer-desc-line shimmer-box" />
+                    <view class="shimmer-stats-line shimmer-box" />
+                  </view>
+                </view>
+                <view class="shimmer-tags-row">
+                  <view class="shimmer-tag-pill shimmer-box" />
+                  <view class="shimmer-tag-pill shimmer-box" />
+                </view>
+                <view class="shimmer-preview-grid">
+                  <view class="shimmer-preview-box shimmer-box" />
+                  <view class="shimmer-preview-box shimmer-box" />
+                  <view class="shimmer-preview-box shimmer-box" />
+                </view>
+                <view class="shimmer-cta-bar shimmer-box" />
+              </view>
+            </view>
+
+          </view>
+        </view>
+
+      </view>
+
+      <!-- ══════════════════════════════════════════════════════════ -->
+      <!-- 2. REAL LOADED CONTENT STATE (API SUCCESS)                 -->
+      <!-- ══════════════════════════════════════════════════════════ -->
+      <view a:else>
+        <!-- 27 Dynamic Category Pills Carousel -->
+        <view class="category-carousel-section">
+          <scroll-view scroll-x="{{true}}" class="cat-scroll">
+            <view class="cat-row">
+              <view 
+                class="cat-chip {{ selectedCategoryId === 'ALL' ? 'active' : '' }}" 
+                onTap="filterByCategory" 
+                data-cat="ALL"
+              >
+                Semua (27)
+              </view>
+              <block a:for="{{ dynamicCategories }}" a:key="id">
+                <view 
+                  class="cat-chip {{ selectedCategoryId === item.id ? 'active' : '' }}" 
+                  onTap="filterByCategory" 
+                  data-cat="{{item.id}}"
+                >
+                  {{ item.name }}
+                </view>
+              </block>
+            </view>
+          </scroll-view>
+        </view>
+
+        <!-- UMKM Stores Directory Section (Card of List Toko UMKM) -->
+        <view class="section-container">
+          <view class="section-head">
+            <view class="section-head-title-wrap">
+              <text class="section-title">Direktori Toko UMKM</text>
+              <text class="section-subtitle">Pilih toko untuk melihat katalog produk dan promo eksklusif</text>
+            </view>
+            <text class="section-count">{{ filteredStores.length }} Toko</text>
+          </view>
+
+          <!-- Stores Directory List of Cards -->
+          <view class="stores-directory-list" a:if="{{ filteredStores.length > 0 }}">
+            <block a:for="{{ filteredStores }}" a:key="id">
+              <view class="store-tenant-card" onTap="openStorefrontFromHub" data-store="{{item}}">
+                
+                <!-- Store Card Banner -->
+                <view class="store-card-banner" style="background-image: url('{{ item.bannerUrl }}');">
+                  <view class="store-card-banner-overlay">
+                    <view class="store-binaan-badge">
+                      <text class="binaan-icon">🏷️</text>
+                      <text class="binaan-text">{{ item.badge || 'UMKM Binaan BNI' }}</text>
+                    </view>
+                    <view class="store-location-badge">
+                      <text class="loc-icon">📍</text>
+                      <text class="loc-text">{{ item.cityName }}</text>
+                    </view>
+                  </view>
+                </view>
+
+                <!-- Store Card Body -->
+                <view class="store-card-body">
+                  <view class="store-identity-row">
+                    <image class="store-avatar-logo" src="{{ item.logoUrl }}" mode="aspectFill" />
+                    <view class="store-title-area">
+                      <view class="store-name-row">
+                        <text class="store-name-text">{{ item.name }}</text>
+                        <text class="store-verified-icon">✓ Official</text>
+                      </view>
+                      <text class="store-tagline-text">{{ item.tagline }}</text>
+                      <view class="store-metrics-row">
+                        <text class="metric-rating">⭐ {{ item.rating }}</text>
+                        <text class="metric-sep">•</text>
+                        <text class="metric-sales">{{ item.totalSales || '100+' }} Penjualan</text>
+                        <text class="metric-sep">•</text>
+                        <text class="metric-prods">{{ item.products ? item.products.length : (item.totalProducts || 0) }} Produk</text>
+                      </view>
+                    </view>
+                  </view>
+
+                  <!-- Tags & Voucher Row -->
+                  <view class="store-highlights-row" a:if="{{ item.vouchersSummary || (item.categoryTags && item.categoryTags.length > 0) }}">
+                    <view class="store-voucher-pill" a:if="{{ item.vouchersSummary }}">
+                      <text class="vp-icon">🎟️</text>
+                      <text class="vp-text">{{ item.vouchersSummary }}</text>
+                    </view>
+                    <block a:for="{{ item.categoryTags }}" a:for-item="tag" a:key="*this">
+                      <text class="store-cat-tag">{{ tag }}</text>
+                    </block>
+                  </view>
+
+                  <!-- Product Preview Carousel / Mini Grid -->
+                  <view class="store-preview-products" a:if="{{ item.previewProducts && item.previewProducts.length > 0 }}">
+                    <view class="preview-prods-label">Katalog Produk Unggulan:</view>
+                    <view class="preview-prods-grid">
+                      <block a:for="{{ item.previewProducts }}" a:for-item="p" a:key="id">
+                        <view class="preview-prod-item">
+                          <image class="preview-prod-img" src="{{ p.image }}" mode="aspectFill" />
+                          <text class="preview-prod-price">Rp {{ p.priceFormatted }}</text>
+                          <text class="preview-prod-name">{{ p.name }}</text>
+                        </view>
+                      </block>
+                    </view>
+                  </view>
+
+                  <!-- CTA Action Button -->
+                  <view class="store-card-cta">
+                    <text class="cta-text">Kunjungi Toko & Lihat Katalog</text>
+                    <text class="cta-arrow">➔</text>
+                  </view>
+                </view>
+
+              </view>
+            </block>
+          </view>
+
+          <!-- Empty State ONLY when not loading and really 0 stores -->
+          <view class="empty-stores-state" a:if="{{ filteredStores.length === 0 }}">
+            <image class="empty-icon" src="https://cdn-icons-png.flaticon.com/128/7486/7486744.png" />
+            <text class="empty-title">Tidak ada toko UMKM yang cocok</text>
+            <text class="empty-desc">Coba gunakan kata kunci lain atau pilih kategori Semua.</text>
+            <view class="reset-filter-btn" onTap="resetFilters">Lihat Semua Toko</view>
+          </view>
+        </view>
+      </view>
+
+    </block>
+  </scroll-view>
+
+  <!-- Mode 1: Sticky Bottom Navigation Bar for Storefront Mode (Matches CMS SDUI Preview) -->
+  <view class="storefront-bottom-bar" a:if="{{ isStorefrontMode }}">
+    <view class="storefront-bar-actions">
+      <view class="bar-action-item" onTap="onChatMerchant">
+        <text class="bar-action-icon">💬</text>
+        <text class="bar-action-label">Chat</text>
+      </view>
+      <view class="bar-action-item cart-action-wrap" onTap="goToCart">
+        <text class="bar-action-icon">🛒</text>
+        <text class="bar-action-label">Keranjang</text>
+        <view class="bar-cart-badge" a:if="{{ cartCount > 0 }}">{{ cartCount }}</view>
+      </view>
+    </view>
+    <button 
+      class="btn-catalog-cta" 
+      onTap="switchStoreTab" 
+      data-tab="products"
+      style="background-color: {{ storeThemeColor || '#0F172A' }};"
+    >
+      Lihat Katalog ({{ storeProducts.length }})
+    </button>
+  </view>
+
+  <!-- Mode 2: Floating Cart Button (Direktori Mall Hub) -->
+  <view class="floating-cart-btn" a:if="{{ !isStorefrontMode && cartCount > 0 }}" onTap="goToCart">
+    <image src="https://cdn-icons-png.flaticon.com/128/2838/2838895.png" class="cart-floating-icon" />
+    <view class="floating-cart-info">
+      <text class="floating-cart-count">{{ cartCount }} Barang</text>
+      <text class="floating-cart-text">Lihat Keranjang</text>
+    </view>
+  </view>
 </view>
+

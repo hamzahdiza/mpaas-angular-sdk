@@ -1,502 +1,886 @@
-/* ─── BASE ─── */
-.base-background-0 {
-  background-color: #9B7EDC;
+/* ═════════════════════════════════════════════════════════════════ */
+/* WONDR LIFESTYLE LANDING PAGE — MINIMALIST & STYLISH DESIGN SYSTEM */
+/* ═════════════════════════════════════════════════════════════════ */
+
+/* ─── 1. BASE & ROOT ─── */
+.landing-page-root {
+  background-color: #F8FAFC;
+  min-height: 100vh;
   width: 100%;
-  height: 260px;
-  position: absolute;
-  z-index: 0;
-  top: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "TT Interphases Pro", "Segoe UI", Roboto, sans-serif;
+  color: #0F172A;
+  -webkit-font-smoothing: antialiased;
 }
-.base-background {
-  background-color: #9B7EDC;
-  width: 100%;
-  height: 200px;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-}
-.sticky-top {
+
+.sticky-nav {
   position: sticky;
   top: 0;
-  z-index: 100;
-}
-.scroll-container {
-  display: flex;
+  z-index: 1000;
   width: 100%;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  background-color: #F7F6FB;
-}
-.background-content-base {
-  background-color: #9B7EDC;
-  position: absolute;
-  width: 100%;
-  height: 250px;
-  z-index: 0;
 }
 
-/* ─── HERO HEADER ─── */
-.main-hero-header {
+.landing-scroll-body {
   width: 100%;
-  height: 123px;
-  background-color: #9B7EDC;
+  box-sizing: border-box;
+}
+
+/* ─── 2. HERO DISCOVERY BANNER & SEARCH ─── */
+.hero-wrapper {
+  background: linear-gradient(145deg, #0F172A 0%, #1E293B 45%, #312E81 100%);
+  padding: 24px 20px 42px;
   position: relative;
-  z-index: 1;
-}
-.hero-header {
-  display: flex;
-  width: 100%;
-  min-height: 119px;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  padding-top: 4px;
-}
-.landing-image-left {
-  width: 68px;
-  height: 98px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-.landing-image-right {
-  width: 116px;
-  height: 108px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-.header-content {
-  display: grid;
-  grid-template-columns: 1fr;
-  width: calc(100% - 48px);
-  height: 119px;
-  z-index: 6;
-  padding: 0 24px;
-}
-.header-content-left {
-  display: flex;
-  width: 223px;
-  height: 100px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-.header-content-title-loading {
-  width: 100%;
-  min-height: 20px;
-}
-.header-content-description-loading {
-  margin-top: 8px;
-  width: 100%;
-  min-height: 20px;
-}
-.header-content-title {
-  align-self: stretch;
-  color: #FFF;
-  font-family: "TT Interphases Pro";
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 120%;
-}
-.header-content-description {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  align-self: stretch;
   overflow: hidden;
-  color: #FFF;
-  text-overflow: ellipsis;
-  font-family: "TT Interphases Pro";
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 140%;
-  margin-top: 8px;
-}
-.color-base-hero-header {
-  width: 100%;
-  height: 392%;
-  background-color: white;
 }
 
-/* ─── SECTION HEADER ─── */
-.section-header {
+.hero-mesh-bg {
+  position: absolute;
+  right: -30px;
+  top: -30px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, rgba(168, 85, 247, 0.2) 50%, transparent 70%);
+  filter: blur(28px);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  margin-bottom: 12px;
+  align-self: flex-start;
+}
+
+.hero-tag-dot {
+  color: #38BDF8;
+  font-size: 8px;
+}
+
+.hero-tag-text {
+  color: #F1F5F9;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.hero-headline {
+  color: #FFFFFF;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+.hero-subtext {
+  color: #94A3B8;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.search-bar-box {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 20px 20px 10px;
-}
-.section-header-label {
-  color: #1a1a1a;
-  font-family: "TT Interphases Pro";
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 120%;
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 10px 14px;
+  gap: 10px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.18), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* ─── QUICK ACCESS PILLS ─── */
-.quick-access-section {
-  width: 100%;
-  background-color: #ffffff;
-  margin-bottom: 12px;
-  padding-bottom: 16px;
-  z-index: 4;
+.search-icon {
+  font-size: 15px;
+  color: #64748B;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 13px;
+  color: #0F172A;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.search-placeholder {
+  color: #94A3B8;
+  font-size: 12.5px;
+}
+
+/* ─── 3. MAIN CATEGORY HUB (4 PRIMARY HUBS) ─── */
+.category-hub-card {
+  margin: -24px 16px 22px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 16px 10px 14px;
+  box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(226, 232, 240, 0.9);
   position: relative;
+  z-index: 10;
 }
-.quick-pills-scroll {
-  width: 100%;
+
+.category-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  align-items: flex-start;
+  text-align: center;
 }
-.quick-pills-row {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  padding: 0 20px;
-  width: max-content;
-}
-.quick-pill {
+
+.category-hub-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-  transition: transform 0.2s ease;
+  position: relative;
 }
-.quick-pill:active {
-  transform: scale(0.95);
-}
-.quick-pill-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 20px;
+
+.category-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-}
-.quick-pill-icon--purple { background: linear-gradient(135deg, #EDE8FB 0%, #DED4F8 100%); }
-.quick-pill-icon--blue   { background: linear-gradient(135deg, #E8EDFF 0%, #D4DDFF 100%); }
-.quick-pill-icon--green  { background: linear-gradient(135deg, #E6F9EF 0%, #D1F2DF 100%); }
-.quick-pill-icon--amber  { background: linear-gradient(135deg, #FFF1E6 0%, #FFE4CF 100%); }
-.quick-pill-icon--pink   { background: linear-gradient(135deg, #FDE8F0 0%, #FAD4E1 100%); }
-.quick-pill-icon--red    { background: linear-gradient(135deg, #FDECEC 0%, #FAD9D9 100%); }
-.quick-pill-img {
-  width: 32px;
-  height: 32px;
-}
-.quick-pill-label {
-  font-family: "TT Interphases Pro";
-  font-size: 12px;
-  font-weight: 600;
-  color: #333333;
-  text-align: center;
-  white-space: nowrap;
+  position: relative;
+  margin-bottom: 8px;
+  transition: transform 0.15s ease;
 }
 
-/* ─── SERVICES GRID ─── */
-.services-section {
-  width: 100%;
-  background-color: #ffffff;
-  margin-bottom: 12px;
-  padding-bottom: 16px;
-  z-index: 4;
-  position: relative;
+.category-icon-wrap:active {
+  transform: scale(0.92);
 }
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+
+.category-icon-img {
+  width: 28px;
+  height: 28px;
+}
+
+.theme-purple {
+  background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%);
+}
+
+.theme-teal {
+  background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%);
+}
+
+.theme-amber {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+}
+
+.theme-rose {
+  background: linear-gradient(135deg, #FFE4E6 0%, #FECDD3 100%);
+}
+
+.category-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  font-size: 8.5px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 7px;
+  color: #FFFFFF;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.badge-purple {
+  background: #7C3AED;
+}
+
+.badge-teal {
+  background: #0D9488;
+}
+
+.badge-amber {
+  background: #D97706;
+}
+
+.category-item-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1E293B;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.category-item-sub {
+  font-size: 9px;
+  font-weight: 500;
+  color: #64748B;
+  line-height: 1.2;
+}
+
+/* ─── 4. SECTION HEADINGS ─── */
+.section-block {
+  margin-bottom: 26px;
   padding: 0 16px;
 }
 
-/* BASE SERVICE CARD */
-.service-card {
-  border-radius: 16px;
-  overflow: hidden;
-  background-color: #ffffff;
-  border: 0.5px solid rgba(0, 0, 0, 0.06);
+.section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 14px;
+}
+
+.title-left {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
-.service-card-img {
-  height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+
+.sec-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.2px;
 }
-.service-card-icon {
-  width: 40px;
-  height: 40px;
-  position: relative;
-  z-index: 1;
-}
-.service-card-cover {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.service-card-img-skeleton {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-}
-.service-card-body {
-  padding: 10px 12px 14px;
-  display: flex;
-  flex-direction: column;
-}
-.service-card-tag {
-  display: inline-flex;
-  align-items: center;
-  font-family: "TT Interphases Pro";
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px 7px;
-  border-radius: 6px;
-  margin-bottom: 6px;
-  align-self: flex-start;
-}
-.service-card-title {
-  font-family: "TT Interphases Pro";
-  font-size: 13px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 3px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-}
-.service-card-sub {
-  font-family: "TT Interphases Pro";
-  font-size: 11px;
+
+.sec-subtitle {
+  font-size: 11.5px;
   font-weight: 400;
-  color: #888888;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
+  color: #64748B;
 }
 
-/* COLOR THEMES */
-.theme-blue .service-card-img   { background-color: #E8EDFF; }
-.theme-blue .service-card-img::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, #E8EDFF 0%, #C5D3FF 100%);
-}
-.service-tag-blue   { background-color: #E8EDFF; color: #4361EE; }
-
-.theme-green .service-card-img  { background: linear-gradient(135deg, #E6F9EF 0%, #BBECCE 100%); }
-.service-tag-green  { background-color: #E6F9EF; color: #1B8352; }
-
-.theme-amber .service-card-img  { background: linear-gradient(135deg, #FFF1E6 0%, #FFCFA0 100%); }
-.service-tag-amber  { background-color: #FFF1E6; color: #D4621A; }
-
-.theme-purple .service-card-img { background: linear-gradient(135deg, #EDE8FB 0%, #CFC4F0 100%); }
-.service-tag-purple { background-color: #EDE8FB; color: #7C5CBF; }
-
-/* WIDE CARD — colspan 2 */
-.service-card-wide {
-  grid-column: span 2;
-  flex-direction: row;
-  border-radius: 16px;
-  overflow: hidden;
-  background-color: #ffffff;
-  border: 0.5px solid rgba(0, 0, 0, 0.06);
+.see-all-btn {
   display: flex;
-}
-.service-card-wide .service-card-img {
-  width: 110px;
-  height: auto;
-  min-height: 90px;
-  flex-shrink: 0;
-  border-radius: 0;
-  background: linear-gradient(135deg, #E8FBF5 0%, #B2EDD9 100%);
-}
-.service-card-wide .service-card-body {
-  flex: 1;
-  justify-content: center;
-  padding: 14px 16px;
-}
-
-/* ─── EVENTS SECTION ─── */
-.events-section {
-  width: 100%;
-  background-color: #ffffff;
-  padding-bottom: 8px;
-  z-index: 4;
-  position: relative;
-}
-.events-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 0 16px 8px;
-}
-.event-card-section {
-  display: flex;
-  flex-direction: column;
-  border-radius: 12px;
-  border: 1px solid #EBEBEB;
-  overflow: hidden;
-  background-color: #ffffff;
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.06);
-  width: 300px;
-}
-.event-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 12px;
-  border: 1px solid #EBEBEB;
-  overflow: hidden;
-  background-color: #ffffff;
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.06);
-}
-.event-banner-wrapper {
-  width: 100%;
-  height: 180px;
-  position: relative;
-  overflow: hidden;
-  background-color: #f0f0f0;
-}
-.event-banner-img {
-  width: 100%;
-  height: 180px;
-}
-.event-banner-skeleton {
-  width: 100%;
-  height: 180px;
-  position: absolute;
-  top: 0; left: 0;
-  z-index: 10;
-}
-.event-price-badge {
-  position: absolute;
-  bottom: 10px; left: 12px;
-  display: flex;
-  flex-direction: column;
-  background: rgba(0, 0, 0, 0.55);
+  align-items: center;
+  gap: 2px;
+  padding: 4px 8px;
   border-radius: 8px;
-  padding: 4px 10px;
-  z-index: 5;
+  background: rgba(99, 102, 241, 0.08);
 }
-.event-price-badge-label {
-  color: rgba(255,255,255,0.80);
-  font-family: "TT Interphases Pro";
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 140%;
-}
-.event-price-badge-amount {
-  color: #ffffff;
-  font-family: "TT Interphases Pro";
-  font-size: 13px;
+
+.see-all-text {
+  font-size: 11.5px;
   font-weight: 700;
-  line-height: 120%;
+  color: #4F46E5;
 }
-.event-info {
-  display: flex;
-  flex-direction: column;
-  padding: 12px;
-  gap: 8px;
-}
-.event-name {
-  color: #0E0E0E;
-  font-family: "TT Interphases Pro";
+
+.see-all-arrow {
   font-size: 14px;
   font-weight: 700;
-  line-height: 120%;
+  color: #4F46E5;
+}
+
+/* ─── 5. SECTION 1: FEATURED EVENTS HORIZONTAL SCROLL ─── */
+.featured-events-scroll {
+  width: 100%;
+  overflow-x: scroll;
+  margin-left: -16px;
+  margin-right: -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+.featured-events-row {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  padding-bottom: 6px;
+}
+
+.featured-event-card {
+  width: 250px;
+  background: #FFFFFF;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.06);
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.featured-event-card:active {
+  transform: scale(0.98);
+}
+
+.card-thumb-wrap {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  background: #E2E8F0;
+  overflow: hidden;
+}
+
+.card-thumb-img {
+  width: 100%;
+  height: 100%;
+}
+
+.card-thumb-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+.card-tag-pill {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(15, 23, 42, 0.75);
+  padding: 4px 9px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.tag-icon {
+  font-size: 11px;
+}
+
+.tag-label {
+  color: #FFFFFF;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.card-price-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  z-index: 2;
+}
+
+.price-prefix {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 9.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.price-val-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.price-val {
+  color: #FFFFFF;
+  font-size: 14.5px;
+  font-weight: 800;
+}
+
+.price-strike {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 10px;
+  text-decoration: line-through;
+}
+
+.featured-card-body {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.featured-event-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.35;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  min-height: 36px;
 }
-.event-meta {
+
+.event-meta-pill-row {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.event-meta-row {
+
+.meta-mini-pill {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
-.event-meta-icon { width: 14px; height: 14px; flex-shrink: 0; }
-.event-meta-text {
-  color: #7A7A7A;
-  font-family: "TT Interphases Pro";
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 140%;
+
+.meta-mini-icon {
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.meta-mini-text {
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 500;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
 }
-.events-empty {
+
+/* ─── 6. SECTION 2: TOKO UMKM BINAAN BNI ─── */
+.stores-showcase-scroll {
+  width: 100%;
+  overflow-x: scroll;
+  margin-left: -16px;
+  margin-right: -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+.stores-showcase-row {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  padding-bottom: 6px;
+}
+
+.store-showcase-card {
+  width: 220px;
+  background: #FFFFFF;
+  border-radius: 18px;
+  padding: 14px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.05);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.store-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.store-card-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  background: #F1F5F9;
+  flex-shrink: 0;
+}
+
+.store-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.store-name-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.store-name-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.store-official-badge {
+  font-size: 10px;
+  color: #FFFFFF;
+  background: #0EA5E9;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.store-city-text {
+  font-size: 11px;
+  color: #64748B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.store-mini-products {
+  display: flex;
+  gap: 8px;
+  background: #F8FAFC;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.store-mini-prod-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.mini-prod-img {
+  width: 100%;
+  height: 60px;
+  border-radius: 8px;
+  background: #E2E8F0;
+}
+
+.mini-prod-price {
+  font-size: 10px;
+  font-weight: 700;
+  color: #0F172A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.store-visit-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #0D9488;
+  background: #F0FDFA;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
+.cta-arrow {
+  font-size: 11px;
+}
+
+/* ─── 7. SECTION 3: PRODUK UMKM PILIHAN (2-COL GRID) ─── */
+.products-grid-2col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.product-card-item {
+  background: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.prod-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  background: #F1F5F9;
+}
+
+.prod-img {
+  width: 100%;
+  height: 100%;
+}
+
+.prod-stock-pill {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(15, 23, 42, 0.7);
+  color: #FFFFFF;
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.prod-body {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.prod-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #0F172A;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  min-height: 32px;
+}
+
+.prod-price {
+  font-size: 13px;
+  font-weight: 800;
+  color: #EA580C;
+}
+
+.prod-category {
+  font-size: 10px;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+/* ─── 8. SECTION 4: UNIVERSAL EVENT DIRECTORY & FILTER CHIPS ─── */
+.filter-chips-scroll {
+  width: 100%;
+  overflow-x: scroll;
+  margin-left: -16px;
+  margin-right: -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+}
+
+.filter-chips-row {
+  display: flex;
+  gap: 8px;
+  width: max-content;
+}
+
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+
+.filter-chip.active {
+  background: #0F172A;
+  border-color: #0F172A;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+
+.chip-icon {
+  font-size: 12px;
+}
+
+.chip-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.filter-chip.active .chip-label {
+  color: #FFFFFF;
+}
+
+.events-vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event-list-card {
+  display: flex;
+  background: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.05);
+  padding: 10px;
+  gap: 12px;
+}
+
+.event-list-thumb {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  background: #E2E8F0;
+}
+
+.event-list-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.list-tag-row {
+  display: flex;
+  align-items: center;
+}
+
+.list-category-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #4F46E5;
+  background: #EEF2FF;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.list-event-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.list-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.list-meta-text {
+  font-size: 10.5px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.list-meta-loc {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  flex: 1;
+}
+
+.list-meta-dot {
+  color: #CBD5E1;
+  font-size: 10px;
+}
+
+.list-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-price-val {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.list-buy-btn {
+  font-size: 11px;
+  font-weight: 700;
+  color: #FFFFFF;
+  background: #0F172A;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+/* ─── 9. EMPTY STATE & FOOTER ─── */
+.empty-state-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 32px 0;
+  padding: 40px 20px;
+  text-align: center;
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px dashed #CBD5E1;
+}
+
+.empty-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.empty-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 4px;
+}
+
+.empty-desc {
+  font-size: 11.5px;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+.landing-footer {
+  padding: 20px 16px 40px;
+  text-align: center;
+}
+
+.footer-secured-badge {
+  font-size: 10.5px;
+  color: #94A3B8;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ─── 10. SKELETON LOADERS ─── */
+.shimmer-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
-.events-empty-icon { width: 120px; height: 80px; }
-.events-empty-text {
-  color: #A0A0A0;
-  font-family: "TT Interphases Pro";
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 140%;
-  text-align: center;
+
+.shimmer-section-head {
+  height: 24px;
+  width: 45%;
+  border-radius: 8px;
 }
 
-/* ─── TNC ─── */
-.tnc-container {
-  height: fit-content;
+.shimmer-card-row {
   display: flex;
-  padding-top: 40px;
-  padding-bottom: 16px;
-  justify-content: center;
-  align-items: center;
-  align-self: stretch;
-  position: relative;
-  z-index: 4;
-  background-color: white;
-}
-.tnc-main-text {
-  width: 310px;
-  color: #A0A0A0;
-  text-align: center;
-  font-family: "TT Interphases Pro";
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 170%;
-}
-.tnc-hightlight-text {
-  color: #FF8736;
-  text-decoration: underline;
+  gap: 12px;
 }
 
-/* ─── SKELETON ─── */
+.shimmer-card-item {
+  flex: 1;
+  height: 160px;
+  border-radius: 16px;
+}
+
+.shimmer-list-item {
+  height: 90px;
+  border-radius: 16px;
+}
+
 .skeleton {
   background: linear-gradient(
     90deg,
-    #f1f5f9 25%,
-    #e2e8f0 50%,
-    #f1f5f9 75%
+    #F1F5F9 25%,
+    #E2E8F0 50%,
+    #F1F5F9 75%
   );
   background-size: 400% 100%;
   animation: skeleton-loading 1.4s ease infinite;
@@ -506,149 +890,7 @@
   0% {
     background-position: 100% 0;
   }
-
   100% {
     background-position: -100% 0;
   }
 }
-
-
-.events-empty {
-  padding: 80rpx 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.events-empty-icon {
-  width: 200rpx;
-  height: 200rpx;
-}
-
-.events-empty-text {
-  margin-top: 20rpx;
-  font-size: 24rpx;
-  color: #94a3b8;
-}
-
-/* ─── MODAL ─── */
-.ant-popup-transform-bottom {
-  display: flex;
-  bottom: 48px;
-  right: 24px; left: 24px;
-  padding: 24px 16px;
-  border-radius: 16px;
-  background: #FFF;
-  box-shadow: 0 5px 16px 0 rgba(78,78,78,0.27);
-}
-.container-content-comp-modal {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 8px;
-  align-self: stretch;
-  margin-bottom: 24px;
-}
-.comp-title {
-  display: flex;
-  align-items: flex-start;
-  align-self: stretch;
-}
-.comp-image-error { width: 32px; height: 32px; margin-right: 8px; }
-.comp-title-text {
-  flex: 1 0 0;
-  color: #0E0E0E;
-  font-family: "TT Interphases Pro";
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 120%;
-}
-.comp-description {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  align-self: stretch;
-}
-.comp-description-text {
-  flex: 1 0 0;
-  color: #0E0E0E;
-  font-family: "TT Interphases Pro";
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 140%;
-}
-
-/* ─── ERROR STATE ─── */
-.transaction-history-body-prompt {
-  display: flex;
-  position: relative;
-  padding: 160px 24px 0;
-  flex-direction: column;
-  align-items: center;
-  flex: 1 0 0;
-  z-index: 100;
-}
-.image-illustration { height: 150px; width: 267px; }
-
-/* ─── LOTTERY MODAL ─── */
-.lottery-container {
-  display: grid;
-  align-items: flex-start;
-  grid-template-columns: repeat(1, 100%);
-  gap: 16px;
-  padding: 0 24px;
-  width: calc(100% - 48px);
-  margin-bottom: 20px;
-  z-index: 4;
-  background-color: white;
-}
-
-/* =======================================================
-   CATEGORY PILLS
-   ======================================================= */
-
-   .quick-pills-scroll {
-    white-space: nowrap;
-  }
-  
-  .quick-pills-row {
-    display: flex;
-    padding: 0 24rpx;
-  }
-  
-  .quick-pill {
-    width: 140rpx;
-    margin-right: 24rpx;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .quick-pill-icon {
-    width: 112rpx;
-    height: 112rpx;
-    border-radius: 32rpx;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    box-shadow:
-      0 8rpx 24rpx rgba(15, 23, 42, 0.08);
-  }
-  
-  .quick-pill-img {
-    width: 52rpx;
-    height: 52rpx;
-  }
-  
-  .quick-pill-label {
-    margin-top: 12rpx;
-    font-size: 22rpx;
-    color: #334155;
-    text-align: center;
-  }
-  

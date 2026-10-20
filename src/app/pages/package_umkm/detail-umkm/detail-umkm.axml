@@ -2,57 +2,332 @@
   <view class="sticky-top">
     <top-bar
       type="navigation"
-      navigate
-      exit
-      safeArea
-      pixel
-      backgroundColor="white"
-      title="Product Detail"
-      iconL="/src/assets/icons/ic_common_arrow_back.svg"
-      onTapL="onBack"
+      navigate="{{true}}"
+      safeArea="{{true}}"
+      pixel="{{true}}"
+      backgroundColor="{{ storeThemeColor || '#008080' }}"
+      color="#FFFFFF"
+      title=" "
+      iconL="/src/assets/icons/ic_common_arrow_back_white.svg"
+      onIconLTap="onBack"
     />
   </view>
 
   <scroll-view scroll-y="{{true}}" class="content-scroll">
-    <image class="main-image" src="{{productData.imageUrl}}" mode="aspectFill" />
     
-    <view class="p-info-section">
-      <text class="p-price">Rp {{productData.price.toLocaleString('id-ID')}}</text>
-      <text class="p-name">{{productData.name}}</text>
-      
-      <view class="shop-card">
-        <image src="{{umkmData.bannerUrl}}" mode="aspectFill" class="shop-icon" />
-        <view class="shop-text">
-          <text class="s-name">{{umkmData.name}}</text>
-          <text class="s-loc">{{umkmData.location}}</text>
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- SHIMMER SKELETON LOADING STATE (PDP)                       -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <view a:if="{{ isLoading || !isDataReady }}" class="pdp-shimmer-wrap">
+      <view class="shimmer-pdp-hero shimmer-box" />
+      <view class="shimmer-pdp-body">
+        <view class="shimmer-pdp-price-row">
+          <view class="shimmer-pdp-price shimmer-box" />
+          <view class="shimmer-pdp-stock-pill shimmer-box" />
         </view>
-        <view class="visit-btn">Visit Shop</view>
-      </view>
-
-      <view class="divider" />
-
-      <view class="desc-box">
-        <text class="box-title">Description</text>
-        <text class="box-text">Discover the quality of our {{productData.name}}. Made with care by local artisans at {{umkmData.name}}. Each piece is unique and reflects our commitment to excellence.</text>
-      </view>
-
-      <view class="divider" />
-
-      <view class="qty-section">
-        <text class="box-title">Quantity</text>
-        <view class="qty-control">
-          <view class="q-btn" onTap="onDecrease">-</view>
-          <text class="q-val">{{quantity}}</text>
-          <view class="q-btn" onTap="onIncrease">+</view>
+        <view class="shimmer-pdp-title shimmer-box" />
+        <view class="shimmer-pdp-title-sub shimmer-box" />
+        <view class="shimmer-pdp-meta-row">
+          <view class="shimmer-pdp-rating shimmer-box" />
+          <view class="shimmer-pdp-badge shimmer-box" />
         </view>
+        <view class="shimmer-pdp-shop-card shimmer-box" />
+        <view class="shimmer-pdp-box shimmer-box" />
+        <view class="shimmer-pdp-desc-line shimmer-box" />
+        <view class="shimmer-pdp-desc-line shimmer-box" />
+        <view class="shimmer-pdp-desc-line shimmer-box" />
       </view>
     </view>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- LOADED PRODUCT CONTENT                                     -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <block a:else>
+      <!-- Gallery Option A: Media Carousel (Default) -->
+      <view class="media-carousel-wrapper" a:if="{{ galleryStyle === 'carousel' }}">
+        <swiper 
+          class="media-swiper" 
+          indicator-dots="{{false}}" 
+          autoplay="{{false}}" 
+          onChange="onSwiperChange"
+        >
+          <block a:for="{{ displayImages }}" a:key="*this">
+            <swiper-item>
+              <image class="carousel-image" src="{{item}}" mode="aspectFill" />
+            </swiper-item>
+          </block>
+        </swiper>
+        <view class="media-counter" a:if="{{ displayImages.length > 1 }}">
+          <text>{{ currentImageIndex + 1 }}/{{ displayImages.length }}</text>
+        </view>
+      </view>
+
+      <!-- Gallery Option B: 2x2 Collage Grid -->
+      <view class="gallery-grid-2x2" a:elif="{{ galleryStyle === 'grid-gallery' }}">
+        <view class="grid-collage-wrap">
+          <block a:for="{{ displayImages.slice(0, 4) }}" a:key="*this">
+            <image class="collage-item-img" src="{{item}}" mode="aspectFill" />
+          </block>
+        </view>
+      </view>
+
+      <!-- Gallery Option C: Stacked Hero with Thumbnails -->
+      <view class="gallery-stacked-hero" a:else>
+        <image class="stacked-main-img" src="{{ activeHeroImageUrl }}" mode="aspectFill" />
+        <scroll-view scroll-x="{{true}}" class="stacked-thumbs-scroll" a:if="{{ displayImages.length > 1 }}">
+          <view class="stacked-thumbs-row">
+            <block a:for="{{ displayImages }}" a:key="*this">
+              <image 
+                class="stacked-thumb-img {{ activeHeroThumbIdx === index ? 'active' : '' }}" 
+                src="{{item}}" 
+                mode="aspectFill" 
+                onTap="selectHeroThumb" 
+                data-idx="{{index}}" 
+                style="{{ activeHeroThumbIdx === index ? 'border-color: ' + (storeThemeColor || '#0F172A') + ';' : '' }}"
+              />
+            </block>
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- Guard Warning (Banned or Suspended) -->
+      <view class="guard-banner" a:if="{{ isUnavailable }}">
+        <view class="guard-title">⚠️ Produk Tidak Tersedia</view>
+        <view class="guard-desc">{{ unavailableReason }}</view>
+      </view>
+
+      <!-- Main Info Section -->
+      <view class="p-info-section">
+        <view class="price-row">
+          <text class="p-price" style="color: {{ storeThemeColor || '#0f172a' }};">Rp {{ displayPrice }}</text>
+          <view class="stock-pill" a:if="{{ displayStock > 0 }}">
+            <text>Stok: {{ displayStock }}</text>
+          </view>
+          <view class="stock-pill out-of-stock" a:else>
+            <text>Stok Habis</text>
+          </view>
+        </view>
+
+      <text class="p-name">{{ productData.name }}</text>
+
+      <view class="meta-row" a:if="{{ showReviews }}">
+        <view class="rating-badge">⭐ {{ productData.rating || '5.0' }}</view>
+        <text class="meta-divider">•</text>
+        <text class="meta-text">Terjual {{ productData.soldCount || 0 }}</text>
+        <text class="meta-divider">•</text>
+        <text class="meta-text">{{ productData.categoryName || 'UMKM' }}</text>
+        <text class="badge-digital" a:if="{{ productData.isDigital }}">Produk Digital</text>
+      </view>
+
+      <!-- Store Card -->
+      <view class="shop-card" onTap="goToStorefront">
+        <image src="{{ storeLogoUrl }}" mode="aspectFill" class="shop-icon" />
+        <view class="shop-text">
+          <view class="shop-title-row">
+            <text class="s-name">{{ storeData.name || umkmData.name || 'Toko UMKM BNI' }}</text>
+            <text class="verified-tag">✓ Official</text>
+          </view>
+          <text class="s-loc">📍 {{ storeData.cityName || umkmData.location || 'Indonesia' }}</text>
+        </view>
+        <view class="visit-btn">Kunjungi Toko</view>
+      </view>
+
+      <!-- Variant Selector Trigger Bar (if variants exist) -->
+      <view class="variant-trigger-card" a:if="{{ hasVariants }}" onTap="openVariantSheet">
+        <view class="trigger-left">
+          <text class="trigger-label">Pilihan Varian</text>
+          <text class="trigger-value">{{ selectedVariantSummary || 'Pilih Varian Produk' }}</text>
+        </view>
+        <text class="arrow-icon">›</text>
+      </view>
+
+      <view class="divider" />
+
+      <!-- Dynamic Specifications (JSONB Attributes) -->
+      <view class="spec-section" a:if="{{ showSpecs && specList.length > 0 }}">
+        <text class="box-title">Spesifikasi Produk</text>
+        <view class="spec-table">
+          <block a:for="{{ specList }}" a:key="label">
+            <view class="spec-row">
+              <text class="spec-key">{{ item.label }}</text>
+              <text class="spec-val">{{ item.value }}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <view class="divider" a:if="{{ showSpecs && specList.length > 0 }}" />
+
+      <!-- Shipping Simulation (Physical products only) -->
+      <view class="shipping-section" a:if="{{ showShippingEstimate && !productData.isDigital }}">
+        <text class="box-title">Ongkos Kirim & Pengiriman</text>
+        <view class="shipping-card">
+          <view class="shipping-row">
+            <text class="ship-icon">🚚</text>
+            <view class="ship-info">
+              <text class="ship-route">Dikirim dari {{ storeData.cityName || 'Jakarta' }} (Berat: {{ productData.weightGrams || 500 }}g)</text>
+              <text class="ship-est">Estimasi Reguler 2-3 hari</text>
+            </view>
+            <text class="ship-cost">Rp 12.000</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="divider" a:if="{{ showShippingEstimate && !productData.isDigital }}" />
+
+      <!-- Product Description -->
+      <view class="desc-box">
+        <text class="box-title">Deskripsi Produk</text>
+        <text class="box-text">{{ productData.description || 'Produk berkualitas tinggi dipersembahkan oleh mitra UMKM binaan platform.' }}</text>
+      </view>
+    </block>
   </scroll-view>
 
-  <view class="p-bottom-bar">
-    <view class="chat-icon">
-      <image src="https://img.icons8.com/ios/50/666666/chat-message-sent.png" />
+  <!-- Sticky Bottom Navigation Bar: Dynamic based on bottomBarStyle -->
+  <block a:if="{{ isDataReady && !isLoading }}">
+    <!-- Option A: Standard Full Bar -->
+    <view class="p-bottom-bar" a:if="{{ bottomBarStyle === 'standard' }}">
+      <view class="action-icon-btn" onTap="onChatMerchant">
+        <image src="https://cdn-icons-png.flaticon.com/128/1384/1384009.png" class="bar-icon" />
+        <text class="bar-icon-label">Chat</text>
+      </view>
+
+      <view class="action-icon-btn cart-badge-wrap" onTap="goToCart">
+        <image src="https://cdn-icons-png.flaticon.com/128/2838/2838895.png" class="bar-icon" />
+        <text class="bar-icon-label">Keranjang</text>
+        <view class="badge-counter" a:if="{{ cartCount > 0 }}">{{ cartCount }}</view>
+      </view>
+
+      <button 
+        class="btn-cart-secondary" 
+        onTap="handleAddToCartClick" 
+        disabled="{{ isUnavailable || displayStock <= 0 }}"
+      >
+        + Keranjang
+      </button>
+
+      <button 
+        class="btn-buy-primary" 
+        onTap="handleBuyNowClick" 
+        disabled="{{ isUnavailable || displayStock <= 0 }}"
+        style="background-color: {{ storeThemeColor || '#F15A22' }};"
+      >
+        Beli Sekarang
+      </button>
     </view>
-    <button class="btn-add-cart" onTap="onAddToCart">Add to Cart</button>
+
+    <!-- Option B: Direct Single Action (Event / Ticket Style) -->
+    <view class="p-bottom-bar bar-direct-buy" a:elif="{{ bottomBarStyle === 'direct-buy' }}">
+      <button 
+        class="btn-buy-single-wide" 
+        onTap="handleBuyNowClick" 
+        disabled="{{ isUnavailable || displayStock <= 0 }}"
+        style="background-color: {{ storeThemeColor || '#F15A22' }};"
+      >
+        Beli Sekarang ➔
+      </button>
+    </view>
+
+    <!-- Option C: Compact 50:50 Dual Action -->
+    <view class="p-bottom-bar bar-compact-split" a:else>
+      <button 
+        class="btn-cart-secondary btn-half" 
+        onTap="handleAddToCartClick" 
+        disabled="{{ isUnavailable || displayStock <= 0 }}"
+      >
+        + Keranjang
+      </button>
+      <button 
+        class="btn-buy-primary btn-half" 
+        onTap="handleBuyNowClick" 
+        disabled="{{ isUnavailable || displayStock <= 0 }}"
+        style="background-color: {{ storeThemeColor || '#F15A22' }};"
+      >
+        Beli Langsung
+      </button>
+    </view>
+  </block>
+
+  <!-- Shimmer Bottom Bar when Loading -->
+  <view class="p-bottom-bar shimmer-bottom-bar" a:else>
+    <view class="shimmer-bottom-icon shimmer-box" />
+    <view class="shimmer-bottom-icon shimmer-box" />
+    <view class="shimmer-bottom-btn shimmer-box" />
+    <view class="shimmer-bottom-btn shimmer-box" />
+  </view>
+
+  <!-- Variant Bottom Sheet Modal -->
+  <view class="sheet-backdrop" a:if="{{ isVariantSheetOpen }}" onTap="closeVariantSheet">
+    <view class="sheet-container" catchTap="preventBubble">
+      <view class="sheet-header">
+        <image class="sheet-thumb" src="{{ sheetThumbnailUrl }}" mode="aspectFill" />
+        <view class="sheet-header-text">
+          <text class="sheet-price">Rp {{ sheetPriceFormatted }}</text>
+          <text class="sheet-stock {{ sheetStock <= 0 ? 'text-out-of-stock' : '' }}">
+            <block a:if="{{ sheetStock > 0 }}">Stok: {{ sheetStock }}</block>
+            <block a:else>Stok Habis</block>
+          </text>
+          <text class="sheet-selection">Pilihan: {{ selectedVariantSummary || '-' }}</text>
+        </view>
+        <view class="sheet-close-btn" onTap="closeVariantSheet">✕</view>
+      </view>
+
+      <scroll-view scroll-y="{{true}}" class="sheet-scroll">
+        <!-- Tier 1 Variants -->
+        <view class="variant-group" a:if="{{ productVariants && productVariants.tier1 }}">
+          <text class="group-title">{{ productVariants.tier1.name || 'Varian 1' }}</text>
+          <view class="chip-container">
+            <block a:for="{{ tier1OptionList }}" a:key="option">
+              <view 
+                class="variant-chip {{ selectedTier1 === item.option ? 'active' : '' }} {{ item.disabled ? 'disabled-chip' : '' }}" 
+                onTap="selectTier1" 
+                data-option="{{item.option}}"
+                data-disabled="{{item.disabled}}"
+              >
+                {{ item.option }}
+              </view>
+            </block>
+          </view>
+        </view>
+
+        <!-- Tier 2 Variants -->
+        <view class="variant-group" a:if="{{ productVariants && productVariants.tier2 && productVariants.tier2.options && productVariants.tier2.options.length > 0 }}">
+          <text class="group-title">{{ productVariants.tier2.name || 'Varian 2' }}</text>
+          <view class="chip-container">
+            <block a:for="{{ tier2OptionList }}" a:key="option">
+              <view 
+                class="variant-chip {{ selectedTier2 === item.option ? 'active' : '' }} {{ item.disabled ? 'disabled-chip' : '' }}" 
+                onTap="selectTier2" 
+                data-option="{{item.option}}"
+                data-disabled="{{item.disabled}}"
+              >
+                {{ item.option }}
+              </view>
+            </block>
+          </view>
+        </view>
+
+        <!-- Quantity Stepper -->
+        <view class="sheet-qty-row">
+          <text class="group-title">Jumlah Beli</text>
+          <view class="qty-stepper">
+            <view class="step-btn {{ quantity <= 1 ? 'disabled' : '' }}" onTap="onDecrease">-</view>
+            <text class="step-val">{{ quantity }}</text>
+            <view class="step-btn {{ quantity >= sheetStock || sheetStock <= 0 ? 'disabled' : '' }}" onTap="onIncrease">+</view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <view class="sheet-footer">
+        <button 
+          class="sheet-submit-btn {{ sheetStock <= 0 ? 'disabled' : '' }}" 
+          onTap="confirmVariantSelection"
+          disabled="{{ sheetStock <= 0 }}"
+        >
+          <block a:if="{{ sheetStock > 0 }}">Konfirmasi Pilihan</block>
+          <block a:else>Stok Varian Habis</block>
+        </button>
+      </view>
+    </view>
   </view>
 </view>

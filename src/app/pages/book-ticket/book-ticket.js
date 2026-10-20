@@ -40,29 +40,72 @@ Page({
   },
 
   onLoad(query) {
-    firebaseScreenView("javaJazzFestivalListTicketScreen", "javaJazzFestivalListTicketScreen")
-    const lang = getApp().globalData.languagePack;
-    const {
-      ticketData,
-      eventDetail
-    } = my.customUrlQueryData[query.customUrlQueryData];
-    this.setData({
-      ticketData,
-      eventDetail,
-      templateId:  eventDetail.templateId || 1
-    })
+    try {
+      firebaseScreenView("javaJazzFestivalListTicketScreen", "javaJazzFestivalListTicketScreen");
+    } catch (e) {}
+
+    const app = getApp();
+    const lang = (app.globalData && app.globalData.languagePack) || {
+      javaJazzFestivalListTicketScreenCategoryPromoLabel: "Promo",
+      javaJazzFestivalListTicketScreenCategoryRegularLabel: "Regular",
+      javaJazzFestivalListTicketScreenHeaderTitleLabel: "Pilih Tiket",
+      javaJazzFestivalListTicketScreenToastMaxTicketLabel: "Jumlah tiket melebihi batas maksimal"
+    };
+
+    let queryData = {};
+    if (query && query.customUrlQueryData && my.customUrlQueryData && my.customUrlQueryData[query.customUrlQueryData]) {
+      queryData = my.customUrlQueryData[query.customUrlQueryData];
+    } else {
+      queryData = query || {};
+    }
+
+    const ticketData = queryData.ticketData || {};
+    const eventDetail = queryData.eventDetail || queryData.runningData || {};
+
+    let rawTid = (eventDetail && (eventDetail.templateId || eventDetail.selected_template || eventDetail.selectedTemplate)) || queryData.templateId || 1;
+    let normId = 1;
+    if (typeof rawTid === 'string') {
+      const match = rawTid.match(/\d+/);
+      if (match) normId = parseInt(match[0], 10);
+    } else if (typeof rawTid === 'number') {
+      normId = rawTid;
+    }
+
+    const eventName = (eventDetail && (eventDetail.eventName || eventDetail.name || eventDetail.title || eventDetail.event_name)) ||
+      (ticketData && (ticketData.eventName || ticketData.event_name)) ||
+      queryData.eventName ||
+      queryData.name ||
+      '';
+
+    const eventDescription = (eventDetail && (eventDetail.description || eventDetail.eventDescription || eventDetail.desc || eventDetail.event_description)) ||
+      (ticketData && (ticketData.eventDescription || ticketData.event_description)) ||
+      queryData.description ||
+      '';
+
+    const normTicketData = {
+      ...ticketData,
+      title: ticketData.title || ticketData.name || eventName || 'Tiket Event',
+      description: ticketData.description || eventDescription || 'Pilih kategori tiket yang Anda inginkan'
+    };
 
     this.setData({
+      eventName,
+      eventDescription,
+      ticketData: normTicketData,
+      eventDetail,
+      templateId: normId || 1,
       lang,
-      tabFilter: [{
-        title: lang.javaJazzFestivalListTicketScreenCategoryPromoLabel || "Promo"
-      },
-      {
-        title: lang.javaJazzFestivalListTicketScreenCategoryRegularLabel || "Regular"
-      }
+      tabFilter: [
+        {
+          title: (lang && lang.javaJazzFestivalListTicketScreenCategoryPromoLabel) || "Promo"
+        },
+        {
+          title: (lang && lang.javaJazzFestivalListTicketScreenCategoryRegularLabel) || "Regular"
+        }
       ]
-    })
-    this.getDataTicket()
+    });
+
+    this.getDataTicket();
   },
 
   async getDataTicket() {
@@ -241,11 +284,15 @@ Page({
       }) : undefined;
 
       const ticketKey = item.ticketId || item.id;
+      const descText = Array.isArray(item.description)
+        ? item.description.filter(Boolean).join('. ')
+        : (item.description || item.ticket_description || 'Harga sudah termasuk pajak dan biaya admin');
 
       return {
         ...item,
         ticketId: ticketKey,
         id: ticketKey,
+        descriptionText: descText,
         formatedTicketDate: formattedTicketDate,
         formatPriceTaxService: formattedPrice,
         formatPrice: formattedPrice,

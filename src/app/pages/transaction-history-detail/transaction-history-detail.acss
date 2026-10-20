@@ -1,0 +1,1547 @@
+.detail-page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #F8FAFC;
+  box-sizing: border-box;
+}
+
+.top-bar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #F1F5F9;
+}
+
+.detail-scroll-container {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.detail-content-wrapper {
+  padding: 32rpx 32rpx 64rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+.status-header-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16rpx 0;
+}
+
+.status-icon-circle {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background-color: #ECFDF5;
+  border: 4rpx solid #A7F3D0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.status-circle-failed {
+  background-color: #FEF2F2;
+  border-color: #FCA5A5;
+}
+
+.status-header-icon-text {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #059669;
+}
+
+.status-circle-failed .status-header-icon-text {
+  color: #DC2626;
+}
+
+.status-title-text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #059669;
+  margin-bottom: 8rpx;
+}
+
+.nominal-amount-text {
+  font-size: 52rpx;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 12rpx;
+  letter-spacing: -0.5rpx;
+}
+
+.timestamp-text {
+  font-size: 26rpx;
+  color: #64748B;
+  margin-bottom: 20rpx;
+}
+
+.ref-numbers-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+  background-color: #FFFFFF;
+  padding: 16rpx 32rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid #E2E8F0;
+}
+
+.ref-item-text {
+  font-size: 22rpx;
+  color: #64748B;
+  font-family: monospace, sans-serif;
+}
+
+.section-divider-line {
+  height: 1rpx;
+  background-color: #E2E8F0;
+  margin: 0 8rpx;
+}
+
+.event-info-card {
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  border: 1rpx solid #E2E8F0;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(15, 23, 42, 0.03);
+}
+
+.event-thumb-box {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 16rpx;
+  background-color: #E6F4F1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.event-thumb-emoji {
+  font-size: 52rpx;
+}
+
+.event-detail-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.event-name-text {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 2rpx;
+}
+
+.event-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.mini-icon-text {
+  font-size: 24rpx;
+}
+
+.mini-text {
+  font-size: 24rpx;
+  color: #475569;
+}
+
+.two-column-info-row {
+  display: flex;
+  flex-direction: row;
+  gap: 16rpx;
+}
+
+.info-card-box {
+  flex: 1;
+  background-color: #FFFFFF;
+  border: 1rpx solid #E2E8F0;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.info-box-label {
+  font-size: 24rpx;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.info-box-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.info-box-icon-text {
+  font-size: 28rpx;
+}
+
+.info-box-value {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #0F172A;
+  word-break: break-word;
+}
+
+.ticket-voucher-section {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  border: 1rpx solid #E2E8F0;
+  padding: 28rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.ticket-section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12rpx;
+}
+
+.ticket-section-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.ticket-section-pagination {
+  font-size: 24rpx;
+  color: #64748B;
+  font-weight: 600;
+  background-color: #F1F5F9;
+  padding: 4rpx 16rpx;
+  border-radius: 100rpx;
+}
+
+.voucher-slider-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+  position: relative;
+}
+
+.slider-arrow {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background-color: #F1F5F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.arrow-text {
+  font-size: 40rpx;
+  color: #0F172A;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.arrow-disabled {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.voucher-ticket-card {
+  flex: 1;
+  position: relative;
+  background-color: #FFFFFF;
+  border: 2rpx solid #1E293B;
+  border-radius: 20rpx;
+  padding: 24rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: 0 6rpx 20rpx rgba(15, 23, 42, 0.05);
+}
+
+.cutout {
+  position: absolute;
+  top: 50%;
+  width: 32rpx;
+  height: 32rpx;
+  background-color: #FFFFFF;
+  border: 2rpx solid #1E293B;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.cutout-left {
+  left: -18rpx;
+}
+
+.cutout-right {
+  right: -18rpx;
+}
+
+.voucher-left-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  padding-left: 12rpx;
+}
+
+.voucher-ticket-title {
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.voucher-meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.voucher-meta-row {
+  font-size: 22rpx;
+  color: #475569;
+}
+
+.booking-code-box {
+  margin-top: 6rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 2rpx;
+}
+
+.booking-code-label {
+  font-size: 18rpx;
+  font-weight: 700;
+  color: #64748B;
+}
+
+.booking-code-value {
+  font-size: 20rpx;
+  font-weight: 700;
+  color: #008B8B;
+  font-family: monospace, sans-serif;
+}
+
+.voucher-perforation {
+  width: 1rpx;
+  height: 140rpx;
+  border-left: 2rpx dashed #CBD5E1;
+  margin: 0 16rpx;
+}
+
+.voucher-right-col {
+  width: 156rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.qr-canvas-box {
+  width: 140rpx;
+  height: 140rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border-radius: 12rpx;
+  padding: 4rpx;
+  box-sizing: border-box;
+}
+
+.voucher-qr-canvas {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.voucher-qr-img {
+  width: 140rpx;
+  height: 140rpx;
+  display: block;
+}
+
+.tap-to-enlarge {
+  font-size: 16rpx;
+  color: #94A3B8;
+  margin-top: 4rpx;
+  text-align: center;
+}
+
+.dots-indicator-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12rpx;
+  padding-top: 8rpx;
+}
+
+.dot-item {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background-color: #CBD5E1;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dot-active {
+  width: 32rpx;
+  border-radius: 14rpx;
+  background-color: #00A39D;
+}
+
+.action-buttons-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16rpx;
+}
+
+.btn-home-outline {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #00A39D;
+  color: #FFFFFF !important;
+  border-radius: 16rpx;
+  padding: 24rpx 0;
+  font-size: 30rpx;
+  font-weight: 700;
+  border: none;
+}
+
+.ticket-modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24rpx 32rpx 48rpx 32rpx;
+  background-color: #FFFFFF;
+  border-top-left-radius: 32rpx;
+  border-top-right-radius: 32rpx;
+}
+
+.ticket-modal-handle {
+  width: 72rpx;
+  height: 8rpx;
+  border-radius: 100rpx;
+  background-color: #CBD5E1;
+  margin-bottom: 24rpx;
+}
+
+.ticket-modal-qr-container {
+  padding: 16rpx;
+  border-radius: 24rpx;
+  background-color: #F8FAFC;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.ticket-modal-qr-image {
+  width: 360rpx;
+  height: 360rpx;
+}
+
+.qr-source-canvas {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  width: 220px;
+  height: 220px;
+}
+
+.ticket-modal-event-name {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #0F172A;
+  text-align: center;
+}
+
+.ticket-modal-holder-name {
+  margin-top: 8rpx;
+  color: #64748B;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.qr-status-badge {
+  margin-top: 16rpx;
+  padding: 6rpx 24rpx;
+  border-radius: 100rpx;
+  background: #ECFDF5;
+}
+
+.qr-status-text {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #059669;
+}
+
+.loading-state-wrapper,
+.empty-state-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 120rpx;
+}
+
+.loading-text {
+  font-size: 26rpx;
+  color: #64748B;
+  margin-top: 16rpx;
+}
+
+.spinner {
+  width: 48rpx;
+  height: 48rpx;
+  border: 4rpx solid #E2E8F0;
+  border-top-color: #00A39D;
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+}
+
+/* ══════════════════════════════════════════════════════════════════ */
+/* GENERAL UMKM ORDER DETAIL & RESI TRACKING STYLES                  */
+/* ══════════════════════════════════════════════════════════════════ */
+.umkm-detail-wrapper {
+  padding: 24rpx 24rpx 64rpx 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* 1. Status Hero Card (Modern Clean White Theme) */
+.umkm-status-hero-card {
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  border: 1rpx solid #E2E8F0;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4rpx 16rpx rgba(15, 23, 42, 0.04);
+}
+
+.hero-status-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.status-icon-box {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero-status-icon {
+  font-size: 36rpx;
+  line-height: 1;
+}
+
+/* Status Icon Box Colors */
+.status-icon-pending {
+  background-color: #FFFBEB;
+  border: 1rpx solid #FDE68A;
+}
+
+.status-icon-paid,
+.status-icon-processing {
+  background-color: #E6F6F5;
+  border: 1rpx solid #B2EBF2;
+}
+
+.status-icon-shipped {
+  background-color: #E0F2FE;
+  border: 1rpx solid #BAE6FD;
+}
+
+.status-icon-delivered,
+.status-icon-completed,
+.status-icon-success {
+  background-color: #ECFDF5;
+  border: 1rpx solid #A7F3D0;
+}
+
+.status-icon-cancelled,
+.status-icon-failed {
+  background-color: #FEF2F2;
+  border: 1rpx solid #FECACA;
+}
+
+.status-header-text-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.hero-status-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.3;
+}
+
+.hero-status-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.hero-meta-clock-icon {
+  font-size: 20rpx;
+  line-height: 1;
+}
+
+.hero-meta-date {
+  font-size: 22rpx;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.hero-card-divider {
+  height: 1rpx;
+  background-color: #F1F5F9;
+  margin: 18rpx 0;
+}
+
+.hero-invoice-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.invoice-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rpx;
+}
+
+.invoice-label {
+  font-size: 20rpx;
+  font-weight: 600;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.5rpx;
+}
+
+.invoice-code {
+  font-size: 26rpx;
+  font-weight: 700;
+  font-family: monospace, -apple-system, sans-serif;
+  color: #0F172A;
+  letter-spacing: 0.5rpx;
+}
+
+.btn-copy-invoice {
+  background-color: #F8FAFC;
+  border: 1rpx solid #CBD5E1;
+  border-radius: 12rpx;
+  height: 52rpx;
+  padding: 0 20rpx;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.copy-invoice-txt {
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1;
+}
+
+/* 2. Resi Tracking Card */
+.resi-tracking-card {
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  border: 1rpx solid #E2E8F0;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(15, 23, 42, 0.04);
+}
+
+.resi-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resi-courier-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.resi-courier-name {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.resi-number-row {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.resi-label {
+  font-size: 22rpx;
+  color: #64748B;
+}
+
+.resi-val {
+  font-size: 24rpx;
+  font-weight: 800;
+  font-family: monospace, sans-serif;
+  color: #F15A22;
+}
+
+.btn-copy-resi {
+  background: #FFF7ED;
+  border: 1rpx solid #FFEDD5;
+  border-radius: 12rpx;
+  height: 52rpx;
+  padding: 0 20rpx;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.copy-txt {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #EA580C;
+  line-height: 1;
+}
+
+.resi-barcode-box {
+  background-color: #F8FAFC;
+  border-radius: 12rpx;
+  border: 1rpx dashed #CBD5E1;
+  padding: 14rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.barcode-lines {
+  font-family: monospace;
+  font-size: 26rpx;
+  letter-spacing: 4rpx;
+  font-weight: 900;
+  color: #1E293B;
+}
+
+.barcode-sub {
+  font-size: 20rpx;
+  color: #64748B;
+  font-family: monospace;
+}
+
+/* 3. Tracking Stepper Timeline Card */
+.tracking-timeline-card {
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  border: 1rpx solid #E2E8F0;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.card-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.section-title-icon {
+  font-size: 28rpx;
+}
+
+.section-title-txt {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.timeline-stepper-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-step-item {
+  display: flex;
+  flex-direction: row;
+  min-height: 100rpx;
+}
+
+.step-indicator-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 48rpx;
+  flex-shrink: 0;
+}
+
+.step-dot {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.dot-done {
+  background-color: #10B981;
+  color: #FFFFFF;
+}
+
+.dot-active {
+  background-color: #F15A22;
+  color: #FFFFFF;
+  box-shadow: 0 0 0 6rpx rgba(241, 90, 34, 0.2);
+}
+
+.dot-pending {
+  background-color: #E2E8F0;
+  color: #94A3B8;
+}
+
+.dot-inner-icon {
+  font-size: 18rpx;
+  font-weight: 800;
+}
+
+.step-line {
+  width: 4rpx;
+  flex: 1;
+  background-color: #E2E8F0;
+  margin: 4rpx 0;
+}
+
+.line-done {
+  background-color: #10B981;
+}
+
+.step-content-col {
+  flex: 1;
+  padding-left: 16rpx;
+  padding-bottom: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.step-title-txt {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.step-title-txt.txt-highlight {
+  color: #F15A22;
+}
+
+.step-time-txt {
+  font-size: 20rpx;
+  color: #64748B;
+}
+
+.step-desc-txt {
+  font-size: 22rpx;
+  color: #475569;
+  line-height: 1.4;
+  margin-top: 2rpx;
+}
+
+/* 4. Store Seller Card */
+.store-seller-card {
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  border: 1rpx solid #E2E8F0;
+  padding: 20rpx 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.store-seller-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  flex: 1;
+}
+
+.store-seller-logo {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 16rpx;
+  border: 1rpx solid #E2E8F0;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.store-seller-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.store-name-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.store-seller-name {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.store-official-badge {
+  font-size: 18rpx;
+  font-weight: 700;
+  background-color: #E0F2FE;
+  color: #0369A1;
+  padding: 2rpx 8rpx;
+  border-radius: 6rpx;
+}
+
+.store-seller-city {
+  font-size: 22rpx;
+  color: #64748B;
+}
+
+.btn-contact-seller {
+  background-color: #F8FAFC;
+  border: 1rpx solid #CBD5E1;
+  border-radius: 12rpx;
+  height: 56rpx;
+  padding: 0 20rpx;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.contact-txt {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #334155;
+  line-height: 1;
+}
+
+/* 5. Purchased Items Card */
+.purchased-items-card {
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  border: 1rpx solid #E2E8F0;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.items-list-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.item-detail-row {
+  display: flex;
+  flex-direction: row;
+  gap: 16rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #F1F5F9;
+}
+
+.item-detail-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.item-thumb {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 12rpx;
+  background-color: #F1F5F9;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.item-info-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #0F172A;
+  line-height: 1.3;
+}
+
+.item-variant-tag {
+  font-size: 20rpx;
+  color: #64748B;
+  background-color: #F1F5F9;
+  padding: 2rpx 10rpx;
+  border-radius: 6rpx;
+  align-self: flex-start;
+  margin-top: 4rpx;
+}
+
+.item-calc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 6rpx;
+}
+
+.item-unit-price {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.item-qty {
+  font-size: 22rpx;
+  color: #94A3B8;
+}
+
+.item-subtotal {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+/* 6. Shipping Address Card */
+.shipping-address-card {
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  border: 1rpx solid #E2E8F0;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.address-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+  padding: 12rpx 16rpx;
+  background-color: #F8FAFC;
+  border-radius: 12rpx;
+  border: 1rpx solid #F1F5F9;
+}
+
+.recipient-name-txt {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.recipient-street-txt {
+  font-size: 22rpx;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.recipient-city-txt {
+  font-size: 22rpx;
+  color: #64748B;
+}
+
+/* 7. Payment Breakdown Card */
+.payment-breakdown-card {
+  background-color: #FFFFFF;
+  border-radius: 20rpx;
+  border: 1rpx solid #E2E8F0;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.payment-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pay-label {
+  font-size: 24rpx;
+  color: #64748B;
+}
+
+.pay-val {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.pay-val-highlight {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #F15A22;
+}
+
+.divider-dashed {
+  height: 1rpx;
+  border-top: 1rpx dashed #E2E8F0;
+  margin: 4rpx 0;
+}
+
+.divider-solid {
+  height: 1rpx;
+  background-color: #E2E8F0;
+  margin: 6rpx 0;
+}
+
+.pay-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.discount-row .pay-label-discount {
+  font-size: 24rpx;
+  color: #059669;
+  font-weight: 600;
+}
+
+.discount-row .pay-val-discount {
+  font-size: 24rpx;
+  color: #059669;
+  font-weight: 700;
+}
+
+.grand-total-row {
+  padding-top: 6rpx;
+}
+
+.grand-total-label {
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.grand-total-val {
+  font-size: 34rpx;
+  font-weight: 900;
+  color: #F15A22;
+}
+
+/* 8. Bottom Action Buttons */
+.umkm-bottom-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  margin-top: 10rpx;
+}
+
+.btn-pay-now {
+  width: 100%;
+  height: 88rpx;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #00A39D 0%, #00827D 100%);
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 4rpx 14rpx rgba(0, 163, 157, 0.3);
+  cursor: pointer;
+}
+
+.btn-pay-now-txt {
+  color: #FFFFFF !important;
+  font-size: 28rpx;
+  font-weight: 700;
+  text-align: center;
+}
+
+.btn-shop-more {
+  width: 100%;
+  height: 88rpx;
+  box-sizing: border-box;
+  background: #F15A22;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 4rpx 14rpx rgba(241, 90, 34, 0.3);
+  cursor: pointer;
+}
+
+.btn-shop-more-txt {
+  color: #FFFFFF !important;
+  font-size: 28rpx;
+  font-weight: 700;
+  text-align: center;
+}
+
+.btn-home {
+  width: 100%;
+  height: 88rpx;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1rpx solid #CBD5E1;
+  cursor: pointer;
+}
+
+.btn-home-txt {
+  color: #334155 !important;
+  font-size: 28rpx;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ==========================================================================
+   RETURN & COMPLAINT SECTION STYLES
+   ========================================================================== */
+.return-status-banner {
+  background: #FFF1F2;
+  border: 1rpx solid #FECDD3;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.return-banner-header {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.return-banner-icon {
+  font-size: 32rpx;
+}
+
+.return-banner-title {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #BE123C;
+}
+
+.return-banner-desc {
+  font-size: 22rpx;
+  color: #881337;
+  line-height: 1.5;
+}
+
+.return-banner-reason-box {
+  background: #FFFFFF;
+  border-radius: 12rpx;
+  padding: 14rpx 18rpx;
+  border: 1rpx solid #FFE4E6;
+  margin-top: 6rpx;
+}
+
+.return-reason-lbl {
+  font-size: 20rpx;
+  color: #9F1239;
+  font-weight: 600;
+  margin-right: 8rpx;
+}
+
+.return-reason-val {
+  font-size: 22rpx;
+  color: #0F172A;
+  font-weight: 600;
+}
+
+.btn-return-action {
+  width: 100%;
+  height: 88rpx;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 2rpx solid #E11D48;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-return-txt {
+  color: #E11D48 !important;
+  font-size: 26rpx;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Return Modal Popup Styles */
+.return-modal-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 32rpx 48rpx 32rpx;
+  background: #FFFFFF;
+  border-top-left-radius: 36rpx;
+  border-top-right-radius: 36rpx;
+  box-sizing: border-box;
+}
+
+.return-modal-handle {
+  width: 80rpx;
+  height: 8rpx;
+  border-radius: 999px;
+  background: #CBD5E1;
+  margin: 0 auto 24rpx auto;
+}
+
+.return-modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 24rpx;
+}
+
+.return-modal-title {
+  font-size: 34rpx;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.3rpx;
+}
+
+.return-modal-sub {
+  font-size: 24rpx;
+  color: #64748B;
+  margin-top: 8rpx;
+  line-height: 1.4;
+  max-width: 90%;
+}
+
+.return-reasons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+  margin-bottom: 22rpx;
+}
+
+.return-reason-option {
+  display: flex;
+  align-items: center;
+  padding: 22rpx 20rpx;
+  border-radius: 18rpx;
+  border: 1.5rpx solid #E2E8F0;
+  background: #F8FAFC;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.return-reason-option.reason-selected {
+  border-color: #E11D48;
+  background: #FFF1F2;
+  box-shadow: 0 2rpx 8rpx rgba(225, 29, 72, 0.08);
+}
+
+.radio-circle {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid #CBD5E1;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 18rpx;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.radio-circle.radio-active {
+  border-color: #E11D48;
+  background: #FFFFFF;
+}
+
+.radio-inner {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: #E11D48;
+}
+
+.reason-text {
+  font-size: 25rpx;
+  color: #1E293B;
+  font-weight: 600;
+}
+
+.return-notes-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  margin-bottom: 22rpx;
+}
+
+.notes-label {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #334155;
+}
+
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.notes-textarea {
+  width: 100%;
+  height: 140rpx;
+  border: 1.5rpx solid #E2E8F0;
+  border-radius: 18rpx;
+  padding: 18rpx 20rpx 40rpx 20rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  color: #0F172A;
+  background: #F8FAFC;
+}
+
+.char-counter {
+  position: absolute;
+  right: 20rpx;
+  bottom: 12rpx;
+  font-size: 20rpx;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+.refund-summary-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFF1F2;
+  border: 1.5rpx solid #FECDD3;
+  border-radius: 18rpx;
+  padding: 20rpx 24rpx;
+  margin-bottom: 28rpx;
+}
+
+.refund-lbl {
+  color: #881337;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.refund-val {
+  color: #BE123C;
+  font-size: 28rpx;
+  font-weight: 800;
+}
+
+.return-modal-actions {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+  width: 100%;
+}
+
+.btn-cancel-return {
+  flex: 1;
+  height: 92rpx;
+  box-sizing: border-box;
+  background: #F1F5F9;
+  border: 1rpx solid #E2E8F0;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-cancel-txt {
+  color: #475569 !important;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.btn-submit-return {
+  flex: 1.8;
+  height: 92rpx;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #E11D48 0%, #BE123C 100%);
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 6rpx 18rpx rgba(225, 29, 72, 0.28);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-submit-txt {
+  color: #FFFFFF !important;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+

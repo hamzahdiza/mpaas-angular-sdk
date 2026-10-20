@@ -6,7 +6,7 @@ const errorCodeConfig = require("../public/error_code_config.json");
 
 /* JShield-obfus:enable */
 const baseUri = "https://be-mpaas-template-management.vercel.app";
-/* JShield-obf  us:disable */
+/* JShield-obfus:disable */
 
 /**
  * use to send API request
@@ -26,7 +26,7 @@ export default function request({
           method: method,
           data: data,
           timeout: 120000,
-          // headers: generateHeaders(headers),
+          headers: generateHeaders(headers),
           success: (res) => {
             console.info(res, "<<< MPAAS_RES ")
             resolve(res);
@@ -127,20 +127,28 @@ function refreshToken() {
  * generate headers
  */
 function generateHeaders(headers = null) {
-  const nativeData = getApp().globalData.nativeData;
+  const app = getApp();
+  const nativeData = (app && app.globalData && app.globalData.nativeData) || {};
+  const personalData = (app && app.globalData && app.globalData.personalData) || (my.getStorageSync({ key: 'personalData' }) && my.getStorageSync({ key: 'personalData' }).data) || {};
   return Object.assign({
       "content-type": "application/json",
       "Channel-Id": "MVR",
-      "Client-Platform": nativeData.clientPlatform,
-      "Client-Version": nativeData.clientVersion,
-      "Client-Release": nativeData.clientRelease,
-      "Accept-Language": nativeData.language,
-      "User-Agent": nativeData.userAgent,
-      "Device-Id": nativeData.deviceId,
+      "Client-Platform": nativeData.clientPlatform || "Android",
+      "Client-Version": nativeData.clientVersion || "1.0.0",
+      "Client-Release": nativeData.clientRelease || "release",
+      "Accept-Language": nativeData.language || "id-ID",
+      "User-Agent": nativeData.userAgent || "wondr/1.0.0",
+      "Device-Id": nativeData.deviceId || "DEV-DEVICE-001",
       "Request-Id": generateUUID(),
-      authorization: nativeData.authorization,
-      "Enc-Session-Key": nativeData.encSessionKey,
-      "wondr-client": nativeData.clientPlatform,
+      authorization: nativeData.authorization || "",
+      "Enc-Session-Key": nativeData.encSessionKey || "",
+      "wondr-client": nativeData.clientPlatform || "Android",
+      "X-CIF": personalData.cif || "CIF-HAMZAH-001",
+      "X-Customer-Phone": personalData.phone || "081234567890",
+      "X-Account-Number": personalData.accountNumber || "1000785003",
+      "x-cif": personalData.cif || "CIF-HAMZAH-001",
+      "x-customer-phone": personalData.phone || "081234567890",
+      "x-account-number": personalData.accountNumber || "1000785003"
     },
     headers
   );
