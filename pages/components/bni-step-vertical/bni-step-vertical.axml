@@ -1,0 +1,52 @@
+<top-bar pixel={{true}} type="primary" backgroundColor="bg-off-white" />
+<top-bar
+  pixel={{true}}
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="bni-step-vertical"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+/>
+<container-page>
+
+  <view style="height:50px"/>
+
+  <steps pixel={{true}} data="{{listStatus}}" >
+    <slot>
+      <view class="container-slot icon ian" style="display:flex">
+        <image class="icon-ian" mode="scaleToFill" src="/pages/assets/icons/ic_common_checkmark.svg" />
+        <view style="font-size:15px;margin-left:5px">
+          Pendaftaran untuk investasi reksa dana
+        </view>
+      </view>
+      <view class="container-slot icon ian" style="display:flex">
+        <image class="icon-ian" mode="scaleToFill" src="/pages/assets/icons/ic_common_checkmark.svg" />
+        <view style="font-size:15px;margin-left:5px">
+          Pendaftaran untuk investasi reksa dana
+        </view>
+      </view>
+    </slot>
+  </steps>
+  <view style="height:50px"/>
+
+  <steps pixel={{true}} data="{{listStatus2}}" >
+    <slot>
+      <view class="container-slot icon ian" style="display:flex">
+        <image class="icon-ian" mode="scaleToFill" src="/pages/assets/icons/ic_common_checkmark.svg" />
+        <view style="font-size:15px;margin-left:5px">
+          Pendaftaran untuk investasi reksa dana
+        </view>
+      </view>
+    </slot>
+  </steps>
+  <view style="height:50px"/>
+
+  <steps pixel={{true}} data="{{listStatus3}}" >
+  </steps>
+  <view style="height:50px"/>
+  <steps pixel={{true}} data="{{listStatus4}}" >
+  </steps>
+  <view style="height:50px"/>
+
+
+</container-page>

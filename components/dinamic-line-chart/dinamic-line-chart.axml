@@ -1,0 +1,58 @@
+<view class="main-comp-container">
+  <!-- Info -->
+  <view class="container-info" id="goldPriceDetailScreenPerfomanceContainer">
+    <view class="info-area">
+      <view id="goldPriceDetailScreenPerfomanceTitle" class="txt-body3-px title">
+        <text class="mg-r-4-px">{{leftTitle}}</text>
+        <text class="txt-body3-sb-px">{{isHideTime? '':timeLeftTitle}}</text>
+      </view>
+      <view id="goldPriceDetailScreenPerfomancePurchaseSellLabel" class="txt-h3-px {{ isPositivePerformanceValue ?'txt-emerald-400':'txt-error'}} {{isZero?'txt-black':'txt-red'}}">
+        <text class="{{isZero?'txt-black':''}}">{{performanceValue}}</text>
+      </view>
+    </view>
+    <view class="vertical-line"></view>
+    <view class="info-area">
+      <view class=" title">
+        <text class="mg-r-4-px txt-body3-px">{{rightTitle}}</text>
+        <text id="goldPriceDetailScreenPerfomanceDateLabel" class="txt-body3-sb-px">{{currentDate}}</text>
+        <image
+          onTap="{{!formType && onTapIconInfo? `handleIconInfo`:false }}"
+          id="goldPriceDetailScreenPerfomanceTooltipIcon"
+          class="mg-l-4-px"
+          mode="scaleToFill"
+          src="/src/assets/icons/ic_common_info_outlined_orange.svg"
+        />
+      </view>
+      <view id="goldPriceDetailScreenPerfomancePriceLabel" class="d-f-row ai-center">
+        <text class="txt-h3-px">{{navValue}}</text>
+        <text style="white-space: nowrap;" class="txt-body3-px txt-charcoal mg-l-4-px">
+          / 0,01 gram
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Graph Info -->
+  <view id="goldPriceDetailScreenPerfomanceChart" class="graph-canvas" style="position:relative">
+
+    <!-- Graph -->
+    <canvas
+      id="{{canvasId || ('am-mc-line-' + $id)}}"
+      height="{{height * pixelRatio}}"
+      width="{{width * pixelRatio}}"
+      onTouchStart="touchStart"
+      onTouchMove="touchMove"
+      onTouchEnd="touchEnd"
+    />
+
+    <!-- Date Row -->
+    <view class="x-axis-label txt-body3-px txt-granite">
+      <view>
+        {{startDate}}
+      </view>
+      <view>
+        {{endDate}}
+      </view>
+    </view>
+  </view>
+

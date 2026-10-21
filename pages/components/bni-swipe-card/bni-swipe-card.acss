@@ -1,0 +1,54 @@
+@font-face {
+  font-family: TT Interphases Pro;
+  src: url(https://mpaas.vercel.app/assets/fonts/interphases_regular.ttf);
+}
+
+@import './swipe-card-group.acss';
+
+page {
+  width: 750rpx;
+  overflow-x: hidden !important;
+  font-family: TT Interphases Pro;
+}
+
+.top-bar-container {
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+}
+
+.card-counter-container {
+  overflow-x: hidden;
+  padding: 60rpx 0rpx;
+  display: flex;
+  flex-direction: column;
+  row-gap: 60rpx;
+  align-items: center;
+}
+
+.card-counter {
+  padding: 12rpx 32rpx;
+  border-radius: 999999rpx;
+  width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-text {
+  color: var(--functional-bw-tones-black, #0E0E0E);
+  font-feature-settings: 'clig'off, 'liga'off;
+  font-family: TT Interphases Pro;
+  font-size: 28rpx;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.counter-caption {
+  font-weight: 600;
+}
+
+.container-padding {
+  padding-top: 64rpx;
+}

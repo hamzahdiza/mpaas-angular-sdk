@@ -1,0 +1,78 @@
+<top-bar pixel={{true}} type="primary" backgroundColor="bg-off-white" />
+<top-bar
+  pixel={{true}}
+  type="navigation"
+  backgroundColor="bg-off-white"
+  title="Loaders"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+  onIconRTap="handleIconTap"
+/>
+
+<view class="main-container">
+  <view class="loader">
+    <view class="loader-type">
+      <text>Available type:</text>
+    </view>
+    <view style="padding-top:10px; padding-bottom:10px">
+      <button onTap="handleLoading">Simulate loading ({{isLoading}})</button>
+    </view>
+    <view style="padding-top:10px; padding-bottom:10px">
+      <button onTap="simulateFail">Simulate fail ({{isFail}})</button>
+    </view>
+    <view class="loader-usage">
+      <view class="loader-container">
+        <view class="loader-desc">
+          <text>small</text></view>
+        <loaders
+          pixel={{true}}
+          type="small"
+          loading={{isLoading}}
+          fail={{isFail}}
+          failMessage={{ failMessage.en}}
+          onReload="handleReload"
+        />
+      </view>
+    </view>
+
+    <view class="loader-usage">
+      <view class="loader-container">
+        <view class="loader-desc">
+          <text>medium</text></view>
+        <loaders
+          pixel={{true}}
+          type="medium"
+          loading={{isLoading}}
+          fail={{isFail}}
+          color="#593ef0"
+          failMessage={{ failMessage.id}}
+          onReload="handleReload"
+          reloadIcon="/pages/assets/icons/ic_reload.svg"
+        />
+      </view>
+    </view>
+
+    <view class="loader-usage" style="background-color:wheat">
+      <view class="loader-container">
+        <view class="loader-desc">
+          <text>big</text></view>
+        <loaders
+          pixel={{true}}
+          type="big"
+          loading={{isLoading}}
+          fail={{isFail}}
+          failMessage={{failMessage.en}}
+          onReload="handleReload"
+          reloadIcon="/pages/assets/icons/ic_reload.svg"
+        />
+      </view>
+    </view>
+
+    <view style="padding-top:10px; padding-bottom:10px">
+      <button onTap="openFullLoading">full (tap to end)</button>
+    </view>
+  </view>
+</view>
+
+<view a:if="{{ fullPageLoading }}" class="full-mask-container" onTap="closeFullLoading">
+  <loaders pixel={{true}} type="full" loading />
+</view>

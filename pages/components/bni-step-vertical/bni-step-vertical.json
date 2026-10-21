@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "container-page" : "/components/container-page/container-page",
+    "steps" : "/components/bni-step-vertical/bni-step-vertical",
+    "top-bar": "/components/top-bar/top-bar"
+  }
+}
+

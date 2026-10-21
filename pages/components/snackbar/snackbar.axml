@@ -1,0 +1,23 @@
+<top-bar type="primary" backgroundColor="bg-off-white" />
+<top-bar
+  type="navigation"
+  navigate
+  title="snack-bar"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+  pixel 
+/>
+
+<view >
+  <snackbar
+    pixel={{true}}
+    isSnackbarVisible="{{isSnackbarVisible}}"
+    iconSnackbar="{{iconSnackbar}}"
+    txt="{{txt}} + pixel true"
+    idIcon="snackbar-id-icon"
+    idText="snackbar-id-text"
+  >
+  </snackbar>
+</view>
+<button onTap="showSnackbar">Berhasil</button>
+<button onTap="showSnackbarex">Gagal</button>
+<button onTap="showSnackbarWarning">Warning</button>

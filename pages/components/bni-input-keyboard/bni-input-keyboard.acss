@@ -1,0 +1,9 @@
+page {
+  background-color: white;
+}
+
+.content {
+  padding: 16px;
+  display: grid;
+  grid-gap: 5px
+}

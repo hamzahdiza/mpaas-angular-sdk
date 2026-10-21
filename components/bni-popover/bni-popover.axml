@@ -1,0 +1,46 @@
+<view class="bni-popover-container {{ internalVisible ? 'bni-popover-active' : '' }}">
+  <!-- Fullscreen invisible backdrop catcher to dismiss popover on outside tap -->
+  <view
+    a:if="{{ internalVisible && (showMask === undefined || showMask) }}"
+    class="bni-popover-backdrop {{ maskClassName || '' }}"
+    style="{{ maskStyle || '' }}"
+    catchTap="handleMaskTap"
+  />
+
+  <block a:if="{{ useSlotContent }}">
+    <ant-popover
+      controlled="{{ true }}"
+      visible="{{ internalVisible }}"
+      color="{{ effectiveColor }}"
+      contentStyle="{{ computedContentStyle }}"
+      contentClassName="{{ computedContentClassName }}"
+      autoAdjustOverflow="{{ autoAdjustOverflow }}"
+      placement="{{ placement }}"
+      className="{{ className }}"
+      style="{{ computedRootStyle }}"
+      onVisibleChange="handleVisibleChange"
+    >
+      <slot />
+      <view slot="content">
+        <slot name="content" />
+      </view>
+    </ant-popover>
+  </block>
+  <block a:else>
+    <ant-popover
+      controlled="{{ true }}"
+      visible="{{ internalVisible }}"
+      content="{{ content }}"
+      color="{{ effectiveColor }}"
+      contentStyle="{{ computedContentStyle }}"
+      contentClassName="{{ computedContentClassName }}"
+      autoAdjustOverflow="{{ autoAdjustOverflow }}"
+      placement="{{ placement }}"
+      className="{{ className }}"
+      style="{{ computedRootStyle }}"
+      onVisibleChange="handleVisibleChange"
+    >
+      <slot />
+    </ant-popover>
+  </block>
+</view>

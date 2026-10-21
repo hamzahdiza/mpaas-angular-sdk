@@ -1,0 +1,13 @@
+<top-bar type="primary" backgroundColor="bg-off-white" pixel={{true}} />
+<top-bar
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="container-page"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+  pixel={{true}} 
+/>
+<container-page pixel={{true}} className="custom-container bg-light-gray">
+  <view style="height : 150px" class="bg-orange-200"></view>
+  <view style="height : 150px" class="bg-yellow-200"></view>
+</container-page>

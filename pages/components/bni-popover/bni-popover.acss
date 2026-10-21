@@ -1,0 +1,330 @@
+@import "../../../src/utils/styles/theme.acss";
+@import "../../../src/utils/styles/typography.acss";
+
+.demo-page {
+  padding: 16px 16px 48px 16px;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.page-header {
+  margin-bottom: 20px;
+}
+
+.page-title {
+  color: #0e0e0e;
+  margin-bottom: 6px;
+}
+
+.page-subtitle {
+  line-height: 140%;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.card-badge {
+  background: #017a71;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.card-title {
+  color: #0e0e0e;
+}
+
+.card-desc {
+  margin-bottom: 14px;
+  line-height: 140%;
+}
+
+/* 1. Placement Matrix / Compass Grid */
+.placement-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.popover-block {
+  display: block !important;
+  width: 100%;
+}
+
+.placement-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 4px;
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #0e0e0e;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.placement-chip:active {
+  background: #f0f0f0;
+  border-color: #017a71;
+  color: #017a71;
+}
+
+.placement-chip-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px dashed #d9d9d9;
+}
+
+/* 2. Color Palette Grid */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.color-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 10px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 12px;
+  font-weight: 600;
+  width: 100%;
+}
+
+.color-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.color-chip-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bg-charcoal {
+  background: #404040 !important;
+}
+
+.bg-black {
+  background: #1a1a1a !important;
+}
+
+/* 3. Offset Box & Action Rows */
+.offset-item {
+  padding: 12px;
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  background: #fafafa;
+}
+
+.offset-item:last-child {
+  margin-bottom: 0;
+}
+
+.btn-compact {
+  padding: 8px 14px;
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0e0e0e;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-compact:active {
+  background: #f0f0f0;
+  border-color: #017a71;
+  color: #017a71;
+}
+
+.btn-compact-primary {
+  padding: 8px 14px;
+  background: #017a71;
+  border: 1px solid #017a71;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* 4. Trigger Items */
+.trigger-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.bb-divider {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.icon-info {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.tag-badge {
+  background: #ffdbc3;
+  color: #d15502;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.tag-badge-green {
+  background: #c8f4cd;
+  color: #1f7a22;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.custom-rich-box {
+  padding: 4px;
+  max-width: 250px;
+}
+
+/* Small screens responsive styling (<= 360px) */
+@media (max-width: 360px) {
+  .demo-page {
+    padding: 12px 10px 40px 10px;
+  }
+
+  .card {
+    padding: 14px 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .placement-chip {
+    height: 34px;
+    font-size: 10px;
+    padding: 0 2px;
+  }
+
+  .placement-chip-center {
+    height: 34px;
+  }
+
+  .color-chip {
+    height: 38px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+
+  .custom-rich-box {
+    max-width: 220px;
+  }
+}
+
+/* Extra small screens (<= 320px, e.g. iPhone SE 1st gen) */
+@media (max-width: 320px) {
+  .demo-page {
+    padding: 10px 8px 36px 8px;
+  }
+
+  .card {
+    padding: 12px 10px;
+    border-radius: 10px;
+  }
+
+  .placement-grid {
+    gap: 6px;
+  }
+
+  .placement-chip {
+    height: 32px;
+    font-size: 9.5px;
+    border-radius: 6px;
+  }
+
+  .placement-chip-center {
+    height: 32px;
+  }
+
+  .color-grid {
+    gap: 6px;
+  }
+
+  .color-chip {
+    height: 36px;
+    padding: 0 6px;
+    font-size: 10px;
+    gap: 6px;
+  }
+
+  .color-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .offset-item {
+    padding: 10px 8px;
+  }
+
+  .btn-compact,
+  .btn-compact-primary {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}

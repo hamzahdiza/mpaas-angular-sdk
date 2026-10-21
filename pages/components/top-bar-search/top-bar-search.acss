@@ -1,0 +1,140 @@
+@import "/src/utils/styles-px/layout.acss";
+@import "/src/utils/styles-px/shimmer.acss";
+@import "/src/utils/styles-px/spacing.acss";
+@import "/src/utils/styles-px/theme.acss";
+@import "/src/utils/styles-px/typography.acss";
+
+page{
+  background-color: white;
+}
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.modal-scroll {
+  height: 100vh;
+  overflow: scroll;
+}
+
+.pad-top {
+  padding-top: 20rpx;
+  background-color: #bcbcbc;
+  width: 100%;
+}
+
+.main-container {
+  padding: 0 48rpx;
+  text-align: justify;
+}
+
+.background-image {
+  width: 100%;
+  height: 350rpx;
+}
+
+.border-dash-chip {
+  border: 4rpx dashed #DADADA;
+  background: #FFF;
+}
+
+.border-green-chip {
+  border: 2rpx solid var(--Functional-Status-Success-Success-Dark, #02C794);
+  background: #FFF;
+}
+
+/* PIXEL MODE */
+
+.topBar-container-px {
+  width: 100%;
+}
+
+.topBar-container-sticky-px {
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+}
+
+.pad-top-px {
+  width: 100%;
+  padding-top: 10px;
+  background-color: #bcbcbc
+}
+
+.main-container-px {
+  padding: 0 24px;
+  text-align: justify;
+}
+
+.background-image-px {
+  width: 100%;
+  height: 175px;
+}
+
+.border-dash-chip-px {
+  border: 2px dashed #DADADA;
+  background: #FFF;
+}
+
+.border-green-chip-px {
+  border: 1px solid var(--Functional-Status-Success-Success-Dark, #02C794);
+  background: #FFF;
+}
+
+.buy-search-content-loading {
+  position: relative;
+  height: 42rpx;
+  flex: 1;
+  width: 100%;
+  padding: 22rpx 32rpx;
+}
+
+.buy-search-content {
+  position: relative;
+  height: 42rpx;
+  padding: 22rpx 32rpx;
+}
+
+.buy-search-content-focus {
+  border: 2rpx solid #3aa8a0;
+}
+
+.buy-type {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 16rpx;
+}
+
+.product-list-input {
+  width: 458rpx;
+  height: 40rpx;
+}
+
+.buy-type-item {
+  white-space: nowrap;
+  height: 64rpx;
+}
+
+.active {
+  background: #71dbd3;
+  font-weight: 600;
+}
+
+.within {
+  height: 60rpx;
+  border: 2rpx solid #a0a0a0;
+  font-weight: 400;
+}
+
+.pl-loading-middle {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16rpx;
+}
+
+.pl-loading-middle-item {
+  width: 152rpx;
+  height: 64rpx;
+}

@@ -1,0 +1,84 @@
+<view a:if="{{mode === 'multiple-bars'}}">
+  <view class="chart-container-multiple">
+    <block a:for="{{barData}}" a:for-index="index" a:for-item="bar">
+      <view class="bar-wrapper">
+
+        <view
+          a:if="{{ index === activeBar && tooltip }}"
+          class="popup-container"
+          style="{{
+          barData.length >= 4 
+            ? (activeBar === barData.length - 1 
+                ? 'right:1;' 
+                : (activeBar === 0 
+                    ? 'left:1;' 
+                    : ''))
+            : ''
+        }}"
+        >
+          <view class="popup-inner-container d-f-column">
+            <label style="margin-bottom: 8px;" class="txt-body3" id="{{tooltipTitleId}}">
+              {{bar.label}}
+            </label>
+            <label class="txt-body3-sb" id="{{tooltipValueId}}">{{bar.price}}</label>
+          </view>
+        </view>
+
+        <view class="bar-multiple" style="margin: 0 {{bar.margin}}px">
+          <view
+            onTap="onTapBar"
+            data-bar="{{index}}"
+            class="bar-inner-multiple {{
+              type === 'income'
+                ? (activeBar === index ? 'bg-success' : 'bg-success-off')
+                : (
+                  type === 'expense' 
+                    ? (activeBar === index ? 'bg-error' : 'bg-error-off')
+                    : (
+                      type === 'transaction' 
+                        ? (index === 0 ? 'bg-success' : (index === 1 ? 'bg-error' : 'bg-info-off'))
+                        : (activeBar === index ? 'bg-info' : 'bg-info-off')
+                    )
+                )
+            }}"
+            style="height: {{bar.value / maxValue * 100}}%; width: {{bar.width}};"
+            id="{{barId}}"
+          >
+          </view>
+        </view>
+
+      </view>
+    </block>
+  </view>
+
+  <view a:if="{{label}}" class="label-container">
+    <block a:for="{{barData}}" a:for-index="index" a:for-item="bar">
+      <view style="width: {{bar.width}}; margin: 0 {{bar.margin}}px" class="{{
+          barData.length >= 6 
+            ? 'bar-label-wrapped'
+            : 'bar-label'
+        }}">
+        <label class="{{labelTextStyle.length > 0 ? '' : 'txt-label2'}} label-container-text" style="{{labelTextStyle.length > 0 ? labelTextStyle : ''}}">{{bar.label}}</label>
+      </view>
+    </block>
+  </view>
+</view>
+
+
+<view a:else class="chart-container">
+  <view class="bar">
+    <view
+      class="bar-inner {{type === 'expense-breakdown' ? 'pink' : 'turquoise' }}"
+      style="height: {{barLeft / maxValue * 100}}%;"
+    >
+    </view>
+  </view>
+  <view class="bar">
+    <view
+      class="bar-inner {{type === 'expense-breakdown' ? 'red' : 'green' }}"
+      style="height: {{barRight / maxValue * 100}}%;"
+    >
+    </view>
+  </view>
+</view>
+

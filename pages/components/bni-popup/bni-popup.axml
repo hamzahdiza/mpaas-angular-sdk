@@ -1,0 +1,232 @@
+<view class="sticky-top bg-white">
+  <top-bar
+    safeArea
+    type="navigation"
+    navigate={{true}}
+    backgroundColor="bg-white"
+    title="Popup"
+    iconL="../../assets/icons/ic_common_arrow_back.svg"
+    pixel={{true}}
+  />
+  <button size="default" type="primary" onTap="triggerPopup">Open Popup</button>
+</view>
+<view style="width: 100vw; display: flex; flex-direction: column; align-items: center; justify-content: center">
+  <view style="width: 100%">
+    <ant-container title="type (default: 'modal')">
+      <ant-selector options="{{options.props.type}}" onChange="handlePropsTypeSelection" />
+    </ant-container>
+    <ant-container title="with scroll button">
+      <ant-selector defaultValue={{withScrollButton}} options="{{options.props.withScrollButton}}" onChange="handleScrollButtonSelection" />
+    </ant-container>
+    <ant-container title="title">
+      <ant-input placeholder="title props" defaultValue={{title}} onChange="handlePorpsTitle">
+      </ant-input>
+    </ant-container>
+    <ant-container title="illustration">
+      <ant-selector options="{{options.props.illustration}}" onChange="handlePropsIllustrationSelection" />
+    </ant-container>
+    <ant-container title="illustration">
+      <ant-selector options="{{options.props.illustrationSize}}" onChange="handlePropsIllustrationSizeSelection" />
+    </ant-container>
+    <ant-container title="icon">
+      <ant-selector options="{{options.props.icon}}" onChange="handlePropsIconSelection" />
+    </ant-container>
+    <ant-container title="paragraph">
+      <ant-textarea
+        placeholder="paragraph"
+        autoHeight
+        onChange="handlePropsParagraph"
+        maxLength={{9999}}
+        showCount={{false}}
+        value={{paragraph}}
+      >
+      </ant-textarea>
+    </ant-container>
+    <ant-container title="cta">
+      <ant-selector options="{{options.props.cta}}" onChange="handlePropsCTASelection" />
+    </ant-container>
+    <ant-container title="slot">
+      <ant-selector options="{{options.slot}}" onChange="handleSlotSelection" />
+    </ant-container>
+  </view>
+</view>
+
+<!-- Default  -->
+<popup
+  a:if="{{ !ctaSelected && (typeSelected === 'modal') }}"
+  type={{typeSelected}}
+  isOpen={{isOpen}}
+  illustration={{illustrationSelected == 0 ? illustrationPath : ''}}
+  illustrationSize={{illustrationSizeSelected}}
+  icon={{iconSelected}}
+  title={{title}}
+  paragraph={{paragraph}}
+  onClose="triggerPopup"
+>
+  <image
+    a:if="{{ illustrationSelected == 1 }}"
+    slot="illustration"
+    mode="heightFix"
+    style="height:{{illustrationSizeSelected === 'normal' ? '107px' : '150px'}};"
+    src={{illustrationPath}}
+  />
+  <button a:if="{{ slotSelected >= 1 }}" slot="cta1" type="primary" onTap="onTapCTA1">
+    Slot cta1
+  </button>
+  <button a:if="{{ slotSelected >= 2 }}" slot="cta2" type="primary" onTap="onTapCTA2">
+    Slot cta2
+  </button>
+  <button a:if="{{ slotSelected >= 3 }}" slot="cta3" type="primary" onTap="onTapCTA3">
+    Slot cta3
+  </button>
+</popup>
+
+<!-- CTA with props: 1 CTA  -->
+<popup
+  a:if="{{ ctaSelected == 1 && (typeSelected === 'modal')  }}"
+  type={{typeSelected}}
+  isOpen={{isOpen}}
+  image={{imageSelected == 0 ? imagePath : ''}}
+  icon={{iconSelected}}
+  title={{title}}
+  paragraph={{paragraph}}
+  onClose="triggerPopup"
+  labelCTA1={{ctaLabel[0]}}
+  onTapCTA1="onTapCTA1"
+>
+  <image
+    a:if="{{ imageSelected == 1 }}"
+    slot="illustration"
+    mode="heightFix"
+    style="height:{{illustrationSizeSelected === 'normal' ? '107px' : '150px'}};"
+    src={{imagePath}}
+    class="m-b-24"
+  />
+  <button a:if="{{ slotSelected >= 1 }}" slot="cta1" type="primary" onTap="onTapCTA1">
+    Slot cta1
+  </button>
+  <button a:if="{{ slotSelected >= 2 }}" slot="cta2" type="primary" onTap="onTapCTA2">
+    Slot cta2
+  </button>
+  <button a:if="{{ slotSelected >= 3 }}" slot="cta3" type="primary" onTap="onTapCTA3">
+    Slot cta3
+  </button>
+</popup>
+
+<!-- CTA with props: 2 CTAs  -->
+<popup
+  a:if="{{ ctaSelected == 2 && (typeSelected === 'modal') }}"
+  type={{typeSelected}}
+  isOpen={{isOpen}}
+  image={{imageSelected == 0 ? imagePath : ''}}
+  icon={{iconSelected}}
+  title={{title}}
+  paragraph={{paragraph}}
+  onClose="triggerPopup"
+  labelCTA1={{ctaLabel[0]}}
+  labelCTA2={{ctaLabel[1]}}
+  onTapCTA1="onTapCTA1"
+  onTapCTA2="onTapCTA2"
+>
+  <image
+    a:if="{{ imageSelected == 1 }}"
+    slot="illustration"
+    mode="heightFix"
+    style="height:{{illustrationSizeSelected === 'normal' ? '107px' : '150px'}};"
+    src={{imagePath}}
+    class="m-b-24"
+  />
+  <button a:if="{{ slotSelected >= 1 }}" slot="cta1" type="primary" onTap="onTapCTA1">
+    Slot cta1
+  </button>
+  <button a:if="{{ slotSelected >= 2 }}" slot="cta2" type="primary" onTap="onTapCTA2">
+    Slot cta2
+  </button>
+  <button a:if="{{ slotSelected >= 3 }}" slot="cta3" type="primary" onTap="onTapCTA3">
+    Slot cta3
+  </button>
+</popup>
+
+<!-- CTA with props: 3 CTAs  -->
+<popup
+  a:if="{{ ctaSelected == 3 && (typeSelected === 'modal')  }}"
+  type={{typeSelected}}
+  isOpen={{isOpen}}
+  image={{imageSelected == 0 ? imagePath : ''}}
+  icon={{iconSelected}}
+  title={{title}}
+  paragraph={{paragraph}}
+  onClose="triggerPopup"
+  labelCTA1={{ctaLabel[0]}}
+  labelCTA2={{ctaLabel[1]}}
+  labelCTA3={{ctaLabel[2]}}
+  onTapCTA1="onTapCTA1"
+  onTapCTA2="onTapCTA2"
+  onTapCTA3="onTapCTA3"
+>
+  <image
+    a:if="{{ imageSelected == 1 }}"
+    slot="illustration"
+    mode="heightFix"
+    style="height:{{illustrationSizeSelected === 'normal' ? '107px' : '150px'}};"
+    src={{imagePath}}
+    class="m-b-24"
+  />
+  <button a:if="{{ slotSelected >= 1 }}" slot="cta1" type="primary" onTap="onTapCTA1">
+    Slot cta1
+  </button>
+  <button a:if="{{ slotSelected >= 2 }}" slot="cta2" type="primary" onTap="onTapCTA2">
+    Slot cta2
+  </button>
+  <button a:if="{{ slotSelected >= 3 }}" slot="cta3" type="primary" onTap="onTapCTA3">
+    Slot cta3
+  </button>
+</popup>
+
+<!-- Fullscreen Modal, Content using slot only  -->
+<popup
+  a:if="{{ (typeSelected === 'fullscreen')  }}"
+  type={{typeSelected}}
+  isOpen={{isOpen}}
+  title={{title}}
+  onClose="triggerPopup"
+  withScrollButton
+  closeIconPath={{"./ic_common_close.svg"}}
+>
+  <view slot="fullscreen">
+    <block a:for="{{ 9 }}" a:for-item="x">
+      <view style="width:100vw;height: 200px; background-color: #{{10-x}}{{10-x}}{{10-x}}{{10-x}}{{10-x}}{{10-x}}" />
+    </block>
+  </view>
+  <button a:if="{{ slotSelected >= 1 }}" slot="cta1" type="primary" onTap="onTapCTA1">
+    Slot cta1
+  </button>
+  <button a:if="{{ slotSelected >= 2 }}" slot="cta2" type="primary" onTap="onTapCTA2">
+    Slot cta2
+  </button>
+  <button a:if="{{ slotSelected >= 3 }}" slot="cta3" type="primary" onTap="onTapCTA3">
+    Slot cta3
+  </button>
+</popup>
+
+<!-- Bottom Sheet, Content using slot only  -->
+<popup
+  a:if="{{ (typeSelected === 'bottom-sheet')  }}"
+  type={{typeSelected}}
+  isOpen={{isOpen}}
+  title={{title}}
+  onClose="triggerPopup"
+  safeArea={{bottomSafeArea}}
+  withScrollButton
+  scrollBottomId={{"someId"}}
+  sheetHeight={{'500px'}}
+>
+  <view slot="content">
+    <block a:for="{{ 9 }}" a:for-item="x">
+      <view style="width:100vw;height: 200px; background-color: #{{10-x}}{{10-x}}{{10-x}}{{10-x}}{{10-x}}{{10-x}}" />
+    </block>
+  </view>
+  <button a:if="{{ slotSelected >= 1 }}" slot="bottom-container" type="primary" onTap="onTapCTA1">
+    Slot cta1
+  </button>
+</popup>

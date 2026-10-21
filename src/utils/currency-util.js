@@ -1,7 +1,7 @@
 import {
   bigTruncRetain,
   supplementFloatPartZero
-} from "./number-util";
+} from "./number-util.js";
 
 const currencySymbol = {
   "USD": {
@@ -118,7 +118,8 @@ export function currencyFormat({
  * @return formatValue
  */
 export function unitFormat(value) {
-  const localInfo = currencySymbol[getApp().globalData.nativeData.language === 'id-ID' ? "IDR" : "USD"];
+  const lang = (getApp().globalData && getApp().globalData.nativeData && getApp().globalData.nativeData.language) || 'id-ID';
+  const localInfo = currencySymbol[lang === 'id-ID' ? "IDR" : "USD"] || currencySymbol['IDR'];
   const currency = currencyDefaultFormat(
     localInfo,
     String(value),
@@ -137,7 +138,8 @@ export function percentageFormat(value, symbol = false, space = false) {
   if (value == undefined) {
     return "undefined"
   }
-  const localInfo = currencySymbol[getApp().globalData.nativeData.language === 'id-ID' ? "IDR" : "USD"];
+  const lang = (getApp().globalData && getApp().globalData.nativeData && getApp().globalData.nativeData.language) || 'id-ID';
+  const localInfo = currencySymbol[lang === 'id-ID' ? "IDR" : "USD"] || currencySymbol['IDR'];
   const currency = currencyDefaultFormat(
     localInfo,
     String(value),

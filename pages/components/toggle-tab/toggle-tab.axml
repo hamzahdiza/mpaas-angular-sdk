@@ -1,0 +1,139 @@
+<top-bar pixel={{true}} type="primary" backgroundColor="bg-off-white" />
+<top-bar
+  pixel={{true}}
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="toogle-tab"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+/>
+
+<container-page className="check">
+  <view class="header">
+    Toggle Tabs
+  </view>
+  <toggle-tab
+    pixel={{false}}
+    items="{{items}}"
+    background="bg-white"
+    onChange="handleClickToggle"
+    id="id-toggle-tab"
+    isLoading="{{false}}"
+    heightShimmer="45.7rpx"
+    disabled={{false}}
+    isAnimation={{true}}
+  />
+</container-page>
+
+<container-page className="check">
+  <view class="header">
+    Primary Tabs
+  </view>
+  <toggle-tab
+    pixel={{true}}
+    items="{{items1}}"
+    type="primary"
+    background="bg-white"
+    onChange="handleClickPrimary"
+    id="id-primary-tab"
+  />
+</container-page>
+
+
+<container-page className="check">
+  <view class="header">
+    Secondary Tabs
+  </view>
+  <toggle-tab
+    pixel={{true}}
+    items="{{items2}}"
+    type="secondary"
+    onChange="handleClickSecondary"
+    id="id-secondary-tab"
+  />
+</container-page>
+
+<container-page className="check">
+  <view class="header">
+    Secondary Tabs Custom class style for highlight tab
+  </view>
+  <toggle-tab
+    pixel={{true}}
+    items="{{items2}}"
+    type="secondary"
+    onChange="handleClickSecondary"
+    id="id-secondary-tab"
+    className="bg-orange-100 border-black txt-label1-sb-px"
+
+  />
+</container-page>
+
+<container-page className="scroll-page">
+  <view class="header">
+    Scroll Tabs
+  </view>
+  <view class="scroll-content">
+    <toggle-tab
+      pixel={{true}}
+      items="{{items5}}"
+      background="bg-white"
+      activeColor="bg-lime-200"
+      pasiveColor="bg-snow-white"
+      type="scroll"
+      current="{{currentScroll}}"
+      onChange="handleClickScroll"
+      id="id-secondary-tab"
+      scrollView="{{currentScroll}}"
+      isLoading="{{loading}}"
+    />
+  </view>
+
+</container-page>
+
+
+<container-page className="check">
+  <view class="header">
+    Icons Tabs
+  </view>
+  <view class="content">
+    <toggle-tab
+      pixel={{true}}
+      type="icons"
+      width="36px"
+      height="36px"
+      items="{{items3}}"
+      onChange="handleClickIcons"
+      id="id-secondary-tab"
+      background="bg-light-gray"
+    />
+  </view>
+</container-page>
+
+
+<container-page className="check">
+  <view class="header">
+    Example how to use current
+  </view>
+  <toggle-tab
+    pixel={{true}}
+    items="{{items4}}"
+    current="{{current}}"
+    background="bg-light-gray"
+    onChange="handleClick"
+    id="id-toggle-tab"
+    isAnimation
+  />
+  <swiper
+    style="margin:10px 0"
+    indicator-dots="{{true}}"
+    onChange="swipeChange"
+    current="{{current}}"
+  >
+    <block a:for="{{['#4A90E2','#F5A623']}}">
+      <swiper-item >
+        <view style="background-color: {{item}};width:100%;height:150px" />
+      </swiper-item>
+    </block>
+  </swiper>
+</container-page>
+

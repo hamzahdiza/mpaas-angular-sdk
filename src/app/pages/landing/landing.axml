@@ -4,6 +4,11 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <view class="sticky-nav">
     <top-bar
+      type="primary"
+      navigate="{{true}}"
+      backgroundColor="#0F172A"
+    />
+    <top-bar
       type="navigation"
       navigate="{{true}}"
       backgroundColor="#0F172A"
@@ -86,6 +91,75 @@
     <!-- LOADED CONTENT                                              -->
     <!-- ═══════════════════════════════════════════════════════════ -->
     <block a:else>
+
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <!-- SECTION: MPAAS CONVERTER BENCHMARK & CONVERGENCE SUITE    -->
+      <!-- ═════════════════════════════════════════════════════════ -->
+      <view class="section-block suite-section-block">
+        <view class="section-title-row">
+          <view class="title-left">
+            <view class="suite-tag-pill">
+              <text class="suite-tag-icon">⚡</text>
+              <text class="suite-tag-text">MPAAS CONVERTER BENCHMARK</text>
+            </view>
+            <text class="sec-title">Convergence & RnD Testing Suites</text>
+            <text class="sec-subtitle">Uji coba terpadu komponen mpaas-library, pipeline native, dan grafik finansial</text>
+          </view>
+        </view>
+
+        <!-- 3 Interactive Convergence Cards Grid -->
+        <view class="suite-cards-grid">
+          
+          <!-- Card 1: Charts & Financial Analytics -->
+          <view class="suite-card-item card-theme-indigo" onTap="goToChartsShowcase">
+            <view class="suite-card-header">
+              <view class="suite-card-icon-wrap icon-indigo">
+                <text class="suite-icon">📊</text>
+              </view>
+              <text class="suite-card-badge badge-indigo">Gold & Yearly</text>
+            </view>
+            <text class="suite-card-title">Grafik & Visualisasi Finansial</text>
+            <text class="suite-card-desc">Gold Line Chart (AntV F2), Canvas Doughnut Diagram, Bar Chart, & Year-End Cashflow Review.</text>
+            <view class="suite-card-footer">
+              <text class="suite-card-meta">4 Jenis Visualisasi</text>
+              <text class="suite-card-arrow">Buka Grafik ›</text>
+            </view>
+          </view>
+
+          <!-- Card 2: BNI mPaaS Design System & Components -->
+          <view class="suite-card-item card-theme-teal" onTap="goToComponentLibrary">
+            <view class="suite-card-header">
+              <view class="suite-card-icon-wrap icon-teal">
+                <text class="suite-icon">🧩</text>
+              </view>
+              <text class="suite-card-badge badge-teal">mpaas-library</text>
+            </view>
+            <text class="suite-card-title">Koleksi Komponen UI mPaaS</text>
+            <text class="suite-card-desc">37+ Komponen UI resmi BNI (Button, Input, Steps, Popup, Story, Swipe Card, Calendar Picker, dll).</text>
+            <view class="suite-card-footer">
+              <text class="suite-card-meta">37+ Komponen UI</text>
+              <text class="suite-card-arrow">Buka Katalog ›</text>
+            </view>
+          </view>
+
+          <!-- Card 3: mPaaS & Native RnD Pipeline -->
+          <view class="suite-card-item card-theme-amber" onTap="goToTestPipeline">
+            <view class="suite-card-header">
+              <view class="suite-card-icon-wrap icon-amber">
+                <text class="suite-icon">🧪</text>
+              </view>
+              <text class="suite-card-badge badge-amber">mpaas-test-pipeline</text>
+            </view>
+            <text class="suite-card-title">mPaaS & Native RnD Pipeline</text>
+            <text class="suite-card-desc">25+ Pengujian Native & JSAPI: Digital Signature, Maps, QR Code, PDF Render, Session, & Keamanan.</text>
+            <view class="suite-card-footer">
+              <text class="suite-card-meta">25+ Modul Uji Coba</text>
+              <text class="suite-card-arrow">Buka Pipeline ›</text>
+            </view>
+          </view>
+
+        </view>
+      </view>
 
       <!-- ═════════════════════════════════════════════════════════ -->
       <!-- SECTION 1: FEATURED & TRENDING EVENTS                      -->

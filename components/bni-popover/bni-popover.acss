@@ -1,0 +1,197 @@
+@import "../utils/styles/theme.acss";
+@import "../utils/styles/typography.acss";
+
+.bni-popover,
+.bni-popover-container {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+.bni-popover-container.bni-popover-active {
+  z-index: 999;
+}
+
+.bni-popover-container .ant-popover {
+  z-index: auto;
+}
+
+.bni-popover-container.bni-popover-active .ant-popover {
+  z-index: 999;
+}
+
+/* Ensure popover transparent backdrop covers entire viewport for reliable dismiss on outside tap */
+.bni-popover-backdrop,
+.ant-popover-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 998;
+  background-color: rgba(0, 0, 0, 0.001) !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ant-popover-content {
+  z-index: 999 !important;
+  max-width: calc(100vw - 24px) !important;
+  box-sizing: border-box;
+}
+
+.ant-popover-inner {
+  max-width: calc(100vw - 24px);
+  box-sizing: border-box;
+  font-size: calc(14px + var(--font-size-reduction-px, 0px));
+  font-weight: 400;
+  line-height: 140%;
+  font-feature-settings: 'liga' off, 'clig' off;
+  color: var(--functional-bw-tones-black, var(--black, #0E0E0E));
+  background-color: var(--functional-bw-tones-pale-gray, var(--pale-gray, #DADADA));
+  border-radius: 8px;
+  padding: 16px;
+  word-break: break-word;
+}
+
+/* Default BNI style enhancements for popover inner content (rpx mode) */
+.bni-popover-content {
+  font-size: calc(28rpx + var(--font-size-reduction, 0rpx));
+  font-weight: 400;
+  line-height: 140%;
+  font-feature-settings: 'liga' off, 'clig' off;
+  color: var(--functional-bw-tones-black, var(--black, #0E0E0E));
+  background-color: var(--functional-bw-tones-pale-gray, var(--pale-gray, #DADADA));
+  border-radius: 8px;
+  padding: 32rpx;
+  max-width: 295px;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+/* Pixel mode (px) */
+.bni-popover-content-px {
+  font-size: calc(14px + var(--font-size-reduction-px, 0px));
+  font-weight: 400;
+  line-height: 140%;
+  font-feature-settings: 'liga' off, 'clig' off;
+  color: var(--functional-bw-tones-black, var(--black, #0E0E0E));
+  background-color: var(--functional-bw-tones-pale-gray, var(--pale-gray, #DADADA));
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 295px;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+/* Custom class used across page projects (e.g. secondary bonds, purchase breakdown) */
+.custom-popover-content {
+  display: flex;
+  padding: 16px;
+  align-items: flex-start;
+  max-width: 295px;
+  word-break: break-word;
+  font-size: calc(14px + var(--font-size-reduction-px, 0px));
+  font-weight: 400;
+  line-height: 140%;
+  font-feature-settings: 'liga' off, 'clig' off;
+  background: var(--functional-bw-tones-pale-gray, var(--pale-gray, #DADADA));
+  color: var(--functional-bw-tones-black, var(--black, #0E0E0E));
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* Small screens responsive styling (<= 375px viewport e.g. iPhone 6/7/8/X/SE) */
+@media (max-width: 375px) {
+  .ant-popover-content {
+    max-width: calc(100vw - 16px) !important;
+  }
+
+  .ant-popover-inner {
+    max-width: min(280px, calc(100vw - 16px)) !important;
+  }
+
+  .custom-popover-content,
+  .bni-popover-content,
+  .bni-popover-content-px {
+    max-width: min(280px, calc(100vw - 16px)) !important;
+  }
+}
+
+/* Small screens responsive styling (<= 360px viewport e.g. iPhone mini, small Android) */
+@media (max-width: 360px) {
+  .ant-popover-content {
+    max-width: calc(100vw - 12px) !important;
+  }
+
+  .ant-popover-inner {
+    max-width: min(265px, calc(100vw - 12px)) !important;
+    padding: 10px 12px;
+    font-size: 11px;
+    line-height: 135%;
+  }
+
+  .custom-popover-content,
+  .bni-popover-content,
+  .bni-popover-content-px {
+    max-width: min(265px, calc(100vw - 12px)) !important;
+    padding: 10px 12px;
+    font-size: 11px;
+    line-height: 135%;
+  }
+}
+
+/* Extra small screens (<= 320px viewport e.g. iPhone SE Gen 1, iPhone 5/5s) */
+@media (max-width: 320px) {
+  .ant-popover-content {
+    max-width: calc(100vw - 8px) !important;
+  }
+
+  .ant-popover-inner {
+    max-width: min(245px, calc(100vw - 8px)) !important;
+    padding: 8px 10px;
+    font-size: 11px;
+    line-height: 130%;
+  }
+
+  .custom-popover-content,
+  .bni-popover-content,
+  .bni-popover-content-px {
+    max-width: min(245px, calc(100vw - 8px)) !important;
+    padding: 8px 10px;
+    font-size: 11px;
+    line-height: 130%;
+  }
+}
+
+/* Arrow offset adjustments via CSS variable */
+.ant-popover-top-arrow,
+.ant-popover-bottom-arrow {
+  left: calc(50% + var(--popover-arrow-offset, 0px)) !important;
+}
+
+.ant-popover-top-left-arrow,
+.ant-popover-bottom-left-arrow {
+  left: calc(12px + var(--popover-arrow-offset, 0px)) !important;
+}
+
+.ant-popover-top-right-arrow,
+.ant-popover-bottom-right-arrow {
+  right: calc(12px - var(--popover-arrow-offset, 0px)) !important;
+}
+
+.ant-popover-left-arrow,
+.ant-popover-right-arrow {
+  top: calc(50% + var(--popover-arrow-offset, 0px)) !important;
+}
+
+.ant-popover-left-top-arrow,
+.ant-popover-right-top-arrow {
+  top: calc(12px + var(--popover-arrow-offset, 0px)) !important;
+}
+
+.ant-popover-left-bottom-arrow,
+.ant-popover-right-bottom-arrow {
+  bottom: calc(12px - var(--popover-arrow-offset, 0px)) !important;
+}

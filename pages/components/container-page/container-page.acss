@@ -1,0 +1,8 @@
+.custom-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+

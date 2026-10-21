@@ -1,0 +1,19 @@
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  min-height: 50px;
+}
+
+.page-test {
+  width: calc(100% - 30px);
+  height: calc(100vh - 30px);
+  padding-left: 15px;
+  padding-right: 15px;
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  grid-gap: 50px;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,68 @@
+<top-bar pixel={{true}} type="primary" backgroundColor="bg-off-white" />
+<top-bar
+  pixel={{true}}
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="guide"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+/>
+
+<view class="page-test">
+  <guide
+    pixel={{true}}
+    primaryButtonName="Mengerti"
+    secondaryButtonName="Kembali"
+    placement="bottom"
+    indexActive={{0}}
+    visible={{visible}}
+    onHandleSubmitButton="onTestButtonWithoutBack"
+  >
+    <button style="width:250px" onTap="handleButtonWithoutBack">
+      Guide without back button
+    </button>
+    <text slot="text" style="font-size:14px">
+      Nah, disini kamu bisa cek informasi pemasukan dan pengeluaran kamu di periode berjalan.
+    </text>
+  </guide>
+
+  <guide
+    pixel={{true}}
+    primaryButtonName="Lanjut"
+    id="guide-component"
+    secondaryButtonName="Kembali"
+    type="withBack"
+    placement="top"
+    indexActive={{dotIndex}}
+    visible={{visibleWithBack && dotIndex === 1}}
+    onHandleSubmitButton="onTestButtonWithBack"
+    onHandleBackButton="onHandleBackButton"
+  >
+    <button style="width:250px" onTap="onHandleButtonWithBack">
+      Guide with back button
+    </button>
+    <text slot="text" style="font-size:14px">
+      Nah, disini kamu bisa cek informasi pemasukan dan pengeluaran kamu di periode berjalan.
+    </text>
+  </guide>
+
+  <guide
+    pixel={{true}}
+    primaryButtonName="Mengerti"
+    secondaryButtonName="Kembali"
+    type="withBack"
+    placement="top"
+    indexActive={{dotIndex}}
+    visible={{visibleWithBack2 && dotIndex === 2}}
+    onHandleSubmitButton="onTestButtonWithBack"
+    onHandleBackButton="onHandleBackButton"
+    id="test-id"
+  >
+    <button style="width:250px" onTap="onHandleButtonWithBack">
+      Guide with back button 2
+    </button>
+    <text slot="text" style="font-size:14px">
+      Nah, disini kamu bisa cek informasi pemasukan dan pengeluaran kamu di periode berjalan.
+    </text>
+  </guide>
+</view>

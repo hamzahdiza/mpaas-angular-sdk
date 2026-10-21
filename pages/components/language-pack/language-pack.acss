@@ -1,0 +1,259 @@
+.lang-page-container {
+  padding: 16px;
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  border: 1px solid #edf0f2;
+}
+
+.hero-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.meta-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.hero-title {
+  color: #1a1a1a;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.hero-subtitle {
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.hero-action-row {
+  display: flex;
+  margin-top: 8px;
+}
+
+.section-container {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  border: 1px solid #edf0f2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.section-title {
+  color: #212529;
+  font-weight: 700;
+}
+
+.section-caption {
+  line-height: 1.4;
+}
+
+.code-preview-card {
+  background: #1e293b;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow-x: auto;
+}
+
+.code-badge {
+  align-self: flex-start;
+  font-size: 10px;
+  font-weight: 600;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.code-snippet {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #f1f5f9;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.demo-button-wrapper {
+  margin-top: 4px;
+}
+
+.event-card {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.event-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-chip {
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.event-desc {
+  line-height: 1.4;
+}
+
+.event-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.event-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.fallback-card {
+  background: #fffbeb;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #fef3c7;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fallback-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fallback-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fallback-tag {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: #92400e;
+  font-weight: 600;
+}
+
+.fallback-status {
+  font-size: 10px;
+  color: #d97706;
+  font-weight: 600;
+  background: #fef3c7;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.fallback-btn {
+  background: #ffffff;
+}
+
+.fallback-chips-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.fallback-chip-box {
+  background: #ffffff;
+  border: 1px dashed #f59e0b;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chip-title {
+  font-size: 10px;
+  color: #b45309;
+}
+
+.chip-rendered {
+  font-size: 11px;
+  font-weight: 700;
+  color: #78350f;
+  word-break: break-all;
+}
+
+.inspector-card {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+}
+
+.inspector-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.raw-json-box {
+  margin-top: 12px;
+  background: #0f172a;
+  border-radius: 8px;
+  padding: 12px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.raw-json-text {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #38bdf8;
+  white-space: pre-wrap;
+}
+
+.m-t-8 {
+  margin-top: 8px;
+}
+
+.m-t-16 {
+  margin-top: 16px;
+}

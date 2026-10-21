@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "bni-button": "/components/bni-button/bni-button",
+    "top-bar" : "/components/top-bar/top-bar"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES"
+}

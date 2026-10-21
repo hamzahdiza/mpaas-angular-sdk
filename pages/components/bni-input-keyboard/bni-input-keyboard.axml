@@ -1,0 +1,250 @@
+<!-- PIXEL IMPLEMENTATION -->
+<view>
+
+  <view>
+    <top-bar type="primary" backgroundColor="bg-off-white" pixel={{true}} />
+    <top-bar
+      type="navigation"
+      navigate={{true}}
+      backgroundColor="bg-off-white"
+      title="Input Keyboard"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      pixel={{true}}
+    />
+  </view>
+
+  <view class="content">
+    <text class="txt-body1-sb-px">Amount Input With Clear Button on Top</text>
+    <bni-input-keyboard
+      pixel={{true}}
+      legacy
+      textDoneTop
+      idLabel="bonds-booking-product-detail-investment-capital-label"
+      idValue="bonds-booking-product-detail-investment-capital-input"
+      idMessage="caption-message"
+      idMessageIcon="icon-message"
+      idClearIcon="bonds-clear-input"
+      onChange="onChange"
+      onFocus="onFocus1"
+      onClose="onClose"
+      onClear="onClear"
+      onPaste="onPaste"
+      inputValue={{formattedValue}}
+      caption="Minimum Pembelian Rp {{formattedMinBuy}}"
+      type="amountWithClear"
+      error={{error}}
+      success={{false}}
+      prefixIconText="Rp"
+      currencyType="Rp"
+      counter={{false}}
+      placeholder="0"
+      clearIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+      keyboardButtonText={{'Selesai'}}
+    />
+  </view>
+
+
+  <view class="content">
+    <text class="txt-body1-sb-px">Amount Input With Clear Button on Top USD</text>
+    <bni-input-keyboard
+      pixel={{true}}
+      legacy
+      textDoneTop
+      idLabel="bonds-booking-product-detail-investment-capital-label"
+      idValue="bonds-booking-product-detail-investment-capital-input"
+      idMessage="caption-message"
+      idMessageIcon="icon-message"
+      idClearIcon="bonds-clear-input"
+      onChange="onChangeUSD"
+      onFocus="onFocus1"
+      onClose="onClose"
+      onClear="onClear"
+      onPaste="onPaste"
+      inputValue={{formattedValue}}
+      caption="Minimum Pembelian Rp {{formattedMinBuy}}"
+      type="amountType"
+      error={{error}}
+      success={{false}}
+      prefixIconText="USD"
+      currencyType="USD"
+      counter={{false}}
+      placeholder="0"
+      clearIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+      keyboardButtonText={{'Selesai'}}
+    />
+    <!--<bni-input-keyboard
+      pixel={{true}} // deprecated
+      textDoneTop // deprecated
+      idLabel="bonds-booking-product-detail-investment-capital-label"
+      idValue="bonds-booking-product-detail-investment-capital-input"
+      idMessage="caption-message"
+      idMessageIcon="icon-message"
+      idClearIcon="bonds-clear-input"
+      onChange="onChangeUSD"
+      onFocus="onFocus1"
+      onClose="onClose"
+      onClear="onClear"
+      onPaste="onPaste"
+      inputValue={{formattedValue}}
+      caption="Minimum Pembelian Rp {{formattedMinBuy}}"
+      type="amountType"
+      error={{error}}
+      success={{false}}
+      prefixIconText="USD"
+      currencyType="USD"
+      counter={{false}}
+      placeholder="0"
+      clearIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+      keyboardButtonText={{'Selesai'}}
+    /> -->
+  </view>
+
+  <view class="content">
+    <text class="txt-body1-sb-px">Amount Input With Clear Button on Bottom</text>
+    <bni-input-keyboard
+      legacy
+      pixel
+      idLabel="bonds-booking-product-detail-investment-capital-label"
+      idValue="bonds-booking-product-detail-investment-capital-input"
+      idMessage="caption-message"
+      idMessageIcon="icon-message"
+      idClearIcon="bonds-clear-input"
+      onChange="onChange2"
+      closeMask
+      onFocus="onFocus1"
+      onClose="onClose2"
+      onClear="onClear2"
+      onPaste="onPaste2"
+      inputValue={{formattedValue2}}
+      caption="Minimum Pembelian Rp {{formattedMinBuy}}"
+      type="amountWithClear"
+      error={{error2}}
+      success={{false}}
+      prefixIconText="Rp"
+      currencyType="Rp"
+      counter={{false}}
+      placeholder="0"
+      clearIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+      keyboardButtonText={{'Selesai'}}
+    />
+  </view>
+
+  <view class="content">
+    <text class="txt-body1-sb-px">Input Suffix</text>
+    <bni-input-keyboard
+      legacy
+      pixel={{true}}
+      idLabel="bonds-booking-product-detail-investment-capital-label"
+      idValue="bonds-booking-product-detail-investment-capital-input"
+      idMessage="caption-message"
+      idMessageIcon="icon-message"
+      onChange="onChange1"
+      onSuffix="onClear1"
+      onFocus="onFocus1"
+      onPaste="onPaste1"
+      onClose="onClose"
+      inputValue={{formattedValue1}}
+      inputLabel="Modal Investasi"
+      caption="Minimum Rp{{formattedMinBuy}}"
+      isCaptionVisible={{false}}
+      error={{error1}}
+      success={{success1}}
+      counter={{false}}
+      prefixText="Rp"
+      currencyType="Rp"
+      idSuffixIcon="bonds-clear-input"
+      suffixIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+      keyboardButtonText={{'Selesai'}}
+    />
+  </view>
+
+  <!-- Pixel with antd keyboard -->
+
+
+  <view class="content">
+    <text class="txt-body1-sb-px">Amount Input With Clear antd-keyboard</text>
+    <bni-input-keyboard
+      legacy
+      pixel={{true}}
+      idLabel="bonds-booking-product-detail-investment-capital-label"
+      idValue="bonds-booking-product-detail-investment-capital-input"
+      idMessage="caption-message"
+      idMessageIcon="icon-message"
+      idClearIcon="bonds-clear-input"
+      onChange="onChange"
+      onClear="onClear"
+      onPaste="onPaste"
+      inputValue={{formattedValue}}
+      caption="Minimum Pembelian Rp {{formattedMinBuy}}"
+      type="amountWithClear"
+      error={{error}}
+      success={{false}}
+      prefixIconText="Rp"
+      currencyType="Rp"
+      counter={{false}}
+      placeholder="0"
+      clearIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+      captionPlaceholder={{true}}
+      keyboardButtonText={{'Selesai'}}
+      antdKeyboard="{{true}}"
+    />
+  </view>
+  <view class="content">
+    <text class="txt-body1-sb-px">Amount Input Type antd-keyboard</text>
+    <bni-input-keyboard
+      legacy
+      pixel={{true}}
+      idLabel="bonds-booking-product-detail-investment-capital-label"
+      idValue="bonds-booking-product-detail-investment-capital-input"
+      idMessage="caption-message"
+      idMessageIcon="icon-message"
+      idClearIcon="bonds-clear-input"
+      onChange="onChange"
+      onClear="onClear"
+      onPaste="onPaste"
+      inputValue={{formattedValue}}
+      caption="Minimum Pembelian Rp {{formattedMinBuy}}"
+      type="amountType"
+      error={{error}}
+      success={{false}}
+      prefixIconText="Rp"
+      currencyType="Rp"
+      counter={{false}}
+      placeholder="0"
+      clearIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+      keyboardButtonText={{'Selesai'}}
+    />
+  </view>
+  <view class="content">
+    <text class="txt-body1-sb-px">Input Suffix antd keyboard</text>
+    <bni-input-keyboard
+      legacy
+      pixel={{true}}
+      idLabel="bonds-booking-product-detail-investment-capital-label"
+      idValue="bonds-booking-product-detail-investment-capital-input"
+      idMessage="caption-message"
+      idMessageIcon="icon-message"
+      onChange="onChange1"
+      onSuffix="onClear1"
+      onFocus="onFocus1"
+      onPaste="onPaste1"
+      onClose="onClose"
+      inputValue={{formattedValue1}}
+      inputLabel="Modal Investasi"
+      caption="Minimum Rp{{formattedMinBuy}}"
+      isCaptionVisible={{false}}
+      error={{error1}}
+      success={{success1}}
+      counter={{false}}
+      prefixText="Rp"
+      currencyType="Rp"
+      idSuffixIcon="bonds-clear-input"
+      suffixIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+      keyboardButtonText={{'Selesai'}}
+      antdKeyboard="{{true}}"
+    />
+  </view>
+  <view style="height:50vh">
+
+  </view>
+</view>

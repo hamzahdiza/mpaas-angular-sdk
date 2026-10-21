@@ -1,0 +1,12 @@
+<!-- <loading loading="{{ isLoading }}"></loading> -->
+<loading loading="{{ isLoading }}" pixel={{true}}></loading>
+
+<top-bar type="primary" backgroundColor="bg-off-white" />
+<top-bar
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="Loading"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+  pixel={{true}}
+/>

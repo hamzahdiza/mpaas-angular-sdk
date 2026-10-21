@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "bni-lists": "/components/bni-lists/bni-lists",
+    "top-bar": "/components/top-bar/top-bar"
+  }
+}

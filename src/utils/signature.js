@@ -1,19 +1,18 @@
-import nacl from "@wecrpto/nacl";
-import { encodeBase64, decodeBase64, decodeUTF8 } from "@wecrpto/nacl-util";
-
 /**
- * use to generate signature
- * @param {*} privateKey  private key
- * @param {*} publicKey   public key
- * @param {*} message     data that requires encryption
+ * Local mock signature generator
  */
 export function generateSignature(privateKey, publicKey, message) {
-	const priv = decodeBase64(privateKey);
-	const pub = decodeBase64(publicKey);
-	const privateKeyBytes = new Uint8Array(64);
-	privateKeyBytes.set(priv);
-	if (priv.length != 64) privateKeyBytes.set(pub, priv.length);
-	const messageBytes = decodeUTF8(message);
-	const signature = nacl.sign.detached(messageBytes, privateKeyBytes);
-	return encodeBase64(signature);
+  const str = String(message || '');
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0;
+  }
+  const hex = Math.abs(hash).toString(16).padStart(8, '0');
+  const safeBase64 = typeof btoa !== 'undefined' ? btoa(str.slice(0, 16)) : (typeof Buffer !== 'undefined' ? Buffer.from(str.slice(0, 16)).toString('base64') : 'SIG');
+  return "MOCK_SIG_" + hex + "_" + safeBase64;
 }
+
+export default {
+  generateSignature
+};

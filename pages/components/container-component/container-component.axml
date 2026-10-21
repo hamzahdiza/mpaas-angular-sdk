@@ -1,0 +1,10 @@
+<top-bar type="primary" backgroundColor="bg-off-white" />
+<top-bar
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="container-page"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+/>
+
+<container-page> Test</container-page>

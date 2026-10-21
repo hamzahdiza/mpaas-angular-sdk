@@ -1,0 +1,175 @@
+<top-bar pixel={{true}} type="primary" backgroundColor="bg-off-white" />
+<top-bar
+  pixel={{true}}
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="bni-progress"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+/>
+<view style="padding: 15px">
+
+  <view style="margin-top:40px">
+    <bni-progress
+      pixel={{true}}
+      type="circle"
+      percent="50"
+      strokeWidth="{{20}}"
+      backgroundColor="#F9F9F9"
+      foregroundColor="#71DBD3"
+      width="96"
+    >
+    </bni-progress>
+  </view>
+
+  <view>
+
+  </view>
+
+  <bni-progress
+  pixel={{true}}
+  type="circle-image"
+  percent="0"
+  strokeWidth="{{20}}"
+  backgroundColor="#F9F9F9"
+  foregroundColor="#02C794"
+  width="72"
+  imageSrc="/pages/assets/images/bni-circle.svg"
+  imageWH="32"
+  ></bni-progress>
+
+  <view>
+  </view>
+
+  <bni-progress
+  pixel={{true}}
+  type="circle-image"
+  percent="50"
+  strokeWidth="{{20}}"
+  backgroundColor="#F9F9F9"
+  foregroundColor="#02C794"
+  width="72"
+  imageSrc="/pages/assets/images/bni-circle.svg"
+  imageWH="32"
+  ></bni-progress>
+
+  <view>
+  </view>
+
+  <text class="txt-h2-px">Progress Line</text>
+  <view style="margin:10px">
+    Warning = false
+  </view>
+  <bni-progress pixel={{true}} type="line" percent="40"></bni-progress>
+  <view style="margin:10px">
+    Warning = true
+  </view>
+  <bni-progress pixel={{true}} type="line" percent="90" warning></bni-progress>
+  <view style="margin:10px">
+    Percent = 0
+  </view>
+  <bni-progress pixel={{true}} type="line" percent="0"></bni-progress>
+  <view style="margin:10px">
+    <text style="margin-top:10px" class="txt-h2-px">Steps Line</text>
+  </view>
+  <bni-progress
+    pixel={{true}}
+    type="steps"
+    width="100%"
+    height="5px"
+    initialFill={{initialFill}}
+    percent={{percent}}
+    backgroundColor="#F0F0F0"
+    progressColor="#71DBD3"
+  >
+  </bni-progress>
+  <view style="display:flex;gap:10px;margin-top:10px;width:100%;justify-content:center">
+    <button size="default" type="primary" onTap="onIncrease">Increase</button>
+    <button size="default" type="primary" onTap="onDecrease">Decrease</button>
+  </view>
+
+  <view style="margin-top: 30px">
+  </view>
+  <text class="txt-h2-px">Progress Circle</text>
+  <view style="margin-bottom: 20px">
+  </view>
+  <view style="display:flex; gap:10px">
+    <bni-progress
+      pixel={{true}}
+      type="circle"
+      percent="0"
+      backgroundColor="#ECF789"
+      foregroundColor="#68702A"
+      strokeWidth="30"
+    >
+    </bni-progress>
+
+    <bni-progress
+      pixel={{true}}
+      type="circle"
+      percent="20"
+      backgroundColor="#ECF789"
+      foregroundColor="#68702A"
+    >
+    </bni-progress>
+  </view>
+
+  <!-- START EXAMPLE -->
+  <view style="margin-top: 30px">
+  </view>
+  <text class="txt-h2-px">Example</text>
+  <view style="margin-bottom: 20px">
+  </view>
+
+  <view class="card-container">
+    <view class="top-content">
+      <text class="txt-body2-px">Kebutuhan Bulanan</text>
+      <image style="width:24px; height:24px" src="../../assets/icons/ic_common_chevron_down.svg" />
+    </view>
+
+    <view style="margin: 16px 0 8px 0">
+      <bni-progress pixel={{true}} type="line" percent="30"></bni-progress>
+    </view>
+
+    <view class="bottom-content">
+      <view class="bottom-left-content">
+        <text class="txt-body3-px txt-charcoal">Sisa</text>
+        <text class="txt-charcoal txt-body3-sb-px ">Rp0</text>
+      </view>
+      <view class="bottom-right-content">
+        <text class="txt-body3-px txt-charcoal ">dari Rp7.500.000</text>
+      </view>
+    </view>
+  </view>
+  <!-- END EXAMPLE -->
+
+  <bni-progress
+    pixel={{true}}
+    type="circle"
+    percent="50"
+    backgroundColor="#519CED"
+    foregroundColor="#71DBD3"
+    width="96"
+  >
+  </bni-progress>
+  <bni-progress
+    pixel={{true}}
+    type="circle"
+    strokeWidth="{{12}}"
+    percent="{{20}}"
+    backgroundColor="#519CED"
+    foregroundColor="#71DBD3"
+    width="96"
+  />
+
+  <bni-progress
+    pixel={{true}}
+    type="circle"
+    percent="{{0}}"
+    backgroundColor="#519CED"
+    width="96"
+    strokeWidth="{{12}}"
+  >
+  </bni-progress>
+
+</view>

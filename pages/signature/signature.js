@@ -87,45 +87,28 @@ Page({
       protString: JSON.stringify(this.data.protectedData)
     })
 
-    my.request({
-      url: "https://mav-apigw-ext-test2.bni.co.id:48202/wealth-mf/v1/booking",
-      method: "POST",
-      data: {
-        dataProtected: this.data.dataProt
-      },
-      headers: {
-        "accept": "application/json",
-        "authorization": getApp().globalData.parameter.authorization,
-        "screen-id": "homeScreen",
-        "channel-id": "MAVERICK",
-        "scope": "POSTLOGIN",
-        "device-id": getApp().globalData.data.deviceId,
-        "request-id": this.data.reqID,
-        "Mav-Authorization": getApp().globalData.data.accessToken,
-        "User-Agent": getApp().globalData.parameter.userAgent,
-        "Client-Release": getApp().globalData.parameter.clientRelease,
-        "Client-Platform": getApp().globalData.parameter.clientPlatform,
-        "Client-Version": getApp().globalData.parameter.clientVersion,
-        "Accept-Language": getApp().globalData.data.language,
-        "Enc-Session-Key": this.data.encrypSessKey,
-        "Content-Type": "application/json"
-      },
-      success: (res) => {
-        this.setData({
-          response: JSON.stringify(res)
-        })
-        my.alert({
-          title: 'SUCCESS CALL API',
-          content: res
-        })
-      },
-      fail: (err) => {
-        my.alert({
-          title: 'Error',
-          content: err
-        })
-      }
-    })
+    // Mock API call to avoid external network hits
+    setTimeout(() => {
+      const mockRes = {
+        status: 200,
+        statusCode: 200,
+        data: {
+          responseCode: "00",
+          responseMessage: "Success Booking Reksa Dana (Mock Mode)",
+          bookingReference: "BK-" + Date.now(),
+          transactionDate: new Date().toISOString(),
+          amount: this.data.payload.amount,
+          accountNumber: this.data.payload.accountNumber
+        }
+      };
+      this.setData({
+        response: JSON.stringify(mockRes)
+      });
+      my.alert({
+        title: 'SUCCESS CALL API (MOCK)',
+        content: JSON.stringify(mockRes)
+      });
+    }, 200);
   },
 
   atob(a) {
@@ -212,51 +195,13 @@ Page({
 
 
   async previewPDFAPI() {
-    await my.request({
-      url: "https://mav-apigw-ext-test2.bni.co.id:48202/wealth-mf/v1/files/BZ002EQCDANSHM00?type=FUND_FACT",
-      method: "GET",
-      dataType: "base64",
-      headers: {
-        "Authorization": getApp().globalData.parameter.authorization,
-        "Screen-Id": "productDetailScreen",
-        "Channel-Id": "MVR",
-        "Device-Id": getApp().globalData.data.deviceId,
-        "Request-Id": this.data.reqID,
-        "Mav-Authorization": getApp().globalData.data.accessToken,
-        "User-Agent": getApp().globalData.parameter.userAgent,
-        "Client-Release": getApp().globalData.parameter.clientRelease,
-        "Client-Platform": getApp().globalData.parameter.clientPlatform,
-        "Client-Version": getApp().globalData.parameter.clientVersion,
-        "Accept-Language": getApp().globalData.data.language,
-        "Content-Type": "application/json"
-      },
-      success: (res) => {
-        const base64raw = res.data;
-        const base64PDF = base64raw.replace("data:application/pdf;base64,", "");
-        my.downloadFile({
-          url: base64PDF,
-          header: {
-            'Content-Type': 'application/pdf'
-          },
-          success(rest) {
-            console.info('MAV_SUCCESS_DOWNLOAD_FILE', rest)
-            const downPath = getApp().globalData.platformOS == "iOS" ? rest.apFilePath : rest.tempFilePath;
-            my.openDocument({
-              filePath: downPath,
-              fileType: 'pdf',
-              success: () => console.log('Opening the document...'),
-              fail: () => console.log('Failed to open the document...')
-            });
-          },
-          fail(error) {
-            console.info('MAV_DOWNLOAD_ERROR', error)
-          }
-        })
-      },
-      fail: (err) => {
-        throw new Error('MAV_ERROR_PERVIEW_ERROR', err)
-      }
-    })
+    // Mock PDF preview using local data to avoid live network call
+    setTimeout(() => {
+      my.alert({
+        title: 'Preview PDF (Mock)',
+        content: 'Dokumen Fund Fact Sheet BZ002EQCDANSHM00 siap ditampilkan secara offline (Mock Mode).'
+      });
+    }, 200);
   },
   navigateTo() {
     my.navigateTo({

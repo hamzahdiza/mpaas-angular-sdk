@@ -1,0 +1,59 @@
+<view>
+  <view class="top-bar-container">
+    <top-bar type="primary" backgroundColor="bg-off-white" />
+    <top-bar
+      type="navigation"
+      backgroundColor="bg-off-white"
+      title="{{title}}"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      onIconRTap="handleIconTap"
+      pixel
+    />
+  </view>
+
+  <container-page>
+    <view class="card-counter-container">
+      <view class="">
+        <view class="card-counter counter-text bg-turquoise-300">
+          <text class="card-text">
+            <text style="font-weight:600; padding-right:8rpx;">
+              {{transactions.length}}
+            </text> kategori perlu di ulas
+          </text>
+        </view>
+      </view>
+      <view class="counter-caption">
+        Apakah kategorimu sudah sesuai?
+      </view>
+    </view>
+  </container-page>
+
+  <container-page>
+    <view id="swipe-card-group-container">
+      <block a:for="{{ transactions }}" a:for-index="index" a:for-item="transaction">
+        <bni-swipe-card
+          pixel={{true}}
+          a:key="{{`card-${index}`}}"
+          cardEffectDuration={{ 100 }}
+          swipeOutDuration={{ 500 }}
+          id="swipe-card-container"
+          onTapConfirm="tapOkay"
+          onTapEdit="tapEdit"
+          confirmText={{ "Oke" }}
+          editText={{ "Ubah Kategori" }}
+          transaction={{transaction}}
+        >
+          <view style="width:100%; height:400rpx; background-color:{{transaction.color}}; display: flex; justify-content:center; align-items:center;">
+            {{transaction.content}}
+          </view>
+        </bni-swipe-card>
+      </block>
+    </view>
+  </container-page>
+</view>
+
+<bnipopupmini onClose="onClosePopup" basicVisible={{basicVisible}} >
+  <view style="height:400rpx; background-color:bisque; display:flex; align-items:center; justify-content:center" slot="contentInside">
+    <text>Change Category Component</text>
+  </view>
+</bnipopupmini>

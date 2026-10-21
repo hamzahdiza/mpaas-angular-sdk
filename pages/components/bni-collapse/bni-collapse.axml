@@ -1,0 +1,65 @@
+<top-bar type="primary" backgroundColor="bg-off-white" pixel={{true}} />
+<top-bar
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="bni-collapse"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+  pixel={{true}}
+/>
+
+
+<view class="content-pages-px">
+  Testing using Data on JS ACCORDION type
+
+  <bni-collapse
+    collapseItem={{collapseData}}
+    collapseStatus={{accordion}}
+    arrowUp={{"../../assets/icons/ic_common_chevron_up.svg"}}
+    arrowDown={{"../../assets/icons/ic_common_chevron_down.svg"}}
+    type="accordion"
+    pixel={{true}}
+  >
+  </bni-collapse>
+
+
+</view>
+
+<view class="content-pages-px">
+  Testing using slot but the data only provide title ACCORDION type
+
+  <bni-collapse
+    collapseItem={{collapseData2}}
+    collapseStatus={{accordion}}
+    arrowUp={{"../../assets/icons/ic_common_chevron_up.svg"}}
+    arrowDown={{"../../assets/icons/ic_common_chevron_down.svg"}}
+    type="accordion"
+    pixel={{true}}
+  >
+    <view slot="contentInside_0">Custom content for section 1</view>
+    <view slot="contentInside_1">Custom content for section 2</view>
+    <view slot="contentInside_2">Custom content for section 3</view>
+  </bni-collapse>
+
+
+</view>
+
+
+<view class="content-pages-px">
+  Testing using slot but the data only provide title DEFAULT type
+
+  <bni-collapse
+    collapseItem={{collapseData2}}
+    collapseStatus={{accordion}}
+    arrowUp={{"../../assets/icons/ic_common_chevron_up.svg"}}
+    arrowDown={{"../../assets/icons/ic_common_chevron_down.svg"}}
+    type="default"
+    pixel={{true}}
+  >
+    <view slot="contentInside_0">Custom content for section 1</view>
+    <view slot="contentInside_1">Custom content for section 2</view>
+    <view slot="contentInside_2">Custom content for section 3</view>
+  </bni-collapse>
+
+
+</view>

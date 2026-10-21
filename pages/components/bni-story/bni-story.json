@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "top-bar": "/components/top-bar/top-bar",
+    "dynamic-swiper": "/components/bni-story/bni-story",
+    "bni-button": "/components/bni-button/bni-button"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES",
+  "defaultTitle": "",
+  "pullRefresh": false,
+  "allowsBounceVertical":"NO"
+}

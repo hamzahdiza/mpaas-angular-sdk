@@ -1,0 +1,18 @@
+page{
+  background-color: yellow;
+}
+.container-slot{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  /* background-color: thistle; */
+  height: 35px;
+  width: 100%;
+}
+
+.icon-ian{
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: tomato;
+}

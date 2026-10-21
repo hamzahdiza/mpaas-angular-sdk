@@ -1,0 +1,41 @@
+.top-bar-container {
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+}
+
+
+.main-container{
+  padding: 24px 0px;
+  /* background-color: aqua; */
+}
+
+.list-item{
+  padding: 6px 24px;
+  background-color: white;
+  border-top: lightgray solid 0.25px;
+}
+.circle {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  color: black;
+}
+
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.gap{
+  padding: 5px 0;
+  border-bottom: 1px solid gray;
+}
+
+.container-vertical-padding{
+  padding: 24px 0px;
+}

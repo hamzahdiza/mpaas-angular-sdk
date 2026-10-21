@@ -1,0 +1,38 @@
+page{
+  background-color: rosybrown;
+  min-height: 200vh;
+}
+
+.top-bar-container {
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+}
+
+.main-container{
+  padding: 8px 0px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap:8px;
+}
+
+.example-container{
+  padding: 12px 24px;
+  min-height: 100px;
+  width: calc(100% - 48px);
+  background-color: white;
+}
+
+.ant-container{
+  border-radius: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.ant-selector-item-text{
+  font-size: 12px;
+}
+
+.ant-selector-item-subtext{
+  font-size: 10px;
+}

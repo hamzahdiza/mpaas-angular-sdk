@@ -1,0 +1,30 @@
+.skeleton {
+  position: relative;
+  background-color: #eee;
+  overflow: hidden;
+  border-radius: var(--rounded-corner-small-8-px, 8px);
+
+}
+
+.skeleton:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #FCFCFC;
+  background: linear-gradient(to right, transparent 0%, #C8CDCF, transparent 100%);
+  animation: skeletonAnimation 1.5s infinite linear;
+}
+
+@keyframes skeletonAnimation {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+

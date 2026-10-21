@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
-import "dayjs/locale/id";
-import utc from "dayjs/plugin/utc"
-import timezone from "dayjs/plugin/timezone"
-import advanced from "dayjs/plugin/advancedFormat"
+import "dayjs/locale/id.js";
+import utc from "dayjs/plugin/utc.js";
+import timezone from "dayjs/plugin/timezone.js";
+import advanced from "dayjs/plugin/advancedFormat.js";
 
 dayjs.extend(timezone)
 dayjs.extend(utc)

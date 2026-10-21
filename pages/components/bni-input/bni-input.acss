@@ -1,0 +1,4 @@
+@font-face {
+  font-family: TT Interphases Pro;
+  src: url(https://mpaas.vercel.app/assets/fonts/interphases_regular.ttf);
+}

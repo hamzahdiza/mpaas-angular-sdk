@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "top-bar": "/components/top-bar/top-bar",
+    "bni-input-keyboard": "/components/bni-input-keyboard/bni-input-keyboard",
+    "ant-input": "antd-mini/es/Input/index",
+    "ant-switch": "antd-mini/es/Switch/index",
+    "ant-container": "antd-mini/es/Container/index",
+    "ant-textarea": "antd-mini/es/Input/Textarea/index",
+    "ant-selector": "antd-mini/es/Selector/index"
+  },
+  "allowsBounceVertical": "NO"
+}

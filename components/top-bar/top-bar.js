@@ -1,13 +1,13 @@
 Component({
   mixins: [],
   data: {
-    titleBarHeight: 0,
-    statusBarHeight: 0
+    titleBarHeight: '44px',
+    statusBarHeight: '24px'
   },
 
   props: {
     /**
-     * type: "primary" | "userInfo" | "navigation"
+     * type: "primary" | "userInfo" | "navigation" | "chipButton"
      */
     type: String("navigation"),
 
@@ -72,7 +72,7 @@ Component({
      */
     iconRTertiary: String(""),
     /**
-     * onIconLTap is a callback to handle Left button. You can perform custom functions on iconL. By default, if you don't write the "onIconLTap" prop, iconL functions as a back button, to navigate to the previous page
+     * onIconLTap is a callback to handle Left button.
      */
     onIconLTap: Function(),
     /**
@@ -88,60 +88,128 @@ Component({
      */
     onIconRTapTertiary: Function(),
     /**
+     * onChipButtonTap is a callback to handle Chip Button
+     */
+    onChipButtonTap: Function(),
+    /**
+     * onChipResetTap is a callback to reset Chip state
+     */
+    onChipResetTap: Function(),
+    /**
      * Whether to exit mini program
      */
-    exit: Boolean(false)
+    exit: Boolean(false),
+    /**
+     * safeArea is prop to add space on the top bar *default value = false
+     */
+    safeArea: Boolean(false),
+    /**
+     * titleChipButton is prop to adding text title in your chip button in type = "chipButton"
+     */
+    titleChipButton: String(""),
+    classChipButton: String(""),
+    /**
+     * disabledChipButton is prop to make your chip button inactive
+     */
+    disabledChipButton: Boolean(false),
+    /**
+     * pixel is a prop that allows us to use pixels in styling
+     */
+    pixel: Boolean(false),
+    /**
+     * prop that need to be trigger when scrolled
+     */
+    isScrolled: Boolean(false),
+    titlePosition: String(""),
+    tapStatus: Boolean(false)
   },
   didMount() {
     this.setData({
       ...this.props
-    })
-    my.getSystemInfo({
-      success: (res) => {
-        this.setData({
-          titleBarHeight: res.titleBarHeight,
-          statusBarHeight: res.statusBarHeight
-        })
-      }
-    })
-  },
-  methods: {
-    onIconLTapDefault() {
-      if (this.props.navigate && this.props.iconL.length > 1 && this.props.onIconLTap === undefined) {
-        my.navigateBack()
-      }
-    },
-    
-    onIconLTap() {
-      if (this.props.navigate && this.props.iconL.length > 1 && this.onIconLTap !== undefined) {
-        this.props.onIconLTap()
-      }
-    },
-
-    onIconRTap() {
-      if (this.props.onIconRTap && this.props.iconR.length > 1) {
-        this.props.onIconRTap()
-      }
-    },
-
-    onIconRTapSecondary() {
-      if (this.props.onIconRTapSecondary && this.props.iconRSecondary.length > 1) {
-        this.props.onIconRTapSecondary()
-      }
-    },
-
-    onIconRTapTertiary() {
-      if (this.props.onIconRTapTertiary && this.props.iconRTertiary.length > 1) {
-        this.props.onIconRTapTertiary()
-      }
-    },
-
+    });
+    this.resolveSystemInfo();
   },
   didUpdate(prevProps) {
     if (JSON.stringify(prevProps) !== JSON.stringify(this.props)) {
       this.setData({
         ...this.props
-      })
+      });
+      this.resolveSystemInfo();
     }
   },
+  methods: {
+    resolveSystemInfo() {
+      const isPixel = this.props.pixel;
+      try {
+        const sys = (typeof my !== 'undefined' && my.getSystemInfoSync && my.getSystemInfoSync()) || {};
+        const rawStatus = (sys && sys.statusBarHeight) || 24;
+        const rawTitle = (sys && sys.titleBarHeight) || 44;
+        const statusBarHeight = isPixel ? `${rawStatus}px` : `${rawStatus * 2}rpx`;
+        const titleBarHeight = isPixel ? `${rawTitle}px` : `${rawTitle * 2}rpx`;
+
+        this.setData({
+          titleBarHeight,
+          statusBarHeight
+        });
+      } catch (e) {}
+
+      if (typeof my !== 'undefined' && my.getSystemInfo) {
+        my.getSystemInfo({
+          success: (res) => {
+            const rawStatus = (res && res.statusBarHeight) || 24;
+            const rawTitle = (res && res.titleBarHeight) || 44;
+            const statusBarHeight = isPixel ? `${rawStatus}px` : `${rawStatus * 2}rpx`;
+            const titleBarHeight = isPixel ? `${rawTitle}px` : `${rawTitle * 2}rpx`;
+
+            this.setData({
+              titleBarHeight,
+              statusBarHeight
+            });
+          }
+        });
+      }
+    },
+
+    onIconLTapDefault() {
+      if (this.props.navigate && this.props.iconL && this.props.iconL.length > 1 && this.props.onIconLTap === undefined) {
+        my.navigateBack();
+      }
+    },
+
+    onIconLTap() {
+      if (this.props.navigate && this.props.iconL && this.props.iconL.length > 1 && this.props.onIconLTap !== undefined) {
+        this.props.onIconLTap();
+      }
+    },
+
+    onIconRTap() {
+      if (this.props.onIconRTap && this.props.iconR && this.props.iconR.length > 1) {
+        this.props.onIconRTap();
+      }
+    },
+
+    onIconRTapSecondary() {
+      if (this.props.onIconRTapSecondary && this.props.iconRSecondary && this.props.iconRSecondary.length > 1) {
+        this.props.onIconRTapSecondary();
+      }
+    },
+
+    onIconRTapTertiary() {
+      if (this.props.onIconRTapTertiary && this.props.iconRTertiary && this.props.iconRTertiary.length > 1) {
+        this.props.onIconRTapTertiary();
+      }
+    },
+
+    onChipButtonTap() {
+      if (this.props.onChipButtonTap) {
+        this.props.onChipButtonTap();
+      }
+    },
+
+    onChipResetTap() {
+      if (this.props.onChipResetTap) {
+        this.props.onChipResetTap();
+      }
+    }
+  }
 });

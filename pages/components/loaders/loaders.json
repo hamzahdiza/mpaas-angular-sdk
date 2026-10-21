@@ -1,0 +1,12 @@
+{
+  "defaultTitle": "Loaders",
+  "allowsBounceVertical":"NO",
+  "backgroundColor": "#dfe2e3",
+  "usingComponents": {
+    "loaders":"/components/loaders/loaders",
+    "top-bar" : "/components//top-bar/top-bar"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES"
+}
+

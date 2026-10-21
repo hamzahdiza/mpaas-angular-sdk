@@ -1,0 +1,206 @@
+<top-bar type="primary" backgroundColor="bg-off-white" pixel={{true}} />
+<top-bar
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="bni-button"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+  pixel={{true}} 
+/>
+
+<view style="display:flex; flex-direction:column; padding-bottom:205px">
+  Primary
+  <bni-button
+    type="primary"
+    className="txt-label1-sb-px bg-turquoise-300"
+    onTap="handleClick"
+    id="id-bni-button-primary"
+    pixel={{true}}
+  >
+    Primary Button
+  </bni-button>
+  Outline
+  <bni-button
+    type="outline"
+    onTap="handleClick"
+    idx="2"
+    className="txt-label1-sb-px border-granite"
+    id="id-bni-button-outline"
+    pixel={{true}}
+  >
+    Outline Button
+  </bni-button>
+  Button with Form
+  <form onSubmit="handleSubmit">
+    <input placeholder="Input" name="input1" /> ......input here
+    <bni-button
+      type="primary"
+      idx="1"
+      formType="submit"
+      className="txt-label1-sb-px bg-turquoise-300"
+      id="id-bni-button-primary-form"
+      pixel={{true}}
+    >
+      Submit Button
+    </bni-button>
+  </form>
+  with proping data
+  <bni-button
+    type="primary"
+    data="{{exampleData}}"
+    idx="3"
+    onTap="handleClick"
+    className="txt-label1-sb-px bg-turquoise-300"
+    id="id-bni-button-primary-data"
+    pixel={{true}}
+  >
+    Proping Data
+  </bni-button>
+  Disabled
+  <bni-button type="outline" className="txt-label1-sb-px border-granite" disabled id="id-bni-button-disabled" pixel={{true}}>
+    Disabled Button
+  </bni-button>
+  With Container
+  <view style="display:flex; gap: 5px">
+    <bni-button
+      type="primary"
+      onTap="handleClick"
+      className="txt-label1-sb-px bg-turquoise-300"
+      id="id-bni-button-primary-1"
+      pixel={{true}}
+    >
+      test
+    </bni-button>
+    <bni-button
+      type="outline"
+      onTap="handleClick"
+      className="txt-label1-sb-px border-granite"
+      id="id-bni-button-primary-2"
+      pixel={{true}}
+    >
+      now
+    </bni-button>
+  </view>
+  Primary + Icon
+  <bni-button
+    type="primary"
+    className="txt-label1-sb-px bg-turquoise-300"
+    onTap="handleClick"
+    id="id-bni-button-primary-icon"
+    pixel={{true}}
+  >
+    <view slot="left-icon" style="display:flex;">
+      <image
+        mode="aspectFit"
+        src="../../../pages/assets/icons/ic_common_arrow_back.svg"
+        style="width:24px;"
+      />
+    </view>
+    icon
+    <view slot="right-icon" style="display:flex;">
+      <image
+        mode="aspectFit"
+        src="../../../pages/assets/icons/ic_common_notifications.svg"
+        style="width:24px;"
+      />
+    </view>
+  </bni-button>
+  Quite & Ghost
+  <view style="display:flex; justify-content:center">
+    <bni-button type="quite" className="txt-label1-sb-px txt-orange-300" id="id-bni-button-quite" pixel={{true}}>
+      Cancel
+    </bni-button>
+    <bni-button type="quite" className="txt-label1-sb-px txt-orange-300" ghost id="id-bni-button-quite-ghost" pixel={{true}}>
+      Ghost
+    </bni-button>
+  </view>
+  Compact
+  <bni-button
+    type="primary"
+    className="txt-label2-sb-px bg-turquoise-300"
+    compact
+    onTap="handleClick"
+    id="id-bni-button-primary-compact"
+    pixel={{true}}
+  >
+    compact
+  </bni-button>
+  Compact with container
+  <view style="display:flex; flex:1; gap: 5px">
+    <bni-button
+      type="primary"
+      className="txt-label2-sb-px bg-turquoise-300"
+      compact
+      onTap="handleClick"
+      id="id-bni-button-primary-compact-1"
+      pixel={{true}}
+    >
+      compact
+    </bni-button>
+    <bni-button type="primary" className="txt-label2-sb-px" compact disabled id="id-bni-button-primary-compact-disabled" pixel={{true}}>
+      disabled
+    </bni-button>
+    <bni-button
+      type="primary"
+      className="txt-label2-sb-px bg-turquoise-300"
+      compact
+      onTap="handleClick"
+      id="id-bni-button-primary-compact-2"
+      pixel={{true}}
+    >
+      compact
+    </bni-button>
+    <bni-button
+      type="quite"
+      className="txt-label2-sb-px txt-orange-300"
+      compact
+      onTap="handleClick"
+      id="id-bni-button-quite-compact"
+      pixel={{true}}
+    >
+      compact
+    </bni-button>
+  </view>
+
+  Styling override
+  <bni-button
+    type="primary"
+    className="txt-label1-sb-px bg-turquoise-300"
+    onTap="handleClick"
+    id="id-bni-button-primary"
+    pixel={{true}}
+    style={{
+      style
+    }}
+  >
+    Style override
+  </bni-button>
+
+
+  Sticky Button
+
+  <bni-button
+    type="sticky"
+    shadow="{{true}}"
+    className="txt-label1-sb-px"
+    titlePrimaryButton="Primary Button"
+    titleSecondaryButton="Secondary Button"
+    onTapPrimaryButton="handleClickPrimaryButton"
+    onTapSecondaryButton="handleClickSecondaryButton"
+    disabledPrimaryButton="{{false}}"
+    disabledSecondaryButton="{{false}}"
+    idPrimaryButton="id-sticky-bni-button-primary"
+    idSecondaryButton="id-sticky-bni-button-secondary"
+    pixel={{true}}
+  >
+    <view className="container-sticky-button" slot="upside-sticky-button">
+      <view class="total-price">
+        <view class="title-total-price">
+          <text class="text-1-total-price">Total</text>
+          <text class="text-2-total-price">Rp.20.000.000</text>
+        </view>
+      </view>
+    </view>
+  </bni-button>
+
+</view>

@@ -1,0 +1,81 @@
+<view class="container">
+  <text
+    class="main-title txt-black txt-center mg-b-12-px"
+    id="yearEndReviewSlide2CashflowTitle"
+  >
+    {{langTitle}}
+  </text>
+  <text class="main-desc txt-black txt-center mg-b-32-px" id="yearEndReviewSlide2CashflowDesc">
+    {{langDesc}}
+  </text>
+  <view class="content-barchart">
+    <view a:if="{{ isDoneRender }}" class="bar-section">
+      <image mode="scaleToFill" class="tape-1" src="/src/assets/images/img_tape_ilustration.png" />
+      <image mode="scaleToFill" class="tape-2" src="/src/assets/images/img_tape_ilustration.png" />
+      <view class="legend-container" data-status="Positive" data-type="Legend">
+        <view class="legend-content">
+
+          <view class="legend-item" data-type="Pemasukan">
+            <view class="item-label-wrap">
+              <view class="item-color-indicator green-bg" id="yearEndReviewSlide2CashflowGraphicIncomeIcon"></view>
+              <text class="item-label-text txt-black" id="yearEndReviewSlide2CashflowGraphicIncomeLabel">
+                {{lang.yearEndReviewSlide2CashflowPercentageIncomeLabel}}
+              </text>
+            </view>
+            <text class="item-value-text" id="yearEndReviewSlide2CashflowGraphicIncomeAmount">{{barData[0].price}}</text>
+          </view>
+
+          <view class="vertical-divider"></view>
+
+          <view class="legend-item" data-type="Pengeluaran">
+            <view class="item-label-wrap">
+              <view class="item-color-indicator red-bg" id="yearEndReviewSlide2CashflowGraphicExpenseIcon"></view>
+              <text class="item-label-text txt-black" id="yearEndReviewSlide2CashflowGraphicExpenseLabel">
+                {{lang.yearEndReviewSlide2CashflowPercentageExpenseLabel}}
+              </text>
+            </view>
+            <text class="item-value-text" id="yearEndReviewSlide2CashflowGraphicExpenseAmount">{{barData[1].price}}</text>
+          </view>
+
+        </view>
+      </view>
+      <view class="bar-chart-item">
+        <bar-chart
+          id="yearEndReviewSlide2CashflowGraphicContainer"
+          barData="{{barData}}"
+          mode="multiple-bars"
+          label="{{true}}"
+          type="{{barChartType}}"
+          tooltip="{{false}}"
+          barId="pfm-insight-template-barchart-bar"
+          labelId="pfm-insight-template-barchart-time"
+          tooltipTitleId="pfm-insight-template-barchart-tooltip-title"
+          tooltipValueId="pfm-insight-template-barchart-tooltip-value"
+          labelTextStyle="font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 120%"
+        />
+      </view>
+
+      <image class="bg-cashflow" src="/src/assets/images/img_cashflow.png" />
+    </view>
+
+  </view>
+
+  <view class="cta-container">
+    <view class="cta" onTap="leftButtonHandle">
+      <image class="icon-style" mode="widthFix" src="/src/assets/icons/ic-common-arrow-back.svg" />
+    </view>
+    <view class="cta" onTap="rightButtonHandle">
+      <image class="icon-style" mode="widthFix" src="/src/assets/icons/ic-common-arrow-forward.svg" />
+    </view>
+  </view>
+
+  <image
+    class="background-cashflow"
+    id="yearEndReviewSlide2CashflowBackground"
+    mode="scaleToFill"
+    src="/src/assets/images/background-cashflow.png"
+  />
+</view>

@@ -1,0 +1,9 @@
+.sticky-top{
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+}
+
+.m-b-24 {
+  margin-bottom: 24px;
+}

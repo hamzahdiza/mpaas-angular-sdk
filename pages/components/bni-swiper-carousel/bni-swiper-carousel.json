@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "bni-swiper-carousel": "/components/bni-swiper-carousel/bni-swiper-carousel"
+  },
+  "styleIsolation": "apply-shared"
+}
+

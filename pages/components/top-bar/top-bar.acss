@@ -1,0 +1,153 @@
+@import "/src/utils/styles-px/layout.acss";
+@import "/src/utils/styles-px/shimmer.acss";
+@import "/src/utils/styles-px/spacing.acss";
+@import "/src/utils/styles-px/theme.acss";
+@import "/src/utils/styles-px/typography.acss";
+
+.topBar-container {
+  width: 100%;
+}
+
+.topBar-container-sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+}
+
+.pad-top {
+  padding-top: 20rpx;
+  background-color: #bcbcbc;
+  width: 100%;
+}
+
+.main-container {
+  padding: 0 48rpx;
+  text-align: justify;
+}
+
+.background-image {
+  width: 100%;
+  height: 350rpx;
+}
+
+.border-dash-chip {
+  border: 4rpx dashed #DADADA;
+  background: #FFF;
+}
+
+.border-green-chip {
+  border: 2rpx solid var(--Functional-Status-Success-Success-Dark, #02C794);
+  background: #FFF;
+}
+
+/* PIXEL MODE */
+
+.topBar-container-px {
+  width: 100%;
+}
+
+.topBar-container-sticky-px {
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+}
+
+.pad-top-px {
+  width: 100%;
+  padding-top: 10px;
+  background-color: #bcbcbc
+}
+
+.main-container-px {
+  padding: 0 24px;
+  text-align: justify;
+}
+
+.background-image-px {
+  width: 100%;
+  height: 175px;
+}
+
+.border-dash-chip-px {
+  border: 2px dashed #DADADA;
+  background: #FFF;
+}
+
+.border-green-chip-px {
+  border: 1px solid var(--Functional-Status-Success-Success-Dark, #02C794);
+  background: #FFF;
+}
+
+.buy-search-content {
+  position: relative;
+  height: 42rpx;
+  border: 2rpx solid #4e4e4e;
+  padding: 22rpx 32rpx;
+}
+
+.buy-search-content-focus {
+  border: 2rpx solid #3aa8a0;
+}
+
+.buy-type {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 16rpx;
+}
+
+.product-list-input {
+  width: 458rpx;
+  height: 40rpx;
+}
+
+.buy-type-item {
+  white-space: nowrap;
+  height: 64rpx;
+}
+
+.active {
+  background: #71dbd3;
+  font-weight: 600;
+}
+
+.within {
+  height: 60rpx;
+  border: 2rpx solid #a0a0a0;
+  font-weight: 400;
+}
+
+.topbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 36px;
+}
+
+.topbar-left,
+.topbar-right {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-nav {
+  width: 20px;
+  height: 20px;
+}
+
+.topbar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 8px;
+}

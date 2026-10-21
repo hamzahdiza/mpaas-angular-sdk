@@ -1,0 +1,8 @@
+<view>
+  <bni-update-notice
+    popupVisible="{{true}}"
+    contentObj="{{textObject}}"
+    onHandleUpdate="handleOnTap" 
+  >
+  </bni-update-notice>
+</view> 

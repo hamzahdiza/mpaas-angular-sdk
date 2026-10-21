@@ -1,0 +1,65 @@
+<view style="position : sticky; top : 0; z-index: 999">
+  <top-bar
+    type="navigation"
+    navigate
+    backgroundColor="bg-off-white"
+    title="bni-coachmark"
+    iconL="../../assets/icons/ic_common_arrow_back.svg"
+    safeArea
+    pixel
+  />
+</view>
+
+<view>
+  <top-bar
+    type="navigation"
+    navigate
+    title="Personal Finance Management"
+    backgroundColor="bg-turquoise-400 "
+    color="txt-white"
+    iconL="../../assets/icons/ic_common_arrow_back_white.svg"
+    iconR="../../assets/icons/ic_common_setting_white.svg"
+    pixel
+  />
+</view>
+
+<!-- bni-coachmark example 1 -->
+<bni-coachmark
+  showCoachmark="{{ showCoachmark1 }}"
+  title="Configure your financial recap here1"
+  description="You can configure your period starting date and get notified of your spendings, according to your needs."
+  buttonText="Configure Now"
+  onButtonTap="closeCoachmark1"
+  highlightPosition="{{ highlightPosition1 }}"
+  idCoachmark="coachmark1"
+  tooltipPosition="auto"
+  autoAdjustOverflow="true"
+>
+</bni-coachmark>
+
+<view class="container-px">
+  <view class="showcase-card-px">
+    <view>
+      <text class="txt-h2-sb-px"> Lorem Ipsum</text>
+    </view>
+    <view>
+      <text class="txt-body2-px"> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam
+      </text>
+    </view>
+  </view>
+</view>
+
+<!-- bni-coachmark example 2 -->
+<bni-coachmark
+  showCoachmark="{{ showCoachmark2 }}"
+  title="Configure your financial recap here2"
+  description="You can configure your period starting date and get notified of your spendings, according to your needs."
+  buttonText="Atur Tanggal Mulai"
+  onButtonTap="closeCoachmark2"
+  highlightPosition="{{ highlightPosition2 }}"
+  idCoachmark="coachmark2"
+  centerPosition
+  dynamicWidth
+>
+</bni-coachmark>

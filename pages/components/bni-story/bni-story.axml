@@ -1,0 +1,142 @@
+<top-bar
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title=""
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+  safeArea={{true}}
+  pixel
+  onIconLTap="navBack"
+/>
+
+<view a:if="{{ show }}" class="button-container">
+  <block a:for="{{ dataButton }}">
+    <bni-button 
+    type="primary"
+    className="txt-label1-sb-px bg-turquoise-300"
+    onTap="handleClick"
+    data="{{item.type}}"
+    id="id-bni-button-primary"
+    pixel={{true}}
+    >
+     {{item.title}} 
+    </bni-button>
+  </block>
+</view>
+
+<!-- Story With Progress Bar Animation -->
+<view a:if="{{ type === 'storyProgressBar' }}">
+  <!-- Default Props -->
+  <!-- 
+    paddingProgress="padding: 0 24px;"
+    disabledSwipe= false
+    autoPlay= true
+    withChevron= true // otomatis show when disabledSwipe = true
+    classChevron:String("width:24px; height:24px; padding:8px"),
+   -->
+  <dynamic-swiper
+    items="{{dataStory.length}}"
+    current="{{currentIndex}}"
+    onSwiperChange="onSwiperChange"
+    onNext="scrollToNext"
+    onPrev="scrollToPrev"
+    mode="horizontal"
+    disabledSwipe="{{true}}"
+    classChevronRight="chevronRight"
+    classChevronLeft="chevronLeft"
+    withChevron="{{true}}"
+    autoPlay="{{currentIndex === dataStory.length -1 ?false : true}}"
+  >
+    <block a:for="{{ dataStory }}">
+      <view slot="content_{{index}}">
+        <view class="container">
+          <view class="description-container" style="padding:0 24px;">
+            <view class="description-title">
+              {{item.title}}
+            </view>
+            <view class="description-footer">
+              {{item.subTitle}}
+            </view>
+          </view>
+          <view style="position:fixed; bottom:100px; ">
+            <image
+              mode="widthFix"
+              style="width:450px; height:450px;"
+              src="{{item.image}}"
+            />
+          </view>
+        </view>
+      </view>
+    </block>
+  </dynamic-swiper>
+  <bni-button
+    type="sticky"
+    shadow="{{true}}"
+    className="txt-label1-sb-px"
+    titlePrimaryButton="Okey, Yuk Mulai"
+    onTapPrimaryButton="handleClickPrimaryButton"
+    disabledPrimaryButton="{{false}}"
+    idPrimaryButton="id-sticky-bni-button-primary"
+    pixel={{true}}
+  >
+
+  </bni-button>
+</view>
+
+<!-- Story Without Progress Bar -->
+<view a:if="{{ type === 'storyWithoutProgress' }}" >
+  <!-- Default Props -->
+  <!-- 
+    paddingProgress="padding: 0 24px;"
+    disabledSwipe= false
+    autoPlay= true
+    withChevron= true // otomatis show when disabledSwipe = true
+    classChevron:String("width:24px; height:24px; padding:8px"),
+   -->
+  <dynamic-swiper
+  items="{{dataStory.length}}"
+  current="{{currentIndex}}"
+  onSwiperChange="onSwiperChange"
+  onNext="scrollToNext"
+  onPrev="scrollToPrev"
+  mode="horizontal"
+  disabledSwipe="{{false}}"
+  progressBar="{{false}}"
+  autoPlay="{{false}}"
+>
+  <block a:for="{{ dataStory }}">
+    <view slot="content_{{index}}">
+      <view class="container">
+        <view class="description-container" style="padding:0 24px;">
+          <view class="description-title">
+            {{item.title}}
+          </view>
+          <view class="description-footer">
+            {{item.subTitle}}
+          </view>
+        </view>
+        <view style="position:fixed; bottom:100px; ">
+          <image
+            mode="widthFix"
+            style="width:450px; height:450px;"
+            src="{{item.image}}"
+          />
+        </view>
+      </view>
+    </view>
+  </block>
+</dynamic-swiper>
+<bni-button
+  type="sticky"
+  shadow="{{true}}"
+  className="txt-label1-sb-px"
+  titlePrimaryButton="Okey, Yuk Mulai"
+  onTapPrimaryButton="handleClickPrimaryButton"
+  disabledPrimaryButton="{{false}}"
+  idPrimaryButton="id-sticky-bni-button-primary"
+  pixel={{true}}
+>
+
+</bni-button>
+</view>
+

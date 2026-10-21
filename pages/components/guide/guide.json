@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "guide": "/components/guide/guide",
+    "container": "antd-mini/es/Container/index",
+    "popover": "antd-mini/es/Popover/index",
+    "top-bar": "/components/top-bar/top-bar"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES"
+}

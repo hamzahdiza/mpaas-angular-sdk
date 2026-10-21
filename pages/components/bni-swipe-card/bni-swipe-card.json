@@ -1,0 +1,14 @@
+{
+  "allowsBounceVertical":"NO",
+  "backgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "loaders":"/components/loaders/loaders",
+    "top-bar" : "/components/top-bar/top-bar",
+    "container-page": "/components/container-page/container-page",
+    "bni-swipe-card":"/components/bni-swipe-card/bni-swipe-card",
+    "bnipopupmini":"/components/bni-popupmini/bni-popupmini"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES"
+}
+

@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "top-bar": "/components/top-bar/top-bar",
+    "bni-button": "/components/bni-button/bni-button",
+    "container-page": "/components/container-page/container-page",
+    "bni-chip": "/components/bni-chip/bni-chip"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES"
+}
+

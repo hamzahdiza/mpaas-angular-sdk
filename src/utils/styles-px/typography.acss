@@ -1,0 +1,253 @@
+/* This CSS styling converts dimensions from rpx (responsive pixel) to px (pixels) using a 2x ratio 
+* Note: This conversion applies to styles originally created by ANT to accomodate Wealth Management Project conversion to px.
+*/
+
+.txt-h0 {
+  font-size: 32.0px;
+  font-weight: 800;
+  line-height: 38.4px;
+}
+
+.txt-h1 {
+  font-size: 26.0px;
+  line-height: 30.0px;
+  font-weight: 700;
+}
+
+.txt-h2 {
+  font-size: 24.0px;
+  line-height: 28.8px;
+  font-weight: 700;
+}
+
+.txt-h3 {
+  font-size: 18.0px;
+  line-height: 21.6px;
+  font-weight: 700;
+}
+
+.txt-h4 {
+  font-size: 16.0px;
+  line-height: 19.2px;
+  font-weight: 700;
+}
+
+.txt-h5 {
+  font-size: 14.0px;
+  line-height: 16.8px;
+  font-weight: 700;
+}
+
+.txt-h5-Montserrat {
+  font-family: 'Montserrat';
+  font-size: 14.0px;
+  line-height: 16.8px;
+  font-weight: 700;
+}
+
+.txt-h6 {
+  font-size: 12.0px;
+  line-height: 14.4px;
+  font-weight: 700;
+}
+
+.txt-h6-sb {
+  font-size: 12.0px;
+  line-height: 16.8px;
+  font-weight: 700;
+}
+
+.txt-h0 {
+  font-size: 32.0px;
+  line-height: 38.4px;
+  font-weight: 800;
+}
+
+.txt-amount2 {
+  font-size: 28.0px;
+  line-height: 33.6px;
+  font-weight: 800;
+}
+
+.txt-amount3 {
+  font-size: 20.0px;
+  line-height: 24.0px;
+  font-weight: 800;
+}
+
+.txt-body1 {
+  font-size: 16.0px;
+  line-height: 22.4px;
+  font-weight: 400;
+}
+
+.txt-body2 {
+  font-size: 14.0px;
+  line-height: 19.6px;
+  font-weight: 400;
+}
+
+.txt-body3 {
+  font-size: 12.0px;
+  line-height: 16.8px;
+  font-weight: 400;
+}
+
+.txt-body4 {
+  font-size: 10.0px;
+  line-height: 13.8px;
+  font-weight: 400;
+}
+
+.txt-body5 {
+  font-size: 8.0px;
+  line-height: 10.8px;
+  font-weight: 400;
+}
+
+.txt-label1 {
+  font-size: 14.0px;
+  line-height: 16.8px;
+  font-weight: 400;
+}
+
+.txt-label2 {
+  font-size: 12.0px;
+  line-height: 14.4px;
+  font-weight: 400;
+}
+
+.txt-label3 {
+  font-size: 10.0px;
+  line-height: 12.0px;
+  font-weight: 400;
+}
+
+.txt-body1-sb {
+  font-size: 16.0px;
+  line-height: 22.4px;
+  font-weight: 600;
+}
+
+.txt-body2-sb {
+  font-size: 14.0px;
+  line-height: 19.6px;
+  font-weight: 600;
+}
+
+.txt-body3-sb {
+  font-size: 12.0px;
+  line-height: 16.8px;
+  font-weight: 600;
+}
+
+.txt-body4-sb {
+  font-size: 10.0px;
+  line-height: 13.8px;
+  font-weight: 600;
+}
+
+.txt-body5-sb {
+  font-size: 8.0px;
+  line-height: 10.8px;
+  font-weight: 600;
+}
+
+.txt-label1-sb {
+  font-size: 14.0px;
+  line-height: 16.8px;
+  font-weight: 600;
+}
+
+.txt-label2-sb {
+  font-size: 12.0px;
+  line-height: 14.4px;
+  font-weight: 600;
+}
+
+.txt-label3-sb {
+  font-size: 10.0px;
+  line-height: 14.0px;
+  font-weight: 600;
+}
+
+.txt-label4-sb {
+  font-size: 14.0px;
+  line-height: 16.8px;
+  font-weight: 600;
+  font-family: "TT Interphases Pro";
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-left {
+  text-align: left;
+}
+
+.txt-right {
+  text-align: right;
+}
+
+.txt-justify {
+  text-align: justify;
+}
+
+/*letter-spacing*/
+.ls-1 {
+  letter-spacing: 0.5px;
+}
+
+.ls-0 {
+  letter-spacing: 0.0px;
+}
+
+.va-middle {
+  vertical-align: middle;
+}
+
+/*word break*/
+.ww-bw {
+  word-wrap: break-word;
+}
+
+.ww-ba {
+  word-break: break-all;
+}
+
+.ww-pw {
+  white-space: pre-wrap;
+}
+
+.ww-n {
+  white-space: normal;
+}
+
+.ww-nw {
+  white-space: nowrap;
+}
+
+.ww-pl {
+  white-space: pre-line;
+}
+
+.to-e-1 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.to-e-2 {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

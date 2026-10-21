@@ -1,0 +1,127 @@
+<top-bar type="primary" backgroundColor="bg-off-white" />
+<top-bar
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="category-selection-card"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+  pixel={{true}}
+/>
+
+<view class="gridbuttonfront bg-white border-pale-gray" onTap="onOpenPopup">
+  <block a:for={{dataCategoryMain}}>
+    <view class="setGrid" onTap="onOpenPopup">
+      <view class="grid-item-main">
+        <view class="gridIcon border-success bg-white" style="width:32px;height:32px;">
+          <image class="icon-main" src="{{ item.icon }}" style="width:32px;height:32px" />
+          <image
+            a:if="{{item.selected ===true}}"
+            class="icon-check"
+            src="../../assets/icons/ic_common_check_filled.svg"
+            style="width:32px;height:32px"
+          />
+        </view>
+        <text class="txt-body3-px txt-black">{{item.title}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+
+<!-- 
+<bnipopupmini onClose="onClosePopup" basicVisible={{basicVisible}}>
+  <view slot="contentInside">
+    <view class="popupCardContent">
+      <view class="contentHeader">
+        <view class="closePopUp" onTap="handlePopupClose">
+          <image src="../../assets/icons/ic_common_close.svg" alt="x" />
+        </view>
+      </view>
+      <view class="insideContent">
+        <view>
+          <view class="popupTitle">
+            <view class="textTitle">
+              <text class="txt-black txt-h3">Ubah Kategori</text>
+            </view>
+          </view>
+        </view>
+        <view class="contentBody">
+          <form onSubmit="onSubmitCategory">
+            <view>
+              <view class="grid-container">
+                <block a:for="{{dataCategory}}">
+                  <view class="grid-item" onTap="handleTapItem" data-set="{{dataCategory}}" id="{{item.id}}">
+                    <view class="gridIcon border-success bg-white">
+                      <image
+                        class="icon-main "
+                        src="{{ item.icon }}"
+                        style="width:32px;height:32px"
+                      />
+                      <image
+                        a:if="{{item.selected ===true}}"
+                        class="icon-check"
+                        src="../../assets/icons/ic_common_check_filled.svg"
+                        style="width:32px;height:32px"
+                      />
+                    </view>
+                    <text class="txt-body3 txt-black"> {{item.title}}</text>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </form>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+</bnipopupmini> -->
+
+<bnipopupmini onClose="onClosePopup" basicVisible={{basicVisible}} pixel={{true}}>
+  <view slot="contentInside">
+    <view class="popupCardContent-px">
+      <view class="contentHeader-px">
+        <view class="closePopUp-px" onTap="handlePopupClose">
+          <image src="../../assets/icons/ic_common_close.svg" alt="x" />
+        </view>
+      </view>
+      <view class="insideContent-px">
+        <view>
+          <view class="popupTitle-px">
+            <view class="textTitle-px">
+              <text class="txt-black txt-h3-px">Ubah Kategori</text>
+            </view>
+          </view>
+        </view>
+        <view class="contentBody-px">
+          <form onSubmit="onSubmitCategory">
+            <view>
+              <view class="grid-container-px">
+                <block a:for="{{dataCategory}}">
+                  <view class="grid-item-px" onTap="handleTapItem" data-set="{{dataCategory}}" id="{{item.id}}">
+                    <view class="gridIcon-px border-success bg-white">
+                      <image
+                        class="icon-main-px"
+                        src="{{ item.icon }}"
+                        style="width:32px;height:32px"
+                      />
+                      <image
+                        a:if="{{item.selected ===true}}"
+                        class="icon-check-px"
+                        src="../../assets/icons/ic_common_check_filled.svg"
+                        style="width:32px;height:32px"
+                      />
+                    </view>
+                    <text class="txt-body3-px txt-black"> {{item.title}}</text>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </form>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+</bnipopupmini>

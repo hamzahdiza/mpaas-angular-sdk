@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "bni-scroll-picker": "/components/bni-scroll-picker/bni-scroll-picker",
+    "top-bar" : "/components/top-bar/top-bar"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES"
+}
+

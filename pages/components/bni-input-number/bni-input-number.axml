@@ -1,0 +1,143 @@
+<view class="top-bar-container">
+  <top-bar
+    safeArea
+    backgroundColor="white"
+    title="BNI Input Number"
+    iconL="/pages/assets/icons/ic_common_arrow_back.svg"
+    pixel
+  />
+</view>
+
+<view class="main-container">
+  <view class="example-container">
+    <bni-input-keyboard
+      legacy={{selected.legacy}}
+      type={{selected.type}}
+      disabled={{selected.disabled}}
+      readOnly={{selected.readOnly}}
+      incrementValue={{1000}}
+      label={{label}}
+      inputValue={{value}}
+      caption={{caption}}
+      KB_bottomLeftButton={{selected.KB_bottomLeftButton}}
+      KB_ctaPosition={{selected.KB_ctaPosition}}
+      KB_type={{'custom'}}
+      state={{selected.state}}
+      prefixIconText="Rp"
+      currencyType="Rp"
+      currency={{selected.currency}}
+      language={{selected.language}}
+      placeholder={{placeholder}}
+      KB_ctaLabel={{KB_ctaLabel}}
+      onChange="onChange"
+      onFocus="onFocus"
+      onClose="onClose"
+      onClear="onClear"
+      onPaste="onPaste"
+      idLabel="bonds-booking-product-detail-investment-capital-label"
+      idValue="bonds-booking-product-detail-investment-capital-input"
+      idMessage="caption-message"
+      idMessageIcon="icon-message"
+      idClearIcon="bonds-clear-input"
+      onTapDropdown={{selected.dropdown?'onTapDropDown':false}}
+      onBlur="onBlur"
+      onDismissKeyboard='onDismissKeyboard'
+      isFocused={{isFocused}}
+    />
+    <!--<bni-input-number
+      value={{value}}
+      type={{selected.type}}
+      state={{selected.state}}
+      label={{label}}
+      caption={{caption}}
+      currency={{selected.currency}}
+      language={{selected.language}}
+      disabled={{selected.disabled}}
+      readOnly={{selected.readOnly}}
+      KB_bottomLeftButton={{selected.KB_bottomLeftButton}}
+      KB_ctaPosition={{selected.KB_ctaPosition}}
+      KB_ctaLabel={{KB_ctaLabel}}
+      onChange="handleChangedValue"
+      idx={{
+        {
+          labels:'test'
+        }
+      }}
+    > -->
+  </view>
+  <ant-container title="legacy (default: false)">
+    <ant-selector
+      options={{options.props.legacy}}
+      onChange="handlePropLegacy"
+      defaultValue={{default.legacy}}
+    />
+  </ant-container>
+  <ant-container title="type (default: 'amount')">
+    <ant-selector
+      options={{options.props.type}}
+      onChange="handlePropTypeSelection"
+      defaultValue={{default.type}}
+      minSelectedCount="{{1}}"
+    />
+  </ant-container>
+  <ant-container title="currency (default: 'Rp')">
+    <ant-selector
+      options={{options.props.currency}}
+      onChange="handlePropCurrency"
+      defaultValue={{default.currency}}
+      minSelectedCount="{{1}}"
+    />
+  </ant-container>
+  <ant-container title="state (default: 'default')">
+    <ant-selector options={{options.props.state}} onChange="handlePropState" />
+  </ant-container>
+  <ant-container title="label">
+    <ant-input placeholder="label" onChange="handlePropLabel" value={{label}} />
+  </ant-container>
+  <ant-container title="caption">
+    <ant-input placeholder="caption" onChange="handlePropCaption" value={{caption}} />
+  </ant-container>
+  <ant-container title="placeholder">
+    <ant-input placeholder="placeholder" onChange="handlePropPlaceholder" value={{placeholder}} />
+  </ant-container>
+  <ant-container title="language (default: ..nativeData.language)">
+    <ant-selector
+      options={{options.props.language}}
+      onChange="handlePropLanguage"
+      defaultValue={{default.language}}
+      minSelectedCount="{{1}}"
+    />
+  </ant-container>
+  <ant-container title="dropdown">
+    <ant-selector
+      options={{options.props.dropdown}}
+      onChange="handlePropDropdown"
+      defaultValue={{default.dropdown}}
+    />
+  </ant-container>
+  <ant-container title="other props">
+    <view style="display: flex">
+      <ant-selector style="flex:1" options={{options.props.readOnly}} onChange="handlePropReadOnly" />
+      <ant-selector style="flex:1" options={{options.props.disabled}} onChange="handlePropDisabled" />
+    </view>
+  </ant-container>
+  <ant-container title="kb cta position (default: 'bottom')">
+    <ant-selector
+      options={{options.props.KB_ctaPosition}}
+      defaultValue={{default.KB_ctaPosition}}
+      minSelectedCount="{{1}}"
+      onChange="handlePropCTAPosition"
+    />
+  </ant-container>
+  <ant-container title="kb bottom left buttom (default: 'empty')">
+    <ant-selector
+      options={{options.props.KB_bottomLeftButton}}
+      onChange="handlePropBottomLeftButton"
+      defaultValue={{default.KB_bottomLeftButton}}
+    />
+  </ant-container>
+  <ant-container title="kb cta label">
+    <ant-input placeholder="cta label" onChange="handlePropCTALabel" value={{KB_ctaLabel}} />
+  </ant-container>
+
+</view>

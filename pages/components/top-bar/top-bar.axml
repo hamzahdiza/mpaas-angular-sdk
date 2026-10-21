@@ -1,0 +1,397 @@
+<view class="topBar-container-px">
+  <view class="" style="position: sticky; top: 0; width: 100%; background: white">
+    <top-bar
+      pixel={{true}}
+      type="collapsible-title"
+      navigate={{true}}
+      backgroundColor="white"
+      title="{{''}}"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      safeArea={{true}}
+      isScrolled={{isScrolled}}
+    >
+      <block slot="collapsible-content">
+        <view a:if="{{ !isLoading && !failureLoad }}" id="buy-search" style="{{isScrolled? 'width: 200px; flex: 1; padding-left: 8px; height:44px;':'width: 327px; flex: 1;' }} transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);">
+          <form class="buy-search-content d-f-row ai-center br-16 bg-white
+      {{formIsFocus ? 'buy-search-content-focus' : ''}}">
+            <view class="d-f-row ai-center jc-center">
+              <image
+                mode="scaleToFill"
+                src="/pages/assets/icons/ic_common_search.svg"
+                class="h-48 w-48 mg-r-16"
+                id="buy-search-image-header"
+              />
+            </view>
+            <input
+              class="product-list-input txt-body2 pd-v-0 pd-h-0 txt-black"
+              placeholder="Mau investasi apa hari ini?"
+              placeholder-class="txt-charcoal"
+              onInput="onSubmit"
+              onFocus="onFocus"
+              onBlur="onBlur"
+              value="{{searchContentValue}}"
+              id="buy-search-content-input"
+            />
+            <view
+              a:if="{{ searchContentValue !== '' }}"
+              class="d-f-row ai-center jc-center mg-l-16"
+              onTap="searchContentReset"
+            >
+              <image
+                mode="scaleToFill"
+                src="/assets/icons/ic_common_cancel_outlined.svg"
+                class="h-48 w-48"
+                id="buy-search-image-close"
+              />
+            </view>
+          </form>
+        </view>
+      </block>
+    </top-bar>
+    <!-- type -->
+    <scroll-view
+      class="buy-type pd-h-48 ai-start pd-v-32"
+      scroll-x="{{true}}"
+      scroll-left="{{typeScrollLeftHeight}}"
+      onTouchStart="typeScrollTouchStart"
+    >
+      <view
+        a:for="{{ typeSelections }}"
+        a:for-index="index"
+        a:for-item="item"
+        class="buy-type-item d-f-row h-64 pd-h-32 jc-center ai-center br-32 txt-center txt-body2 {{typeCheckedId === index ? 'active' : 'within'}}"
+        onTap="getTypeCheckedId"
+        data-id="{{index}}"
+        id="buy-type-item-{{index}}"
+      >
+        {{item}}
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar pixel={{true}} type="primary" backgroundColor="bg-off-white" />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar pixel="{{true}}" type="slot" backgroundColor="bg-off-white">
+      <view slot="slot-area" class="topbar-content">
+        <view class="topbar-left" a:onTap="handleBack">
+          <image class="icon-nav" src="../../assets/icons/ic_common_arrow_back.svg" />
+        </view>
+        <text class="topbar-title">SLOT</text>
+        <view class="topbar-right" a:onTap="handleClose">
+          <image class="icon-nav" src="../../assets/icons/ic_common_cancel_outlined.svg" />
+        </view>
+      </view>
+    </top-bar>
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar pixel={{true}} type="logo" backgroundColor="bg-off-white" iconLogo="../../assets/images/bni-logo.svg" />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel
+      type="navigation"
+      navigate
+      backgroundColor="bg-off-white"
+      title="makan nasi pakai sambal kacang dan gulai tunjang"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      onIconLTap="handleBackButton"
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="userInfo"
+      isNotify={{true}}
+      iconNotify="../../assets/icons/ic_indeterminate_badge.svg"
+      backgroundColor="bg-off-white"
+      color="red"
+      username="Adit"
+      photoProfile="../../assets/images/default-user.svg"
+      iconR="../../assets/icons/ic_common_menu.svg"
+      iconRSecondary="../../assets/icons/ic_common_transaction_history.svg"
+      iconRTertiary="../../assets/icons/ic_common_notifications.svg"
+      onIconRTap="handleIconTap"
+      onIconRTapSecondary=""
+      onIconRTapTertiary=""
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="userInfo"
+      isNotify
+      iconNotify="../../assets/icons/ic_indeterminate_badge.svg"
+      backgroundColor="bg-off-white"
+      username="Adit"
+      photoProfile="../../assets/images/default-user.svg"
+      iconR="../../assets/icons/ic_common_menu.svg"
+      iconRSecondary="../../assets/icons/ic_common_transaction_history.svg"
+      iconRTertiary="../../assets/icons/ic_common_notifications.svg"
+      onIconRTap="handleIconTap"
+      onIconRTapSecondary=""
+      onIconRTapTertiary=""
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="chipButton"
+      navigate
+      backgroundColor="bg-off-white"
+      title="Investasi Rutin pakai sayur kol dan bawang"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      typeChipButton="primary"
+      onChipButtonTap="handleTapChipButton"
+      titleChipButton="Filter"
+      iconNotify="../../assets/icons/ic_indeterminate_badge.svg"
+      isNotify={{true}}
+      iconChipButton="../../assets/icons/ic_common_credit_card.svg"
+      classChipButton="txt-label1-sb border-black"
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="chipButtonIconR"
+      navigate
+      backgroundColor="bg-off-white"
+      title="Investasi Rutin"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      typeChipButton="primary"
+      onChipButtonTap="handleTapChipButton"
+      titleChipButton="Filter"
+      iconNotify="../../assets/icons/ic_indeterminate_badge.svg"
+      isNotify={{true}}
+      iconChipButton="../../assets/icons/ic_common_credit_card.svg"
+      classChipButton="txt-label1-sb border-black"
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="chipButton"
+      navigate
+      backgroundColor="bg-off-white"
+      title=" "
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      typeChipButton="primary"
+      onChipButtonTap="handleTapChipButton"
+      titleChipButton="{{titleChiButton}}"
+      iconChipButton="../../assets/icons/ic_common_points.svg"
+      classChipButton="txt-label1-sb {{classReferal}} bg-off-white"
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="chipButtonReset"
+      navigate
+      backgroundColor="bg-off-white"
+      title=" "
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      typeChipButton="primary"
+      onChipButtonTap="handleTapChipButton"
+      onChipResetTap="handleResetChipButton"
+      titleChipButton="{{titleChiButton}}"
+      iconChipButton="{{ tapStatus ? '../../assets/icons/ic_common_cancel_outlined.svg' : '../../assets/icons/ic_common_points.svg' }} "
+      classChipButton="txt-label1-sb {{classReferal}} bg-off-white"
+      tapStatus="{{tapStatus}}"
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="chipButton"
+      navigate
+      backgroundColor="bg-off-white"
+      title=" "
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      onChipButtonTap="handleTapChipButton"
+      titleChipButton="Lihat Kartu Lainnya"
+      iconChipButton="../../assets/icons/ic_common_credit_card.svg"
+      classChipButton="txt-label1-sb border-black bg-off-white"
+      disabledChipButton
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="chipButtonIconR"
+      navigate
+      backgroundColor="bg-off-white"
+      title=" "
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      onChipButtonTap="handleTapChipButton"
+      titleChipButton="Lihat Kartu Lainnya"
+      iconChipButton="../../assets/icons/ic_common_credit_card.svg"
+      classChipButton="txt-label1-sb border-black bg-off-white"
+      disabledChipButton
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="navigation"
+      navigate={{true}}
+      backgroundColor="bg-off-white"
+      title="safeArea = true"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      iconR="../../assets/icons/ic_common_settings.svg"
+      onIconRTap="handleIconTap"
+      safeArea={{true}}
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="navigation"
+      navigate={{true}}
+      backgroundColor="bg-off-white"
+      title="Laporan Transaksi Makan Rendang pakai terong"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      iconR="../../assets/icons/ic_common_settings.svg"
+      onIconRTap="handleIconTap"
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="navigation"
+      navigate
+      backgroundColor="bg-off-white"
+      title="Laporan Transaksi Harian dan Bulanan"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      iconR="../../assets/icons/ic_common_help_outlined.svg"
+      iconRSecondary="../../assets/icons/ic_common_info_outlined.svg"
+      onIconRTap=""
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="navigation"
+      navigate={{true}}
+      backgroundColor="bg-turquoise-400"
+      color="txt-white"
+      title="Laporan Transaksi"
+      iconL="../../assets/icons/ic_common_arrow_back_white.svg"
+      iconR="../../assets/icons/ic_common_setting_white.svg"
+      onIconRTap="handleIconTap"
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="navigation"
+      backgroundColor="bg-off-white"
+      color="#e8bd23"
+      title="Laporan Transaksi"
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="navigation"
+      navigate
+      backgroundColor="bg-off-white"
+      title="Laporan Transaksi Kamu"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      titlePosition="right"
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="navigationSlot"
+      navigate
+      backgroundColor="bg-off-white"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      titlePosition="right"
+    >
+      <view slot="title">
+        <text style="color: grey; font-family: 'Segoe UI';">
+          Title From Slot Without Icon
+        </text>
+      </view>
+    </top-bar>
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="navigationSlot"
+      navigate
+      backgroundColor="bg-off-white"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      iconR="../../assets/icons/ic_common_settings.svg"
+      onIconRTap="handleIconTap"
+      titlePosition="right"
+    >
+      <view slot="title" style="margin-right: 35px;">
+        <text style="color: grey; font-family: 'Segoe UI';">
+          Title From Slot With Icon
+        </text>
+      </view>
+    </top-bar>
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="navigation"
+      navigate
+      backgroundColor="bg-off-white"
+      title=""
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="navigation"
+      navigate
+      backgroundColor="bg-off-white"
+      title="Custom Function"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      onIconLTap="handleIconLTap"
+    />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar pixel={{true}} />
+  </view>
+
+  <view class="pad-top-px">
+    <top-bar
+      pixel={{true}}
+      type="navigation"
+      navigate
+      backgroundColor="#02c794"
+      title="Background hex color"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      iconR="../../assets/icons/ic_common_help_outlined.svg"
+      onIconRTap="handleIconTap"
+    />
+  </view>
+</view>

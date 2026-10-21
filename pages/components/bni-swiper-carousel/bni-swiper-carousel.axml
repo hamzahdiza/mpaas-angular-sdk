@@ -1,0 +1,89 @@
+<view class="text-class-px">
+  <text>BNI Swiper Carousel</text>
+</view>
+<view>
+  <text class="text-class-px">Dots indicator</text>
+  <bni-swiper-carousel
+    pixel={{true}}
+    items="{{items}}"
+    autoplay="{{true}}"
+    vertical="{{false}}"
+    circular="{{true}}"
+    interval="{{1500}}"
+    duration="{{2000}}"
+    indicatorType="dots"
+  >
+    <swiper-item id="swipe-item" a:for="{{ items }}" a:for-index="index" a:for-item="item" key="swiper-item-{{index}}">
+      <view class="swiper-item-px">
+        <view class="swiper-content-px">
+          <view class="ellipse-px"></view>
+          <image class="swiper-image-px" src="/pages/assets/images/swipe_ic.svg" />
+          <view class="swiper-text-container-px">
+            <view class="swiper-title-px">
+              {{item.title}}
+            </view>
+            <view class="swiper-text-px">
+              {{item.text}}
+            </view>
+
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </bni-swiper-carousel>
+
+  <text class="text-class-px">Scrollbar Indicator</text>
+  <bni-swiper-carousel
+    pixel={{true}}
+    items="{{items2}}"
+    autoplay="{{false}}"
+    vertical="{{false}}"
+    circular="{{true}}"
+    interval="{{1500}}"
+    duration="{{2000}}"
+    indicatorType="scrollbar"
+  >
+    <swiper-item id="swipe-item" a:for="{{ items2 }}" a:for-index="index" a:for-item="item" key="swiper-item-{{index}}">
+      <view class="swiper-item-px">
+        <view class="swiper-content-px">
+          <view class="ellipse-px"></view>
+          <image class="swiper-image-px" src="/pages/assets/images/swipe_ic.svg" />
+          <view class="swiper-text-container-px">
+            <view class="swiper-title-px">
+              {{item.title}}
+            </view>
+            <view class="swiper-text-px">
+              {{item.text}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </bni-swiper-carousel>
+
+  <text class="text-class-px">Next-Prev Swiper Margin</text>
+  <bni-swiper-carousel
+    pixel={{true}}
+    items="{{items3}}"
+    autoplay="{{false}}"
+    vertical="{{false}}"
+    indicatorType="scrollbar"
+    nextMargin="10px"
+    prevMargin="10px"
+  >
+    <swiper-item id="swipe-item" a:for="{{ items3 }}" a:for-index="index" a:for-item="item" >
+      <view class="swiper-item-test-margin-px">
+        <view class="swiper-content-px">
+          <view class="swiper-text-container-px">
+            <view class="swiper-swiper-title-px">
+              {{item.title}}
+            </view>
+            <view class="swiper-text-px">
+              {{item.text}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </bni-swiper-carousel>
+</view>

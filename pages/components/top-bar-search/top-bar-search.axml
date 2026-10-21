@@ -1,0 +1,103 @@
+<view class="modal-scroll">
+  <view class="sticky-top bg-white" style="{{!isScrolled ? '':'border-bottom:2rpx solid #DADADA'}}">
+    <top-bar
+      pixel={{true}}
+      type="collapsible-title"
+      navigate={{true}}
+      backgroundColor="white"
+      title="{{isLoading?'':'Pilih produk'}}"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      safeArea={{true}}
+      isScrolled={{isScrolled}}
+    >
+      <block slot="collapsible-content">
+        <view a:if="{{ true }}" id="buy-search" style="position:relative; {{isScrolled? 'width: 200px; flex: 1; padding-left: 8px; height:44px;':'width: 327px; flex: 1;' }} transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);">
+          <form class="buy-search-content d-f-row ai-center br-16 bg-white
+        {{formIsFocus ? 'buy-search-content-focus' : ''}}" style="{{isLoading?'':'border: 2rpx solid #4e4e4e;'}}">
+            <view class="d-f-row ai-center jc-center">
+              <image
+                mode="scaleToFill"
+                src="/pages/assets/icons/ic_common_search.svg"
+                class="h-48 w-48 mg-r-16"
+                id="buy-search-image-header"
+              />
+            </view>
+            <input
+              class="product-list-input txt-body2 pd-v-0 pd-h-0 txt-black"
+              placeholder="Mau investasi apa hari ini?"
+              placeholder-class="txt-charcoal"
+              onInput="onSubmit"
+              onFocus="onFocus"
+              onBlur="onBlur"
+              value="{{searchContentValue}}"
+              id="buy-search-content-input"
+            />
+            <view
+              a:if="{{ searchContentValue !== '' }}"
+              class="d-f-row ai-center jc-center mg-l-16"
+              onTap="searchContentReset"
+            >
+              <image
+                mode="scaleToFill"
+                src="/assets/icons/ic_common_cancel_outlined.svg"
+                class="h-48 w-48"
+                id="buy-search-image-close"
+              />
+            </view>
+          </form>
+          <view a:if="{{ isLoading }}" class="skeleton" style="position: absolute; top:0; left:0; width:100%; height: 100%" />
+        </view>
+      </block>
+    </top-bar>
+
+    <!-- type -->
+    <scroll-view
+      a:if="{{ !isLoading && !failureLoad }}"
+      class="buy-type pd-h-48 ai-start pd-v-32"
+      scroll-x="{{true}}"
+      scroll-left="{{typeScrollLeftHeight}}"
+      onTouchStart="typeScrollTouchStart"
+    >
+      <view
+        a:for="{{ typeSelections }}"
+        a:for-index="index"
+        a:for-item="item"
+        class="buy-type-item d-f-row h-64 pd-h-32 jc-center ai-center br-32 txt-center txt-body2 {{typeCheckedId === index ? 'active' : 'within'}}"
+        onTap="getTypeCheckedId"
+        data-id="{{index}}"
+        id="buy-type-item-{{index}}"
+      >
+        {{item}}
+      </view>
+    </scroll-view>
+    <view a:if="{{ isLoading }}" class="pl-loading-middle pd-h-48 ai-start pd-v-32">
+      <view a:for="{{ 4 }}" class="pl-loading-middle-item skeleton" style="border-radius: 999"></view>
+    </view>
+  </view>
+
+  <scroll-view
+    class="pd-h-48"
+    scroll-y="{{true}}"
+    onScroll="onPageScroll"
+    onScrollToLower="onScrollToLower"
+    lower-threshold="{{1}}"
+    style="height: 100vh;"
+    scroll-top={{scrollTopHeight}}
+    scroll-with-animation="{{true}}"
+    scroll-animation-duration="50"
+  >
+    <view a:for="{{ 10 }}" a:for-index="index">
+      <view
+        style="height: 300rpx; width100%; margin-top: 20rpx; border: 1px solid #F0F0F0; position: relative; background-color: whitesmoke"
+        class="br-32 {{isLoading?'skeleton':''}}"
+      >
+        <view
+          style="position: absolute; top: 10; left: 10; background-color: white; padding: 4; width: 30; height: 30;"
+          class="br-24 d-f-row ai-center jc-center"
+        >
+          {{index+1}}
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

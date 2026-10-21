@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "modal-toast": "/components/modal-toast/modal-toast",
+    "bni-button": "/components/bni-button/bni-button"
+  }
+}
+

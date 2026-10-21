@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "top-bar": "/components/top-bar/top-bar",
+    "dinamic-line-chart": "/components/dinamic-line-chart/dinamic-line-chart",
+    "doughnut-diagram": "/components/doughnut-diagram/doughnut-diagram",
+    "bar-chart": "/components/bar-chart/bar-chart",
+    "cashflow": "/components/cashflow/cashflow",
+    "bni-button": "/components/bni-button/bni-button",
+    "bni-chip": "/components/bni-chip/bni-chip"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES",
+  "defaultTitle": "",
+  "pullRefresh": false
+}

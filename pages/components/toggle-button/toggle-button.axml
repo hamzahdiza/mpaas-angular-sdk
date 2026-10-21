@@ -1,0 +1,12 @@
+<top-bar pixel={{true}} type="primary" backgroundColor="bg-off-white" />
+<top-bar
+  pixel={{true}}
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="toggle-button"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+/>
+<view style="margin:15px">
+  <toggle-button pixel={{true}} onClick="onClick" toggleStatus="{{toggleStatus}}"></toggle-button>
+</view>

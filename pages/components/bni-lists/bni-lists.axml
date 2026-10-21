@@ -1,0 +1,44 @@
+<view>
+  <view>
+    <top-bar type="primary" backgroundColor="bg-off-white" pixel={{true}} />
+    <top-bar
+      type="navigation"
+      navigate={{true}}
+      backgroundColor="bg-off-white"
+      title="Bni lists"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      pixel={{true}}
+    />
+  </view>
+
+  <view class="container">
+    <text>History booking Cabang</text>
+    <bni-lists data={{intelligentBranch}} type="historyBookingBranch" onTap="goToDetail" />
+  </view>
+
+  <view class="container">
+    <text>HistoryTransaction</text>
+    <bni-lists data={{transactionHistoryList}} type="transactionHistory" onTap="goToDetail" />
+  </view>
+
+  <view class="container">
+    <text style="margin-bottom: 8px">Contacts</text>
+    <bni-lists
+      data={{onSearch ? defaultLastTransaction : searchContactListAccountName}}
+      type="contacts"
+      id={{idContact}}
+      onTap="goToDetail"
+    />
+
+    <button
+      size="default"
+      style="margin-bottom: 16px"
+      onTap="mockAccountName"
+      type="primary"
+    >
+      Mock Search
+    </button>
+  </view>
+
+
+</view>

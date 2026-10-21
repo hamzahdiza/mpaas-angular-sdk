@@ -1,0 +1,501 @@
+.txt-h0 {
+  font-size: 64rpx;
+  font-weight: 800;
+  line-height: 76.8rpx;
+}
+
+.txt-h1 {
+  font-size: 52rpx;
+  line-height: 60rpx;
+  font-weight: 700;
+}
+
+.txt-h2 {
+  font-size: 48rpx;
+  line-height: 57.6rpx;
+  font-weight: 700;
+}
+
+.txt-h3 {
+  font-size: 36rpx;
+  line-height: 43.2rpx;
+  font-weight: 700;
+}
+
+.txt-h4 {
+  font-size: 32rpx;
+  line-height: 38.4rpx;
+  font-weight: 700;
+}
+
+.txt-h5 {
+  font-size: 28rpx;
+  line-height: 33.6rpx;
+  font-weight: 700;
+}
+
+.txt-h5-Montserrat {
+  font-family: 'Montserrat';
+  font-size: 28rpx;
+  line-height: 33.6rpx;
+  font-weight: 700;
+}
+
+.txt-h6 {
+  font-size: 24rpx;
+  line-height: 28.8rpx;
+  font-weight: 700;
+}
+
+.txt-h6-sb {
+  font-size: 24rpx;
+  line-height: 33.6rpx;
+  font-weight: 700;
+}
+
+.txt-h0 {
+  font-size: 64rpx;
+  line-height: 76.8rpx;
+  font-weight: 800;
+}
+
+.txt-amount2 {
+  font-size: 56rpx;
+  line-height: 67.2rpx;
+  font-weight: 800;
+}
+
+.txt-amount3 {
+  font-size: 40rpx;
+  line-height: 48rpx;
+  font-weight: 800;
+}
+
+.txt-body1 {
+  font-size: 32rpx;
+  line-height: 44.8rpx;
+  font-weight: 400;
+}
+
+.txt-body2 {
+  font-size: 28rpx;
+  line-height: 39.2rpx;
+  font-weight: 400;
+}
+
+.txt-body3 {
+  font-size: 24rpx;
+  line-height: 33.6rpx;
+  font-weight: 400;
+}
+
+.txt-body4 {
+  font-size: 20rpx;
+  line-height: 27.6rpx;
+  font-weight: 400;
+}
+
+.txt-body5 {
+  font-size: 16rpx;
+  line-height: 21.6rpx;
+  font-weight: 400;
+}
+
+.txt-label1 {
+  font-size: 28rpx;
+  line-height: 33.6rpx;
+  font-weight: 400;
+}
+
+.txt-label2 {
+  font-size: 24rpx;
+  line-height: 28.8rpx;
+  font-weight: 400;
+}
+
+.txt-label3 {
+  font-size: 20rpx;
+  line-height: 24rpx;
+  font-weight: 400;
+}
+
+.txt-body1-sb {
+  font-size: 32rpx;
+  line-height: 44.8rpx;
+  font-weight: 600;
+}
+
+.txt-body2-sb {
+  font-size: 28rpx;
+  line-height: 39.2rpx;
+  font-weight: 600;
+}
+
+.txt-body3-sb {
+  font-size: 24rpx;
+  line-height: 33.6rpx;
+  font-weight: 600;
+}
+
+.txt-body4-sb {
+  font-size: 20rpx;
+  line-height: 27.6rpx;
+  font-weight: 600;
+}
+
+.txt-body5-sb {
+  font-size: 16rpx;
+  line-height: 21.6rpx;
+  font-weight: 600;
+}
+
+.txt-label1-sb {
+  font-size: 28rpx;
+  line-height: 33.6rpx;
+  font-weight: 600;
+}
+
+.txt-label2-sb {
+  font-size: 24rpx;
+  line-height: 28.8rpx;
+  font-weight: 600;
+}
+
+.txt-label3-sb {
+  font-size: 20rpx;
+  line-height: 28rpx;
+  font-weight: 600;
+}
+
+.txt-label4-sb {
+  font-size: 28rpx;
+  line-height: 33.6rpx;
+  font-weight: 600;
+  font-family: "TT Interphases Pro";
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-left {
+  text-align: left;
+}
+
+.txt-right {
+  text-align: right;
+}
+
+.txt-justify {
+  text-align: justify;
+}
+
+/*letter-spacing*/
+.ls-1 {
+  letter-spacing: 1rpx;
+}
+
+.ls-0 {
+  letter-spacing: 0rpx;
+}
+
+.va-middle {
+  vertical-align: middle;
+}
+
+/*word break*/
+.ww-bw {
+  word-wrap: break-word;
+}
+
+.ww-ba {
+  word-break: break-all;
+}
+
+.ww-pw {
+  white-space: pre-wrap;
+}
+
+.ww-n {
+  white-space: normal;
+}
+
+.ww-nw {
+  white-space: nowrap;
+}
+
+.ww-pl {
+  white-space: pre-line;
+}
+
+.to-e-1 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.to-e-2 {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* PIXEL MODE */
+
+.txt-h0-px {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 38.4px;
+}
+
+.txt-h1-px {
+  font-size: 26px;
+  line-height: 30px;
+  font-weight: 700;
+}
+
+.txt-h2-px {
+  font-size: 24px;
+  line-height: 28.8px;
+  font-weight: 700;
+}
+
+.txt-h3-px {
+  font-size: 18px;
+  line-height: 21.6px;
+  font-weight: 700;
+}
+
+.txt-h4-px {
+  font-size: 16px;
+  line-height: 19.2px;
+  font-weight: 700;
+}
+
+.txt-h5-px {
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 700;
+}
+
+.txt-h5-Montserrat-px {
+  font-family: 'Montserrat';
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 700;
+}
+
+.txt-h6-px {
+  font-size: 12px;
+  line-height: 14.4px;
+  font-weight: 700;
+}
+
+.txt-h6-sb-px {
+  font-size: 12px;
+  line-height: 16.8px;
+  font-weight: 700;
+}
+
+.txt-h0-px {
+  font-size: 32px;
+  line-height: 38.4px;
+  font-weight: 800;
+}
+
+.txt-amount2-px {
+  font-size: 28px;
+  line-height: 33.6px;
+  font-weight: 800;
+}
+
+.txt-amount3-px {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 800;
+}
+
+.txt-body1-px {
+  font-size: 16px;
+  line-height: 22.4px;
+  font-weight: 400;
+}
+
+.txt-body2-px {
+  font-size: 14px;
+  line-height: 19.6px;
+  font-weight: 400;
+}
+
+.txt-body3-px {
+  font-size: 12px;
+  line-height: 16.8px;
+  font-weight: 400;
+}
+
+.txt-body4-px {
+  font-size: 10px;
+  line-height: 13.8px;
+  font-weight: 400;
+}
+
+.txt-body5-px {
+  font-size: 8px;
+  line-height: 10.8px;
+  font-weight: 400;
+}
+
+.txt-label1-px {
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 400;
+}
+
+.txt-label2-px {
+  font-size: 12px;
+  line-height: 14.4px;
+  font-weight: 400;
+}
+
+.txt-label3-px {
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 400;
+}
+
+.txt-body1-sb-px {
+  font-size: 16px;
+  line-height: 22.4px;
+  font-weight: 600;
+}
+
+.txt-body2-sb-px {
+  font-size: 14px;
+  line-height: 19.6px;
+  font-weight: 600;
+}
+
+.txt-body3-sb-px {
+  font-size: 12px;
+  line-height: 16.8px;
+  font-weight: 600;
+}
+
+.txt-body4-sb-px {
+  font-size: 10px;
+  line-height: 13.8px;
+  font-weight: 600;
+}
+
+.txt-body5-sb-px {
+  font-size: 8px;
+  line-height: 10.8px;
+  font-weight: 600;
+}
+
+.txt-label1-sb-px {
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 600;
+}
+
+.txt-label2-sb-px {
+  font-size: 12px;
+  line-height: 14.4px;
+  font-weight: 600;
+}
+
+.txt-label3-sb-px {
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 600;
+}
+
+.txt-label4-sb-px {
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 600;
+  font-family: "TT Interphases Pro";
+}
+
+.underline-px {
+  text-decoration: underline;
+}
+
+.txt-center-px {
+  text-align: center;
+}
+
+.txt-left-px {
+  text-align: left;
+}
+
+.txt-right-px {
+  text-align: right;
+}
+
+.txt-justify-px {
+  text-align: justify;
+}
+
+/*letter-spacing*/
+.ls-1-px {
+  letter-spacing: 0.5px;
+}
+
+.ls-0-px {
+  letter-spacing: 0px;
+}
+
+.va-middle-px {
+  vertical-align: middle;
+}
+
+/*word break*/
+.ww-bw-px {
+  word-wrap: break-word;
+}
+
+.ww-ba-px {
+  word-break: break-all;
+}
+
+.ww-pw-px {
+  white-space: pre-wrap;
+}
+
+.ww-n-px {
+  white-space: normal;
+}
+
+.ww-nw-px {
+  white-space: nowrap;
+}
+
+.ww-pl-px {
+  white-space: pre-line;
+}
+
+.to-e-1-px {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.to-e-2-px {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

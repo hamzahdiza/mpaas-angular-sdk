@@ -1,0 +1,590 @@
+/* This CSS styling converts dimensions from rpx (responsive pixel) to px (pixels) using a 2x ratio 
+* Note: This conversion applies to styles originally created by ANT to accomodate Wealth Management Project conversion to px.
+*/
+
+/*Global*/
+.bs {
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.v-h {
+  visibility: hidden;
+}
+
+/*postion*/
+.pr {
+  position: relative;
+}
+
+.pa {
+  position: absolute;
+}
+
+.ps {
+  position: sticky;
+}
+
+.pf {
+  position: fixed;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.p-l-0 {
+  left: 0;
+}
+
+.p-l-p-50 {
+  left: 50%;
+}
+
+.p-t-0 {
+  top: 0;
+}
+
+.p-t-p-50 {
+  top: 50%;
+}
+
+.p-r-0 {
+  right: 0;
+}
+
+.p-b-0 {
+  bottom: 0;
+}
+
+.zi-n-1 {
+  z-index: -1;
+  /*negative*/
+}
+
+.zi-1 {
+  z-index: 1;
+}
+
+.zi-2 {
+  z-index: 2;
+}
+
+.zi-99 {
+  z-index: 99;
+}
+
+.zi-100 {
+  z-index: 100;
+}
+
+.zi-1000 {
+  z-index: 1000;
+}
+
+/*width*/
+.width-fit-content {
+  width: fit-content;
+}
+
+.w-max-100 {
+  max-width: 100%;
+}
+
+.w-min-100 {
+  min-width: 100%;
+}
+
+.w-p-20 {
+  width: 20%;
+}
+
+.w-p-25 {
+  width: 25%;
+}
+
+.w-p-33 {
+  width: 33.333%;
+}
+
+.w-p-50 {
+  width: 50%;
+}
+
+.w-p-100 {
+  width: 100%;
+}
+
+.w-4 {
+  width: 2.0px;
+}
+
+.w-24 {
+  width: 12.0px;
+}
+
+.w-28 {
+  width: 14.0px;
+}
+
+.w-30 {
+  width: 15.0px;
+}
+
+.w-32 {
+  width: 16.0px;
+}
+
+.w-34 {
+  width: 17.0px;
+}
+
+.w-36 {
+  width: 18.0px;
+}
+
+.w-40 {
+  width: 20.0px;
+}
+
+.w-42 {
+  width: 21.0px;
+}
+
+.w-44 {
+  width: 22.0px;
+}
+
+.w-48 {
+  width: 24.0px;
+}
+
+.w-56 {
+  width: 28.0px;
+}
+
+.w-60 {
+  width: 30.0px;
+}
+
+.w-64 {
+  width: 32.0px;
+}
+
+.w-68 {
+  width: 34.0px;
+}
+
+.w-80 {
+  width: 40.0px;
+}
+
+.w-96 {
+  width: 48.0px;
+}
+
+.w-100 {
+  width: 50.0px;
+}
+
+.w-112 {
+  width: 56.0px;
+}
+
+/*height*/
+.h-max-100 {
+  max-height: 100%;
+}
+
+.h-min-100 {
+  min-height: 100%;
+}
+
+.h-p-100 {
+  height: 100%;
+}
+
+.h-4 {
+  height: 2.0px;
+}
+
+.h-24 {
+  height: 12.0px;
+}
+
+.h-28 {
+  height: 14.0px;
+}
+
+.h-30 {
+  height: 15.0px;
+}
+
+.h-32 {
+  height: 16.0px;
+}
+
+.h-34 {
+  height: 17.0px;
+}
+
+.h-36 {
+  height: 18.0px;
+}
+
+.h-40 {
+  height: 20.0px;
+}
+
+.h-42 {
+  height: 21.0px;
+}
+
+.h-44 {
+  height: 22.0px;
+}
+
+.h-48 {
+  height: 24.0px;
+}
+
+.h-56 {
+  height: 28.0px;
+}
+
+.h-60 {
+  height: 30.0px;
+}
+
+.h-64 {
+  height: 32.0px;
+}
+
+.h-68 {
+  height: 34.0px;
+}
+
+.h-80 {
+  height: 40.0px;
+}
+
+.h-96 {
+  height: 48.0px;
+}
+
+.h-98 {
+  height: 49.0px;
+}
+
+.h-100 {
+  height: 50.0px;
+}
+
+.h-112 {
+  height: 56.0px;
+}
+
+.d-f-row {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+}
+
+.d-f-column {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+}
+
+.d-f-row-reverse {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+}
+
+.d-f-column-reverse {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column-reverse;
+  -webkit-flex-direction: column-reverse;
+}
+
+.f-wrap {
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+}
+
+.ac-end {
+  align-content: flex-end;
+  -webkit-align-content: flex-end;
+}
+
+.ac-center {
+  align-content: center;
+  -webkit-align-content: center;
+}
+
+.ac-start {
+  align-content: flex-start;
+  -webkit-align-content: flex-start;
+}
+
+.ac-between {
+  align-content: space-between;
+  -webkit-align-content: space-between;
+}
+
+.ac-around {
+  align-content: space-around;
+  -webkit-align-content: space-around;
+}
+
+.ac-stretch {
+  align-content: stretch;
+  -webkit-align-content: stretch;
+}
+
+.ai-center {
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+.ai-start {
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
+}
+
+.ai-end {
+  align-items: flex-end;
+  -webkit-align-items: flex-end;
+}
+
+.ai-baseline {
+  align-items: baseline;
+  -webkit-align-items: baseline;
+}
+
+.ai-stretch {
+  align-items: stretch;
+  -webkit-align-items: stretch;
+}
+
+.as-stretch {
+  align-self: stretch;
+  -webkit-align-self: stretch;
+}
+
+.as-center {
+  align-self: center;
+  -webkit-align-self: center;
+}
+
+.as-start {
+  align-self: flex-start;
+  -webkit-align-self: flex-start;
+}
+
+.as-end {
+  align-self: flex-end;
+  -webkit-align-self: flex-end;
+}
+
+.as-baseline {
+  align-self: baseline;
+  -webkit-align-self: baseline;
+}
+
+.jc-around {
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+}
+
+.jc-between {
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
+.jc-center {
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+
+.jc-start {
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+}
+
+.jc-end {
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+  display: -webkit-inline-flex;
+}
+
+.d-f-grow-1 {
+  flex-grow: 1;
+  -webkit-flex-grow: 1;
+}
+
+.d-f-shrink-0 {
+  flex-shrink: 0;
+  -webkit-flex-shrink: 0;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-none {
+  display: none;
+}
+
+.d-table {
+  display: table;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.o-05 {
+  opacity: 0.5;
+}
+
+.o-07 {
+  opacity: 0.7;
+}
+
+.o-09 {
+  opacity: 0.9;
+}
+
+.o-1 {
+  opacity: 1;
+}
+
+/*Overflow*/
+.of-hidden {
+  overflow: hidden;
+}
+
+.of-scroll {
+  overflow: scroll;
+}
+
+.of-auto {
+  overflow: auto;
+}
+
+.of-x-scroll {
+  overflow-x: scroll;
+}
+
+.of-x-auto {
+  overflow-x: auto;
+}
+
+.of-x-hidden {
+  overflow-x: hidden;
+}
+
+.of-y-scroll {
+  overflow-y: scroll;
+}
+
+.of-y-hidden {
+  overflow-y: hidden;
+}
+
+.of-y-auto {
+  overflow-y: auto;
+}
+
+/*border*/
+.b-0 {
+  border: 0;
+}
+
+.b-2-s-c6c6c6 {
+  border: 1.0px solid #C6C6C6;
+}
+
+.b-2-s-e5e5e5 {
+  border: 1.0px solid #e5e5e5;
+}
+
+.b-2-s-dadada {
+  border: 1.0px solid #dadada;
+}
+
+.b-2-s-dadada {
+  border: 1.0px solid #dadada;
+}
+
+.b-2-d-dadada {
+  border: 1.0px dashed #dadada;
+}
+
+.bb-2-s-dadada {
+  border-bottom: 1.0px solid #dadada;
+}
+
+.bb-2-d-eeeeee {
+  border-bottom: 1.0px dashed #eeeeee;
+}
+
+/*border-radius*/
+.br-p-50 {
+  border-radius: 50%;
+}
+
+.br-p-25 {
+  border-radius: 25%;
+}
+
+.br-0 {
+  border-radius: 0;
+}
+
+.br-8 {
+  border-radius: 4.0px;
+}
+
+.br-16 {
+  border-radius: 8.0px;
+}
+
+.br-24 {
+  border-radius: 12.0px;
+}
+
+.br-32 {
+  border-radius: 16.0px;
+}
+
+.br-48 {
+  border-radius: 24.0px;
+}
+
+.br-tl-10 {
+  border-top-left-radius: 5.0px;
+}
+
+.br-tr-10 {
+  border-top-right-radius: 5.0px;
+}
+
+.br-bl-10 {
+  border-bottom-left-radius: 5.0px;
+}
+
+.br-br-10 {
+  border-bottom-right-radius: 5.0px;
+}

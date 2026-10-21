@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "bni-input" : "/components/bni-input/bni-input",
+    "top-bar" : "/components/top-bar/top-bar"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES",
+  "allowsBounceVertical" : "NO"
+}
+

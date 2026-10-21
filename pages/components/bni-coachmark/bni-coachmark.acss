@@ -1,0 +1,22 @@
+.container-px {
+  display: flex;
+  flex-direction: column;
+}
+
+.showcase-card-px {
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0px 0px 7.5px 0px rgba(0, 0, 0, 0.25);
+  height: 200px;
+  margin: 25px;
+  padding: 15px;
+}
+
+.filled-showcase-px {
+  font-size: 10px;
+}
+
+.filled-text-px {
+  font-size: 15px;
+}

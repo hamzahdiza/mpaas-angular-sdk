@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "bni-update-notice": "/components/bni-update-notice/bni-update-notice"
+  },
+  "styleIsolation": "apply-shared"
+}

@@ -1,0 +1,352 @@
+<view style="width : 100vw; height : 100vh">
+  <view style="position : sticky; top : 0; z-index: 999">
+    <top-bar type="primary" backgroundColor="bg-off-white" pixel={{true}} />
+    <top-bar
+      type="navigation"
+      navigate
+      backgroundColor="bg-off-white"
+      title="container-page"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      pixel={{true}}
+    />
+  </view>
+
+  <view style="padding : 24px ; display : grid; grid-gap: 5px; background-color : white">
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Basic Default</text>
+      <bni-input
+        onChange="onChange1"
+        inputValue={{value1}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        error={{error}}
+        success={{success}}
+        onFocusStatus="onFocusStatus"
+        pixel={{true}}
+        onConfirm="onConfirmKeyboardSelect"
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Basic Custom Keyboard Default</text>
+      <bni-input
+        onChange="onChange1"
+        inputValue={{value1}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        onFocusStatus="onFocusStatus"
+        suffixIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+        pixel={{true}}
+        customKeyboard={{true}}
+        KB_type="antd"
+      >
+      </bni-input>
+
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Birth Date Disable</text>
+      <bni-input
+        title={{ birthDateTitle }}
+        formatDate="day-month-year"
+        onChange="onChange17"
+        inputValue={{birthDate}}
+        inputLabel="Input Label"
+        caption="This is a sample of test"
+        type="birthDate"
+        onFocusStatus="onFocusValue17"
+        clearIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+        birthDateFocusStatus={{birthDateFocusStatus}}
+        pixel={{true}}
+        onKeyboardClose="onCloseKeyboard"
+        disabled
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 10rpx">
+      <text class="txt-body1-sb">Birth Date Input</text>
+      <bni-input
+        formatDate="month-year"
+        onChange="onChange17"
+        inputValue={{birthDate}}
+        caption="This is a sample of test"
+        type="birthDate"
+        suffixIconTextClass="txt-success"
+        onFocusStatus="onFocusValue17"
+        suffixIconText={{birthDateTitle}}
+        birthDateFocusStatus={{birthDateFocusStatus}}
+        pixel={{true}}
+        customKeyboard={{true}}
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 10rpx">
+      <text class="txt-body1-sb">Birth Date Input Vertical</text>
+      <bni-input
+        formatDate="month-year"
+        onChange="onChange17"
+        inputValue={{birthDate}}
+        caption="This is a sample of test"
+        type="birthDate"
+        onFocusStatus="onFocusValue17"
+        suffixIconText={{birthDateTitle}}
+        birthDateFocusStatus={{birthDateFocusStatus}}
+        pixel={{true}}
+        vertical
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 10rpx">
+      <text class="txt-body1-sb">Birth Date Input 3</text>
+      <bni-input
+        formatDate="month-year-day"
+        onChange="onChange17"
+        inputValue={{birthDate}}
+        caption="This is a sample of test"
+        type="birthDate"
+        suffixIconTextClass="txt-success"
+        onFocusStatus="onFocusValue17"
+        clearIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+        birthDateFocusStatus={{birthDateFocusStatus}}
+        pixel={{true}}
+         customKeyboard={{true}}
+        KB_type="bni"
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Basic Focused</text>
+      <bni-input
+        onChange="onChange2"
+        inputValue={{value2}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        inputFocusStatus={{true}}
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Basic Filled</text>
+      <bni-input
+        onChange="onChange3"
+        inputValue={{value3}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Basic Read-only</text>
+      <bni-input
+        onChange="onChange4"
+        inputValue={{value4}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        inputFocusStatus={{true}}
+        type="read-only"
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Basic Disabled</text>
+      <bni-input
+        onChange="onChange5"
+        inputValue={{value5}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        inputFocusStatus={{true}}
+        type="disabled"
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Input Error</text>
+      <bni-input
+        onChange="onChange6"
+        inputValue={{value6}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        error={{true}}
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Input Success</text>
+      <bni-input
+        onChange="onChange7"
+        inputValue={{value7}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        success={{true}}
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Input Suffix</text>
+      <bni-input
+        onChange="onChange8"
+        inputValue={{value8}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        onSuffix="onClear"
+        suffixIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+        pixel={{true}}
+        customKeyboard={{true}}
+        KB_type="bni"
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Input Prefix</text>
+      <bni-input
+        onChange="onChange9"
+        inputValue={{value9}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        onPrefix="onAlert"
+        prefixIcon="../../assets/icons/ic_common_user.svg"
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Input Prefix Suffix</text>
+      <bni-input
+        onChange="onChange10"
+        inputValue={{value10}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        onPrefix="onAlert"
+        prefixIcon="../../assets/icons/ic_common_user.svg"
+        onSuffix="onClear2"
+        suffixIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Input Placeholder</text>
+      <bni-input
+        placeholder="placeholder"
+        onChange="onChange11"
+        inputValue={{value11}}
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        success={{true}}
+        placeholderStyle="color:red"
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Input Validation Phone Number</text>
+      <bni-input
+        inputValue={{value12}}
+        onChange="onChange12"
+        inputLabel="Input Label"
+        caption="This is a sample of caption"
+        success={{true}}
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Amount Input</text>
+      <bni-input
+        onChange="onChange13"
+        inputValue={{formattedValue13}}
+        inputLabel="Input Label"
+        caption="Minimum Pembelian Rp{{formattedMinBuy}}"
+        type="amount"
+        error={{error13}}
+        success={{success}}
+        prefixIconText="Rp"
+        counter={{false}}
+        onFocusStatus="onFocusStatus"
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px"> Search Input</text>
+      <bni-input
+        prefixIcon="../../assets/icons/ic_common_search.svg"
+        onChange="onChange14"
+        inputValue={{value14}}
+        onFocusStatus='onFocusStatus'
+        inputLabel="Input Label"
+        type="search"
+        counter={{false}}
+        onSuffix={{value14 && 'onClear3'}}
+        suffixIcon={{value14 && '../../assets/icons/ic_common_cancel_outlined.svg'}}
+        placeholder="Mau investasi dimana hari ini?"
+        placeholderClass="bg-orange-400"
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Amount Input With Clear</text>
+      <bni-input
+        onChange="onChange15"
+        onClear="onClear15"
+        inputValue={{formattedValue15}}
+        inputLabel="Input Label"
+        caption="Minimum Pembelian Rp{{formattedMinBuy}}"
+        type="amountWithClear"
+        keyboardbuttonText="Selesai"
+        error={{error15}}
+        success={{success}}
+        prefixIconText="Rp"
+        counter={{false}}
+        placeholder="0"
+        onFocusStatus="onFocusStatus15"
+        clearIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+    <view style="display : grid; grid-gap : 5px">
+      <text class="txt-body1-sb-px">Amount Input (Type = USD)</text>
+      <bni-input
+        onChange="onChange16"
+        onClear="onClear16"
+        inputValue={{formattedValue16}}
+        caption="Minimum Pembelian Rp{{formattedMinBuy}}"
+        type="amountType"
+        error={{error16}}
+        success={{success}}
+        placeholder="0"
+        prefixIconText="USD"
+        counter={{false}}
+        onFocusStatus="onFocusStatus16"
+        clearIcon="../../assets/icons/ic_common_cancel_outlined.svg"
+        pixel={{true}}
+      >
+      </bni-input>
+    </view>
+  </view>
+</view>

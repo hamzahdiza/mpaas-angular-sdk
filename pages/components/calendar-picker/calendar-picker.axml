@@ -1,0 +1,76 @@
+<view class="main">
+  <view class="sticky-header">
+    <top-bar type="primary" backgroundColor="bg-off-white" pixel="{{true}}" />
+    <top-bar
+      type="navigation"
+      navigate
+      backgroundColor="bg-off-white"
+      title="Calendar Picker"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      pixel="{{true}}"
+    />
+  </view>
+
+  <view class="content">
+    <!-- Type selector: single / range -->
+    <view class="control-group">
+      <text class="control-label">Type</text>
+      <view class="segmented-control">
+        <view
+          class="segment-item {{ calendarType === 'single' ? 'active' : '' }}"
+          data-type="single"
+          onTap="onChangeCalendarType"
+        >
+          <text class="segment-text {{ calendarType === 'single' ? 'active-text' : '' }}">Single</text>
+        </view>
+        <view
+          class="segment-item {{ calendarType === 'range' ? 'active' : '' }}"
+          data-type="range"
+          onTap="onChangeCalendarType"
+        >
+          <text class="segment-text {{ calendarType === 'range' ? 'active-text' : '' }}">Range</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Mode selector: date / month -->
+    <view class="control-group">
+      <text class="control-label">Mode</text>
+      <view class="segmented-control">
+        <view
+          class="segment-item {{ calendarMode === 'date' ? 'active' : '' }}"
+          data-mode="date"
+          onTap="onChangeCalendarMode"
+        >
+          <text class="segment-text {{ calendarMode === 'date' ? 'active-text' : '' }}">Date</text>
+        </view>
+        <view
+          class="segment-item {{ calendarMode === 'month' ? 'active' : '' }}"
+          data-mode="month"
+          onTap="onChangeCalendarMode"
+        >
+          <text class="segment-text {{ calendarMode === 'month' ? 'active-text' : '' }}">Month</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Month filter card -->
+    <view class="calendar-button" onTap="onMonthFilterTap">
+      <view class="calendar-button-left">
+        <image class="calendar-icon" src="../../assets/icons/ic_calendar.svg" />
+        <text class="hp-filter-text txt-label2-sb-px">{{ selectedMonth }}</text>
+      </view>
+      <image class="chevron-icon" src="../../assets/icons/ic_chevron_down.svg" />
+    </view>
+  </view>
+
+  <calendar-picker
+    show="{{ showCalendar }}"
+    type="{{ calendarType }}"
+    mode="{{ calendarMode }}"
+    selectedMonth="{{ selectedMonth }}"
+    selectedDay="{{ selectedDay }}"
+    onSave="onCalendarSave"
+    onClose="onCloseCalendar"
+  />
+</view>

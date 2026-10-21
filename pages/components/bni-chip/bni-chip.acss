@@ -1,0 +1,79 @@
+.title {
+  padding-top: 30rpx;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.title text {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.container {
+  padding-top: 30rpx;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.showcase-card {
+  padding: 30rpx;
+  border-radius: 30rpx;
+  box-shadow: inset 0rpx 0rpx 15rpx 0rpx rgba(0, 0, 0, 0.25);
+  width: 400rpx;
+  height: 200rpx;
+  display: grid;
+  place-items: center;
+  margin-bottom: 50rpx;
+}
+
+.filled-showcase {
+  font-size: 20rpx;
+}
+
+.filled-text {
+  font-size: 30rpx;
+}
+
+/* PIXEL MODE */
+
+.title-px {
+  padding-top: 15px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.title text-px {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.container-px {
+  padding-top: 15px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.showcase-card-px {
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: inset 0px 0px 7.5px 0px rgba(0, 0, 0, 0.25);
+  width: 200px;
+  height: 200px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 25px;
+}
+
+.filled-showcase-px {
+  font-size: 10px;
+}
+
+.filled-text-px {
+  font-size: 15px;
+}

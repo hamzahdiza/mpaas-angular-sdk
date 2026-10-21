@@ -1,0 +1,113 @@
+<top-bar type="primary" backgroundColor="bg-off-white" pixel={{true}} />
+<top-bar
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="bni-skeleton"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+  pixel={{true}} 
+/>
+
+<view style="padding : 12px ; display : grid; grid-gap: 10px;">
+  <view class="previewComplex">
+    <bni-skeleton
+      type="skeltoncomplex"
+      showLoading="{{progressLoading}}"
+      showAnimate="{{false}}"
+      showAvatar="{{true}}"
+      paragraphRows="{{paragraph.rows}}"
+    >
+      <view class="containers" slot="contentInside">
+        <view class="profilePic" style="margin-right: 2px">
+          <image style="width:48px; height:48px" src="https://images.unsplash.com/photo-1546967191-fdfb13ed6b1e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ" />
+        </view>
+        <view class="content txt-body3-px">
+          Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic type setting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus Page Maker including versions of Lorem Ipsum.
+        </view>
+      </view>
+    </bni-skeleton>
+  </view>
+  <view class="avatar">
+    <text class="margin-bottom : 50px;">Avatar</text>
+    <bni-skeleton type="avatar" showAnimate className="avatarSetting" />
+  </view>
+
+  <view class="containerParagraph">
+    <scroll-view
+      scroll-x="{{true}}"
+      onScrollToUpper="upper"
+      onScrollToLower="lower"
+      onScroll="scroll"
+      scroll-into-view="{{toView}}"
+      scroll-top="{{scrollTop}}"
+    >
+      <view class="insideParagraph">
+        <view class="paragraph-container">
+          <view class="paragraph">
+            <text>Paragraph 1</text>
+            <bni-skeleton
+              type="paragraph"
+              showAnimate="{{false}}"
+              rowsCount="{{2}}"
+              className="cssClass"
+            />
+          </view>
+        </view>
+        <view class="paragraph-container">
+          <view class="paragraph">
+            <text>Paragraph 2</text>
+            <bni-skeleton
+              type="paragraph"
+              showAnimate="{{false}}"
+              rowsCount="{{3}}"
+              className="cssClass"
+            />
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="input">
+    <text>Input</text>
+    <bni-skeleton type="input" showAnimate className="cssClassInput" />
+  </view>
+  <view class="input">
+    <text>Input</text>
+    <bni-skeleton type="input" showAnimate className="cssClass" />
+  </view>
+  <view class="button">
+    <text>Button</text>
+    <view class="contentButton">
+      <view class="buttonDetail">
+        <text class="txt-body3-px">Size Small</text>
+        <bni-skeleton type="button" buttonSize="small" className="cssClass" />
+      </view>
+      <view class="buttonDetail">
+        <text class="txt-body3-px">Size Medium</text>
+        <bni-skeleton type="button" buttonSize="medium" showAnimate className="cssClass" />
+      </view>
+      <view class="buttonDetail">
+        <text class="txt-body3-px">Size large</text>
+        <bni-skeleton type="button" buttonSize="large" className="cssClass" />
+      </view>
+    </view>
+
+  </view>
+
+
+  <view class="flexibleSkeleton">
+    <text>Flexible Skeleton</text>
+    <view class="containerCard">
+      <view class="{{progressLoading ? 'skeleton' : ''}} card">
+        <image
+          a:if="{{ progressLoading===false }}"
+          style="width:48px; height:48px"
+          src="https://images.unsplash.com/photo-1546967191-fdfb13ed6b1e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+        />
+        <view class="card-content" a:if="{{ progressLoading===false }}">
+          <text>This is a card example.</text>
+        </view>
+      </view>
+    </view>
+  </view>

@@ -1,0 +1,43 @@
+<default-ilustration-component type="pfm" imgUrl='' title="Laporan finansial belum tersedia">
+  <view>
+    Yuk bertransaksi dulu bulan ini di Maverick, biar kami bisa bantu kamu tampilin laporan keuangan.
+  </view>
+</default-ilustration-component>
+<default-ilustration-component type="wealth1" imgUrl='' title="Laporan finansial belum tersedia">
+  <view>
+    Yuk bertransaksi dulu bulan ini di Maverick, biar kami bisa bantu kamu tampilin laporan keuangan.
+  </view>
+</default-ilustration-component>
+<default-ilustration-component type="wealth2" imgUrl='' title="Laporan finansial belum tersedia">
+  <view>
+    Yuk bertransaksi dulu bulan ini di Maverick, biar kami bisa bantu kamu tampilin laporan keuangan.
+  </view>
+</default-ilustration-component>
+
+<view style="display:flex; justify-content: center; margin-bottom:40rpx">
+  <text style="font-size:40px">below is PX</text>
+  
+</view>
+
+<default-ilustration-component 
+pixel={{true}} type="pfm" imgUrl='' title="Laporan finansial belum tersedia">
+  <view>
+    Yuk bertransaksi dulu bulan ini di Maverick, biar kami bisa bantu kamu tampilin laporan keuangan.
+  </view>
+</default-ilustration-component>
+
+
+
+<default-ilustration-component 
+pixel={{true}} type="wealth1" imgUrl='' title="Laporan finansial belum tersedia">
+  <view>
+    Yuk bertransaksi dulu bulan ini di Maverick, biar kami bisa bantu kamu tampilin laporan keuangan.
+  </view>
+</default-ilustration-component>
+
+<default-ilustration-component 
+pixel={{true}} type="wealth2" imgUrl='' title="Laporan finansial belum tersedia">
+  <view>
+    Yuk bertransaksi dulu bulan ini di Maverick, biar kami bisa bantu kamu tampilin laporan keuangan.
+  </view>
+</default-ilustration-component>

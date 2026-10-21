@@ -1,59 +1,82 @@
-<view class="topBar-container">
+<view a:if="{{ !pixel }}" class="topBar-container">
   <block a:if="{{type === 'primary'}}">
     <view class="topBar-upper-space  {{backgroundColor}}" style="height:{{statusBarHeight}}; background-color:{{backgroundColor}}">
       .
     </view>
   </block>
+
   <block a:if="{{type === 'navigation'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
     <view class="topBar-title-bar {{backgroundColor}}" style="background-color:{{backgroundColor}}">
       <navigator a:if="{{ exit }}" open-type="exit" class="topBar-container-left-icon">
-        <image src="{{iconL}}" class="topBar-left-icon"/>
+        <image src="{{iconL}}" class="topBar-left-icon" />
       </navigator>
-      <view class="topBar-container-left-icon" a:else
-        onTap="{{ onIconLTap !== undefined ? 'onIconLTap' : 'onIconLTapDefault'}}">
+      <view a:else class="topBar-container-left-icon" onTap="{{ onIconLTap !== undefined ? 'onIconLTap' : 'onIconLTapDefault'}}">
         <image
-          mode="scaleToFill" 
-          src={{iconL}} 
+          mode="scaleToFill"
+          src={{iconL}}
           class="topBar-left-icon"
           id="{{navigate ? 'id-onIconLTap' : ''}}"
-          />
+          aria-label="{{navigate ? 'id-onIconLTap' : ''}}"
+        />
       </view>
       <view class="topBar-title">
-        <view a:if="{{ title != '' }}" class="topBar-title-txt txt-h3 {{color}} {{iconRSecondary ? 'topBar-title-width-r-icon' : 'topBar-title-width'}}" style="color:{{color}}">
-          {{title}}
+        <view
+          a:if="{{ title != '' }}"
+          class="topBar-title-txt txt-h3 {{color}}"
+          style="color:{{color}}"
+        >
+          <text>{{title}}</text>
         </view>
-        <view class="topBar-title-txt-loading skeleton" a:if="{{ title == ''  }}"></view>
+        <view a:if="{{ title == ''  }}" class="topBar-title-txt-loading skeleton">
+        </view>
       </view>
-      <view class="topBar-container-right-icon-cover">
+      <view a:if="{{ !iconR && !iconRSecondary }}" class="topBar-container-right-icon-cover">
       </view>
-      <view class="topBar-container-right-icon" style="right: 20rpx;">
+      <view a:if="{{ iconR || iconRSecondary }}" class="topBar-container-right-icon">
         <image
+          a:if="{{ iconRSecondary }}"
           class="topBar-right-icon"
           mode="scaleToFill"
           src={{iconRSecondary}}
           onTap="onIconRTapSecondary"
           id="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
+          aria-label="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
         />
         <image
+          a:if="{{ iconR }}"
           class="topBar-right-icon"
           mode="scaleToFill"
           src={{iconR}}
           onTap="onIconRTap"
           id="{{onIconRTap ? 'id-onIconRTap' : ''}}"
+          aria-label="{{onIconRTap ? 'id-onIconRTap' : ''}}"
         />
       </view>
     </view>
   </block>
 
   <block a:if="{{type === 'logo'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
     <view class="topBar-container-logo {{backgroundColor}}" style="background-color:{{backgroundColor}}">
       <image class="topBar-logo" mode="scaleToFill" src={{iconLogo}} />
     </view>
   </block>
 
-
-
   <block a:if="{{type === 'userInfo'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
     <view class="topBar-userInfo-bar {{backgroundColor}}" style="background-color:{{backgroundColor}}">
 
       <view class="topBar-userInfo-avatar-greeting">
@@ -71,15 +94,16 @@
 
 
 
-      <view class="topBar-container-right-icon" style="right: 30rpx;">
+      <view class="topBar-container-right-icon">
         <block a:if="{{ isNotify }}">
           <view
             class="topBar-userInfo-right-icon-badge"
             onTap="onIconRTapTertiary"
             id="{{onIconRTapTertiary ?'id-onIconRTapTertiary' : ''}}"
+            aria-label="{{onIconRTapTertiary ?'id-onIconRTapTertiary' : ''}}"
           >
             <image class="topBar-right-icon" mode="scaleToFill" src={{iconRTertiary}} />
-            <image mode="scaleToFill" src={{iconNotify}} class="topBar-icon-badge" /> 
+            <image mode="scaleToFill" src={{iconNotify}} class="topBar-icon-badge" />
           </view>
         </block>
 
@@ -90,6 +114,7 @@
             src={{iconRTertiary}}
             onTap="onIconRTapTertiary"
             id="{{onIconRTapTertiary ? 'id-onIconRTapTertiary' : ''}}"
+            aria-label="{{onIconRTapTertiary ? 'id-onIconRTapTertiary' : ''}}"
           />
         </block>
 
@@ -99,6 +124,7 @@
           src={{iconRSecondary}}
           onTap="onIconRTapSecondary"
           id="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
+          aria-label="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
         />
         <image
           class="topBar-right-icon"
@@ -106,9 +132,535 @@
           src={{iconR}}
           onTap="onIconRTap"
           id="{{onIconRTap ? 'id-onIconRTap' : ''}}"
+          aria-label="{{onIconRTap ? 'id-onIconRTap' : ''}}"
         />
 
       </view>
+    </view>
+  </block>
+
+  <block a:if="{{type === 'chipButton'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
+    <view class="topBar-title-bar {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <navigator a:if="{{ exit }}" open-type="exit" class="topBar-container-left-icon">
+        <image src="{{iconL}}" class="topBar-left-icon" />
+      </navigator>
+      <view a:else class="topBar-container-left-icon" onTap="{{ onIconLTap !== undefined ? 'onIconLTap' : 'onIconLTapDefault'}}">
+        <image
+          mode="scaleToFill"
+          src={{iconL}}
+          class="topBar-left-icon"
+          id="{{navigate ? 'id-onIconLTap' : ''}}"
+          aria-label="{{navigate ? 'id-onIconLTap' : ''}}"
+        />
+      </view>
+      <view class="topBar-title">
+        <view
+          a:if="{{ title != '' }}"
+          class="topBar-title-txt txt-h3 {{color}}"
+          style="color:{{color}}"
+        >
+          <text>{{title}}</text>
+        </view>
+        <view a:if="{{ title == ''  }}" class="topBar-title-txt-loading skeleton">
+        </view>
+      </view>
+      <view class="topBar-container-chip-button">
+        <button
+          class="chip-button {{classChipButton}}"
+          disabled={{disabledChipButton}}
+          onTap="onChipButtonTap"
+          id="{{!idChipButton ? 'id-onChipButtonTap' : idChipButton}}"
+          aria-label="{{!idChipButton ? 'id-onChipButtonTap' : idChipButton}}"
+        >
+          <image mode="scaleToFill" class="icon-chip-button-image" src="{{iconChipButton}}" />
+          <view class="chip-button-title txt-label2-sb">
+            {{titleChipButton}}
+          </view>
+        </button>
+      </view>
+    </view>
+  </block>
+
+  <!-- Search RPX -->
+  <block a:if="{{type === 'collapsible-title'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
+    <view class="topBar-grid-container {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <navigator a:if="{{ exit }}" open-type="exit" class="topBar-grid-container-left-icon">
+        <image src="{{iconL}}" class="topBar-left-icon" />
+      </navigator>
+      <view a:else class="topBar-grid-container-left-icon" onTap="{{ onIconLTap !== undefined ? 'onIconLTap' : 'onIconLTapDefault'}}">
+        <image
+          mode="scaleToFill"
+          src={{iconL}}
+          class="topBar-left-icon"
+          id="{{navigate ? 'id-onIconLTap' : ''}}"
+          aria-label="{{navigate ? 'id-onIconLTap' : ''}}"
+        />
+      </view>
+      <view a:if="{{ !isScrolled }}" class="topBar-grid-title">
+        <view
+          a:if="{{ title != '' }}"
+          class="topBar-title-txt txt-h3 {{color}} topBar-grid-title-width"
+          style="color:{{color}}"
+        >
+          <text>{{title}}</text>
+        </view>
+        <view a:if="{{ title == '' }}" class="topBar-grid-title-txt-loading skeleton" />
+      </view>
+      <slot name="collapsible-content" />
+    </view>
+  </block>
+</view>
+
+<view a:if="{{ pixel }}" class="topBar-container-px">
+  <block a:if="{{type === 'primary'}}">
+    <view class="topBar-upper-space-px  {{backgroundColor}}" style="height:{{statusBarHeight}}; background-color:{{backgroundColor}}">
+      .
+    </view>
+  </block>
+
+  <block a:if="{{type === 'slot'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space-px  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
+
+    <view class="topBar-slot-title-bar-px {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <slot name="slot-area" />
+    </view>
+  </block>
+
+  <block a:if="{{type === 'navigation'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space-px  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
+
+    <view class="topBar-title-bar-px {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <navigator a:if="{{ exit }}" open-type="exit" class="topBar-container-left-icon-px">
+        <image src="{{iconL}}" class="topBar-left-icon-px" />
+      </navigator>
+
+      <view a:else class="topBar-container-left-icon-px" onTap="{{ onIconLTap !== undefined ? 'onIconLTap' : 'onIconLTapDefault'}}">
+        <image
+          mode="scaleToFill"
+          src={{iconL}}
+          class="topBar-left-icon-px"
+          id="{{navigate ? 'id-onIconLTap' : ''}}"
+          aria-label="{{navigate ? 'id-onIconLTap' : ''}}"
+        />
+      </view>
+
+      <view class="topBar-title-px" style="justify-content: {{titlePosition === 'center' ? 'center' : titlePosition === 'right' ? 'flex-end' : 'flex-start'}};">
+        <view
+          a:if="{{ title != '' }}"
+          class="topBar-title-txt-px txt-h3-px {{color}}"
+          style="color:{{color}}; 
+          text-align: {{ titlePosition === 'center' ? 'center' : titlePosition === 'right' ? 'end' : 'start' }};"
+        >
+          <text>{{title}}</text>
+        </view>
+
+        <view a:if="{{ title == ''  }}" class="topBar-title-txt-loading-px skeleton">
+        </view>
+      </view>
+
+      <view a:if="{{ !iconR && !iconRSecondary && (titlePosition === 'center' || !titlePosition) }}" class="topBar-container-right-icon-cover-px">
+      </view>
+
+      <view a:if="{{ iconR || iconRSecondary }}" class="topBar-container-right-icon-px">
+        <image
+          a:if="{{ iconRSecondary }}"
+          class="topBar-right-icon-px"
+          mode="scaleToFill"
+          src={{iconRSecondary}}
+          onTap="onIconRTapSecondary"
+          id="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
+          aria-label="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
+        />
+        <image
+          a:if="{{ iconR }}"
+          class="topBar-right-icon-px"
+          mode="scaleToFill"
+          src={{iconR}}
+          onTap="onIconRTap"
+          id="{{onIconRTap ? 'id-onIconRTap' : ''}}"
+          aria-label="{{onIconRTap ? 'id-onIconRTap' : ''}}"
+        />
+      </view>
+    </view>
+  </block>
+
+  <block a:if="{{type === 'navigationSlot'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space-px  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
+
+    <view class="topBar-title-bar-px {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <navigator a:if="{{ exit }}" open-type="exit" class="topBar-container-left-icon-px">
+        <image src="{{iconL}}" class="topBar-left-icon-px" />
+      </navigator>
+
+      <view a:else class="topBar-container-left-icon-px" onTap="{{ onIconLTap !== undefined ? 'onIconLTap' : 'onIconLTapDefault'}}">
+        <image
+          mode="scaleToFill"
+          src={{iconL}}
+          class="topBar-left-icon-px"
+          id="{{navigate ? 'id-onIconLTap' : ''}}"
+          aria-label="{{navigate ? 'id-onIconLTap' : ''}}"
+        />
+      </view>
+
+      <view class="topBar-title-px" style="justify-content: {{titlePosition === 'center' ? 'center' : titlePosition === 'right' ? 'flex-end' : 'flex-start'}};">
+        <view
+          class="topBar-title-txt-px txt-h3-px {{color}}"
+          style="color:{{color}};
+          text-align: {{ titlePosition === 'center' ? 'center' : titlePosition === 'right' ? 'end' : 'start' }};"
+        >
+          <slot name="title"></slot>
+        </view>
+      </view>
+
+      <view a:if="{{ !iconR && !iconRSecondary && (titlePosition === 'center' || !titlePosition) }}" class="topBar-container-right-icon-cover-px">
+      </view>
+
+      <view a:if="{{ iconR || iconRSecondary }}" class="topBar-container-right-icon-px">
+        <image
+          a:if="{{ iconRSecondary }}"
+          class="topBar-right-icon-px"
+          mode="scaleToFill"
+          src={{iconRSecondary}}
+          onTap="onIconRTapSecondary"
+          id="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
+          aria-label="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
+        />
+        <image
+          a:if="{{ iconR }}"
+          class="topBar-right-icon-px"
+          mode="scaleToFill"
+          src={{iconR}}
+          onTap="onIconRTap"
+          id="{{onIconRTap ? 'id-onIconRTap' : ''}}"
+          aria-label="{{onIconRTap ? 'id-onIconRTap' : ''}}"
+        />
+      </view>
+    </view>
+  </block>
+
+  <block a:if="{{type === 'logo'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space-px  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
+    <view class="topBar-container-logo-px {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <image class="topBar-logo-px" mode="scaleToFill" src={{iconLogo}} />
+    </view>
+  </block>
+
+  <block a:if="{{type === 'userInfo'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space-px  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
+    <view class="topBar-userInfo-bar-px {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+
+      <view class="topBar-userInfo-avatar-greeting-px">
+        <view class="topBar-userInfo-profile-image-container-px">
+          <image
+            class="topBar-userInfo-profile-image-px"
+            mode="aspectFill"
+            src={{photoProfile}}
+          />
+        </view>
+        <view class="topBar-username-px txt-h3-px {{color}}" style="color: {{color}}">
+          Hi, {{username}}!
+        </view>
+      </view>
+
+
+
+      <view class="topBar-container-right-icon-px">
+        <block a:if="{{ isNotify }}">
+          <view
+            class="topBar-userInfo-right-icon-badge-px"
+            onTap="onIconRTapTertiary"
+            id="{{onIconRTapTertiary ?'id-onIconRTapTertiary' : ''}}"
+            aria-label="{{onIconRTapTertiary ?'id-onIconRTapTertiary' : ''}}"
+          >
+            <image class="topBar-right-icon-px" mode="scaleToFill" src={{iconRTertiary}} />
+            <image mode="scaleToFill" src={{iconNotify}} class="topBar-icon-badge-px" />
+          </view>
+        </block>
+
+        <block a:else>
+          <image
+            class="topBar-right-icon-px"
+            mode="scaleToFill"
+            src={{iconRTertiary}}
+            onTap="onIconRTapTertiary"
+            id="{{onIconRTapTertiary ? 'id-onIconRTapTertiary' : ''}}"
+            aria-label="{{onIconRTapTertiary ? 'id-onIconRTapTertiary' : ''}}"
+          />
+        </block>
+
+        <image
+          class="topBar-right-icon-px"
+          mode="scaleToFill"
+          src={{iconRSecondary}}
+          onTap="onIconRTapSecondary"
+          id="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
+          aria-label="{{onIconRTapSecondary ? 'id-onIconRTapSecondary' : ''}}"
+        />
+        <image
+          class="topBar-right-icon-px"
+          mode="scaleToFill"
+          src={{iconR}}
+          onTap="onIconRTap"
+          id="{{onIconRTap ? 'id-onIconRTap' : ''}}"
+          aria-label="{{onIconRTap ? 'id-onIconRTap' : ''}}"
+        />
+
+      </view>
+    </view>
+  </block>
+
+  <block a:if="{{type === 'chipButton'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space-px  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
+
+    <view class="topBar-title-bar-px {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <navigator a:if="{{ exit }}" open-type="exit" class="topBar-container-left-icon-px">
+        <image src="{{iconL}}" class="topBar-left-icon-px" />
+      </navigator>
+
+      <view a:else class="topBar-container-left-icon-px" onTap="{{ onIconLTap !== undefined ? 'onIconLTap' : 'onIconLTapDefault'}}">
+        <image
+          mode="scaleToFill"
+          src={{iconL}}
+          class="topBar-left-icon-px"
+          id="{{navigate ? 'id-onIconLTap' : ''}}"
+          aria-label="{{navigate ? 'id-onIconLTap' : ''}}"
+        />
+      </view>
+
+      <view class="topBar-title-px" style="justify-content: {{titlePosition === 'center' ? 'center' : titlePosition === 'right' ? 'flex-end' : 'flex-start'}};">
+        <view
+          a:if="{{ title != '' }}"
+          class="topBar-title-txt-px txt-h3-px {{color}}"
+          style="color:{{color}}; 
+          text-align: {{ titlePosition === 'center' ? 'center' : titlePosition === 'right' ? 'end' : 'start' }};"
+        >
+          <text>{{title}}</text>
+        </view>
+
+        <view a:if="{{ title == ''  }}" class="topBar-title-txt-loading-px skeleton">
+        </view>
+      </view>
+
+      <view class="topBar-container-chip-button-px">
+        <button
+          class="chip-button-px {{classChipButton}}"
+          disabled={{disabledChipButton}}
+          onTap="onChipButtonTap"
+          id="{{!idChipButton ? 'id-onChipButtonTap' : idChipButton}}"
+          aria-label="{{!idChipButton ? 'id-onChipButtonTap' : idChipButton}}"
+        >
+          <image mode="scaleToFill" class="icon-chip-button-image-px" src="{{iconChipButton}}" />
+          <view class="chip-button-title-px txt-label2-sb-px">
+            {{titleChipButton}}
+          </view>
+        </button>
+        <image a:if="{{ iconNotify && iconNotify.length != 0 && isNotify }}" mode="scaleToFill" src={{iconNotify}} class="topBar-icon-chip-notfiy-px" />
+      </view>
+    </view>
+  </block>
+
+  <block a:if="{{type === 'chipButtonIconR'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space-px  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
+
+    <view class="topBar-title-bar-px {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <navigator a:if="{{ exit }}" open-type="exit" class="topBar-container-left-icon-px">
+        <image src="{{iconL}}" class="topBar-left-icon-px" />
+      </navigator>
+
+      <view a:else class="topBar-container-left-icon-px" onTap="{{ onIconLTap !== undefined ? 'onIconLTap' : 'onIconLTapDefault'}}">
+        <image
+          mode="scaleToFill"
+          src={{iconL}}
+          class="topBar-left-icon-px"
+          id="{{navigate ? 'id-onIconLTap' : ''}}"
+          aria-label="{{navigate ? 'id-onIconLTap' : ''}}"
+        />
+      </view>
+
+      <view class="topBar-title-px" style="justify-content: {{titlePosition === 'center' ? 'center' : titlePosition === 'right' ? 'flex-end' : 'flex-start'}};">
+        <view
+          a:if="{{ title != '' }}"
+          class="topBar-title-txt-px txt-h3-px {{color}}"
+          style="color:{{color}}; 
+          text-align: {{ titlePosition === 'center' ? 'center' : titlePosition === 'right' ? 'end' : 'start' }};"
+        >
+          <text>{{title}}</text>
+        </view>
+
+        <view a:if="{{ title == ''  }}" class="topBar-title-txt-loading-px skeleton">
+        </view>
+      </view>
+
+      <view class="topBar-container-chip-button-px">
+        <button
+          class="chip-button-px {{classChipButton}}"
+          disabled={{disabledChipButton}}
+          onTap="onChipButtonTap"
+          id="{{!idChipButton ? 'id-onChipButtonTap' : idChipButton}}"
+          aria-label="{{!idChipButton ? 'id-onChipButtonTap' : idChipButton}}"
+        >
+          <view class="chip-button-title-px txt-label2-sb-px">
+            {{titleChipButton}}
+          </view>
+          <image mode="scaleToFill" class="icon-chip-button-image-px" src="{{iconChipButton}}" />
+        </button>
+        <image a:if="{{ iconNotify && iconNotify.length != 0 && isNotify }}" mode="scaleToFill" src={{iconNotify}} class="topBar-icon-chip-notfiy-px" />
+      </view>
+    </view>
+  </block>
+
+  <block a:if="{{type === 'chipButtonReset'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space-px  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
+
+    <view class="topBar-title-bar-px {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <navigator a:if="{{ exit }}" open-type="exit" class="topBar-container-left-icon-px">
+        <image src="{{iconL}}" class="topBar-left-icon-px" />
+      </navigator>
+
+      <view a:else class="topBar-container-left-icon-px" onTap="{{ onIconLTap !== undefined ? 'onIconLTap' : 'onIconLTapDefault'}}">
+        <image
+          mode="scaleToFill"
+          src={{iconL}}
+          class="topBar-left-icon-px"
+          id="{{navigate ? 'id-onIconLTap' : ''}}"
+          aria-label="{{navigate ? 'id-onIconLTap' : ''}}"
+        />
+      </view>
+
+      <view class="topBar-title-px bni-align-center" style="justify-content: {{titlePosition === 'center' ? 'center' : titlePosition === 'right' ? 'flex-end' : 'flex-start'}};">
+        <view
+          a:if="{{ title != '' }}"
+          class="topBar-title-txt-px txt-h3-px {{color}}"
+          style="color:{{color}}; 
+          text-align: {{ titlePosition === 'center' ? 'center' : titlePosition === 'right' ? 'end' : 'start' }};"
+        >
+          <text a:if="{{ title != '' }}">{{title}}</text>
+          <view
+            class="topBar-title-txt-px txt-h3-px {{color}}"
+            style="color:{{color}}; 
+             text-align: {{ titlePosition === 'center' ? 'center' : titlePosition === 'right' ? 'end' : 'start' }};"
+          >
+            <slot name="title"></slot>
+          </view>
+        </view>
+
+        <view a:if="{{ title == ''  }}" class="topBar-title-txt-loading-px skeleton">
+        </view>
+      </view>
+
+      <view
+        a:if="{{ tapStatus }}"
+        class="topBar-container-chip-button-px"
+      >
+        <button
+          class="chip-button-px {{classChipButton}}"
+          disabled={{disabledChipButton}}
+          onTap="onChipButtonTap"
+          id="{{!idChipButton ? 'id-onChipButtonTap' : idChipButton}}"
+          aria-label="{{!idChipButton ? 'id-onChipButtonTap' : idChipButton}}"
+        >
+          <view class="chip-button-title-px txt-label2-sb-px">
+            {{titleChipButton}}
+          </view>
+          <view catchTap="onChipResetTap" class="chip-button-title-px txt-label2-sb-px">
+            <image
+              mode="scaleToFill"
+              class="icon-chip-button-image-px"
+              src="{{iconChipButton}}"
+            />
+          </view>
+        </button>
+      </view>
+      <view a:else class="topBar-container-chip-button-px">
+        <button
+          class="chip-button-px {{classChipButton}}"
+          disabled={{disabledChipButton}}
+          onTap="onChipButtonTap"
+          id="{{!idChipButton ? 'id-onChipButtonTap' : idChipButton}}"
+          aria-label="{{!idChipButton ? 'id-onChipButtonTap' : idChipButton}}"
+        >
+          <image mode="scaleToFill" class="icon-chip-button-image-px" src="{{iconChipButton}}" />
+          <view class="chip-button-title-px txt-label2-sb-px">
+            {{titleChipButton}}
+          </view>
+        </button>
+      </view>
+    </view>
+  </block>
+
+  <!-- Search PX -->
+  <block a:if="{{type === 'collapsible-title'}}">
+    <block a:if="{{ safeArea }}">
+      <view class="topBar-upper-space-px  {{backgroundColor}}" style="height:{{ statusBarHeight}}; background-color:{{backgroundColor}}">
+        .
+      </view>
+    </block>
+    <view class="topBar-grid-container-px {{backgroundColor}}" style="background-color:{{backgroundColor}}">
+      <navigator a:if="{{ exit }}" open-type="exit" class="topBar-grid-container-left-icon-px">
+        <image src="{{iconL}}" class="topBar-left-icon-px" />
+      </navigator>
+      <view a:else class="topBar-grid-container-left-icon-px" onTap="{{ onIconLTap !== undefined ? 'onIconLTap' : 'onIconLTapDefault'}}">
+        <image
+          mode="scaleToFill"
+          src={{iconL}}
+          class="topBar-left-icon-px"
+          id="{{navigate ? 'id-onIconLTap' : ''}}"
+          aria-label="{{navigate ? 'id-onIconLTap' : ''}}"
+        />
+      </view>
+      <view a:if="{{ !isScrolled }}" class="topBar-grid-title-px">
+        <view
+          a:if="{{ title != '' }}"
+          class="topBar-title-txt-px txt-h3-px {{color}} topBar-grid-title-width-px"
+          style="color:{{color}}"
+        >
+          <text>{{title}}</text>
+        </view>
+        <view a:if="{{ title == '' }}" class="topBar-grid-title-txt-loading-px skeleton" />
+      </view>
+      <slot name="collapsible-content" />
     </view>
   </block>
 </view>

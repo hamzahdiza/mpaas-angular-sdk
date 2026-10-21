@@ -1,0 +1,65 @@
+<view class="top-bar-container">
+  <top-bar
+    safeArea
+    backgroundColor="white"
+    title="BNI Steps"
+    iconL="/pages/assets/icons/ic_common_arrow_back.svg"
+    pixel
+  />
+</view>
+
+<view class="main-container">
+  <ant-container title="number of steps:">
+    <ant-slider
+      defaultValue={{3}}
+      step={{1}}
+      min={{1}}
+      max={{4}}
+      showTicks
+      showNumber
+      onChange="onSliderChange"
+    >
+    </ant-slider>
+  </ant-container>
+
+  <ant-container title="direction:">
+    <ant-selector
+      options={{options.direction}}
+      onChange="onChangeDirection"
+      value={{selected.direction}}
+    />
+  </ant-container>
+
+  <ant-container title="type:">
+    <ant-selector options={{options.type}} onChange="onChangeType" value={{selected.type}} />
+  </ant-container>
+
+  <ant-container title="currentIndex:">
+    <ant-selector options={{options.indices}} onChange="onChangeIndex" value={{selected.currentIndex}} />
+  </ant-container>
+
+  <ant-container title="status:">
+    <ant-selector options={{options.status}} onChange="onChangeStatus" value={{selected.status}} />
+  </ant-container>
+
+  <view class="example-container">
+    <steps
+      items="{{items}}"
+      direction={{selected.direction}}
+      type={{selected.type}}
+      currentIndex={{selected.currentIndex}}
+      status={{selected.status}}
+      onTapStepItem="onTapStepItem"
+    >
+      <view slot="selected-cta">
+        <bni-button
+          type="quite"
+          className="txt-label1-sb-px txt-orange-300 quite-button"
+          pixel
+        >
+          Insert Text
+        </bni-button>
+      </view>
+    </steps>
+  </view>
+</view>

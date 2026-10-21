@@ -1,0 +1,9 @@
+.main-container {
+  padding: 0 48rpx;
+}
+
+.topBar-container {
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+}

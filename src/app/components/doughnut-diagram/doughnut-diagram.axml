@@ -1,0 +1,13 @@
+<view class="doughnut-diagram-container">
+  <canvas
+    class="canvas pie-chart-canvas"
+    id="chart-canvas-{{$id}}"
+    width="{{ canvasWidth }}"
+    height="{{ canvasHeight }}"
+    onTouchStart="handleTouchStart"
+    onTouchMove="handleTouchMove"
+    onTouchEnd="handleTouchEnd"
+    onTap="handleCanvasClick" 
+  />
+  <view a:if="{{ isShowLoding }}" class="pie-chart-animation" />
+</view>

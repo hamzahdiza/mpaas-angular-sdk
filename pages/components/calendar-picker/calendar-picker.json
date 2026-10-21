@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "calendar-picker": "/components/calendar-picker/calendar-picker",
+    "top-bar" : "/components/top-bar/top-bar"
+
+  },
+  "styleIsolation": "apply-shared"
+}
+

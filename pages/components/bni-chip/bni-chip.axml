@@ -1,0 +1,33 @@
+<view style="position : sticky; top : 0; z-index: 999">
+  <top-bar type="primary" backgroundColor="bg-off-white" pixel={{true}} />
+  <top-bar
+    type="navigation"
+    navigate
+    backgroundColor="bg-off-white"
+    title="BNI CHIP"
+    iconL="../../assets/icons/ic_common_arrow_back.svg"
+    pixel={{true}}
+  />
+</view>
+
+<view class="container-px">
+  <view class="showcase-card-px">
+    <bni-chip type="small" backgroundColor="#02C794" label="Tag" pixel={{true}} />
+    <text> Type Small </text>
+  </view>
+
+  <view class="showcase-card-px">
+    <bni-chip type="medium" backgroundColor="#D65C5C" label="Tag" pixel={{true}} />
+    <text> Type Medium </text>
+  </view>
+
+  <view class="showcase-card-px filled-showcase-px">
+    <bni-chip type="medium" backgroundColor="#8A9A5B" label="Tag" iconRightUrl="/pages/assets/icons/ic_common_info_outlined.svg" pixel={{true}} />
+    <text class="filled-text-px"> Type Medium Icon Right</text>
+  </view>
+
+  <view class="showcase-card-px filled-showcase-px">
+    <bni-chip type="medium" backgroundColor="#D7A86E" label="Tag" iconLeftUrl="/pages/assets/icons/ic_common_info_outlined.svg"  pixel={{true}} />
+    <text class="filled-text-px"> Type Medium Icon Left</text>
+  </view>
+</view>

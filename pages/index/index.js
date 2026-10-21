@@ -10,7 +10,10 @@ import {
 
 // dayjs.locale('id');
 
-var tools = require("../../utils/lib/e2ee.wsx")
+var tools = {
+  encryptKey: (key, data) => 'MOCK_KEY_' + (data || ''),
+  encryptData: (key, data) => (typeof data === 'object' ? JSON.stringify(data) : String(data || ''))
+};
 const {
   flag,
   code,
@@ -467,5 +470,11 @@ Page({
       console.log("Index: Touch detected. Resetting global timer.");
       app.startGlobalIdleTimer();
     }
+  },
+
+  exitMiniprogram() {
+    my.navigateBack({
+      fallback: '/src/app/pages/landing/landing'
+    });
   }
 });

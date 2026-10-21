@@ -352,5 +352,23 @@ Page({
 
   onRefresh() {
     this.loadAllLandingData();
+  },
+
+  goToChartsShowcase() {
+    my.navigateTo({
+      url: "/pages/charts-showcase/charts-showcase"
+    });
+  },
+
+  goToComponentLibrary() {
+    my.navigateTo({
+      url: "/pages/home/home"
+    });
+  },
+
+  goToTestPipeline() {
+    my.navigateTo({
+      url: "/pages/index/index"
+    });
   }
 });

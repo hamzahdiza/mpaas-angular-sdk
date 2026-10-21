@@ -1,0 +1,423 @@
+/* This CSS styling converts dimensions from rpx (responsive pixel) to px (pixels) using a 2x ratio 
+* Note: This conversion applies to styles originally created by ANT to accomodate Wealth Management Project conversion to px.
+*/
+
+
+/*padding*/
+.pd-v-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.pd-v-4 {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.pd-v-8 {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.pd-v-16 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.pd-v-24 {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.pd-v-32 {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.pd-v-48 {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.pd-h-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.pd-h-4 {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.pd-h-8 {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.pd-h-16 {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.pd-h-24 {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.pd-h-32 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.pd-h-48 {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.pd-l-8 {
+  padding-left: 4px;
+}
+
+.pd-l-12 {
+  padding-left: 6px;
+}
+
+.pd-l-16 {
+  padding-left: 8px;
+}
+
+.pd-l-24 {
+  padding-left: 12px;
+}
+
+.pd-l-32 {
+  padding-left: 16px;
+}
+
+.pd-l-48 {
+  padding-left: 24px;
+}
+
+.pd-l-64 {
+  padding-left: 32px;
+}
+
+.pd-l-96 {
+  padding-left: 48px;
+}
+
+.pd-r-8 {
+  padding-right: 4px;
+}
+
+.pd-r-12 {
+  padding-right: 6px;
+}
+
+.pd-r-16 {
+  padding-right: 8px;
+}
+
+.pd-r-24 {
+  padding-right: 12px;
+}
+
+.pd-r-32 {
+  padding-right: 16px;
+}
+
+.pd-r-48 {
+  padding-right: 24px;
+}
+
+.pd-r-64 {
+  padding-right: 32px;
+}
+
+.pd-r-96 {
+  padding-right: 48px;
+}
+
+.pd-b-8 {
+  padding-bottom: 4px;
+}
+
+.pd-b-12 {
+  padding-bottom: 6px;
+}
+
+.pd-b-16 {
+  padding-bottom: 8px;
+}
+
+.pd-b-24 {
+  padding-bottom: 12px;
+}
+
+.pd-b-32 {
+  padding-bottom: 16px;
+}
+
+.pd-b-48 {
+  padding-bottom: 24px;
+}
+
+.pd-b-64 {
+  padding-bottom: 32px;
+}
+
+.pd-b-96 {
+  padding-bottom: 48px;
+}
+
+.pd-t-8 {
+  padding-top: 4px;
+}
+
+.pd-t-12 {
+  padding-top: 6px;
+}
+
+.pd-t-16 {
+  padding-top: 8px;
+}
+
+.pd-t-24 {
+  padding-top: 12px;
+}
+
+.pd-t-32 {
+  padding-top: 16px;
+}
+
+.pd-t-48 {
+  padding-top: 24px;
+}
+
+.pd-t-64 {
+  padding-top: 32px;
+}
+
+.pd-t-96 {
+  padding-top: 48px;
+}
+
+/*margin*/
+.mg-v-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.mg-v-4 {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.mg-v-8 {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.mg-v-16 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.mg-v-24 {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.mg-v-32 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.mg-v-48 {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.mg-h-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.mg-h-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mg-h-4 {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.mg-h-8 {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.mg-h-16 {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.mg-h-24 {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.mg-h-32 {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.mg-h-48 {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.mg-l-8 {
+  margin-left: 4px;
+}
+
+.mg-l-12 {
+  margin-left: 6px;
+}
+
+.mg-l-16 {
+  margin-left: 8px;
+}
+
+.mg-l-20 {
+  margin-left: 10px;
+}
+
+.mg-l-24 {
+  margin-left: 12px;
+}
+
+.mg-l-32 {
+  margin-left: 16px;
+}
+
+.mg-l-48 {
+  margin-left: 24px;
+}
+
+.mg-l-64 {
+  margin-left: 32px;
+}
+
+.mg-l-96 {
+  margin-left: 48px;
+}
+
+.mg-r-8 {
+  margin-right: 4px;
+}
+
+.mg-r-12 {
+  margin-right: 6px;
+}
+
+.mg-r-16 {
+  margin-right: 8px;
+}
+
+.mg-r-20 {
+  margin-right: 10px;
+}
+
+.mg-r-24 {
+  margin-right: 12px;
+}
+
+.mg-r-32 {
+  margin-right: 16px;
+}
+
+.mg-r-48 {
+  margin-right: 24px;
+}
+
+.mg-r-64 {
+  margin-right: 32px;
+}
+
+.mg-r-96 {
+  margin-right: 48px;
+}
+
+.mg-b-8 {
+  margin-bottom: 4px;
+}
+
+.mg-b-12 {
+  margin-bottom: 6px;
+}
+
+.mg-b-16 {
+  margin-bottom: 8px;
+}
+
+.mg-b-20 {
+  margin-bottom: 10px;
+}
+
+.mg-b-24 {
+  margin-bottom: 12px;
+}
+
+.mg-b-32 {
+  margin-bottom: 16px;
+}
+
+.mg-b-48 {
+  margin-bottom: 24px;
+}
+
+.mg-b-64 {
+  margin-bottom: 32px;
+}
+
+.mg-b-96 {
+  margin-bottom: 48px;
+}
+
+.mg-t-8 {
+  margin-top: 4px;
+}
+
+.mg-t-12 {
+  margin-top: 6px;
+}
+
+.mg-t-16 {
+  margin-top: 8px;
+}
+
+.mg-t-20 {
+  margin-top: 10px;
+}
+
+.mg-t-24 {
+  margin-top: 12px;
+}
+
+.mg-t-32 {
+  margin-top: 16px;
+}
+
+.mg-t-48 {
+  margin-top: 24px;
+}
+
+.mg-t-64 {
+  margin-top: 32px;
+}
+
+.mg-t-96 {
+  margin-top: 48px;
+}

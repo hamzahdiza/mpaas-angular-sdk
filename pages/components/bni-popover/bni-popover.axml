@@ -1,0 +1,399 @@
+<top-bar pixel={{true}} type="primary" backgroundColor="bg-off-white" />
+<top-bar
+  pixel={{true}}
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="BNI Popover"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+  onIconLTap="handleBackButton"
+/>
+
+<view class="demo-page">
+  <view class="page-header">
+    <view class="txt-h3-px page-title">BNI Popover</view>
+    <view class="txt-body2-px txt-granite page-subtitle">
+      Komponen tooltip kontekstual dengan dukungan kustomisasi warna manual, pergeseran offset, slot kustom, dan mode kontrol.
+    </view>
+  </view>
+
+  <!-- 1. SEMUA VARIASI PLACEMENT (8 ARAH) -->
+  <view class="card">
+    <view class="card-header">
+      <view class="card-badge">Variasi 1</view>
+      <view class="card-title txt-h5-px">Arah & Penempatan (Placements)</view>
+    </view>
+    <view class="card-desc txt-body3-px txt-granite">
+      Mendukung 8 arah penempatan relatif terhadap posisi elemen pemicu:
+    </view>
+
+    <!-- 3x3 Compass Matrix -->
+    <view class="placement-grid">
+      <!-- Row 1: Top placements -->
+      <bni-popover content="Placement: top-left" placement="top-left" className="popover-block">
+        <view class="placement-chip">top-left</view>
+      </bni-popover>
+      <bni-popover content="Placement: top" placement="top" className="popover-block">
+        <view class="placement-chip">top</view>
+      </bni-popover>
+      <bni-popover content="Placement: top-right" placement="top-right" className="popover-block">
+        <view class="placement-chip">top-right</view>
+      </bni-popover>
+
+      <!-- Row 2: Side placements -->
+      <bni-popover content="Placement: left" placement="left" className="popover-block">
+        <view class="placement-chip">left</view>
+      </bni-popover>
+      <view class="placement-chip-center">
+        <text class="fs-10-px fc-9e9e9e">Center</text>
+      </view>
+      <bni-popover content="Placement: right" placement="right" className="popover-block">
+        <view class="placement-chip">right</view>
+      </bni-popover>
+
+      <!-- Row 3: Bottom placements -->
+      <bni-popover content="Placement: bottom-left" placement="bottom-left" className="popover-block">
+        <view class="placement-chip">bottom-left</view>
+      </bni-popover>
+      <bni-popover content="Placement: bottom" placement="bottom" className="popover-block">
+        <view class="placement-chip">bottom</view>
+      </bni-popover>
+      <bni-popover content="Placement: bottom-right" placement="bottom-right" className="popover-block">
+        <view class="placement-chip">bottom-right</view>
+      </bni-popover>
+    </view>
+  </view>
+
+  <!-- 2. KUSTOMISASI WARNA MANUAL (BACKGROUND, TEKS, PANAH) -->
+  <view class="card">
+    <view class="card-header">
+      <view class="card-badge">Variasi 2</view>
+      <view class="card-title txt-h5-px">Kustomisasi Warna Manual</view>
+    </view>
+    <view class="card-desc txt-body3-px txt-granite">
+      Warna background, warna teks, dan panah dapat diatur manual sesuai kebutuhan:
+    </view>
+
+    <view class="color-grid">
+      <!-- 1. Pale Gray (#DADADA) - Default BNI style -->
+      <bni-popover
+        backgroundColor="#DADADA"
+        textColor="#0E0E0E"
+        content="Background Pale Gray (#DADADA) dengan teks gelap (#0E0E0E)."
+        placement="bottom-left"
+        className="popover-block"
+      >
+        <view class="color-chip bg-pale-gray txt-black">
+          <view class="color-dot" style="background: #DADADA; border: 1px solid #bbb;" />
+          <text class="color-chip-text">Pale Gray</text>
+        </view>
+      </bni-popover>
+
+      <!-- 2. Dark Charcoal (#404040) -->
+      <bni-popover
+        backgroundColor="#404040"
+        textColor="#FFFFFF"
+        content="Background Charcoal (#404040) dengan teks putih (#FFFFFF)."
+        placement="bottom"
+        className="popover-block"
+      >
+        <view class="color-chip bg-charcoal txt-white">
+          <view class="color-dot" style="background: #404040;" />
+          <text class="color-chip-text">Charcoal</text>
+        </view>
+      </bni-popover>
+
+      <!-- 3. Turquoise BNI (#71DBD3) -->
+      <bni-popover
+        backgroundColor="#71DBD3"
+        textColor="#0E0E0E"
+        content="Background Turquoise (#71DBD3) dengan teks gelap."
+        placement="bottom"
+        className="popover-block"
+      >
+        <view class="color-chip bg-turquoise-300 txt-black">
+          <view class="color-dot" style="background: #71DBD3;" />
+          <text class="color-chip-text">Turquoise</text>
+        </view>
+      </bni-popover>
+
+      <!-- 4. Warning (#EBBC44) -->
+      <bni-popover
+        backgroundColor="#EBBC44"
+        textColor="#0E0E0E"
+        content="Background Kuning (#EBBC44) dengan teks hitam."
+        placement="bottom"
+        className="popover-block"
+      >
+        <view class="color-chip bg-warning-off txt-black">
+          <view class="color-dot" style="background: #EBBC44;" />
+          <text class="color-chip-text">Warning</text>
+        </view>
+      </bni-popover>
+
+      <!-- 5. Success (#02C794) -->
+      <bni-popover
+        backgroundColor="#02C794"
+        textColor="#FFFFFF"
+        content="Background Hijau (#02C794) dengan teks putih."
+        placement="bottom"
+        className="popover-block"
+      >
+        <view class="color-chip bg-success txt-white">
+          <view class="color-dot" style="background: #02C794;" />
+          <text class="color-chip-text">Success</text>
+        </view>
+      </bni-popover>
+
+      <!-- 6. Custom Arrow Color -->
+      <bni-popover
+        backgroundColor="#1A1A1A"
+        textColor="#FFFFFF"
+        arrowColor="#02C794"
+        content="Background hitam (#1A1A1A) dengan arrow custom hijau (#02C794)."
+        placement="bottom-right"
+        className="popover-block"
+      >
+        <view class="color-chip bg-black txt-white">
+          <view class="color-dot" style="background: #02C794;" />
+          <text class="color-chip-text">Custom Arrow</text>
+        </view>
+      </bni-popover>
+    </view>
+  </view>
+
+  <!-- 3. PENCEGAHAN CUTOFF & SHIFTING (contentOffset vs arrowOffset) -->
+  <view class="card">
+    <view class="card-header">
+      <view class="card-badge">Variasi 3</view>
+      <view class="card-title txt-h5-px">Pencegahan Cutoff & Shifting</view>
+    </view>
+    <view class="card-desc txt-body3-px txt-granite">
+      Solusi saat elemen trigger berada dekat tepi layar HP (responsif untuk layar 320px - 360px):
+    </view>
+
+    <!-- Opsi A: Menggunakan placement top-left -->
+    <view class="offset-item">
+      <view class="txt-label2-sb-px mg-b-4-px">Solusi A: placement="top-left"</view>
+      <view class="txt-body3-px txt-granite mg-b-8-px">
+        Kontainer popover otomatis membentang ke kanan dari tombol trigger.
+      </view>
+      <bni-popover
+        content="Informasi kupon berjalan untuk obligasi yang dipilih (membentang ke kanan)."
+        placement="top-left"
+        backgroundColor="#DADADA"
+        textColor="#0E0E0E"
+        maxWidth="{{ 260 }}"
+      >
+        <view class="btn-compact">Coba top-left</view>
+      </bni-popover>
+    </view>
+
+    <!-- Opsi B: Hanya contentOffset (Kotak teks bergeser, panah tetap di trigger) -->
+    <view class="offset-item">
+      <view class="txt-label2-sb-px mg-b-4-px">Solusi B: contentOffset="{{ 50 }}" (Hanya Kotak Teks)</view>
+      <view class="txt-body3-px txt-granite mg-b-8-px">
+        Kotak teks digeser +50px ke kanan agar tidak kepotong layar, panah tetap menunjuk tombol.
+      </view>
+      <bni-popover
+        content="Kotak teks digeser +50px, ujung panah tetap menunjuk tombol ini."
+        placement="top"
+        backgroundColor="#DADADA"
+        textColor="#0E0E0E"
+        contentOffset="{{ 85 }}"
+        arrowOffset="{{0}}"
+        maxWidth="{{ 327 }}"
+      >
+        <view class="btn-compact">contentOffset="50"</view>
+      </bni-popover>
+    </view>
+
+    <!-- Opsi C: Hanya arrowOffset (Kotak teks tetap, ujung panah bergeser) -->
+    <view class="offset-item">
+      <view class="txt-label2-sb-px mg-b-4-px">Solusi C: arrowOffset="{{ 35 }}" (Hanya Panah)</view>
+      <view class="txt-body3-px txt-granite mg-b-8-px">
+        Kotak teks tetap di tengah, posisi ujung panah digeser +35px ke kanan.
+      </view>
+      <bni-popover
+        content="Kotak teks berada di tengah, sedangkan ujung panah digeser +35px ke kanan."
+        placement="top"
+        backgroundColor="#DADADA"
+        textColor="#0E0E0E"
+        arrowOffset="{{ 35 }}"
+        maxWidth="{{ 260 }}"
+      >
+        <view class="btn-compact">arrowOffset="35"</view>
+      </bni-popover>
+    </view>
+
+    <!-- Opsi D: Kombinasi contentOffset & arrowOffset -->
+    <view class="offset-item">
+      <view class="txt-label2-sb-px mg-b-4-px">Solusi D: contentOffset & arrowOffset Keduanya</view>
+      <view class="txt-body3-px txt-granite mg-b-8-px">
+        Kotak teks dan ujung panah keduanya digeser +50px ke kanan secara bersamaan.
+      </view>
+      <bni-popover
+        content="Kotak teks dan panah sama-sama digeser +50px ke kanan."
+        placement="top"
+        backgroundColor="#DADADA"
+        textColor="#0E0E0E"
+        contentOffset="{{ 50 }}"
+        arrowOffset="{{ 0 }}"
+        maxWidth="{{ 260 }}"
+      >
+        <view class="btn-compact-primary">Offset Keduanya</view>
+      </bni-popover>
+    </view>
+  </view>
+
+  <!-- 4. VARIASI ELEMEN PEMICU (TRIGGER) -->
+  <view class="card">
+    <view class="card-header">
+      <view class="card-badge">Variasi 4</view>
+      <view class="card-title txt-h5-px">Variasi Elemen Pemicu (Trigger)</view>
+    </view>
+    <view class="card-desc txt-body3-px txt-granite">
+      Popover dapat dipasangkan dengan trigger ikon, tombol, teks link, atau kartu:
+    </view>
+
+    <!-- Trigger Icon Info (Secondary Bonds Style) -->
+    <view class="trigger-item bb-divider">
+      <view class="d-f-row-px ai-center-px">
+        <text class="txt-body2-px mg-r-8-px">Harga Beli Obligasi</text>
+        <bni-popover
+          content="Harga beli obligasi berdasarkan kuota dan kurs yang berlaku saat ini."
+          placement="bottom-left"
+          contentClassName="custom-popover-content"
+        >
+          <image
+            class="icon-info"
+            mode="scaleToFill"
+            src="/src/assets/icons/ic_common_info_outlined.svg"
+          />
+        </bni-popover>
+      </view>
+      <view class="txt-body3-px txt-granite">Ikon Info</view>
+    </view>
+
+    <!-- Trigger Button -->
+    <view class="trigger-item bb-divider">
+      <bni-popover
+        content="Ini adalah popover yang dipicu oleh tombol aksi."
+        placement="top"
+      >
+        <view class="btn-compact">Tombol Trigger</view>
+      </bni-popover>
+      <view class="txt-body3-px txt-granite">Tombol Aksi</view>
+    </view>
+
+    <!-- Trigger Text Link -->
+    <view class="trigger-item">
+      <bni-popover
+        content="Informasi rincian syarat dan ketentuan transaksi obligasi."
+        placement="bottom-left"
+        backgroundColor="#DADADA"
+        textColor="#0E0E0E"
+      >
+        <text class="txt-body2-sb-px txt-turquoise-500 text-underline">
+          Lihat Syarat & Ketentuan
+        </text>
+      </bni-popover>
+      <view class="txt-body3-px txt-granite">Teks Interaktif</view>
+    </view>
+  </view>
+
+  <!-- 5. VARIASI KONTEN (TEXT BIASA VS RICH SLOT) -->
+  <view class="card">
+    <view class="card-header">
+      <view class="card-badge">Variasi 5</view>
+      <view class="card-title txt-h5-px">Konten Teks vs Custom Rich Slot</view>
+    </view>
+    <view class="card-desc txt-body3-px txt-granite">
+      Mendukung teks ringkas atau struktur rich layout HTML kustom:
+    </view>
+
+    <view class="d-f-row-px gap-12 flex-wrap">
+      <!-- Text Biasa -->
+      <bni-popover
+        content="Biaya transaksi Rp50.000 termasuk PPN."
+        placement="bottom-left"
+        backgroundColor="#DADADA"
+        textColor="#0E0E0E"
+      >
+        <view class="btn-compact">Teks Biasa</view>
+      </bni-popover>
+
+      <!-- Custom Rich Slot Content -->
+      <bni-popover
+        useSlotContent="{{ true }}"
+        placement="bottom-left"
+        backgroundColor="#DADADA"
+        textColor="#0E0E0E"
+      >
+        <view class="btn-compact-primary">Rich HTML Slot</view>
+        <view slot="content" class="custom-rich-box">
+          <view class="d-f-row-px jc-between-px ai-center-px mg-b-4-px">
+            <text class="txt-h6-px txt-black">Rincian Kupon</text>
+            <text class="tag-badge">Aktif</text>
+          </view>
+          <view class="txt-body3-px txt-granite mg-b-8-px">
+            Kupon obligasi dibayarkan setiap tanggal 15 setiap bulan ke rekening sumber dana Anda.
+          </view>
+          <view class="txt-label2-sb-px txt-black">Tingkat Kupon: 6.75% p.a.</view>
+        </view>
+      </bni-popover>
+    </view>
+  </view>
+
+  <!-- 6. VARIASI MODE KONTROL (CONTROLLED VS UNCONTROLLED) -->
+  <view class="card">
+    <view class="card-header">
+      <view class="card-badge">Variasi 6</view>
+      <view class="card-title txt-h5-px">Mode Kontrol (controlled: true / false)</view>
+    </view>
+    <view class="card-desc txt-body3-px txt-granite">
+      Gunakan controlled: false untuk otomatis, atau controlled: true jika visibilitas dikontrol oleh page:
+    </view>
+
+    <!-- Uncontrolled Mode -->
+    <view class="offset-item">
+      <view class="d-f-row-px jc-between-px ai-center-px mg-b-8-px">
+        <text class="txt-label2-sb-px">Mode Uncontrolled (controlled="{{ false }}")</text>
+        <text class="tag-badge-green">Default</text>
+      </view>
+      <view class="txt-body3-px txt-granite mg-b-8-px">
+        Otomatis buka saat tombol ditekan dan tutup saat ditekan kembali.
+      </view>
+      <bni-popover
+        content="Popover uncontrolled otomatis aktif!"
+        placement="bottom"
+      >
+        <view class="btn-compact">Tap untuk Toggle</view>
+      </bni-popover>
+    </view>
+
+    <!-- Controlled Mode -->
+    <view class="offset-item">
+      <view class="d-f-row-px jc-between-px ai-center-px mg-b-8-px">
+        <text class="txt-label2-sb-px">Mode Controlled (controlled="{{ true }}")</text>
+        <text class="tag-badge">Controlled</text>
+      </view>
+      <view class="txt-body3-px txt-granite mg-b-8-px">
+        Status keterlihatan dikendalikan page: {{ isControlledOpen ? 'TERBUKA' : 'TERTUTUP' }}.
+      </view>
+      <bni-popover
+        controlled="{{ true }}"
+        visible="{{ isControlledOpen }}"
+        content="Visibilitas popover ini dikontrol via controlled: true di page."
+        placement="top"
+        backgroundColor="#DADADA"
+        textColor="#0E0E0E"
+        onVisibleChange="handleControlledChange"
+      >
+        <view onTap="toggleControlled" class="btn-compact-primary">
+          Toggle Page: {{ isControlledOpen ? 'Close' : 'Open' }}
+        </view>
+      </bni-popover>
+    </view>
+  </view>
+</view>

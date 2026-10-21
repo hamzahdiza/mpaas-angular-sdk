@@ -1,0 +1,81 @@
+.container-sticky-button {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.total-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.title-total-price {
+  display: flex;
+  width: 324px;
+  justify-content: space-between;
+}
+
+.text-1-total-price {
+  color: #0E0E0E;
+  font-feature-settings: 'liga'off, 'clig'off;
+  font-family: "TT Interphases Pro";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.text-2-total-price {
+  color:  #0E0E0E;
+  font-feature-settings: 'liga'off, 'clig'off;
+  font-family: "TT Interphases Pro";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 120%;
+}
+
+/* .container-sticky-button {
+  display: grid;
+  flex-direction: column;
+  gap: 16rpx;
+} */
+
+.total-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.title-total-price {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.text-1-total-price {
+  color: #0E0E0E;
+  font-feature-settings: 'liga'off, 'clig'off;
+
+  font-family: "TT Interphases Pro";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.text-2-total-price {
+  color:  #0E0E0E;
+  font-feature-settings: 'liga'off, 'clig'off;
+
+  font-family: "TT Interphases Pro";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 120%;
+}

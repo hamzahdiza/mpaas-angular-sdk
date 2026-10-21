@@ -1,0 +1,17 @@
+{
+  "allowsBounceVertical":"NO",
+  "usingComponents": {
+    "collapse": "antd-mini/es/Collapse/index",
+    "divider": "antd-mini/es/Divider/index",
+    "top-bar" : "/components/top-bar/top-bar",
+    "modal-toast": "/components/modal-toast/modal-toast",
+    "toggle-tab":"/components/toggle-tab/toggle-tab",
+    "bni-button": "/components/bni-button/bni-button",
+    "container-page": "/components/container-page/container-page"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES",
+  "defaultTitle": "",
+  "pullRefresh": false
+}
+

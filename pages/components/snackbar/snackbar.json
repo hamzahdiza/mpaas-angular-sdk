@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "snackbar": "/components/snackbar/snackbar",
+    "top-bar": "/components/top-bar/top-bar"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES"
+}

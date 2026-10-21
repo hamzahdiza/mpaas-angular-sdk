@@ -1,0 +1,209 @@
+<top-bar type="primary" backgroundColor="bg-off-white" pixel={{true}} />
+<top-bar
+  type="navigation"
+  navigate
+  backgroundColor="bg-off-white"
+  title="Language Pack Simulation"
+  iconL="../../assets/icons/ic_common_arrow_back.svg"
+  pixel={{true}}
+/>
+
+<view class="lang-page-container">
+  <!-- Header Info & Language Switcher -->
+  <view class="hero-card">
+    <view class="hero-meta-row">
+      <view class="meta-badge bg-orange-100 txt-orange-500">
+        Feature: {{featureName}}
+      </view>
+      <view class="meta-badge bg-turquoise-100 txt-turquoise-500">
+        Ver: {{languageVersion}}
+      </view>
+      <view class="meta-badge bg-snow-white txt-granite">
+        Locale: {{currentLanguage}}
+      </view>
+    </view>
+
+    <view class="txt-h3-px hero-title">
+      {{lang.lockeyTitleEvent}}
+    </view>
+    <view class="txt-body2-px txt-granite hero-subtitle">
+      {{lang.lockeyEventSubtitle}}
+    </view>
+
+    <view class="hero-action-row">
+      <bni-button
+        pixel={{true}}
+        type="primary"
+        className="txt-label1-sb-px bg-turquoise-300"
+        onTap="onToggleLanguage"
+      >
+        {{lang.lockeySwitchLang}}
+      </bni-button>
+    </view>
+  </view>
+
+  <!-- Section 1: User Prompt Example Implementation -->
+  <view class="section-container">
+    <view class="section-header">
+      <view class="section-title txt-h4-px">1. Contoh Penggunaan Tombol</view>
+      <view class="section-caption txt-body3-px txt-granite">
+        Implementasi persis sesuai format contoh pada prompt:
+      </view>
+    </view>
+
+    <view class="code-preview-card">
+      <view class="code-badge">AXML Template</view>
+      <text class="code-snippet">&lt;bni-button pixel onTap="closeUpdateNativePopup" type="outline" className="txt-label1-sb border-granite"&gt;
+  {{ "{{lang.lockeyTitleEvent}}" }}
+&lt;/bni-button&gt;</text>
+    </view>
+
+    <view class="demo-button-wrapper">
+      <bni-button
+        pixel={{true}}
+        onTap="closeUpdateNativePopup"
+        type="outline"
+        className="txt-label1-sb-px border-granite"
+      >
+        {{lang.lockeyTitleEvent}}
+      </bni-button>
+    </view>
+  </view>
+
+  <!-- Section 2: Registered Keys (Normal Translation Flow) -->
+  <view class="section-container">
+    <view class="section-header">
+      <view class="section-title txt-h4-px">2. Key Terdaftar di Language Pack</view>
+      <view class="section-caption txt-body3-px txt-granite">
+        Semua key ini ada di JSON mock API response dan berganti teks sesuai bahasa aktif (id-ID / en-ID).
+      </view>
+    </view>
+
+    <view class="event-card">
+      <view class="event-card-header">
+        <view class="txt-h4-px txt-black">{{lang.lockeyCardSummary}}</view>
+        <view class="status-chip">{{lang.lockeyBadgeAvailable}}</view>
+      </view>
+
+      <view class="event-desc txt-body2-px txt-granite">
+        {{lang.lockeyDescription}}
+      </view>
+
+      <view class="event-detail-item">
+        <text class="detail-label txt-body3-px txt-granite">Tanggal:</text>
+        <text class="detail-val txt-body2-sb-px">{{lang.lockeyEventDate}}</text>
+      </view>
+
+      <view class="event-detail-item">
+        <text class="detail-label txt-body3-px txt-granite">Lokasi:</text>
+        <text class="detail-val txt-body2-sb-px">{{lang.lockeyEventLocation}}</text>
+      </view>
+
+      <view class="event-detail-item">
+        <text class="detail-label txt-body3-px txt-granite">{{lang.lockeyPriceLabel}}:</text>
+        <text class="detail-val txt-body1-sb-px txt-orange-500">Rp 1.500.000</text>
+      </view>
+
+      <view class="event-card-actions">
+        <bni-button
+          pixel={{true}}
+          type="primary"
+          className="txt-label1-sb-px bg-turquoise-300"
+          onTap="handleBuyTicket"
+        >
+          {{lang.lockeyBtnBuyTicket}}
+        </bni-button>
+        <bni-button
+          pixel={{true}}
+          type="outline"
+          className="txt-label1-sb-px border-granite"
+          onTap="closeUpdateNativePopup"
+        >
+          {{lang.lockeyBtnDetails}}
+        </bni-button>
+      </view>
+    </view>
+  </view>
+
+  <!-- Section 3: Missing / Unregistered Keys (Fallback to Key Name) -->
+  <view class="section-container">
+    <view class="section-header">
+      <view class="section-title txt-h4-px">3. Key TIDAK Terdaftar (Fallback ke Key)</view>
+      <view class="section-caption txt-body3-px txt-granite">
+        Key di bawah sengaja TIDAK ada di response API language pack. Mekanisme getLanguagePacks otomatis merender nama key itu sendiri sebagai fallback.
+      </view>
+    </view>
+
+    <view class="fallback-card">
+      <view class="fallback-item">
+        <view class="fallback-meta">
+          <text class="fallback-tag">AXML: {{ "{{lang.lockeyNonExistentButton}}" }}</text>
+          <text class="fallback-status">Status: Fallback</text>
+        </view>
+        <bni-button
+          pixel={{true}}
+          type="outline"
+          className="txt-label1-sb-px border-granite fallback-btn"
+          onTap="handleFallbackAction"
+          data-key="lockeyNonExistentButton"
+        >
+          {{lang.lockeyNonExistentButton}}
+        </bni-button>
+      </view>
+
+      <view class="fallback-item">
+        <view class="fallback-meta">
+          <text class="fallback-tag">AXML: {{ "{{lang.lockeyTermsAndConditions}}" }}</text>
+          <text class="fallback-status">Status: Fallback</text>
+        </view>
+        <bni-button
+          pixel={{true}}
+          type="outline"
+          className="txt-label1-sb-px border-orange-500 txt-orange-500 fallback-btn"
+          onTap="handleFallbackAction"
+          data-key="lockeyTermsAndConditions"
+        >
+          {{lang.lockeyTermsAndConditions}}
+        </bni-button>
+      </view>
+
+      <view class="fallback-chips-grid">
+        <view class="fallback-chip-box" onTap="handleFallbackAction" data-key="lockeyVipLoungePass">
+          <text class="chip-title">AXML: lockeyVipLoungePass</text>
+          <text class="chip-rendered">{{lang.lockeyVipLoungePass}}</text>
+        </view>
+
+        <view class="fallback-chip-box" onTap="handleFallbackAction" data-key="lockeyRefundPolicyNote">
+          <text class="chip-title">AXML: lockeyRefundPolicyNote</text>
+          <text class="chip-rendered">{{lang.lockeyRefundPolicyNote}}</text>
+        </view>
+
+        <view class="fallback-chip-box" onTap="handleFallbackAction" data-key="lockeySpecialPromoCode">
+          <text class="chip-title">AXML: lockeySpecialPromoCode</text>
+          <text class="chip-rendered">{{lang.lockeySpecialPromoCode}}</text>
+        </view>
+
+        <view class="fallback-chip-box" onTap="handleFallbackAction" data-key="lockeySeatSelection">
+          <text class="chip-title">AXML: lockeySeatSelection</text>
+          <text class="chip-rendered">{{lang.lockeySeatSelection}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Section 4: Architecture Flow Info -->
+  <view class="section-container">
+    <view class="section-header">
+      <view class="section-title txt-h4-px">4. Alur Integrasi getLanguagePacks()</view>
+      <view class="section-caption txt-body3-px txt-granite">
+        Page langsung memanggil `getLanguagePacks()` dari `/src/utils/getLanguagePacks`.
+      </view>
+    </view>
+
+    <view class="inspector-card">
+      <view class="txt-body3-px txt-granite">
+        {{lang.lockeySimulateNotice}}
+      </view>
+    </view>
+  </view>
+</view>

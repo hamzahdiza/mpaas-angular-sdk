@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "bni-coachmark" : "/components/bni-coachmark/bni-coachmark",
+    "top-bar" : "/components/top-bar/top-bar"
+  }
+}
+

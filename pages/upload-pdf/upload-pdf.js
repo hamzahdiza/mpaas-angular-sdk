@@ -37,34 +37,17 @@ Page({
           encoding: "binary",
           success: (readRes) => {
             console.info('MPAAS_READFILE_SUCCESS', JSON.stringify(readRes));
-            my.request({
-              url: baseUri + "/apc/v1/upsert-document",
-              method: "POST",
-              data: readRes.data,
-              headers: {
-                "Content-type": 'application/octet-stream',
-                "Channel-Id": "MVR",
-                "Client-Platform": nativeData.clientPlatform,
-                "Client-Version": nativeData.clientVersion,
-                "Client-Release": nativeData.clientRelease,
-                "Accept-Language": nativeData.language,
-                "User-Agent": nativeData.userAgent,
-                "Device-Id": nativeData.deviceId,
-                "Request-Id": generateUUID(),
-                authorization: nativeData.authorization,
-                "Enc-Session-Key": nativeData.encSessionKey,
-              },
-              success: (resUp) => {
-                console.info('MPAAS_RESULT_SUCCESS', JSON.stringify(resUp));
-                this.setData({
-                  fileName: fileName,
-                  uploadSuccess: true
-                })
-              },
-              fail: (errUp) => {
-                console.info('MPAAS_RESULT_ERROR', JSON.stringify(errUp));
-              }
-            });
+            // Mock upload response to avoid live network call
+            setTimeout(() => {
+              this.setData({
+                fileName: fileName,
+                uploadSuccess: true
+              });
+              my.alert({
+                title: 'Upload Berhasil (Mock)',
+                content: 'Dokumen ' + fileName + ' berhasil diproses (Mock Mode).'
+              });
+            }, 250);
           },
           fail: (errRes) => {
             console.info('MPAAS_READFILE_FAIL', JSON.stringify(errRes));

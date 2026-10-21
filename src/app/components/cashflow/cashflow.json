@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "styleIsolation": "apply-shared",
+  "usingComponents": {
+    "bni-button": "/components/bni-button/bni-button",
+    "popup": "antd-mini/es/Popup/index",
+    "bar-chart": "/components/bar-chart/bar-chart",
+    "default-ilustration-component": "/components/default-ilustration-report/default-ilustration-report"
+  }
+}

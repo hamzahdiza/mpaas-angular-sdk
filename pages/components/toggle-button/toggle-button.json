@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "top-bar" : "/components/top-bar/top-bar",
+    "toggle-button":"/components/toggle-button/toggle-button"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES"
+}
+

@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "bnibutton":"/components/bni-button/bni-button",
+    "bnipopupmini":"/components/bni-popupmini/bni-popupmini",
+     "container": "antd-mini/es/Container/index",
+    "grid": "antd-mini/es/Grid/index",
+    "badge":"antd-mini/es/Badge/index",
+    "top-bar" : "/components/top-bar/top-bar"
+  },
+  "transparentTitle": "always",
+  "titlePenetrate": "YES"
+}
+

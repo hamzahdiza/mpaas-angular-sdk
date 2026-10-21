@@ -1,0 +1,39 @@
+#swipe-card-group-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.swipe-component-container {
+  width: 100%;
+  align-self: center;
+  position: absolute;
+}
+
+#swipe-card-group-container>.swipe-component-container {
+  display: none;
+  padding: 48rpx 32rpx;
+  top: 64rpx;
+}
+
+#swipe-card-group-container>.swipe-component-container:nth-last-child(1) {
+  display: block;
+  top: 0rpx;
+  box-shadow: 0.00rpx 10.00rpx 32.00rpx 0.00rpx rgba(78, 78, 78, 0.27);
+  transform: scale(1) translateY(0rpx);
+}
+
+#swipe-card-group-container>.swipe-component-container:nth-last-child(2) {
+  display: block;
+  top: 32rpx;
+  box-shadow: 0.00rpx 16.00rpx 20.00rpx 0.00rpx rgba(78, 78, 78, 0.10);
+  transform: scale(0.92) translateY(32rpx);
+}
+
+#swipe-card-group-container>.swipe-component-container:nth-last-child(3) {
+  display: block;
+  top: 64rpx;
+  box-shadow: 0.00rpx 16.00rpx 20.00rpx 0.00rpx rgba(78, 78, 78, 0.10);
+  transform: scale(0.85) translateY(64rpx);
+}

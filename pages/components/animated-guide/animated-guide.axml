@@ -1,0 +1,67 @@
+<view class="newspaper-page">
+  <view class="sticky-header">
+    <top-bar type="primary" backgroundColor="bg-off-white" pixel="{{true}}" />
+    <top-bar
+      type="navigation"
+      navigate
+      backgroundColor="bg-off-white"
+      title="Animated Guide"
+      iconL="../../assets/icons/ic_common_arrow_back.svg"
+      pixel="{{true}}"
+    />
+  </view>
+
+  <view class="layout-grid">
+
+    <view id="segmen-1" class="segment segment-1">
+      <text class="segment-kicker">FEATURED</text>
+      <text class="segment-title segment-title-xl">
+        Judul Berita Utama Ditulis Panjang Di Sini
+      </text>
+      <text class="segment-desc">
+        Deskripsi singkat pendukung headline, bisa dua sampai tiga baris untuk kasih konteks ke pembaca.
+      </text>
+    </view>
+
+    <view id="segmen-2" class="segment segment-2">
+      <text class="segment-kicker">TRENDING</text>
+      <text class="segment-title">Berita Kedua yang Cukup Menarik</text>
+      <text class="segment-desc">
+        Kalimat pendukung buat segmen ini, sedikit lebih ringkas dari segmen pertama.
+      </text>
+    </view>
+
+    <view id="segmen-3" class="segment segment-3">
+      <text class="segment-kicker">UPDATE</text>
+      <text class="segment-title">Berita Ketiga di Bagian Ini</text>
+      <text class="segment-desc">Deskripsi pendek untuk melengkapi konten.</text>
+    </view>
+
+    <view id="segmen-4" class="segment segment-4">
+      <text class="segment-kicker">BREAKING</text>
+      <text class="segment-title segment-title-sm">
+        Info tambahan dalam satu baris strip
+      </text>
+    </view>
+
+  </view>
+</view>
+
+<animated-guide
+  visible="{{coachmarkStep > 0 && coachmarkStep <= 4}}"
+  step="{{coachmarkStep}}"
+  totalSteps="{{4}}"
+  title="{{coachmarkTitle}}"
+  description="{{coachmarkDesc}}"
+  primaryButtonName="Lanjut"
+  secondaryButtonName="Lewati"
+  selector="{{coachmarkSelector}}"
+  selectorAdjust="{{coachmarkSelectorAdjust}}"
+  placement="{{coachmarkPlacement}}"
+  onHandleSubmitButton="onCoachmarkNext"
+  onHandleBackButton="onCoachmarkSkip"
+  classPrimaryButton="txt-label2-sb-px"
+  classSecondaryButton=""
+  idPrimaryButton="id-button-coachmark-primary"
+  idSecondaryButton="id-button-coachmark-secondary"
+/>

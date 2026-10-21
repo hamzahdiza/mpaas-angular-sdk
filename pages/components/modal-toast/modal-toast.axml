@@ -1,0 +1,68 @@
+<modal-toast
+  onCloseToastHandler="closeToastHandler"
+  type="{{type}}"
+  showToast="{{showToast}}"
+  title="{{title}}"
+  content="{{content}}"
+  btnText="{{btnText}}"
+  language="ID"
+  urlPage="/pages/components/bni-button/bni-button"
+  pixel
+>
+</modal-toast>
+
+<view>
+  <view className="txt-h1" style="display:flex; flex-direction:column justify-content: center; align-items: center; padding:10px">
+    Modal - Toast Button
+  </view>
+  <view class="main-body">
+    <bni-button
+      type="primary"
+      className="txt-h3-px bg-turquoise-300"
+      onTap="toastHandler"
+      data="success"
+    >
+      Success
+    </bni-button>
+    <bni-button className="txt-h3 bg-error" onTap="toastHandler" data="error">
+      Error
+    </bni-button>
+  </view>
+</view>
+
+<modal-toast
+  type="custorm"
+  title="Hello world111111"
+  showToast="{{isShow}}"
+  btnText="Next"
+  btnText2="previous"
+  pixel
+>
+  <view slot="content">
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+    收到的地方递四方速递卡拉季刚发双打卡理发估计山卡拉电极法考拉双打卡发啦送达了科技
+  </view>
+</modal-toast>
+
+
+
+<bni-button
+  type="primary"
+  className="txt-label1-sb-px bg-turquoise-300"
+  onTap="onPrimary"
+  pixel
+>
+  Click Modal Show
+</bni-button>

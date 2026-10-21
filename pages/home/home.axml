@@ -1,0 +1,206 @@
+<view class="top-bar-container">
+  <top-bar type="primary" backgroundColor="bg-off-white" pixel={{true}} />
+  <top-bar
+    type="logo"
+    backgroundColor="bg-off-white"
+    iconLogo="../assets/images/bni-logo.svg"
+    pixel={{true}}
+  />
+  <top-bar
+    type="navigation"
+    backgroundColor="bg-off-white"
+    title="Components Library"
+    navigate={{true}}
+    iconL="/src/assets/icons/ic_common_arrow_back.svg"
+    onIconLTap="handleBack"
+    onIconRTap="handleIconTap"
+    pixel={{true}}
+  />
+</view>
+
+<view class="main-container bg-orange-500">
+  <block
+    a:for="{{ componentList }}"
+    a:for-index="index"
+    a:for-item="component"
+    a:key="{{index}}"
+  >
+    <view
+      class="list-item"
+      style="{{(index===(componentList.length-1))?`border-bottom:solid lightgray 0.25px`:``}}"
+      data-component="{{ component }}"
+      onTap="onTapComponentList"
+    >
+      {{ component === 'bni-input-keyboard' ? 'bni-input-keyboard (legacy behaviour)' : component === 'bni-input-number' ? 'bni-input-keyboard (new behaviour)' : component }}
+    </view>
+  </block>
+</view>
+
+<collapse items="{{items}}">
+  <view slot="title" slot-scope="item" class="title">
+    <view>
+      {{item.value.title}}
+    </view>
+  </view>
+
+  <view slot="content" slot-scope="item" class="content">
+    <view a:if="{{item.value.title == 'typography'}}">
+      <view class="gap">
+        <view class="txt-h0-px">txt-h0</view>
+        <view class="txt-h1-px">txt-h1</view>
+        <view class="txt-h2-px">txt-h2</view>
+        <view class="txt-h3-px">txt-h3</view>
+        <view class="txt-h4-px">txt-h4</view>
+        <view class="txt-h5-px">txt-h5</view>
+        <view class="txt-h6-px">txt-h6</view>
+      </view>
+      <view class="gap">
+        <view class="txt-body1-px">txt-body1</view>
+        <view class="txt-body2-px">txt-body2</view>
+        <view class="txt-body3-px">txt-body3</view>
+        <view class="txt-body4-px">txt-body4</view>
+        <view class="txt-body5-px">txt-body5</view>
+      </view>
+      <view class="gap">
+        <view class="txt-body1-sb-px">txt-body1-sb</view>
+        <view class="txt-body2-sb-px">txt-body2-sb</view>
+        <view class="txt-body3-sb-px">txt-body3-sb</view>
+        <view class="txt-body4-sb-px">txt-body4-sb</view>
+        <view class="txt-body5-sb-px">txt-body5-sb</view>
+      </view>
+      <view class="gap">
+        <view class="txt-label1-px">txt-label1</view>
+        <view class="txt-label2-px">txt-label2</view>
+        <view class="txt-label3-px">txt-label3</view>
+      </view>
+      <view class="gap">
+        <view class="txt-label1-sb-px">txt-label1-sb</view>
+        <view class="txt-label2-sb-px">txt-label2-sb</view>
+        <view class="txt-label3-sb-px">txt-label3-sb</view>
+      </view>
+      <view class="gap">
+        <view class="underline">underline</view>
+      </view>
+    </view>
+
+    <view a:if="{{item.value.title == 'theme'}}">
+      <view style="font-weight:700">bg-orange-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-orange-100">100</view>
+        <view class="circle bg-orange-200">200</view>
+        <view class="circle bg-orange-300">300</view>
+        <view class="circle bg-orange-400">400</view>
+        <view class="circle bg-orange-500">500</view>
+      </view>
+
+      <view style="font-weight:700">bg-turquoise-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-turquoise-100">100</view>
+        <view class="circle bg-turquoise-200">200</view>
+        <view class="circle bg-turquoise-300">300</view>
+        <view class="circle bg-turquoise-400">400</view>
+        <view class="circle bg-turquoise-500">500</view>
+      </view>
+
+      <view style="font-weight:700">bg-purple-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-purple-100">100</view>
+        <view class="circle bg-purple-200">200</view>
+        <view class="circle bg-purple-300">300</view>
+        <view class="circle bg-purple-400">400</view>
+        <view class="circle bg-purple-500">500</view>
+      </view>
+
+      <view style="font-weight:700">bg-yellow-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-yellow-100">100</view>
+        <view class="circle bg-yellow-200">200</view>
+        <view class="circle bg-yellow-300">300</view>
+        <view class="circle bg-yellow-400">400</view>
+        <view class="circle bg-yellow-500">500</view>
+      </view>
+
+      <view style="font-weight:700">bg-lime-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-lime-100">100</view>
+        <view class="circle bg-lime-200">200</view>
+        <view class="circle bg-lime-300">300</view>
+        <view class="circle bg-lime-400">400</view>
+        <view class="circle bg-lime-500">500</view>
+      </view>
+
+      <view style="font-weight:700">bg-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-light-gray">light-gray</view>
+        <view class="circle bg-gray">gray</view>
+        <view class="circle bg-granite">granite</view>
+        <view class="circle bg-charcoal">charcoal</view>
+        <view class="circle bg-black">black</view>
+      </view>
+
+      <view style="font-weight:700">bg-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-white">white</view>
+        <view class="circle bg-off-white">off-white</view>
+        <view class="circle bg-snow-white">snow-white</view>
+        <view class="circle bg-pale-gray">pale-gray</view>
+        <view class="circle"></view>
+      </view>
+
+      <view style="font-weight:700">bg-magenta-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-magenta-100">100</view>
+        <view class="circle bg-magenta-200">200</view>
+        <view class="circle bg-magenta-300">300</view>
+        <view class="circle bg-magenta-400">400</view>
+        <view class="circle bg-magenta-500">500</view>
+      </view>
+
+      <view style="font-weight:700">bg-emerald-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-emerald-100">100</view>
+        <view class="circle bg-emerald-200">200</view>
+        <view class="circle bg-emerald-300">300</view>
+        <view class="circle bg-emerald-400">400</view>
+        <view class="circle bg-emerald-500">500</view>
+      </view>
+
+      <view style="font-weight:700">bg-blue-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-blue-100">100</view>
+        <view class="circle bg-blue-200">200</view>
+        <view class="circle bg-blue-300">300</view>
+        <view class="circle bg-blue-400">400</view>
+        <view class="circle bg-blue-500">500</view>
+      </view>
+
+      <view style="font-weight:700">bg-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-success">success</view>
+        <view class="circle bg-error">error</view>
+        <view class="circle bg-warning">warning</view>
+        <view class="circle bg-info">info</view>
+        <view class="circle"></view>
+      </view>
+
+      <view style="font-weight:700">bg-[]</view>
+      <view class="flex-between">
+        <view class="circle bg-success-off">success-off</view>
+        <view class="circle bg-error-off">error-off</view>
+        <view class="circle bg-warning-off">warning-off</view>
+        <view class="circle bg-info-off">info-off</view>
+        <view class="circle"></view>
+      </view>
+    </view>
+
+  </view>
+
+</collapse>
+
+
+<container-page className="container-vertical-padding bg-orange-500">
+  <view style="background-color:white">
+    <divider text="mini program version {{uploadVersion}}" />
+    <divider text="library development version {{libraryVersion}}" />
+  </view>
+</container-page>

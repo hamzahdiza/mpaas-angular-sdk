@@ -1,0 +1,289 @@
+<view class="charts-showcase-root">
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- TOP APP BAR                                                 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <view class="sticky-nav">
+    <top-bar
+      type="navigation"
+      navigate="{{true}}"
+      backgroundColor="#0F172A"
+      color="#FFFFFF"
+      title="Visualisasi Finansial"
+      iconL="/src/assets/icons/ic_common_arrow_back_white.svg"
+      onIconLTap="handleBack"
+      pixel="{{true}}"
+      safeArea="{{true}}"
+    />
+  </view>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- HORIZONTAL SEGMENTED TABS (SCROLLABLE)                      -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <scroll-view scroll-x="{{true}}" class="tab-scroll-wrap" enable-flex="{{true}}">
+    <view class="tab-segment-bar">
+      <block a:for="{{ tabs }}" a:key="id">
+        <view
+          class="tab-segment-item {{ activeTab === item.id ? 'active' : '' }}"
+          onTap="onSelectTab"
+          data-id="{{item.id}}"
+        >
+          <text class="tab-icon">{{item.icon}}</text>
+          <text class="tab-label">{{item.label}}</text>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+
+  <scroll-view scroll-y="{{true}}" class="charts-body-scroll">
+
+    <!-- ═════════════════════════════════════════════════════════ -->
+    <!-- TAB 1: GOLD INVESTMENT LINE CHART                           -->
+    <!-- ═════════════════════════════════════════════════════════ -->
+    <view a:if="{{ activeTab === 'line' }}" class="chart-section-card">
+      <view class="chart-header">
+        <view class="header-badge-row">
+          <text class="badge-tag">Gold Investment (AntV F2 + Canvas)</text>
+          <text class="badge-sub">Live Mock Data</text>
+        </view>
+        <text class="chart-main-title">Pergerakan Harga Emas BNI</text>
+        <text class="chart-main-desc">Grafik tren harga emas murni 99.99% dengan rentang waktu dinamis dan penanda performa.</text>
+      </view>
+
+      <!-- Buy / Sell Toggle Pill -->
+      <view class="toggle-pill-row">
+        <view
+          class="toggle-pill {{ goldPriceType === 'BELI' ? 'active-buy' : '' }}"
+          onTap="togglePriceType"
+          data-type="BELI"
+        >
+          Harga Beli (Nasabah Beli)
+        </view>
+        <view
+          class="toggle-pill {{ goldPriceType === 'JUAL' ? 'active-sell' : '' }}"
+          onTap="togglePriceType"
+          data-type="JUAL"
+        >
+          Harga Jual (Buyback)
+        </view>
+      </view>
+
+      <!-- Key Stat Badges -->
+      <view class="stat-metrics-grid">
+        <view class="stat-metric-card">
+          <text class="stat-label">Harga Hari Ini</text>
+          <text class="stat-value">{{ currentPriceDisplay }}</text>
+          <text class="stat-note">per gram murni</text>
+        </view>
+        <view class="stat-metric-card">
+          <text class="stat-label">Performa Periode</text>
+          <text class="stat-value {{ isPositiveReturn ? 'txt-emerald' : 'txt-rose' }}">{{ currentReturnDisplay }}</text>
+          <text class="stat-note">{{ selectedPeriod }} Terakhir</text>
+        </view>
+      </view>
+
+      <!-- The Dinamic Line Chart Component -->
+      <view class="canvas-chart-box">
+        <dinamic-line-chart
+          chartData="{{ goldChartData }}"
+          leftTitle="Performa"
+          rightTitle="Harga Emas"
+          timeLeftTitle=""
+          onTapIconInfo="onTapChartInfo"
+        />
+      </view>
+
+      <!-- Time Period Chips -->
+      <view class="period-chips-scroll-wrap">
+        <block a:for="{{ periods }}" a:key="value">
+          <view
+            class="period-chip {{ selectedPeriod === item.value ? 'selected' : '' }}"
+            onTap="onSelectPeriod"
+            data-period="{{ item.value }}"
+          >
+            {{ item.label }}
+          </view>
+        </block>
+      </view>
+
+      <!-- Chart Info Footer -->
+      <view class="info-callout">
+        <text class="info-callout-icon">💡</text>
+        <view class="info-callout-content">
+          <text class="info-callout-title">Catatan Fitur Converter</text>
+          <text class="info-callout-desc">Komponen line chart menggunakan AntV F2 & Native Canvas 2D fallback. Bebas hit Nexus atau API publik, siap dikonversi ke Angular / React / Vue chart component.</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- ═════════════════════════════════════════════════════════ -->
+    <!-- TAB 2: PORTFOLIO DOUGHNUT / PIE CHART                       -->
+    <!-- ═════════════════════════════════════════════════════════ -->
+    <view a:if="{{ activeTab === 'doughnut' }}" class="chart-section-card">
+      <view class="chart-header">
+        <view class="header-badge-row">
+          <text class="badge-tag">Yearly Portfolio (Canvas 2D)</text>
+          <text class="badge-sub">Interactive Slices</text>
+        </view>
+        <text class="chart-main-title">Alokasi Aset Portofolio</text>
+        <text class="chart-main-desc">Diagram lingkaran interaktif. Ketuk irisan diagram untuk melihat detail persentase dan nilai saldo nominal.</text>
+      </view>
+
+      <!-- Total Portfolio Banner -->
+      <view class="portfolio-total-banner">
+        <text class="portfolio-total-label">Total Aset Terkelola</text>
+        <text class="portfolio-total-val">{{ totalPortfolioDisplay }}</text>
+      </view>
+
+      <!-- The Doughnut Component -->
+      <view class="doughnut-canvas-wrap">
+        <doughnut-diagram
+          data="{{ doughnutData }}"
+          title="Alokasi Aset"
+          isRedraw="{{ doughnutRedraw }}"
+          onSelect="onSelectSlice"
+        />
+      </view>
+
+      <!-- Selected Slice Info Callout -->
+      <view a:if="{{ selectedSlice }}" class="selected-slice-banner">
+        <text class="slice-badge" style="background-color: {{selectedSlice.color}};">●</text>
+        <text class="slice-name">{{ selectedSlice.name }}</text>
+        <text class="slice-val">{{ selectedSlice.amount }} ({{ selectedSlice.percentage }})</text>
+      </view>
+
+      <!-- Asset Categories Legend -->
+      <view class="category-legend-list">
+        <block a:for="{{ doughnutData.categories }}" a:key="name">
+          <view class="legend-row-item">
+            <view class="legend-color-dot" style="background-color: {{item.color}};" />
+            <view class="legend-meta">
+              <text class="legend-name">{{ item.name }}</text>
+              <text class="legend-percent">{{ item.percentage }} dari portofolio</text>
+            </view>
+            <text class="legend-amount">{{ item.amount }}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- ═════════════════════════════════════════════════════════ -->
+    <!-- TAB 3: RESPONSIVE BAR CHART (CASHFLOW & BREAKDOWN)          -->
+    <!-- ═════════════════════════════════════════════════════════ -->
+    <view a:if="{{ activeTab === 'barchart' }}" class="chart-section-card">
+      <view class="chart-header">
+        <view class="header-badge-row">
+          <text class="badge-tag">Responsive Bar Chart (Dynamic CSS)</text>
+          <text class="badge-sub">Multi & Dual Bars</text>
+        </view>
+        <text class="chart-main-title">Perbandingan Arus Kas Bulanan</text>
+        <text class="chart-main-desc">Grafik batang responsif berbasis persentase dinamis CSS, tooltips, serta indikator tipe transaksi.</text>
+      </view>
+
+      <!-- Active Bar Summary Banner -->
+      <view class="bar-summary-pill">
+        <text class="bar-summary-icon">📍</text>
+        <text class="bar-summary-text">{{ activeBarSummary }}</text>
+      </view>
+
+      <!-- The Bar Chart Component -->
+      <view class="barchart-container-box">
+        <bar-chart
+          barData="{{ monthlyBars }}"
+          mode="multiple-bars"
+          label="{{ true }}"
+          type="transaction"
+          tooltip="{{ true }}"
+          onTapBar="onTapMonthlyBar"
+          activeBar="{{ activeBarIndex }}"
+        />
+      </view>
+
+      <view class="legend-barchart-row">
+        <view class="legend-badge-item">
+          <view class="dot bg-success" />
+          <text>Pemasukan (Income)</text>
+        </view>
+        <view class="legend-badge-item">
+          <view class="dot bg-error" />
+          <text>Pengeluaran (Expense)</text>
+        </view>
+      </view>
+
+      <!-- Expense Category Breakdown Bars -->
+      <view class="section-divider" />
+      <text class="sub-sec-title">Top 5 Kategori Pengeluaran Bulan Ini</text>
+      <view class="barchart-container-box mg-t-16-px">
+        <bar-chart
+          barData="{{ expenseCategoryBars }}"
+          mode="multiple-bars"
+          label="{{ true }}"
+          type="expense"
+          tooltip="{{ true }}"
+        />
+      </view>
+    </view>
+
+    <!-- ═════════════════════════════════════════════════════════ -->
+    <!-- TAB 4: YEAR-END REVIEW CASHFLOW CARD                        -->
+    <!-- ═════════════════════════════════════════════════════════ -->
+    <view a:if="{{ activeTab === 'cashflow' }}" class="chart-section-card">
+      <view class="chart-header">
+        <view class="header-badge-row">
+          <text class="badge-tag">Year-End Review (Yearly Project)</text>
+          <text class="badge-sub">Illustrative Story Card</text>
+        </view>
+        <text class="chart-main-title">Rekapitulasi Arus Kas Tahunan</text>
+        <text class="chart-main-desc">Kartu laporan tahunan lengkap dengan pita ilustrasi, status surplus/defisit, dan rekap bar pemasukan vs pengeluaran.</text>
+      </view>
+
+      <!-- Scenario Selector Chips -->
+      <view class="scenario-chips-row">
+        <view
+          class="scenario-chip {{ cashflowScenario === 'surplus' ? 'active-surplus' : '' }}"
+          onTap="onSelectCashflowScenario"
+          data-scenario="surplus"
+        >
+          ✓ Surplus (+72,5 Jt)
+        </view>
+        <view
+          class="scenario-chip {{ cashflowScenario === 'deficit' ? 'active-deficit' : '' }}"
+          onTap="onSelectCashflowScenario"
+          data-scenario="deficit"
+        >
+          ⚠ Defisit (-23,2 Jt)
+        </view>
+        <view
+          class="scenario-chip {{ cashflowScenario === 'balanced' ? 'active-balanced' : '' }}"
+          onTap="onSelectCashflowScenario"
+          data-scenario="balanced"
+        >
+          ⚖ Seimbang (Rp 0)
+        </view>
+      </view>
+
+      <!-- Embedded Cashflow Card Component -->
+      <view class="cashflow-embedded-wrap">
+        <cashflow cashflowData="{{ activeCashflowData }}" />
+      </view>
+
+      <!-- Key Metric Cards -->
+      <view class="cashflow-metric-row">
+        <view class="cashflow-metric-item">
+          <text class="metric-label">Net Arus Kas</text>
+          <text class="metric-val {{ cashflowScenario === 'deficit' ? 'txt-rose' : 'txt-emerald' }}">{{ cashflowSummary.surplusAmount }}</text>
+        </view>
+        <view class="cashflow-metric-item">
+          <text class="metric-label">Saving Rate</text>
+          <text class="metric-val txt-navy">{{ cashflowSummary.savingRate }}</text>
+        </view>
+        <view class="cashflow-metric-item">
+          <text class="metric-label">Status Keuangan</text>
+          <text class="metric-val txt-charcoal">{{ cashflowSummary.statusText }}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Bottom Spacing -->
+    <view style="height: 60px;" />
+  </scroll-view>
+</view>
